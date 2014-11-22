@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Options>
+    <Dashboards EnableCustomization="False" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemAspNetModule" Version="13.2.9.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DashboardView Id="CustomUserControlDashboardView">
+      <Items>
+        <CustomUserControlViewItem Id="CustomUserControlViewItem" CustomControlPath="Controls/WebCustomUserControl.ascx" />
+      </Items>
+    </DashboardView>
+  </Views>
+</Application>

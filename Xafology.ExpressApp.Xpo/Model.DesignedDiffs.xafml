@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="14.1.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="CsvFieldHeadersImportMap_ListView" AllowEdit="True" />
+    <ListView Id="CsvFieldHeadersImportMap_LookupListView" AllowEdit="True" />
+    <ListView Id="CsvFieldOrdinalsImportMap_ListView" AllowEdit="True" />
+    <ListView Id="CsvFieldOrdinalsImportMap_LookupListView" AllowEdit="True" />
+    <ListView Id="ImportCsvFileHeadersParam_FieldHeadImportMaps_ListView" AllowEdit="True" />
+    <ListView Id="ImportCsvFileOrdinalsParam_FieldOrdImportMaps_ListView" AllowEdit="True" />
+  </Views>
+</Application>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Xafology.CustomUserControlDemo" Logo="ExpressAppLogo">
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="CustomUserControlView" Caption="Custom User Control View" ViewId="CustomUserControlDashboardView" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DashboardView Id="CustomUserControlDashboardView" Caption="Custom User Control" IsNewNode="True">
+      <Items IsNewNode="True">
+        <CustomUserControlViewItem Id="CustomUserControlViewItem" IsNewNode="True" />
+      </Items>
+    </DashboardView>
+  </Views>
+</Application>

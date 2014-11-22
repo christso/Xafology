@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47EAA7DA-B85C-45A8-8E21-24FC12D56F65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xafology.ExpressApp.Xpo</RootNamespace>
+    <AssemblyName>Xafology.ExpressApp.Xpo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Xpo.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.1">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO">
+      <HintPath>..\..\..\Packages\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CloneIXPSimpleObjectHelper.cs" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <Compile Include="D2NObjectSpaceProvider.cs" />
+    <Compile Include="D2NUnitOfWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="DbIdentityAttribute.cs" />
+    <Compile Include="Import\Controllers\ImportCsvFileListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Import\Objects\Appearance.cs" />
+    <Compile Include="Import\Objects\CsvFieldImportMap.cs" />
+    <Compile Include="Import\Objects\CsvFieldOrdinalsImportMap.cs" />
+    <Compile Include="Import\Objects\CsvFieldHeadersImportMap.cs" />
+    <Compile Include="IdentityBaseObject.cs" />
+    <Compile Include="IdentityObjectViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Import\ImportActionType.cs" />
+    <Compile Include="Import\Objects\ImportCsvFileHeadersParam.cs" />
+    <Compile Include="Import\Logic\ImportCsvFileHeadersLogic.cs" />
+    <Compile Include="Import\Logic\ImportCsvFileLogic.cs" />
+    <Compile Include="Import\Logic\ImportCsvFileOrdinalsLogic.cs" />
+    <Compile Include="Import\Objects\ImportCsvFileOrdinalsParam.cs" />
+    <Compile Include="Import\Objects\ImportCsvFileParamBase.cs" />
+    <Compile Include="Import\Controllers\ImportCsvFileDetailViewControllerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Import\ImportErrorInfo.cs" />
+    <Compile Include="Import\ImportErrorInfoKey.cs" />
+    <Compile Include="Import\Controllers\ImportListViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Module.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="XpoExtensions.cs" />
+    <Compile Include="Import\XpoImportEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Module.resx">
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
+      <Project>{a7ff6a7b-37ff-425c-9620-4a528e104d5f}</Project>
+      <Name>Xafology.ExpressApp.Concurrency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
+      <Project>{484A8217-DD6B-4E8F-B47E-F1F64D03BBB6}</Project>
+      <Name>GenerateUserFriendlyId.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\$(ConfigurationName)" "D:\Visual_Studio\Packages\Xafology" /s /i /y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

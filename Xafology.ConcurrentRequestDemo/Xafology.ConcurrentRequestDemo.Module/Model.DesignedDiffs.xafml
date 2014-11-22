@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Xafology.ConcurrentRequestDemo" Logo="ExpressAppLogo">
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="@da65f488-39a1-4e85-a673-e04fe059eb0c" ViewId="ActionRequest_ListView" ImageName="Action_Debug_Start" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="PivotGridSavedLayoutUILoad_ListView" ClassName="Xafology.ExpressApp.PivotGridLayout.PivotGridSavedLayout" AllowNew="False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="LayoutName" PropertyName="LayoutName" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="LayoutFile" PropertyName="LayoutFile" Width="70" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="PivotGridSavedLayoutUISave_ListView" ClassName="Xafology.ExpressApp.PivotGridLayout.PivotGridSavedLayout" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="LayoutName" PropertyName="LayoutName" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="LayoutFile" PropertyName="LayoutFile" Width="70" Index="1" IsNewNode="True" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>
