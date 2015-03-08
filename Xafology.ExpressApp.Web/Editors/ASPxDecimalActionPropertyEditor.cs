@@ -3,7 +3,7 @@ using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Web.Editors.ASPx;
 using DevExpress.ExpressApp.Web.TestScripts;
-using DevExpress.Web.ASPxEditors;
+using DevExpress.Web;
 using System;
 using System.Web.UI.WebControls;
 

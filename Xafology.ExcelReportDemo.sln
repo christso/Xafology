@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj", "{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Wi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp", "Xafology.ExpressApp\Xafology.ExpressApp.csproj", "{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.MsoExcel", "Xafology.ExpressApp.MsoExcel\Xafology.ExpressApp.MsoExcel.csproj", "{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.MsoExcel", "Xafology.ExpressApp.MsoExcel\Xafology.ExpressApp.MsoExcel.csproj", "{996F0F42-B494-44C4-837F-DB831FD5D860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,15 +84,15 @@ Global
 		{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}.Release|x86.ActiveCfg = Release|x86
 		{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}.Release|x86.Build.0 = Release|x86
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.EasyTest|x86.ActiveCfg = Release|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}.Release|x86.ActiveCfg = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.EasyTest|x86.ActiveCfg = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996F0F42-B494-44C4-837F-DB831FD5D860}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

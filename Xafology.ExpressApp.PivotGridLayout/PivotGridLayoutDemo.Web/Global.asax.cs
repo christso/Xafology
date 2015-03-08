@@ -8,7 +8,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Web;
-using DevExpress.Web.ASPxClasses;
+using DevExpress.Web;
 
 namespace PivotGridLayoutDemo.Web
 {
