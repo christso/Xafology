@@ -1,16 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.PivotGrid", "Xafology.PivotGrid\Xafology.PivotGrid.csproj", "{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj", "{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Web", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj", "{856E1953-586D-419D-BEB8-6D5D96ECAC86}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Win", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.Win\Xafology.ExpressApp.PivotGridLayout.Win.csproj", "{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.StringEvaluators", "Xafology.StringEvaluators\Xafology.StringEvaluators.csproj", "{5B146106-01EE-401F-A024-99C1BC2CC237}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp", "Xafology.ExpressApp\Xafology.ExpressApp.csproj", "{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}"
@@ -20,12 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Win", "Xafology.ExpressApp.Win\Xafology.ExpressApp.Win.csproj", "{A0CBF966-805D-4532-8F04-2106E5C963F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.Utils", "Xafology.Utils\Xafology.Utils.csproj", "{27104BF1-1EF2-47F5-B3DC-5CDCE2A41B08}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGrid", "Xafology.ExpressApp.PivotGrid\Xafology.ExpressApp.PivotGrid.csproj", "{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGrid.Web", "Xafology.ExpressApp.PivotGrid.Web\Xafology.ExpressApp.PivotGrid.Web.csproj", "{1CE44561-0989-454F-B5CA-847E2EEFDE7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGrid.Win", "Xafology.ExpressApp.PivotGrid.Win\Xafology.ExpressApp.PivotGrid.Win.csproj", "{7F289837-77A8-471C-9A42-F48F39B0A27D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Concurrency", "Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj", "{A7FF6A7B-37FF-425C-9620-4A528E104D5F}"
 EndProject
@@ -41,6 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Layout.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Xpo", "Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj", "{47EAA7DA-B85C-45A8-8E21-24FC12D56F65}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{309E3109-E83B-4DA5-887A-B0ED114E67B8}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,45 +42,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Debug|x86.ActiveCfg = Debug|x86
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Debug|x86.Build.0 = Debug|x86
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.EasyTest|x86.ActiveCfg = Release|x86
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.EasyTest|x86.Build.0 = Release|x86
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Release|x86.ActiveCfg = Release|x86
-		{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}.Release|x86.Build.0 = Release|x86
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.EasyTest|x86.ActiveCfg = EasyTest|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}.Release|x86.ActiveCfg = Release|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.EasyTest|x86.ActiveCfg = EasyTest|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{856E1953-586D-419D-BEB8-6D5D96ECAC86}.Release|x86.ActiveCfg = Release|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.EasyTest|x86.ActiveCfg = EasyTest|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B146106-01EE-401F-A024-99C1BC2CC237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B146106-01EE-401F-A024-99C1BC2CC237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B146106-01EE-401F-A024-99C1BC2CC237}.Debug|x86.ActiveCfg = Debug|x86
@@ -141,42 +93,6 @@ Global
 		{27104BF1-1EF2-47F5-B3DC-5CDCE2A41B08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27104BF1-1EF2-47F5-B3DC-5CDCE2A41B08}.Release|x86.ActiveCfg = Release|x86
 		{27104BF1-1EF2-47F5-B3DC-5CDCE2A41B08}.Release|x86.Build.0 = Release|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Debug|x86.ActiveCfg = Debug|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Debug|x86.Build.0 = Debug|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.EasyTest|x86.ActiveCfg = Release|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.EasyTest|x86.Build.0 = Release|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Release|x86.ActiveCfg = Release|x86
-		{B5C18C13-85C7-4749-9F2D-EF92D3692AD3}.Release|x86.Build.0 = Release|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Debug|x86.ActiveCfg = Debug|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Debug|x86.Build.0 = Debug|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.EasyTest|x86.ActiveCfg = Release|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.EasyTest|x86.Build.0 = Release|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Release|x86.ActiveCfg = Release|x86
-		{1CE44561-0989-454F-B5CA-847E2EEFDE7C}.Release|x86.Build.0 = Release|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Debug|x86.ActiveCfg = Debug|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Debug|x86.Build.0 = Debug|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.EasyTest|x86.ActiveCfg = Release|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.EasyTest|x86.Build.0 = Release|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Release|x86.ActiveCfg = Release|x86
-		{7F289837-77A8-471C-9A42-F48F39B0A27D}.Release|x86.Build.0 = Release|x86
 		{A7FF6A7B-37FF-425C-9620-4A528E104D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7FF6A7B-37FF-425C-9620-4A528E104D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7FF6A7B-37FF-425C-9620-4A528E104D5F}.Debug|x86.ActiveCfg = Debug|Any CPU
