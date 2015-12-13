@@ -73,9 +73,6 @@
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>..\..\..\Packages\EPPlus.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -102,9 +99,6 @@
     <Compile Include="Controllers\ExcelReportViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\TestController.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,10 +109,7 @@
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="Reports\ExcelReport.cs" />
     <Compile Include="Reports\ExcelReportCreator.cs" />
-    <Compile Include="Reports\ExcelReportFieldAttribute.cs" />
-    <Compile Include="Reports\ExcelReportHelper.cs" />
     <Compile Include="Reports\Setup.cs" />
-    <Compile Include="ExcelUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Module.resx">
@@ -132,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DatabaseUpdate\ReadMe.txt" />
+    <None Include="packages.config" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +142,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
+      <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
+      <Name>Xafology.Spreadsheet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

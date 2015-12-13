@@ -74,9 +74,6 @@
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GenerateUserFriendlyId.Module">
-      <HintPath>..\packages\GenerateUserFriendlyId.Module.1.1.0.0\lib\net45\GenerateUserFriendlyId.Module.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -96,9 +93,6 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Xafology.ExpressApp">
-      <HintPath>..\packages\Xafology.ExpressApp.1.2.0.2\lib\net45\Xafology.ExpressApp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +143,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
+      <Project>{484a8217-dd6b-4e8f-b47e-f1f64d03bbb6}</Project>
+      <Name>GenerateUserFriendlyId.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

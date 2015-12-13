@@ -1,7 +1,7 @@
 ﻿using Xafology.ExpressApp.MsoExcel.Attributes;
 using Xafology.ExpressApp.MsoExcel.Reports;
 using DevExpress.ExpressApp;
-using OfficeOpenXml;
+using Xafology.Spreadsheet;
 
 namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
 {
@@ -12,7 +12,7 @@ namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
         {
             FileName = "Gen Ledger Report.xlsx";
         }
-        public GenLedgerReportCreator(XafApplication app, ExcelPackage package)
+        public GenLedgerReportCreator(XafApplication app, IWorkbook package)
             : base(app, package)
         {
 

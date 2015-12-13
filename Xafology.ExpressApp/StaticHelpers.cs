@@ -11,7 +11,7 @@ namespace Xafology.ExpressApp
     public class StaticHelpers
     {
         /// <summary>
-        /// Get singleton instance. This will instatiate the object if no object exists.
+        /// Get singleton instance. This will instantiate the object if no object exists.
         /// </summary>
         public static T GetInstance<T>(IObjectSpace objectSpace)
         {

@@ -4,7 +4,7 @@ using Xafology.ExpressApp.MsoExcel.Reports;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Xpo;
-using OfficeOpenXml;
+using Xafology.Spreadsheet;
 using System.IO;
 
 namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
@@ -16,7 +16,7 @@ namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
         {
             FileName = "Cash Report.xlsx";
         }
-        public CashReportCreator(XafApplication app, ExcelPackage package)
+        public CashReportCreator(XafApplication app, IWorkbook package)
             : base(app, package)
         {
 
@@ -31,11 +31,11 @@ namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
             var cashFlows = session.GetObjects(session.GetClassInfo(typeof(CashFlow)),
                 null, sortProps, 0, false, true);
 
-            ExcelWorksheet ws = Package.Workbook.Worksheets["Data"];
+            IWorksheet ws = Package.GetWorksheet("Data");
             if (ws == null)
                 throw new UserFriendlyException("Worksheet 'Data' not found in workbook.");
-
-            ExcelReportHelper.CopyObjectsToWorksheet(session, cashFlows, ws);
+            
+            ws.CopyObjectsToWorksheet(session, cashFlows);
             session.CommitTransaction();
         }
 

@@ -59,9 +59,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Xafology.PivotGrid">
-      <HintPath>..\..\..\..\Packages\Xafology\Xafology.PivotGrid.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.ExpressApp.PivotGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.PivotGrid.Web.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -171,6 +168,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xafology.PivotGrid\Xafology.PivotGrid.csproj">
+      <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
+      <Name>Xafology.PivotGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+      <Project>{ceab89b1-8d0d-4e61-8c36-2d8efd2f202a}</Project>
+      <Name>Xafology.ExpressApp.PivotGridLayout</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

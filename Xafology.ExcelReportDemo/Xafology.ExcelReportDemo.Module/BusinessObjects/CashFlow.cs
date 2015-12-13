@@ -1,7 +1,7 @@
-using Xafology.ExpressApp.MsoExcel.Reports;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
+using Xafology.Spreadsheet.Attributes;
 
 namespace Xafology.ExcelReportDemo.Module.BusinessObjects
 {

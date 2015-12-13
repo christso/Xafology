@@ -66,9 +66,6 @@
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>..\..\..\..\Packages\EPPlus.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -83,6 +80,10 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Xafology.ExpressApp, Version=1.2.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xafology.ExpressApp.1.2.0.3\lib\net45\Xafology.ExpressApp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
   <ItemGroup>
     <None Include="FunctionalTests\Sample.ets" />
     <None Include="Images\ReadMe.txt" />
+    <None Include="packages.config" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -132,12 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Xafology.ExpressApp.MsoExcel\Xafology.ExpressApp.MsoExcel.csproj">
-      <Project>{b9ef03ff-d05b-4fd4-a8e9-f90d819cb1dc}</Project>
+      <Project>{996f0f42-b494-44c4-837f-db831fd5d860}</Project>
       <Name>Xafology.ExpressApp.MsoExcel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
-      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
-      <Name>Xafology.ExpressApp</Name>
+    <ProjectReference Include="..\..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
+      <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
+      <Name>Xafology.Spreadsheet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

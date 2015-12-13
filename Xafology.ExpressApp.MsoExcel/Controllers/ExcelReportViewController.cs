@@ -3,10 +3,10 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.BaseImpl;
-using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Xafology.Spreadsheet;
 
 namespace Xafology.ExpressApp.MsoExcel.Controllers
 {
@@ -79,8 +79,8 @@ namespace Xafology.ExpressApp.MsoExcel.Controllers
                     reportObj.TemplateFile.SaveToStream(stream);
                 }
                 stream.Position = 0;
-
-                using (ExcelPackage package = new ExcelPackage(stream))
+                
+                using (WorkbookProxy package = new WorkbookProxy(stream))
                 {
                     reportCreator.Setup(Application, package);
                     reportCreator.Execute();

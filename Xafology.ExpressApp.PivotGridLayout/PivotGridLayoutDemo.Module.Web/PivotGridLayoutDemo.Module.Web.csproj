@@ -109,9 +109,6 @@
     <Reference Include="DevExpress.XtraCharts.v15.2.Wizard, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v15.2.Web, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="Xafology.PivotGrid">
-      <HintPath>..\Lib\Xafology.PivotGrid.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
@@ -145,6 +142,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Xafology.PivotGrid\Xafology.PivotGrid.csproj">
+      <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
+      <Name>Xafology.PivotGrid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj">
       <Project>{856E1953-586D-419D-BEB8-6D5D96ECAC86}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout.Web</Name>

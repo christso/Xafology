@@ -53,9 +53,6 @@
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GenerateUserFriendlyId.Module">
-      <HintPath>..\..\..\Packages\Xafology\GenerateUserFriendlyId.Module.dll</HintPath>
-    </Reference>
     <Reference Include="LumenWorks.Framework.IO">
       <HintPath>..\..\..\Packages\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
@@ -118,6 +115,10 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
+      <Project>{484a8217-dd6b-4e8f-b47e-f1f64d03bbb6}</Project>
+      <Name>GenerateUserFriendlyId.Module</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
       <Project>{a7ff6a7b-37ff-425c-9620-4a528e104d5f}</Project>
       <Name>Xafology.ExpressApp.Concurrency</Name>

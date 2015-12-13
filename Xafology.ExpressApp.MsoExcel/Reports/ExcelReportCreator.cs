@@ -1,6 +1,6 @@
 ﻿using DevExpress.ExpressApp;
-using OfficeOpenXml;
 using System.IO;
+using Xafology.Spreadsheet;
 
 namespace Xafology.ExpressApp.MsoExcel.Reports
 {
@@ -16,13 +16,13 @@ namespace Xafology.ExpressApp.MsoExcel.Reports
             FileName = "Template.xlsx";
         }
 
-        public ExcelReportCreator(XafApplication app, ExcelPackage package)
+        public ExcelReportCreator(XafApplication app, IWorkbook package)
             : this()
         {
             Setup(app, package);
         }
 
-        public void Setup(XafApplication app, ExcelPackage package)
+        public void Setup(XafApplication app, IWorkbook package)
         {
             this.Application = app;
             this.Package = package;
@@ -37,6 +37,6 @@ namespace Xafology.ExpressApp.MsoExcel.Reports
 
         protected string TargetName;
         protected XafApplication Application;
-        protected ExcelPackage Package;
+        protected IWorkbook Package;
     }
 }
