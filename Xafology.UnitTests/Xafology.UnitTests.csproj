@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xafology.UnitTests</RootNamespace>
+    <AssemblyName>Xafology.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Persistent.BaseImpl.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ImportTests.cs" />
+    <Compile Include="MockImportObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+      <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
+      <Name>Xafology.ExpressApp.Xpo.Import</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
+      <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
+      <Name>Xafology.ExpressApp.Xpo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.SpreadsheetImpl\Xafology.SpreadsheetImpl.csproj">
+      <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
+      <Name>Xafology.SpreadsheetImpl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
+      <Project>{e8a8591e-fd7b-4e26-8db2-872074f125eb}</Project>
+      <Name>Xafology.Spreadsheet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.Tests\Xafology.TestUtils.csproj">
+      <Project>{51e0010f-cd1d-47bb-894c-d9347e48ee44}</Project>
+      <Name>Xafology.TestUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

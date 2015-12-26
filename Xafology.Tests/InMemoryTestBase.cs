@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.Tests
+namespace Xafology.TestUtils
 {
     public class InMemoryDbTestBase
     {
