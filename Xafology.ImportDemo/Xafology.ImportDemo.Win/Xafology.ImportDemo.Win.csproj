@@ -64,10 +64,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Xafology.ExpressApp\bin\Debug\Xafology.ExpressApp.dll</HintPath>
     </Reference>
-    <Reference Include="Xafology.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Packages\Xafology\Xafology.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Objects.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -225,9 +221,9 @@
       <Project>{47EAA7DA-B85C-45A8-8E21-24FC12D56F65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
-      <Project>{484A8217-DD6B-4E8F-B47E-F1F64D03BBB6}</Project>
-      <Name>GenerateUserFriendlyId.Module</Name>
+    <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module.Win\Xafology.ImportDemo.Module.Win.csproj">
       <Project>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</Project>

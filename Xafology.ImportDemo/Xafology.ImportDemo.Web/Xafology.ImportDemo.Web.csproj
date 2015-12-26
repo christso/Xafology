@@ -217,10 +217,6 @@
       <Project>{47EAA7DA-B85C-45A8-8E21-24FC12D56F65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
-      <Project>{484A8217-DD6B-4E8F-B47E-F1F64D03BBB6}</Project>
-      <Name>GenerateUserFriendlyId.Module</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module.Web\Xafology.ImportDemo.Module.Web.csproj">
       <Project>{0C729AAD-7626-4668-A7F1-35F7D240489D}</Project>
       <Name>Xafology.ImportDemo.Module.Web</Name>

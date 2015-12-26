@@ -59,10 +59,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Xafology.ExpressApp.PivotGridLayout, Version=1.0.5824.24154, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xafology.ExpressApp.PivotGridLayout.1.0.5824.24154\lib\net40\Xafology.ExpressApp.PivotGridLayout.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DevExpress.ExpressApp.PivotGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.ExpressApp.PivotGrid.Win.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -146,9 +142,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\PivotGridLayoutControllerWin.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controllers\PivotGridLayoutControllerWin.cs" />
     <Compile Include="Controllers\SavedLayoutPopupListViewControllerWin.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -176,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\ReadMe.txt" />
-    <None Include="packages.config" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -197,12 +190,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FunctionalTests\Config.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Xafology.PivotGrid\Xafology.PivotGrid.csproj">
       <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
       <Name>Xafology.PivotGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+      <Project>{ceab89b1-8d0d-4e61-8c36-2d8efd2f202a}</Project>
+      <Name>Xafology.ExpressApp.PivotGridLayout</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

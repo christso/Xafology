@@ -138,7 +138,7 @@
       <Name>Xafology.ExpressApp.MsoExcel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
-      <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
+      <Project>{e8a8591e-fd7b-4e26-8db2-872074f125eb}</Project>
       <Name>Xafology.Spreadsheet</Name>
     </ProjectReference>
   </ItemGroup>

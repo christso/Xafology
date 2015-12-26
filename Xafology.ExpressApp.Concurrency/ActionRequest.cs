@@ -14,11 +14,11 @@ using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.Security.Strategy;
 using DevExpress.ExpressApp.Actions;
 using System.Threading;
-using GenerateUserFriendlyId.Module.BusinessObjects;
+using Xafology.ExpressApp.Xpo.SequentialBase;
 
 namespace Xafology.ExpressApp.Concurrency
 {
-    public class ActionRequest : UserFriendlyIdPersistentObject
+    public class ActionRequest : SequentialBaseObject
     {
         public ActionRequest(Session session)
             : base(session)
@@ -39,6 +39,13 @@ namespace Xafology.ExpressApp.Concurrency
             RequestDate = DateTime.Now;
         }
 
+        #region Fields
+        private string _RequestLog;
+        private string _RequestName;
+        private RequestStatus _RequestStatus;
+        private DateTime _RequestDate;
+        SecuritySystemUser _Requestor;
+
         [PersistentAlias("concat('RQ', ToStr(SequentialNumber))")]
         public string RequestId
         {
@@ -47,8 +54,10 @@ namespace Xafology.ExpressApp.Concurrency
                 return Convert.ToString(EvaluateAlias("RequestId"));
             }
         }
+        #endregion
 
-        // Fields...
+        #region Methods
+
         [VisibleInLookupListView(false)]
         [VisibleInListView(false)]
         [VisibleInDetailView(false)]
@@ -71,11 +80,9 @@ namespace Xafology.ExpressApp.Concurrency
             return true;
         }
 
-        private string _RequestLog;
-        private string _RequestName;
-        private RequestStatus _RequestStatus;
-        private DateTime _RequestDate;
-        SecuritySystemUser _Requestor;
+        #endregion
+
+        #region Properties
 
         public DateTime RequestDate
         {
@@ -135,13 +142,14 @@ namespace Xafology.ExpressApp.Concurrency
                 SetPropertyValue("RequestLog", ref _RequestLog, value);
             }
         }
-    }
-    public enum RequestStatus
-    {
-        Waiting,
-        Processing,
-        Complete,
-        Error,
-        Cancelled
+
+
+        #endregion
+
+        public void CommitChanges()
+        {
+            this.Save();
+            this.Session.CommitTransaction();
+        }
     }
 }

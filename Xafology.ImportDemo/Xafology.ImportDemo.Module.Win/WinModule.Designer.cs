@@ -33,7 +33,6 @@ namespace Xafology.ImportDemo.Module.Win
             // 
             this.RequiredModuleTypes.Add(typeof(Xafology.ImportDemo.Module.ImportDemoModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule));
-            this.RequiredModuleTypes.Add(typeof(GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule));
 
         }

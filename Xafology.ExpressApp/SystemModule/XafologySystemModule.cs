@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Xafology.ExpressApp.SystemModule
 {
-    public sealed partial class XafologySystemModule : XafologyModuleBase
+    public sealed class XafologySystemModule : XafologyModuleBase
     {
         public XafologySystemModule()
         {

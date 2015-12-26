@@ -1,12 +1,10 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security.Strategy;
-using DevExpress.ExpressApp.SystemModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp;
 using Xafology.ExpressApp.SystemModule;
 using System.Threading;
 
@@ -15,62 +13,81 @@ namespace Xafology.ExpressApp.Concurrency
     public class RequestManager
     {
         public CancellationTokenSource CancellationTokenSource;
-        private ActionRequest _RequestObj;
+        private readonly ActionRequestLogger logger;
+        private ActionRequest request;
+        
+        // override the exit message
         public RequestStatus? CustomRequestExitStatus;
-        public readonly XafApplication Application;
+        
+        private readonly XafApplication application;
 
         public RequestManager(XafApplication application)
         {
-            this.Application = application;
+            this.application = application;
+            logger = new ActionRequestLogger(this);
         }
 
-        public void SubmitRequest(string requestName, Action job)
+        public ActionRequestLogger Logger
+        {
+            get
+            {
+                return logger;
+            }
+        }
+
+        public ActionRequest Request
+        {
+            get
+            {
+                return request;
+            }
+        }
+
+        private static void SetRequester(ActionRequest request)
+        {
+            var currentUser = SecuritySystem.CurrentUser as SecuritySystemUser;
+            if (currentUser != null)
+            {
+                request.Requestor = request.Session.GetObjectByKey<SecuritySystemUser>(currentUser.Oid);
+            }
+        }
+
+        private void CreateRequest(string requestName, CancellationTokenSource ts)
+        {
+            var objSpace = application.CreateObjectSpace();
+            request = objSpace.CreateObject<ActionRequest>();
+            SetRequester(request);
+            request.RequestName = requestName;
+            request.RequestStatus = RequestStatus.Processing;
+
+            request.SetCancellationTokenSource(ts);
+            request.CommitChanges();
+        }
+
+        public void ProcessRequest(string requestName, Action job)
         {
             var ts = new CancellationTokenSource();
             CancellationTokenSource = ts;
 
-            var currentUser = SecuritySystem.CurrentUser as SecuritySystemUser;
-            var objSpace = Application.CreateObjectSpace();
-            var requestObj = objSpace.CreateObject<ActionRequest>();
-            if (currentUser != null)
-                requestObj.Requestor = objSpace.GetObjectByKey<SecuritySystemUser>(currentUser.Oid);
-            requestObj.RequestName = requestName;
-            requestObj.RequestStatus = RequestStatus.Processing;
-            requestObj.Save();
-            requestObj.Session.CommitTransaction();
-
-            requestObj.SetCancellationTokenSource(ts);
-            requestObj.Save();
-            requestObj.Session.CommitTransaction();
-            new GenericMessageBox("Request ID: " + requestObj.RequestId, "Concurrent Request");
+            CreateRequest(requestName, ts);
+            new GenericMessageBox("Request ID: " + request.RequestId, "Concurrent Request");
 
             Task t = Task.Factory.StartNew(() =>
             {
-                SubmitRequest(job, requestObj);
+                ProcessRequest(job, request);
             }, ts.Token);
         }
 
-        public void WriteLogLine(string text, bool commit = true)
-        {
-            if (_RequestObj == null) return;
-            if (!string.IsNullOrEmpty(_RequestObj.RequestLog))
-                _RequestObj.RequestLog += "\r\n";
-            _RequestObj.RequestLog += text;
-            if (commit)
-            {
-                _RequestObj.Save();
-                _RequestObj.Session.CommitTransaction();
-            }
-        }
-
-        protected void SubmitRequest(Action job, ActionRequest requestObj)
+        private void ProcessRequest(Action job, ActionRequest requestObj)
         {
             CustomRequestExitStatus = null;
-            _RequestObj = requestObj;
+            request = requestObj;
 
             try
             {
                 job();
+
+                // use the user-defined exit status, otherwise assume request is complete
                 if (CustomRequestExitStatus == null)
                     requestObj.RequestStatus = RequestStatus.Complete;
                 else
@@ -78,11 +95,18 @@ namespace Xafology.ExpressApp.Concurrency
             }
             catch (Exception ex)
             {
+                // log unhandled exception
                 requestObj.RequestStatus = RequestStatus.Error;
-                WriteLogLine("Unhandled Error: " + ex.Message + "\r\n" + ex.StackTrace);
+                logger.Log("Unhandled Error: {0}\r\n{1}", ex.Message, ex.StackTrace);
             }
-            requestObj.Save();
-            requestObj.Session.CommitTransaction();
+            requestObj.CommitChanges();
         }
+
+        [Obsolete("Please use method ILogger.Log instead.")]
+        public void Log(string text)
+        {
+            logger.Log(text);
+        }
+
     }
 }

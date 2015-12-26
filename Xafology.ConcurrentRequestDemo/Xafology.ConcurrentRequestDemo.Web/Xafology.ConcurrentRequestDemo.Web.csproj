@@ -55,10 +55,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\GenerateUserFriendlyId.Module.1.1.0.0\lib\net45\GenerateUserFriendlyId.Module.dll</HintPath>
     </Reference>
-    <Reference Include="Xafology.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Packages\Xafology\Xafology.Utils.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.ExpressApp.Objects.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
@@ -217,6 +213,14 @@
     <ProjectReference Include="..\..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
       <Project>{B9EF03FF-D05B-4FD4-A8E9-F90D819CB1DC}</Project>
       <Name>Xafology.ExpressApp.Concurrency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ConcurrentRequestDemo.Module.Web\Xafology.ConcurrentRequestDemo.Module.Web.csproj">
       <Project>{0C729AAD-7626-4668-A7F1-35F7D240489D}</Project>

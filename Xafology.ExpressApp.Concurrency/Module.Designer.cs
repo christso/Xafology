@@ -29,8 +29,8 @@ namespace Xafology.ExpressApp.Concurrency
         private void InitializeComponent()
         {
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
-            this.RequiredModuleTypes.Add(typeof(GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule));
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Xpo.SequentialBase.XafologySequentialBaseModule));
         }
 
         #endregion

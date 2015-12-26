@@ -3,6 +3,7 @@ using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Xpo;
 using System;
 using System.Linq;
+using Xafology.ExpressApp.Xpo.DbIdentity;
 
 namespace Xafology.ExpressApp.Xpo.DatabaseUpdate
 {

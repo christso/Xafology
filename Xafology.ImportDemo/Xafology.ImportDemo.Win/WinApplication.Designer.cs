@@ -33,14 +33,10 @@ namespace Xafology.ImportDemo.Win
             this.module3 = new Xafology.ImportDemo.Module.ImportDemoModule();
             this.module4 = new Xafology.ImportDemo.Module.Win.ImportDemoWindowsFormsModule();
             this.businessClassLibraryCustomizationModule1 = new DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule();
-            this.generateUserFriendlyIdModule1 = new GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule();
             this.xpoModule1 = new Xafology.ExpressApp.Xpo.XpoModule();
             this.XafologySystemModule1 = new Xafology.ExpressApp.SystemModule.XafologySystemModule();
             this.concurrencyModule1 = new Xafology.ExpressApp.Concurrency.ConcurrencyModule();
             this.fileAttachmentsWindowsFormsModule1 = new DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule();
-            this.generateUserFriendlyIdModule2 = new GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule();
-            this.XafologySystemModule2 = new Xafology.ExpressApp.SystemModule.XafologySystemModule();
-            this.concurrencyModule2 = new Xafology.ExpressApp.Concurrency.ConcurrencyModule();
             this.xpoModule2 = new Xafology.ExpressApp.Xpo.XpoModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -50,7 +46,6 @@ namespace Xafology.ImportDemo.Win
             this.Modules.Add(this.module1);
             this.Modules.Add(this.module2);
             this.Modules.Add(this.businessClassLibraryCustomizationModule1);
-            this.Modules.Add(this.generateUserFriendlyIdModule1);
             this.Modules.Add(this.XafologySystemModule1);
             this.Modules.Add(this.concurrencyModule1);
             this.Modules.Add(this.xpoModule1);
@@ -70,14 +65,10 @@ namespace Xafology.ImportDemo.Win
         private Xafology.ImportDemo.Module.ImportDemoModule module3;
         private Xafology.ImportDemo.Module.Win.ImportDemoWindowsFormsModule module4;
         private DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule businessClassLibraryCustomizationModule1;
-        private GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule generateUserFriendlyIdModule1;
         private ExpressApp.Xpo.XpoModule xpoModule1;
         private ExpressApp.SystemModule.XafologySystemModule XafologySystemModule1;
         private ExpressApp.Concurrency.ConcurrencyModule concurrencyModule1;
         private DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule fileAttachmentsWindowsFormsModule1;
-        private GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule generateUserFriendlyIdModule2;
-        private ExpressApp.SystemModule.XafologySystemModule XafologySystemModule2;
-        private ExpressApp.Concurrency.ConcurrencyModule concurrencyModule2;
         private ExpressApp.Xpo.XpoModule xpoModule2;
     }
 }

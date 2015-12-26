@@ -97,9 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionRequest.cs" />
+    <Compile Include="ActionRequestLogger.cs" />
     <Compile Include="Controllers\ActionRequestViewController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="IActionRequest.cs" />
+    <Compile Include="IRequestManager.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -109,6 +112,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="RequestManager.cs" />
+    <Compile Include="RequestStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Module.resx">
@@ -121,7 +125,6 @@
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BusinessObjects\ReadMe.txt" />
     <None Include="Controllers\ReadMe.txt" />
     <None Include="DatabaseUpdate\ReadMe.txt" />
     <None Include="packages.config" />
@@ -145,9 +148,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
-      <Project>{484a8217-dd6b-4e8f-b47e-f1f64d03bbb6}</Project>
-      <Name>GenerateUserFriendlyId.Module</Name>
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
+      <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
+      <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>

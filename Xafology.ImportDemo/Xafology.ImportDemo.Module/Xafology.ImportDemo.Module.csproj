@@ -125,20 +125,24 @@
     <None Include="Controllers\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BusinessObjects\FunctionalTests\ReadMe.txt" />
+    <None Include="FunctionalTests\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BusinessObjects\FunctionalTests\Sample.ets" />
+    <None Include="FunctionalTests\Sample.ets" />
     <None Include="Images\ReadMe.txt" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BusinessObjects\FunctionalTests\Config.xml" />
+    <Content Include="FunctionalTests\Config.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
       <Project>{A7FF6A7B-37FF-425C-9620-4A528E104D5F}</Project>
       <Name>Xafology.ExpressApp.Concurrency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+      <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
+      <Name>Xafology.ExpressApp.Xpo.Import</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
@@ -151,10 +155,6 @@
     <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
       <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
       <Name>Xafology.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GenerateUserFriendlyId.Module\GenerateUserFriendlyId.Module.csproj">
-      <Project>{484A8217-DD6B-4E8F-B47E-F1F64D03BBB6}</Project>
-      <Name>GenerateUserFriendlyId.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

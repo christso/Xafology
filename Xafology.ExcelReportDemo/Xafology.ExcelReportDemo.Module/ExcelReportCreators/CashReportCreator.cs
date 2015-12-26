@@ -4,8 +4,8 @@ using Xafology.ExpressApp.MsoExcel.Reports;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Xpo;
-using Xafology.Spreadsheet;
 using System.IO;
+using Xafology.Spreadsheet;
 
 namespace Xafology.ExcelReportDemo.Module.ExcelReportCreators
 {

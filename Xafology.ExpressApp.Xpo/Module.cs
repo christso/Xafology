@@ -19,7 +19,6 @@ namespace Xafology.ExpressApp.Xpo
         public override void Setup(XafApplication application)
         {
             base.Setup(application);
-            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Concurrency.ConcurrencyModule));
         }
 
         private void InitializeComponent()
@@ -27,7 +26,6 @@ namespace Xafology.ExpressApp.Xpo
             // 
             // XpoModule
             // 
-            this.RequiredModuleTypes.Add(typeof(GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule));
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
 

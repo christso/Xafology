@@ -15,8 +15,8 @@ namespace Xafology.ConcurrentRequestDemo.Module.Controllers
         void myAction_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
 
-            var request = new Xafology.ExpressApp.Concurrency.RequestManager(Application);
-            request.SubmitRequest("Job 1", Job1);
+            Xafology.ExpressApp.Concurrency.RequestManager request = new Xafology.ExpressApp.Concurrency.RequestManager(Application);
+            request.ProcessRequest("Job 1", Job1);
         }
 
         public void Job1()

@@ -4,6 +4,5 @@ namespace Xafology.ExpressApp
 {
     public class XafologyModuleBase : ModuleBase
     {
-
     }
 }

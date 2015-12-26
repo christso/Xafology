@@ -33,7 +33,6 @@ namespace Xafology.ConcurrentRequestDemo.Module
             // 
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Concurrency.ConcurrencyModule));
-            this.RequiredModuleTypes.Add(typeof(GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule));
         }
 
         #endregion

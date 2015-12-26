@@ -33,8 +33,6 @@ namespace Xafology.ConcurrentRequestDemo.Win
             this.module3 = new Xafology.ConcurrentRequestDemo.Module.ConcurrentRequestDemoModule();
             this.module4 = new Xafology.ConcurrentRequestDemo.Module.Win.ConcurrentRequestDemoWindowsFormsModule();
             this.businessClassLibraryCustomizationModule1 = new DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule();
-            this.generateUserFriendlyIdModule1 = new GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule();
-            this.XafologySystemModule1 = new Xafology.ExpressApp.SystemModule.XafologySystemModule();
             this.concurrencyModule1 = new Xafology.ExpressApp.Concurrency.ConcurrencyModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -44,8 +42,6 @@ namespace Xafology.ConcurrentRequestDemo.Win
             this.Modules.Add(this.module1);
             this.Modules.Add(this.module2);
             this.Modules.Add(this.businessClassLibraryCustomizationModule1);
-            this.Modules.Add(this.generateUserFriendlyIdModule1);
-            this.Modules.Add(this.XafologySystemModule1);
             this.Modules.Add(this.concurrencyModule1);
             this.Modules.Add(this.module3);
             this.Modules.Add(this.module4);
@@ -62,8 +58,6 @@ namespace Xafology.ConcurrentRequestDemo.Win
         private Xafology.ConcurrentRequestDemo.Module.ConcurrentRequestDemoModule module3;
         private Xafology.ConcurrentRequestDemo.Module.Win.ConcurrentRequestDemoWindowsFormsModule module4;
         private DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule businessClassLibraryCustomizationModule1;
-        private GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule generateUserFriendlyIdModule1;
-        private Xafology.ExpressApp.SystemModule.XafologySystemModule XafologySystemModule1;
         private Xafology.ExpressApp.Concurrency.ConcurrencyModule concurrencyModule1;
     }
 }

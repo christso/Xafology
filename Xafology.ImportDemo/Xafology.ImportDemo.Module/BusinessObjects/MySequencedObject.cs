@@ -1,11 +1,11 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
-using GenerateUserFriendlyId.Module.BusinessObjects;
+using Xafology.ExpressApp.Xpo.SequentialBase;
 
 namespace Xafology.ImportDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MySequencedObject : UserFriendlyIdPersistentObject, IImportableObject
+    public class MySequencedObject : SequentialBaseObject, IImportableObject
     {
         public MySequencedObject(Session session)
             : base(session)

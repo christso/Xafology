@@ -80,7 +80,7 @@ namespace Xafology.ExpressApp.MsoExcel.Controllers
                 }
                 stream.Position = 0;
                 
-                using (WorkbookProxy package = new WorkbookProxy(stream))
+                using (Xafology.SpreadsheetImpl.WorkbookProxy package = new Xafology.SpreadsheetImpl.WorkbookProxy(stream))
                 {
                     reportCreator.Setup(Application, package);
                     reportCreator.Execute();
