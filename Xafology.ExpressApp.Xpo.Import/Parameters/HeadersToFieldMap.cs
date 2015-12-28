@@ -2,9 +2,9 @@
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
-    public class CsvFieldHeadersImportMap : Xafology.ExpressApp.Xpo.Import.Parameters.CsvFieldImportMap
+    public class HeadersToFieldMap : Xafology.ExpressApp.Xpo.Import.Parameters.FieldMap
     {
-        public CsvFieldHeadersImportMap(DevExpress.Xpo.Session session)
+        public HeadersToFieldMap(DevExpress.Xpo.Session session)
             : base(session)
         {
 
@@ -23,9 +23,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        private Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileHeadersParam _ImportCsvFileParam;
+        private Xafology.ExpressApp.Xpo.Import.Parameters.ImportHeadersParam _ImportCsvFileParam;
         [Association("ImportCsvFileHeadersParam-CsvFieldHeadersImportMaps")]
-        public Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileHeadersParam ImportCsvFileParam
+        public Xafology.ExpressApp.Xpo.Import.Parameters.ImportHeadersParam ImportCsvFileParam
         {
             get
             {

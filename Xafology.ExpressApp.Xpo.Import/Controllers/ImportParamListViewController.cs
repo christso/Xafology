@@ -4,11 +4,11 @@ using DevExpress.ExpressApp.Xpo;
 
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
-    public class ImportCsvFileListViewController : ViewController<ListView>
+    public class ImportParamListViewController : ViewController<ListView>
     {
-        public ImportCsvFileListViewController()
+        public ImportParamListViewController()
         {
-            TargetObjectType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase);
+            TargetObjectType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase);
         }
         protected override void OnActivated()
         {
@@ -29,7 +29,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
 
         void dc_Accepting(object sender, DialogControllerAcceptingEventArgs e)
         {
-            var sourceParam = e.AcceptActionArgs.CurrentObject as Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase;
+            var sourceParam = e.AcceptActionArgs.CurrentObject as Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase;
             if (sourceParam == null) return;
 
             var objSpace = (XPObjectSpace)Application.CreateObjectSpace();

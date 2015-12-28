@@ -36,16 +36,16 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         {
 
             if (e.SelectedChoiceActionItem.Caption == "CSV-Head")
-                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileHeadersParam);
+                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportHeadersParam);
             else if (e.SelectedChoiceActionItem.Caption == "CSV-Ord")
-                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileOrdinalsParam);
+                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportOrdinalsParam);
             else
-                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileHeadersParam);
+                ParamType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportHeadersParam);
 
             XPObjectSpace objSpace = (XPObjectSpace)Application.CreateObjectSpace();
             string viewId = Application.GetListViewId(ParamType);
             CollectionSourceBase collectionSource = Application.CreateCollectionSource(objSpace, ParamType, viewId);
-            collectionSource.Criteria["ObjectTypeFilter"] = Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase.Fields.ObjectTypeName == View.ObjectTypeInfo.Name;
+            collectionSource.Criteria["ObjectTypeFilter"] = Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase.Fields.ObjectTypeName == View.ObjectTypeInfo.Name;
             ListView listView = Application.CreateListView(viewId, collectionSource, true);
 
             ShowViewParameters svp = new ShowViewParameters(listView);

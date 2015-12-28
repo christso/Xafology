@@ -8,19 +8,27 @@ using System.IO;
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
 
-    public class ImportCsvFileDetailViewControllerBase : ViewController<DetailView>
+    public class ImportParamDetailViewControllerBase : ViewController<DetailView>
     {
-        public ImportCsvFileDetailViewControllerBase()
+        public ImportParamDetailViewControllerBase()
         {
-            TargetObjectType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase);
+            TargetObjectType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase);
             importLogic = null; // lazy loading
         }
 
-        private Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic importLogic;
+        private Xafology.ExpressApp.Xpo.Import.Logic.CsvToXpoLoader importLogic;
 
         protected override void OnActivated()
         {
             base.OnActivated();
+            ActivateActions();
+            ObjectSpace.ObjectChanged += ObjectSpace_ObjectChanged;
+        }
+
+        private void ActivateActions()
+        {
+            if (Application.MainWindow == null) return; // MainWindow is null when TestApplication is used
+
             ((DetailView)View).ViewEditMode = ViewEditMode.Edit;
             var sourceView = Application.MainWindow.View;
 
@@ -31,13 +39,12 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
                 dc.CancelAction.Execute += CancelAction_Execute;
                 dc.CanCloseWindow = false;
             }
-            var param = View.CurrentObject as Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase;
+            var param = View.CurrentObject as Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase;
             if (param != null)
             {
                 // create template for object type in main view
-                Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic.CreateTemplate(param, sourceView.ObjectTypeInfo);
+                Xafology.ExpressApp.Xpo.Import.Logic.CsvToXpoLoader.CreateTemplate(param, sourceView.ObjectTypeInfo);
             }
-            ObjectSpace.ObjectChanged += ObjectSpace_ObjectChanged;
         }
 
         void ObjectSpace_ObjectChanged(object sender, ObjectChangedEventArgs e)
@@ -45,11 +52,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             if (e.Object is IFileData && e.PropertyName == "Content")
             {
                 // Create CSV Field Maps if user attaches file
-                CreateCsvFieldMaps((Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase)View.CurrentObject);
+                CreateCsvFieldMaps((Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase)View.CurrentObject);
             }
         }
 
-        private void CreateCsvFieldMaps(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase paramObj)
+        private void CreateCsvFieldMaps(Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase paramObj)
         {
             if (paramObj.File.Content == null)
                 return;
@@ -68,9 +75,20 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             View.Close();
         }
 
-        protected void AcceptAction_Execute(object sender, SimpleActionExecuteEventArgs e)
+        public void Insert()
         {
-            var paramObj = (Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase)View.CurrentObject;
+            var paramObj = (Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase)View.CurrentObject;
+            if (paramObj.File.Content == null)
+                throw new UserFriendlyException("No file was selected to upload.");
+            var byteArray = paramObj.File.Content;
+            var stream = new MemoryStream(byteArray);
+            importLogic = paramObj.CreateImportLogic(Application, stream);
+            importLogic.Insert();
+        }
+
+        public void AysncImport()
+        {
+            var paramObj = (Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase)View.CurrentObject;
             if (paramObj.File.Content == null)
                 throw new UserFriendlyException("No file was selected to upload.");
             var byteArray = paramObj.File.Content;
@@ -78,7 +96,12 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             importLogic = paramObj.CreateImportLogic(Application, stream);
             importLogic.BeforeImport += OnBeforeImport;
             importLogic.AfterImport += OnAfterImport;
-            importLogic.Import();
+            importLogic.Execute();
+        }
+
+        protected void AcceptAction_Execute(object sender, SimpleActionExecuteEventArgs e)
+        {
+            AysncImport();
             View.Close();
         }
 

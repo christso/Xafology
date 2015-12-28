@@ -9,20 +9,20 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
-    public class ImportCsvFileHeadersParam : ImportCsvFileParamBase
+    public class ImportHeadersParam : ImportParamBase
     {
-        public ImportCsvFileHeadersParam(Session session)
+        public ImportHeadersParam(Session session)
             : base(session)
         {
             _File = new FileData(Session);
         }
 
         [Association("ImportCsvFileHeadersParam-CsvFieldHeadersImportMaps"), Aggregated]
-        public XPCollection<CsvFieldHeadersImportMap> FieldHeadImportMaps
+        public XPCollection<HeadersToFieldMap> FieldHeadImportMaps
         {
             get
             {
-                return GetCollection<CsvFieldHeadersImportMap>("FieldHeadImportMaps");
+                return GetCollection<HeadersToFieldMap>("FieldHeadImportMaps");
             }
         }
 
@@ -31,10 +31,10 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             get { return FieldHeadImportMaps; }
         }
 
-        public override ImportCsvFileLogic CreateImportLogic(XafApplication application,
+        public override CsvToXpoLoader CreateImportLogic(XafApplication application,
             Stream stream)
         {
-            return new ImportCsvFileHeadersLogic(application,
+            return new HeadCsvToXpoLoader(application,
                         this, stream);
         }
     }

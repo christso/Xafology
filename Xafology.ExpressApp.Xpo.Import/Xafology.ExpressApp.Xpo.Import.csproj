@@ -87,25 +87,33 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImportOptions.cs" />
     <Compile Include="IDataReader.cs" />
     <Compile Include="ImportModule.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Logic\CsvToXpoInserter.cs" />
+    <Compile Include="Logic\CsvToXpoTemplateCreator.cs" />
+    <Compile Include="Logic\CsvToXpoUpdater.cs" />
+    <Compile Include="Logic\CsvToXpoValidator.cs" />
+    <Compile Include="Logic\ImportEventHandler.cs" />
+    <Compile Include="IFieldMapper.cs" />
+    <Compile Include="IImportOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ImportCsvFileListViewController.cs">
+    <Compile Include="Controllers\ImportParamListViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Parameters\CsvFieldImportMap.cs" />
-    <Compile Include="Parameters\CsvFieldOrdinalsImportMap.cs" />
-    <Compile Include="Parameters\CsvFieldHeadersImportMap.cs" />
+    <Compile Include="Parameters\FieldMap.cs" />
+    <Compile Include="Parameters\OrdinalsToFieldMap.cs" />
+    <Compile Include="Parameters\HeadersToFieldMap.cs" />
     <Compile Include="ImportActionType.cs" />
-    <Compile Include="Parameters\ImportCsvFileHeadersParam.cs" />
-    <Compile Include="Logic\ImportCsvFileHeadersLogic.cs" />
-    <Compile Include="Logic\ImportCsvFileLogic.cs" />
-    <Compile Include="Logic\ImportCsvFileOrdinalsLogic.cs" />
-    <Compile Include="Parameters\ImportCsvFileOrdinalsParam.cs" />
-    <Compile Include="Parameters\ImportCsvFileParamBase.cs" />
-    <Compile Include="Controllers\ImportCsvFileDetailViewControllerBase.cs">
+    <Compile Include="Parameters\ImportHeadersParam.cs" />
+    <Compile Include="Logic\HeadCsvToXpoLoader.cs" />
+    <Compile Include="Logic\CsvToXpoLoader.cs" />
+    <Compile Include="Logic\OrdCsvToXpoLoader.cs" />
+    <Compile Include="Parameters\ImportOrdinalsParam.cs" />
+    <Compile Include="Parameters\ImportParamBase.cs" />
+    <Compile Include="Controllers\ImportParamDetailViewControllerBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImportErrorInfo.cs" />
@@ -113,7 +121,7 @@
     <Compile Include="Controllers\ImportListViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="XpoImportEngine.cs" />
+    <Compile Include="XpoMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">

@@ -14,12 +14,12 @@ using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.Utils;
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class ImportCsvFileHeadersLogic : ImportCsvFileLogic
+    public class HeadCsvToXpoLoader : CsvToXpoLoader
     {
-        private readonly ImportCsvFileHeadersParam headersParam;
+        private readonly ImportHeadersParam headersParam;
         private const bool hasHeaders = true;
         private readonly ILogger logger;
-        private readonly RequestManager requestMgr;
+        private readonly IRequestManager requestMgr;
 
         /// <summary>
         /// Constructor
@@ -27,16 +27,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="application"></param>
         /// <param name="param"></param>
         /// <param name="stream">Stream containing the CSV data</param>
-        public ImportCsvFileHeadersLogic(XafApplication application, ImportCsvFileHeadersParam param, Stream stream)
+        public HeadCsvToXpoLoader(XafApplication application, ImportHeadersParam param, Stream stream)
             : base(application, param)
         {
             csvReader = new CsvReader(new StreamReader(stream), hasHeaders);
             headersParam = param;
-            this.requestMgr = new RequestManager(Application);
-            this.logger = new ActionRequestLogger(requestMgr);
+            this.requestMgr = new AsyncRequestManager(Application);
         }
 
-        public ImportCsvFileHeadersParam Param
+        public ImportHeadersParam Param
         {
             get
             {
@@ -44,15 +43,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             }
         }
 
-        protected void Setup()
+        protected void ReadParameters(IImportOptions options, ImportParamBase param)
         {
-            this.Options.CreateMembers = headersParam.CreateMembers;
-            this.Options.CacheObjects = headersParam.CacheLookupObjects;
+            options.CreateMembers = param.CreateMembers;
+            options.CacheObjects = param.CacheLookupObjects;
         }
 
-        public override void Import()
+        public override void Execute()
         {
-            Setup();
+            ReadParameters(this.Options, this.headersParam);
 
             CancellationTokenSource = requestMgr.CancellationTokenSource;
 
@@ -124,7 +123,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public override void Insert()
         {
-            importEngine.XpObjectsNotFound.Clear();
+            xpoMapper.XpObjectsNotFound.Clear();
             ErrorInfo = null;
 
             var csv = csvReader;
@@ -144,6 +143,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
                 IXPObject targetObject = (IXPObject)Activator.CreateInstance(_objTypeInfo.Type, paramBase.Session); // Insert sepecific
 
+                if (headersParam.FieldHeadImportMaps == null)
+                    throw new UserFriendlyException("FieldHeadImportMaps cannot be null");
                 SetMemberValuesFromCsv(targetObject, targetMembers, csv, headersParam.FieldHeadImportMaps, hasHeaders);
             }
             paramBase.Session.CommitTransaction();
@@ -157,7 +158,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="hasHeaders">whether the first line in the CSV contains headers</param>
         public override void Update()
         {
-            importEngine.XpObjectsNotFound.Clear();
+            xpoMapper.XpObjectsNotFound.Clear();
             ErrorInfo = null;
 
             var csv = csvReader;
@@ -168,7 +169,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
             if (paramBase.CacheLookupObjects)
             {
-                importEngine.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
+                xpoMapper.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
             }
 
             while (csv.ReadNextRecord())
@@ -225,7 +226,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// </summary>
         private void ValidateTargetMembers(List<IMemberInfo> targetMembers)
         {
-            foreach (CsvFieldImportMap map in headersParam.FieldImportMaps)
+            foreach (FieldMap map in headersParam.FieldImportMaps)
             {
                 if (targetMembers.FirstOrDefault(x => x.Name == map.TargetName) == null)
                     throw new UserFriendlyException(string.Format("Member '{0}' is not a valid member name", map.TargetName));
@@ -251,7 +252,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             return targetMembers;
         }
 
-        private void ValidateSourceNames(string[] headers, IEnumerable<CsvFieldHeadersImportMap> maps)
+        private void ValidateSourceNames(string[] headers, IEnumerable<HeadersToFieldMap> maps)
         {
             foreach (string header in headers)
             {
@@ -270,7 +271,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="hasHeaders">whether the first line contain headings. 
         /// This will affect the reported line number in error messages.</param>
         private void SetMemberValuesFromCsv(IXPObject targetObject, List<IMemberInfo> targetMembers, CsvReader csv,
-            IEnumerable<CsvFieldHeadersImportMap> fieldImportMaps, bool hasHeaders)
+            IEnumerable<HeadersToFieldMap> fieldImportMaps, bool hasHeaders)
         {
             foreach (var targetMember in targetMembers)
             {
@@ -278,7 +279,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                     .FirstOrDefault(x => x.TargetName == targetMember.Name);
                 try
                 {
-                    importEngine.SetMemberValue(targetObject, targetMember,
+                    xpoMapper.SetMemberValue(targetObject, targetMember,
                         csv[map.SourceName], map.CreateMember);
                 }
                 catch (Exception ex)
@@ -301,7 +302,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             string[] headers = csvReader.GetFieldHeaders();
             foreach (var header in headers)
             {
-                headersParam.FieldHeadImportMaps.Add(new CsvFieldHeadersImportMap(paramBase.Session)
+                headersParam.FieldHeadImportMaps.Add(new HeadersToFieldMap(paramBase.Session)
                 {
                     SourceName = header,
                     TargetName = header

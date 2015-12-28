@@ -54,6 +54,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Persistent.BaseImpl.v15.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -83,14 +87,6 @@
     <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xafology.SpreadsheetImpl\Xafology.SpreadsheetImpl.csproj">
-      <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
-      <Name>Xafology.SpreadsheetImpl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
-      <Project>{e8a8591e-fd7b-4e26-8db2-872074f125eb}</Project>
-      <Name>Xafology.Spreadsheet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.Tests\Xafology.TestUtils.csproj">
       <Project>{51e0010f-cd1d-47bb-894c-d9347e48ee44}</Project>

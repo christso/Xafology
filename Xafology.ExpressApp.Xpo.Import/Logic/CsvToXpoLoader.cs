@@ -9,39 +9,23 @@ using System.Threading;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public delegate void ImportCsvFileEventHandler();
 
-    public abstract class ImportCsvFileLogic
+    public abstract class CsvToXpoLoader : IFieldMapper
     {
+
+        #region Fields
+
         public event ImportCsvFileEventHandler BeforeImport;
         public event ImportCsvFileEventHandler AfterImport;
 
         public ImportErrorInfo ErrorInfo { get; set; }
-        protected readonly Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase paramBase;
-        protected readonly XpoImportEngine importEngine;
+        protected readonly Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase paramBase;
+        protected readonly XpoMapper xpoMapper;
         protected CsvReader csvReader;
         private readonly XafApplication application;
 
-        protected XafApplication Application
-        {
-            get
-            {
-                return application;
-            }
-        }
-
-
-        protected void OnBeforeImport()
-        {
-            if (BeforeImport != null)
-                BeforeImport();
-        }
-
-        protected void OnAfterImport()
-        {
-            if (AfterImport != null)
-                AfterImport();
-        }
+        private CsvToXpoInserter inserter;
+        private CsvToXpoUpdater updater;
 
         /// <summary>
         /// Type Info for the object to import data to
@@ -55,18 +39,27 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// </summary>
         public CancellationTokenSource CancellationTokenSource { get; set; }
 
-        public ImportCsvFileLogic(XafApplication application, Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase param)
+        #endregion
+
+        #region Constructor
+
+        public CsvToXpoLoader(XafApplication application, Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase param)
         {
             paramBase = param;
             ErrorInfo = null;
             CancellationTokenSource = null;
-            importEngine = new XpoImportEngine(application);
-            Options = new CsvImportOptions(this);
+            xpoMapper = new XpoMapper(application);
+            Options = xpoMapper.Options;
             _objTypeInfo = param.ObjectTypeInfo;
-            application = application;
+            this.application = application;
         }
 
-        public abstract void Import();
+        #endregion
+
+        #region Methods
+
+
+        public abstract void Execute();
 
         /// <summary>
         /// Create Field Import Maps required to import into XPO assuming
@@ -91,22 +84,22 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         {
             get
             {
-                return importEngine.XpObjectsNotFound;
+                return xpoMapper.XpObjectsNotFound;
             }
         }
 
         public void CacheTargetMembers()
         {
             var members = new List<string>();
-            foreach (Xafology.ExpressApp.Xpo.Import.Parameters.CsvFieldImportMap map in paramBase.FieldImportMaps)
+            foreach (Xafology.ExpressApp.Xpo.Import.Parameters.FieldMap map in paramBase.FieldImportMaps)
             {
                 if (map.CacheObject)
                     members.Add(map.TargetName);
             }
-            importEngine.CacheXpObjectTypes(paramBase.ObjectTypeInfo, members, paramBase.Session);
+            xpoMapper.CacheXpObjectTypes(paramBase.ObjectTypeInfo, members, paramBase.Session);
         }
 
-        public static void CreateTemplate(Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase paramObj, ITypeInfo objTypeInfo)
+        public static void CreateTemplate(Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase paramObj, ITypeInfo objTypeInfo)
         {
             if (paramObj.ObjectTypeInfo != objTypeInfo)
                 paramObj.ObjectTypeInfo = objTypeInfo;
@@ -129,41 +122,40 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             paramObj.Session.CommitTransaction();
         }
 
-        public CsvImportOptions Options { get; set; }
-
-        public class CsvImportOptions
+        protected void OnBeforeImport()
         {
-            private Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic _Logic;
+            if (BeforeImport != null)
+                BeforeImport();
+        }
 
-            public CsvImportOptions(Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic logic)
-            {
-                _Logic = logic;
-            }
+        protected void OnAfterImport()
+        {
+            if (AfterImport != null)
+                AfterImport();
+        }
 
-            public bool CreateMembers
-            {
-                get
-                {
-                    return _Logic.importEngine.Options.CreateMembers;
-                }
-                set
-                {
-                    _Logic.importEngine.Options.CreateMembers = value;
-                }
-            }
+        #endregion
 
-            public bool CacheObjects
+        #region Properties
+
+        public IImportOptions Options { get; set; }
+
+        protected XafApplication Application
+        {
+            get
             {
-                get
-                {
-                    return _Logic.importEngine.Options.CacheObjects;
-                }
-                set
-                {
-                    _Logic.importEngine.Options.CacheObjects = value;
-                }
+                return application;
             }
         }
+
+        public XpoMapper XpoMapper
+        {
+            get
+            {
+                return xpoMapper;
+            }
+        }
+        #endregion
 
     }
 }

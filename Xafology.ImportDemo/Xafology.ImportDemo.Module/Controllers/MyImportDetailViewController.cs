@@ -2,7 +2,7 @@
 
 namespace Xafology.ImportDemo.Module.Controllers
 {
-    public class MyImportDetailViewController : ImportCsvFileDetailViewControllerBase
+    public class MyImportDetailViewController : ImportParamDetailViewControllerBase
     {
         protected override void OnBeforeImport()
         {

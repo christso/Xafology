@@ -35,7 +35,7 @@ namespace Xafology.ExpressApp.Xpo.SequentialBase
 
         private int _sequentialNumber;
 
-        [NonCloneable, RuleRequiredField, RuleUniqueValue, Indexed(Unique = true)]
+        [Indexed(Unique = false)]
         [Browsable(false)]
         public int SequentialNumber
         {

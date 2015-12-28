@@ -5,13 +5,13 @@ using DevExpress.Xpo;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [NonPersistent]
-    public abstract class CsvFieldImportMap : BaseObject
+    public abstract class FieldMap : BaseObject
     {
         private string _TargetName;
         protected bool _CreateMember;
         protected bool _CacheObject;
 
-        public CsvFieldImportMap(Session session)
+        public FieldMap(Session session)
             : base(session)
         {
 

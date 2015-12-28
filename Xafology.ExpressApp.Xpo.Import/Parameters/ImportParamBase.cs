@@ -13,9 +13,9 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [NonPersistent]
-    public abstract class ImportCsvFileParamBase : BaseObject
+    public abstract class ImportParamBase : BaseObject
     {
-        public ImportCsvFileParamBase(Session session)
+        public ImportParamBase(Session session)
             : base(session)
         {
             _File = new FileData(Session);
@@ -161,6 +161,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public abstract ImportCsvFileLogic CreateImportLogic(XafApplication application, Stream stream);
+        public abstract CsvToXpoLoader CreateImportLogic(XafApplication application, Stream stream);
     }
 }

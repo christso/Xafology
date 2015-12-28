@@ -12,11 +12,11 @@ using System.Linq;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class ImportCsvFileOrdinalsLogic : Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic
+    public class OrdCsvToXpoLoader : Xafology.ExpressApp.Xpo.Import.Logic.CsvToXpoLoader
     {
-        private readonly ImportCsvFileOrdinalsParam _OrdinalsParam;
+        private readonly ImportOrdinalsParam _OrdinalsParam;
 
-        public ImportCsvFileOrdinalsLogic(XafApplication application, ImportCsvFileOrdinalsParam param,
+        public OrdCsvToXpoLoader(XafApplication application, ImportOrdinalsParam param,
             Stream stream)
             : base(application, param)
         {
@@ -24,9 +24,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             _OrdinalsParam = param;
         }
 
-        public override void Import()
+        public override void Execute()
         {
-            var request = new RequestManager(Application);
+            var request = new AsyncRequestManager(Application);
             var logic = this;
             logic.CancellationTokenSource = request.CancellationTokenSource;
             logic.Options.CreateMembers = _OrdinalsParam.CreateMembers;
@@ -99,7 +99,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         {
             for (int i = 0; i < csvReader.FieldCount; i++)
             {
-                _OrdinalsParam.FieldImportMaps.BaseAdd(new CsvFieldOrdinalsImportMap(paramBase.Session)
+                _OrdinalsParam.FieldImportMaps.BaseAdd(new OrdinalsToFieldMap(paramBase.Session)
                 {
                     SourceOrdinal = i,
                     TargetName = string.Format("Field_{0}", i)
@@ -110,7 +110,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public override void Insert()
         {
-            importEngine.XpObjectsNotFound.Clear();
+            xpoMapper.XpObjectsNotFound.Clear();
             ErrorInfo = null;
 
             List<IMemberInfo> targetMembers = GetTargetMembersForInsert(_objTypeInfo); // Insert sepecific
@@ -118,7 +118,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
             if (paramBase.CacheLookupObjects)
             {
-                importEngine.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
+                xpoMapper.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
             }
 
             while (csvReader.ReadNextRecord())
@@ -140,7 +140,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         public override void Update()
         {
             int keyOrd = 0;
-            importEngine.XpObjectsNotFound.Clear();
+            xpoMapper.XpObjectsNotFound.Clear();
             ErrorInfo = null;
 
             List<IMemberInfo> targetMembers = GetTargetMembersForUpdate(_objTypeInfo); // update specific
@@ -148,7 +148,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
             if (paramBase.CacheLookupObjects)
             {
-                importEngine.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
+                xpoMapper.CacheXpObjectTypes(_objTypeInfo, targetMembers, paramBase.Session);
             }
 
             while (csvReader.ReadNextRecord())
@@ -193,7 +193,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="hasHeaders">whether the first line contain headings. 
         /// This will affect the reported line number in error messages.</param>
         private void SetMemberValuesFromCsv(IXPObject targetObject, List<IMemberInfo> targetMembers, CsvReader csv,
-            IEnumerable<CsvFieldOrdinalsImportMap> fieldImportMaps, bool hasHeaders)
+            IEnumerable<OrdinalsToFieldMap> fieldImportMaps, bool hasHeaders)
         {
             foreach (var targetMember in targetMembers)
             {
@@ -201,7 +201,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                     .FirstOrDefault(x => x.TargetName == targetMember.Name);
                 try
                 {
-                    importEngine.SetMemberValue(targetObject, targetMember,
+                    xpoMapper.SetMemberValue(targetObject, targetMember,
                         csv[map.SourceOrdinal], map.CreateMember);
                 }
                 catch (Exception ex)
@@ -219,7 +219,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             }
         }
 
-        private void ValidateSourceOrdinals(string[] headers, IEnumerable<CsvFieldOrdinalsImportMap> maps)
+        private void ValidateSourceOrdinals(string[] headers, IEnumerable<OrdinalsToFieldMap> maps)
         {
             foreach (var map in maps)
             {
@@ -233,7 +233,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             var targetMembers = new List<IMemberInfo>();
             foreach (var member in objTypeInfo.Members)
             {
-                var targetCount = _OrdinalsParam.FieldOrdImportMaps.Count(x => ((CsvFieldImportMap)x).TargetName == (member.Name));
+                var targetCount = _OrdinalsParam.FieldOrdImportMaps.Count(x => ((FieldMap)x).TargetName == (member.Name));
                 if (targetCount > 1)
                     throw new UserFriendlyException("Duplicate maps were found for member '" + member.Name + "'");
                 else if (targetCount == 0)
@@ -270,7 +270,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// </summary>
         private void ValidateTargetMembers(List<IMemberInfo> targetMembers)
         {
-            foreach (CsvFieldImportMap map in _OrdinalsParam.FieldImportMaps)
+            foreach (FieldMap map in _OrdinalsParam.FieldImportMaps)
             {
                 if (targetMembers.FirstOrDefault(x => x.Name == map.TargetName) == null)
                     throw new UserFriendlyException(string.Format("Member '{0}' is not a valid member name", map.TargetName));

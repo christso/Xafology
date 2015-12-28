@@ -10,29 +10,21 @@ using System.Threading;
 
 namespace Xafology.ExpressApp.Concurrency
 {
-    public class RequestManager
+    public class LoggedRequestManager : IRequestManager
     {
-        public CancellationTokenSource CancellationTokenSource;
+        public CancellationTokenSource CancellationTokenSource { get; set; }
         private readonly ActionRequestLogger logger;
         private ActionRequest request;
         
         // override the exit message
-        public RequestStatus? CustomRequestExitStatus;
+        public RequestStatus? CustomRequestExitStatus { get; set; }
         
         private readonly XafApplication application;
 
-        public RequestManager(XafApplication application)
+        public LoggedRequestManager(XafApplication application)
         {
             this.application = application;
             logger = new ActionRequestLogger(this);
-        }
-
-        public ActionRequestLogger Logger
-        {
-            get
-            {
-                return logger;
-            }
         }
 
         public ActionRequest Request
@@ -59,6 +51,7 @@ namespace Xafology.ExpressApp.Concurrency
             SetRequester(request);
             request.RequestName = requestName;
             request.RequestStatus = RequestStatus.Processing;
+            request.CommitChanges();
 
             request.SetCancellationTokenSource(ts);
             request.CommitChanges();
@@ -72,10 +65,7 @@ namespace Xafology.ExpressApp.Concurrency
             CreateRequest(requestName, ts);
             new GenericMessageBox("Request ID: " + request.RequestId, "Concurrent Request");
 
-            Task t = Task.Factory.StartNew(() =>
-            {
-                ProcessRequest(job, request);
-            }, ts.Token);
+            ProcessRequest(job, request);
         }
 
         private void ProcessRequest(Action job, ActionRequest requestObj)
@@ -102,11 +92,9 @@ namespace Xafology.ExpressApp.Concurrency
             requestObj.CommitChanges();
         }
 
-        [Obsolete("Please use method ILogger.Log instead.")]
-        public void Log(string text)
+        public void Log(string text, params object[] args)
         {
             logger.Log(text);
         }
-
     }
 }

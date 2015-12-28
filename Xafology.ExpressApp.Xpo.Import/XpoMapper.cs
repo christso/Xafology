@@ -10,18 +10,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Xafology.ExpressApp.Xpo.Import.Logic;
 
 namespace Xafology.ExpressApp.Xpo.Import
 {
     // Note: Lookup objects only work with strings as the Default property
-    public class XpoImportEngine
+    public class XpoMapper
     {
         protected XafApplication Application;
 
-        public XpoImportEngine(XafApplication application)
+        public XpoMapper(XafApplication application)
         {
             Application = application;
-            _Options = new XpoEngineImportOptions();
+            options = new ImportOptions();
             _XpObjectsNotFound = new Dictionary<Type, List<string>>();
             _CachedXpObjects = new Dictionary<Type, IList>();
         }
@@ -38,12 +39,12 @@ namespace Xafology.ExpressApp.Xpo.Import
             get { return _CachedXpObjects; }
         }
 
-        private XpoEngineImportOptions _Options;
-        public XpoEngineImportOptions Options
+        private ImportOptions options;
+        public ImportOptions Options
         {
             get
             {
-                return _Options;
+                return options;
             }
         }
 
@@ -278,12 +279,6 @@ namespace Xafology.ExpressApp.Xpo.Import
                 default:
                     return Convert.ToBoolean(value);
             }
-        }
-
-        public class XpoEngineImportOptions
-        {
-            public bool CreateMembers = false;
-            public bool CacheObjects = false;
         }
     }
 

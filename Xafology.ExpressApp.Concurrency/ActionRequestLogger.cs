@@ -9,9 +9,9 @@ namespace Xafology.ExpressApp.Concurrency
     public class ActionRequestLogger : ILogger
     {
         private readonly bool immediate;
-        private readonly RequestManager manager;
+        private readonly IRequestManager manager;
 
-        public ActionRequestLogger(RequestManager manager, bool immediate = true)
+        public ActionRequestLogger(IRequestManager manager, bool immediate = true)
         {
             this.manager = manager;
             this.immediate = immediate;

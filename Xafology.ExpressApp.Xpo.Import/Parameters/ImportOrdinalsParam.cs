@@ -3,26 +3,26 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System.IO;
-
+using Xafology.ExpressApp.Xpo.Import.Logic;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
-    public class ImportCsvFileOrdinalsParam : Xafology.ExpressApp.Xpo.Import.Parameters.ImportCsvFileParamBase
+    public class ImportOrdinalsParam : ImportParamBase
     {
         private bool _HasHeaders;
 
-        public ImportCsvFileOrdinalsParam(Session session)
+        public ImportOrdinalsParam(Session session)
             : base(session)
         {
             _File = new FileData(Session);
         }
 
         [Association("ImportCsvFileOrdinalsParam-CsvFieldOrdinalsImportMaps"), Aggregated]
-        public XPCollection<Xafology.ExpressApp.Xpo.Import.Parameters.CsvFieldOrdinalsImportMap> FieldOrdImportMaps
+        public XPCollection<OrdinalsToFieldMap> FieldOrdImportMaps
         {
             get
             {
-                return GetCollection<CsvFieldOrdinalsImportMap>("FieldOrdImportMaps");
+                return GetCollection<OrdinalsToFieldMap>("FieldOrdImportMaps");
             }
         }
 
@@ -46,9 +46,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public override Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileLogic CreateImportLogic(XafApplication application, Stream stream)
+        public override CsvToXpoLoader CreateImportLogic(XafApplication application, Stream stream)
         {
-            return new Xafology.ExpressApp.Xpo.Import.Logic.ImportCsvFileOrdinalsLogic(application,
+            return new OrdCsvToXpoLoader(application,
                         this, stream);
         }
     }

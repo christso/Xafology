@@ -33,7 +33,6 @@ namespace Xafology.ImportDemo.Module.Web
             // 
             this.RequiredModuleTypes.Add(typeof(Xafology.ImportDemo.Module.ImportDemoModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule));
-            this.RequiredModuleTypes.Add(typeof(GenerateUserFriendlyId.Module.GenerateUserFriendlyIdModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.FileAttachments.Web.FileAttachmentsAspNetModule));
 
         }
