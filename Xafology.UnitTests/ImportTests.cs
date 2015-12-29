@@ -38,7 +38,7 @@ namespace Xafology.UnitTests
             
             ObjectSpace.CommitChanges(); // why do I need to commit before ObjectTypeInfo is set?
 
-            var importLogic = param.CreateImportLogic(Application, csvStream);
+            var importLogic = param.CreateCsvToXpoLoader(Application, csvStream);
             importLogic.Insert();
 
             var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);
@@ -51,7 +51,7 @@ namespace Xafology.UnitTests
         {
             var param = GetMockParamObject();
             var csvStream = GetMockCsvStream();
-            var importLogic = param.CreateImportLogic(Application, csvStream);
+            var importLogic = param.CreateCsvToXpoLoader(Application, csvStream);
             importLogic.Insert();
 
             var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);

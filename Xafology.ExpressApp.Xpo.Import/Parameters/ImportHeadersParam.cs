@@ -31,7 +31,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             get { return HeaderToFieldMaps; }
         }
 
-        public override CsvToXpoLoader CreateImportLogic(XafApplication application,
+        public override CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application,
             Stream stream)
         {
             return new HeadCsvToXpoLoader(application,

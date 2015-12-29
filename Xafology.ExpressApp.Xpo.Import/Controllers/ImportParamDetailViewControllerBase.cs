@@ -65,7 +65,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
 
             importLogic = null;
 
-            importLogic = paramObj.CreateImportLogic(Application, stream);
+            importLogic = paramObj.CreateCsvToXpoLoader(Application, stream);
             if (paramObj.FieldMaps.Count == 0)
                 importLogic.CreateFieldImportMaps();
         }
@@ -82,7 +82,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
                 throw new UserFriendlyException("No file was selected to upload.");
             var byteArray = paramObj.File.Content;
             var stream = new MemoryStream(byteArray);
-            importLogic = paramObj.CreateImportLogic(Application, stream);
+            importLogic = paramObj.CreateCsvToXpoLoader(Application, stream);
             importLogic.Insert();
         }
 
@@ -93,7 +93,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
                 throw new UserFriendlyException("No file was selected to upload.");
             var byteArray = paramObj.File.Content;
             var stream = new MemoryStream(byteArray);
-            importLogic = paramObj.CreateImportLogic(Application, stream);
+            importLogic = paramObj.CreateCsvToXpoLoader(Application, stream);
             importLogic.BeforeImport += OnBeforeImport;
             importLogic.AfterImport += OnAfterImport;
             importLogic.Execute();

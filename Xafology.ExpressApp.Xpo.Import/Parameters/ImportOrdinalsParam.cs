@@ -43,7 +43,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             get { return FieldOrdImportMaps; }
         }
 
-        public override CsvToXpoLoader CreateImportLogic(XafApplication application, Stream stream)
+        public override CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application, Stream stream)
         {
             return new OrdCsvToXpoLoader(application,
                         this, stream);

@@ -162,6 +162,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public abstract CsvToXpoLoader CreateImportLogic(XafApplication application, Stream stream);
+        public abstract CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application, Stream stream);
     }
 }
