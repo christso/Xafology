@@ -7,7 +7,7 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
-    public class ImportOrdinalsParam : ImportParamBase
+    public class ImportOrdinalsParam : ImportParamBase, ImportParam
     {
         private bool _HasHeaders;
 
@@ -18,11 +18,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
         }
 
         [Association("ImportCsvFileOrdinalsParam-CsvFieldOrdinalsImportMaps"), Aggregated]
-        public XPCollection<OrdinalsToFieldMap> FieldOrdImportMaps
+        public XPCollection<OrdinalToFieldMap> FieldOrdImportMaps
         {
             get
             {
-                return GetCollection<OrdinalsToFieldMap>("FieldOrdImportMaps");
+                return GetCollection<OrdinalToFieldMap>("FieldOrdImportMaps");
             }
         }
 
@@ -38,12 +38,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public override XPBaseCollection FieldImportMaps
+        public override XPBaseCollection FieldMaps
         {
-            get
-            {
-                return FieldOrdImportMaps;
-            }
+            get { return FieldOrdImportMaps; }
         }
 
         public override CsvToXpoLoader CreateImportLogic(XafApplication application, Stream stream)

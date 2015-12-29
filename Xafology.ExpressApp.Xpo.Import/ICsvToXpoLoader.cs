@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.ExpressApp.Xpo.Import.Logic
+namespace Xafology.ExpressApp.Xpo.Import
 {
-    public class CsvToXpoUpdater
+    public interface ICsvToXpoLoader
     {
+        void Execute();
     }
 }

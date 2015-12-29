@@ -66,7 +66,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             importLogic = null;
 
             importLogic = paramObj.CreateImportLogic(Application, stream);
-            if (paramObj.FieldImportMaps.Count == 0)
+            if (paramObj.FieldMaps.Count == 0)
                 importLogic.CreateFieldImportMaps();
         }
 

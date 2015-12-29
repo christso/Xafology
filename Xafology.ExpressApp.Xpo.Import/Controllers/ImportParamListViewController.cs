@@ -1,6 +1,7 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.ExpressApp.Xpo;
+using Xafology.ExpressApp.Xpo.Import.Parameters;
 
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
@@ -8,7 +9,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
     {
         public ImportParamListViewController()
         {
-            TargetObjectType = typeof(Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase);
+            TargetObjectType = typeof(ImportParamBase);
         }
         protected override void OnActivated()
         {

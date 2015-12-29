@@ -23,16 +23,16 @@ namespace Xafology.UnitTests
 
             var param = ObjectSpace.CreateObject<ImportHeadersParam>();
             
-            var map1 = ObjectSpace.CreateObject<HeadersToFieldMap>();
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map1.SourceName = "Description";
             map1.TargetName = map1.SourceName;
 
-            var map2 = ObjectSpace.CreateObject<HeadersToFieldMap>();
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map2.SourceName = "Amount";
             map2.TargetName = map2.SourceName;
 
-            param.FieldHeadImportMaps.Add(map1);
-            param.FieldHeadImportMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
 
             param.ObjectTypeName = "MockImportObject";
             
@@ -139,18 +139,18 @@ Hello 3,30";
 
         private ImportHeadersParam GetMockParamObject()
         {
-            var map1 = ObjectSpace.CreateObject<HeadersToFieldMap>();
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map1.SourceName = "Description";
             map1.TargetName = map1.SourceName;
 
-            var map2 = ObjectSpace.CreateObject<HeadersToFieldMap>();
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map2.SourceName = "Amount";
             map2.TargetName = map2.SourceName;
 
             var param = ObjectSpace.CreateObject<ImportHeadersParam>();
 
-            param.FieldHeadImportMaps.Add(map1);
-            param.FieldHeadImportMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
 
             param.ObjectTypeName = "MockImportObject";
 

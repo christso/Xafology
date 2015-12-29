@@ -164,3 +164,7 @@ $RECYCLE.BIN/
 *.resx
 *.dat
 /Xafology.ExcelReportDemo/Documentation
+*.docx
+/Xafology.SequentialBaseObjectDemo/packages
+*.xlsx
+*.vsdx

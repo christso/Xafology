@@ -30,11 +30,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             var logic = this;
             logic.CancellationTokenSource = request.CancellationTokenSource;
             logic.Options.CreateMembers = _OrdinalsParam.CreateMembers;
-            logic.Options.CacheObjects = _OrdinalsParam.CacheLookupObjects;
+            logic.Options.CacheLookupObjects = _OrdinalsParam.CacheLookupObjects;
 
             // import
             if (_OrdinalsParam.FieldOrdImportMaps.Count == 0)
-                logic.CreateFieldImportMaps();
+                CreateFieldImportMaps();
 
             Action job = new Action(() =>
             {
@@ -99,7 +99,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         {
             for (int i = 0; i < csvReader.FieldCount; i++)
             {
-                _OrdinalsParam.FieldImportMaps.BaseAdd(new OrdinalsToFieldMap(paramBase.Session)
+                _OrdinalsParam.FieldMaps.BaseAdd(new OrdinalToFieldMap(paramBase.Session)
                 {
                     SourceOrdinal = i,
                     TargetName = string.Format("Field_{0}", i)
@@ -193,11 +193,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="hasHeaders">whether the first line contain headings. 
         /// This will affect the reported line number in error messages.</param>
         private void SetMemberValuesFromCsv(IXPObject targetObject, List<IMemberInfo> targetMembers, CsvReader csv,
-            IEnumerable<OrdinalsToFieldMap> fieldImportMaps, bool hasHeaders)
+            IEnumerable<OrdinalToFieldMap> FieldMaps, bool hasHeaders)
         {
             foreach (var targetMember in targetMembers)
             {
-                var map = fieldImportMaps
+                var map = FieldMaps
                     .FirstOrDefault(x => x.TargetName == targetMember.Name);
                 try
                 {
@@ -219,7 +219,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             }
         }
 
-        private void ValidateSourceOrdinals(string[] headers, IEnumerable<OrdinalsToFieldMap> maps)
+        private void ValidateSourceOrdinals(string[] headers, IEnumerable<OrdinalToFieldMap> maps)
         {
             foreach (var map in maps)
             {
@@ -270,7 +270,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// </summary>
         private void ValidateTargetMembers(List<IMemberInfo> targetMembers)
         {
-            foreach (FieldMap map in _OrdinalsParam.FieldImportMaps)
+            foreach (FieldMap map in _OrdinalsParam.FieldMaps)
             {
                 if (targetMembers.FirstOrDefault(x => x.Name == map.TargetName) == null)
                     throw new UserFriendlyException(string.Format("Member '{0}' is not a valid member name", map.TargetName));

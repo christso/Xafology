@@ -6,9 +6,10 @@ using LumenWorks.Framework.IO.Csv;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using Xafology.ExpressApp.Xpo.Import.Parameters;
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
+    // Strategy
 
     public abstract class CsvToXpoLoader : IFieldMapper
     {
@@ -19,13 +20,13 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         public event ImportCsvFileEventHandler AfterImport;
 
         public ImportErrorInfo ErrorInfo { get; set; }
-        protected readonly Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase paramBase;
+        protected readonly ImportParamBase paramBase;
         protected readonly XpoMapper xpoMapper;
         protected CsvReader csvReader;
         private readonly XafApplication application;
 
-        private CsvToXpoInserter inserter;
-        private CsvToXpoUpdater updater;
+        private readonly ICsvToXpoLoader headCsvToXpoLoader;
+        private readonly ICsvToXpoLoader ordCsvToXpoLoader;
 
         /// <summary>
         /// Type Info for the object to import data to
@@ -43,7 +44,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         #region Constructor
 
-        public CsvToXpoLoader(XafApplication application, Xafology.ExpressApp.Xpo.Import.Parameters.ImportParamBase param)
+        public CsvToXpoLoader(XafApplication application, ImportParamBase param)
         {
             paramBase = param;
             ErrorInfo = null;
@@ -52,6 +53,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             Options = xpoMapper.Options;
             _objTypeInfo = param.ObjectTypeInfo;
             this.application = application;
+            //headCsvToXpoLoader = new HeadCsvToXpoLoader()
         }
 
         #endregion
@@ -91,7 +93,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         public void CacheTargetMembers()
         {
             var members = new List<string>();
-            foreach (Xafology.ExpressApp.Xpo.Import.Parameters.FieldMap map in paramBase.FieldImportMaps)
+            foreach (FieldMap map in paramBase.FieldMaps)
             {
                 if (map.CacheObject)
                     members.Add(map.TargetName);

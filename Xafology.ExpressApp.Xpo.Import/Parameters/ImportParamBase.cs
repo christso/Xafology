@@ -9,11 +9,13 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using Xafology.ExpressApp.Xpo.Import.Logic;
+
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [NonPersistent]
-    public abstract class ImportParamBase : BaseObject
+    public abstract class ImportParamBase : BaseObject, IImportOptions
     {
         public ImportParamBase(Session session)
             : base(session)
@@ -147,8 +149,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        [MemberDesignTimeVisibility(false)]
-        public abstract XPBaseCollection FieldImportMaps { get; }
+        public abstract XPBaseCollection FieldMaps { get; }
 
         public new class Fields
         {

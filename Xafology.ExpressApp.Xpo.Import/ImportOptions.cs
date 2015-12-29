@@ -10,9 +10,9 @@ namespace Xafology.ExpressApp.Xpo.Import
         public ImportOptions()
         {
             CreateMembers = false;
-            CacheObjects = false;
+            CacheLookupObjects = false;
         }
         public bool CreateMembers { get; set; }
-        public bool CacheObjects { get; set; }
+        public bool CacheLookupObjects { get; set; }
     }
 }

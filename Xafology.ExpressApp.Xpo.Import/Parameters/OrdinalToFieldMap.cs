@@ -2,9 +2,9 @@
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
-    public class OrdinalsToFieldMap : Xafology.ExpressApp.Xpo.Import.Parameters.FieldMap
+    public class OrdinalToFieldMap : FieldMap
     {
-        public OrdinalsToFieldMap(Session session)
+        public OrdinalToFieldMap(Session session)
             : base(session)
         {
 
@@ -23,9 +23,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        private Xafology.ExpressApp.Xpo.Import.Parameters.ImportOrdinalsParam _ImportCsvFileParam;
+        private ImportOrdinalsParam _ImportCsvFileParam;
         [Association("ImportCsvFileOrdinalsParam-CsvFieldOrdinalsImportMaps")]
-        public Xafology.ExpressApp.Xpo.Import.Parameters.ImportOrdinalsParam ImportCsvFileParam
+        public ImportOrdinalsParam ImportCsvFileParam
         {
             get
             {

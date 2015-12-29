@@ -25,10 +25,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
                 return _TargetName;
             }
             set
-            {
+            {   
                 SetPropertyValue("TargetName", ref _TargetName, value);
             }
         }
+
         [VisibleInListView(true)]
         public bool CreateMember
         {

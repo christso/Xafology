@@ -17,9 +17,10 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
     public class HeadCsvToXpoLoader : CsvToXpoLoader
     {
         private readonly ImportHeadersParam headersParam;
-        private const bool hasHeaders = true;
+        private const bool hasHeaders = true; //TODO: remove hack
         private readonly ILogger logger;
         private readonly IRequestManager requestMgr;
+        private readonly FieldMapListCreator fieldMapListCreator;
 
         /// <summary>
         /// Constructor
@@ -30,9 +31,16 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         public HeadCsvToXpoLoader(XafApplication application, ImportHeadersParam param, Stream stream)
             : base(application, param)
         {
-            csvReader = new CsvReader(new StreamReader(stream), hasHeaders);
+            csvReader = GetCsvReaderFromStream(stream);
             headersParam = param;
             this.requestMgr = new AsyncRequestManager(Application);
+            fieldMapListCreator = new FieldMapListCreator(csvReader);
+        }
+
+        // TODO: share this with Ordinals version
+        public CsvReader GetCsvReaderFromStream(Stream stream)
+        {
+            return new CsvReader(new StreamReader(stream), hasHeaders);
         }
 
         public ImportHeadersParam Param
@@ -46,7 +54,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         protected void ReadParameters(IImportOptions options, ImportParamBase param)
         {
             options.CreateMembers = param.CreateMembers;
-            options.CacheObjects = param.CacheLookupObjects;
+            options.CacheLookupObjects = param.CacheLookupObjects;
         }
 
         public override void Execute()
@@ -54,10 +62,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             ReadParameters(this.Options, this.headersParam);
 
             CancellationTokenSource = requestMgr.CancellationTokenSource;
-
-            // import
-            if (Param.FieldHeadImportMaps.Count == 0)
-                CreateFieldImportMaps();
 
             Action job = new Action(() =>
             {
@@ -129,7 +133,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             var csv = csvReader;
 
             string[] headers = csv.GetFieldHeaders();
-            ValidateSourceNames(headers, headersParam.FieldHeadImportMaps);
+            ValidateSourceNames(headers, headersParam.HeaderToFieldMaps);
 
             List<IMemberInfo> targetMembers = GetTargetMembersForInsert(_objTypeInfo); // Insert sepecific
             if (targetMembers.Count == 0) return;
@@ -143,9 +147,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
                 IXPObject targetObject = (IXPObject)Activator.CreateInstance(_objTypeInfo.Type, paramBase.Session); // Insert sepecific
 
-                if (headersParam.FieldHeadImportMaps == null)
-                    throw new UserFriendlyException("FieldHeadImportMaps cannot be null");
-                SetMemberValuesFromCsv(targetObject, targetMembers, csv, headersParam.FieldHeadImportMaps, hasHeaders);
+                if (headersParam.HeaderToFieldMaps == null)
+                    throw new UserFriendlyException("HeaderToFieldMaps cannot be null");
+                SetMemberValuesFromCsv(targetObject, targetMembers, csv, headersParam.HeaderToFieldMaps, hasHeaders);
             }
             paramBase.Session.CommitTransaction();
         }
@@ -177,7 +181,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                 if (CancellationTokenSource != null && CancellationTokenSource.IsCancellationRequested)
                     CancellationTokenSource.Token.ThrowIfCancellationRequested();
 
-                var map = headersParam.FieldHeadImportMaps.FirstOrDefault(x => x.SourceName == headers[0]);
+                var map = headersParam.HeaderToFieldMaps.FirstOrDefault(x => x.SourceName == headers[0]);
                 string keyField;
                 if (map != null)
                     keyField = map.TargetName;
@@ -197,7 +201,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                     };
                     throw ex;
                 }
-                SetMemberValuesFromCsv(targetObject, targetMembers, csv, headersParam.FieldHeadImportMaps, hasHeaders);
+                SetMemberValuesFromCsv(targetObject, targetMembers, csv, headersParam.HeaderToFieldMaps, hasHeaders);
             }
             paramBase.Session.CommitTransaction();
         }
@@ -207,7 +211,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             var targetMembers = new List<IMemberInfo>();
             foreach (var member in objTypeInfo.Members)
             {
-                var targetCount = headersParam.FieldHeadImportMaps.Count(x => x.TargetName == (member.Name));
+                var targetCount = headersParam.HeaderToFieldMaps.Count(x => x.TargetName == (member.Name));
                 if (targetCount > 1)
                     throw new UserFriendlyException("Duplicate maps were found for member '" + member.Name + "'");
                 else if (targetCount == 0)
@@ -226,7 +230,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// </summary>
         private void ValidateTargetMembers(List<IMemberInfo> targetMembers)
         {
-            foreach (FieldMap map in headersParam.FieldImportMaps)
+            foreach (FieldMap map in headersParam.FieldMaps)
             {
                 if (targetMembers.FirstOrDefault(x => x.Name == map.TargetName) == null)
                     throw new UserFriendlyException(string.Format("Member '{0}' is not a valid member name", map.TargetName));
@@ -238,7 +242,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             var targetMembers = new List<IMemberInfo>();
             foreach (var member in objTypeInfo.Members)
             {
-                var targetCount = headersParam.FieldHeadImportMaps.Count(x => x.TargetName == (member.Name));
+                var targetCount = headersParam.HeaderToFieldMaps.Count(x => x.TargetName == (member.Name));
                 if (targetCount > 1)
                     throw new UserFriendlyException("Duplicate maps were found for member '" + member.Name + "'");
                 else if (targetCount == 0)
@@ -252,7 +256,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             return targetMembers;
         }
 
-        private void ValidateSourceNames(string[] headers, IEnumerable<HeadersToFieldMap> maps)
+        private void ValidateSourceNames(string[] headers, IEnumerable<HeaderToFieldMap> maps)
         {
             foreach (string header in headers)
             {
@@ -271,11 +275,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         /// <param name="hasHeaders">whether the first line contain headings. 
         /// This will affect the reported line number in error messages.</param>
         private void SetMemberValuesFromCsv(IXPObject targetObject, List<IMemberInfo> targetMembers, CsvReader csv,
-            IEnumerable<HeadersToFieldMap> fieldImportMaps, bool hasHeaders)
+            IEnumerable<HeaderToFieldMap> FieldMaps, bool hasHeaders)
         {
             foreach (var targetMember in targetMembers)
             {
-                var map = fieldImportMaps
+                var map = FieldMaps
                     .FirstOrDefault(x => x.TargetName == targetMember.Name);
                 try
                 {
@@ -299,16 +303,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public override void CreateFieldImportMaps()
         {
-            string[] headers = csvReader.GetFieldHeaders();
-            foreach (var header in headers)
-            {
-                headersParam.FieldHeadImportMaps.Add(new HeadersToFieldMap(paramBase.Session)
-                {
-                    SourceName = header,
-                    TargetName = header
-                });
-            }
-            paramBase.Session.CommitTransaction();
+
+            fieldMapListCreator.AddFieldMaps(headersParam.HeaderToFieldMaps, paramBase.Session);
         }
 
     }

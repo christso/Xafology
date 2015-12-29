@@ -9,7 +9,7 @@ namespace Xafology.ExpressApp.Xpo.Import
     public interface IImportOptions
     {
         bool CreateMembers { get; set; }
-        bool CacheObjects { get; set; }
+        bool CacheLookupObjects { get; set; }
 
     }
 }
