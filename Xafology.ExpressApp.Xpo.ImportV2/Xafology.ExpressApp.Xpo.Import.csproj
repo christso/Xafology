@@ -131,53 +131,42 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICsvToXpoLoaderV2.cs" />
-    <Compile Include="IXpoFieldMapper.cs" />
-    <Compile Include="Logic.New\FieldMaps.cs" />
-    <Compile Include="Logic.New\HeadCsvToXpoRecordMapper.cs" />
-    <Compile Include="Logic.New\HeadCsvToXpoInserter.cs" />
-    <Compile Include="Logic.New\IImportLogger.cs" />
-    <Compile Include="Logic.New\ImportRequestLogger.cs" />
-    <Compile Include="Logic.New\OrdCsvToXpoRecordMapper.cs" />
-    <Compile Include="Logic.New\XpoTargetMembers.cs" />
     <Compile Include="ICsvToXpoLoader.cs" />
+    <Compile Include="IXpoFieldMapper.cs" />
+    <Compile Include="Logic\FieldMaps.cs" />
+    <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />
+    <Compile Include="Logic\HeadCsvToXpoInserter.cs" />
+    <Compile Include="Logic\IImportLogger.cs" />
+    <Compile Include="Logic\ImportRequestLogger.cs" />
+    <Compile Include="Logic\OrdCsvToXpoRecordMapper.cs" />
+    <Compile Include="Logic\XpoTargetMembers.cs" />
     <Compile Include="ImportOptions.cs" />
-    <Compile Include="IDataReader.cs" />
     <Compile Include="ImportModule.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Logic.New\CsvFileTemplateCreator.cs" />
+    <Compile Include="Logic\CsvFileTemplateCreator.cs" />
     <Compile Include="Logic\FieldMapListCreator.cs" />
-    <Compile Include="Logic.New\HeadCsvToXpoUpdater.cs" />
-    <Compile Include="Logic\ICsvToXpoLoader.cs" />
-    <Compile Include="Logic\ImportEventHandler.cs" />
+    <Compile Include="Logic\HeadCsvToXpoUpdater.cs" />
     <Compile Include="IFieldMapper.cs" />
     <Compile Include="IImportOptions.cs" />
-    <Compile Include="Logic.New\OrdCsvToXpoUpdater.cs" />
-    <Compile Include="Logic.New\OrdCsvToXpoInserter.cs" />
-    <Compile Include="Parameters\ImportParam.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ImportParamListViewController.cs">
+    <Compile Include="Logic\OrdCsvToXpoUpdater.cs" />
+    <Compile Include="Logic\OrdCsvToXpoInserter.cs" />
+    <Compile Include="Parameters\FieldMaps.cs" />
+    <Compile Include="Parameters\HeadFieldMaps.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Parameters\ImportParam.cs" />
+    <Compile Include="Parameters\OrdFieldMaps.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parameters\FieldMap.cs" />
     <Compile Include="Parameters\OrdinalToFieldMap.cs" />
     <Compile Include="Parameters\HeaderToFieldMap.cs" />
     <Compile Include="ImportActionType.cs" />
     <Compile Include="Parameters\ImportHeadersParam.cs" />
-    <Compile Include="Logic\HeadCsvToXpoLoader.cs" />
-    <Compile Include="Logic\CsvToXpoLoader.cs" />
-    <Compile Include="Logic\OrdCsvToXpoLoader.cs" />
     <Compile Include="Parameters\ImportOrdinalsParam.cs" />
     <Compile Include="Parameters\ImportParamBase.cs" />
-    <Compile Include="Controllers\ImportParamDetailViewControllerBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ImportErrorInfo.cs" />
-    <Compile Include="ImportErrorInfoKey.cs" />
-    <Compile Include="Controllers\ImportListViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="XpoFieldMapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +182,9 @@
       <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
       <Name>Xafology.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -12,29 +12,28 @@ using System.Linq;
 using System.Threading;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.Utils;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
 using System.Diagnostics.Contracts;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class HeadCsvToXpoUpdater : ICsvToXpoLoaderV2, IDisposable
+    public class HeadCsvToXpoUpdater : ICsvToXpoLoader, IDisposable
     {
       private readonly CsvReader csvReader;
         private readonly XpoFieldMapper xpoFieldMapper;
         private readonly ITypeInfo objTypeInfo;
         private readonly ImportHeadersParam param;
-        private readonly IImportLogger logger;
-        private readonly HeadCsvToXpoRecordMapper recordMapper;
+        private readonly Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger;
+        private readonly Xafology.ExpressApp.Xpo.Import.Logic.HeadCsvToXpoRecordMapper recordMapper;
 
         public HeadCsvToXpoUpdater(ImportHeadersParam param, Stream stream, 
-            XpoFieldMapper xpoFieldMapper, IImportLogger logger)
+            XpoFieldMapper xpoFieldMapper, Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger)
         {
             csvReader = GetCsvReaderFromStream(stream, true);
             objTypeInfo = param.ObjectTypeInfo;
             this.param = param;
             this.xpoFieldMapper = xpoFieldMapper;
             this.logger = logger;
-            recordMapper = new HeadCsvToXpoRecordMapper(xpoFieldMapper, param.HeaderToFieldMaps, csvReader);
+            recordMapper = new Xafology.ExpressApp.Xpo.Import.Logic.HeadCsvToXpoRecordMapper(xpoFieldMapper, param.HeaderToFieldMaps, csvReader);
         }
 
         public void Execute()
@@ -60,7 +59,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         private List<IMemberInfo> GetTargetMembers()
         {
-            var fieldMapper = new XpoTargetMembers(param.HeaderToFieldMaps);
+            var fieldMapper = new Xafology.ExpressApp.Xpo.Import.Logic.XpoTargetMembers(param.HeaderToFieldMaps);
             return fieldMapper.GetList(objTypeInfo);
         }
         

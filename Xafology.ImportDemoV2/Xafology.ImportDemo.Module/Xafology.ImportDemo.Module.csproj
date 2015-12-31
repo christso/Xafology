@@ -88,15 +88,6 @@
     <Compile Include="BusinessObjects\MyBaseObject.cs" />
     <Compile Include="BusinessObjects\MyLookupObject.cs" />
     <Compile Include="BusinessObjects\MySequencedObject.cs" />
-    <Compile Include="Controllers\ImportForexParamViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\MyImportDetailViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\MyImportViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>

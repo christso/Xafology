@@ -1,5 +1,4 @@
-﻿using DevExpress.ExpressApp.DC;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public interface ICsvToXpoLoader
+    public interface IImportLogger
     {
-        List<IMemberInfo> GetTargetMembers(ITypeInfo objTypeInfo);
+        void Log(string message, params object[] args);
     }
 }

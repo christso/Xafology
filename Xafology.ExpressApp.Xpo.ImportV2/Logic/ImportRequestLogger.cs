@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Concurrency;
 
-namespace Xafology.ExpressApp.Xpo.Import.Logic.New
+namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class ImportRequestLogger : IImportLogger
+    public class ImportRequestLogger : Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger
     {
         private readonly ActionRequest request;
 

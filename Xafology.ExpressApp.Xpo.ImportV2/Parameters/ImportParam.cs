@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
+
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {

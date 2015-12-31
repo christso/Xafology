@@ -14,7 +14,7 @@ using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.Utils;
 using System.Collections;
 
-namespace Xafology.ExpressApp.Xpo.Import.Logic.New
+namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
     public class HeadCsvToXpoRecordMapper
     {

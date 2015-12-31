@@ -7,26 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
-using System.Linq;
 
-namespace Xafology.ExpressApp.Xpo.Import.Logic.New
+namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class FieldMaps
+    public class XpoTargetMembers
     {
-        private readonly IEnumerable<FieldMap> fieldMaps;
+        private readonly IList fieldMaps;
 
-        public FieldMaps(IEnumerable fieldMaps)
+        public XpoTargetMembers(IList fieldMaps)
         {
-            
-            this.fieldMaps = fieldMaps.Cast<FieldMap>();
+            this.fieldMaps = fieldMaps;
         }
 
-        public List<IMemberInfo> GetTargetMembers(ITypeInfo objTypeInfo)
+        public List<IMemberInfo> GetList(ITypeInfo objTypeInfo)
         {
             var targetMembers = new List<IMemberInfo>();
             foreach (var member in objTypeInfo.Members)
             {
-                var targetCount = fieldMaps.Count(x => x.TargetName == (member.Name));
+                
+                var targetCount = fieldMaps.Cast<FieldMap>().Count(x => x.TargetName == (member.Name));
                 if (targetCount > 1)
                     RaiseDuplicateTargetMemberException(member);
                 else if (targetCount == 0)
@@ -43,6 +42,5 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic.New
         {
             throw new UserFriendlyException("Duplicate maps were found for member '" + member.Name + "'");
         }
-
     }
 }

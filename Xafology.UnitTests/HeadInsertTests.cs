@@ -9,11 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.TestUtils;
-using Xafology.ExpressApp.Xpo.Import.Controllers;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
 
 namespace Xafology.UnitTests
 {
@@ -36,7 +34,7 @@ Hello 3,30";
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
-            ICsvToXpoLoaderV2 loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
 
             var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);
@@ -63,7 +61,7 @@ Hello 3,30";
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
-            ICsvToXpoLoaderV2 loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             
             var ex = Assert.Throws<ArgumentException>(() => loader.Execute());
             Assert.AreEqual("field", ex.ParamName);
@@ -111,7 +109,7 @@ Hello 3,30,HTC";
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
-            ICsvToXpoLoaderV2 loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
 
             #endregion
 
@@ -181,7 +179,7 @@ Hello 3,30,HTC,Credit";
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
-            ICsvToXpoLoaderV2 loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
 
             #endregion
 
@@ -233,7 +231,7 @@ Hello 3,30,HTC";
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
 
-            ICsvToXpoLoaderV2 loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             Assert.Throws<UserFriendlyException>(() => loader.Execute());
         }
     }

@@ -9,11 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.TestUtils;
-using Xafology.ExpressApp.Xpo.Import.Controllers;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
 
 
 namespace Xafology.UnitTests
@@ -47,7 +45,7 @@ Hello 3,30";
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
-            ICsvToXpoLoaderV2 loader = new OrdCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new OrdCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
 
             var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);
