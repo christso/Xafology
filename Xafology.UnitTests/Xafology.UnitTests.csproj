@@ -71,12 +71,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeadUpdateTests.cs" />
     <Compile Include="ImportTests.cs" />
+    <Compile Include="ImportTestsBase.cs" />
     <Compile Include="MockImportObject.cs" />
+    <Compile Include="HeadInsertTests.cs" />
+    <Compile Include="MockLookupObject2.cs" />
+    <Compile Include="MockLookupObject.cs" />
+    <Compile Include="OrdInsertTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+    <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
+      <Project>{a7ff6a7b-37ff-425c-9620-4a528e104d5f}</Project>
+      <Name>Xafology.ExpressApp.Concurrency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.ImportV2\Xafology.ExpressApp.Xpo.Import.csproj">
       <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
       <Name>Xafology.ExpressApp.Xpo.Import</Name>
     </ProjectReference>

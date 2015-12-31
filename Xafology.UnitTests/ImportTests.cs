@@ -10,47 +10,25 @@ using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.TestUtils;
 using Xafology.ExpressApp.Xpo.Import.Controllers;
+using Xafology.ExpressApp.Xpo.Import.Logic;
+using Xafology.ExpressApp.Concurrency;
+using Xafology.ExpressApp.Xpo.Import;
+using Xafology.ExpressApp;
 
 namespace Xafology.UnitTests
 {
     [TestFixture]
-    public class ImportTests  : InMemoryDbTestBase
+    public class ImportTests : ImportTestsBase
     {
+
         [Test]
         public void InsertHeaderCsv()
         {
-            var csvStream = GetMockCsvStream();
-
-            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
-            
-            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map1.SourceName = "Description";
-            map1.TargetName = map1.SourceName;
-
-            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map2.SourceName = "Amount";
-            map2.TargetName = map2.SourceName;
-
-            param.HeaderToFieldMaps.Add(map1);
-            param.HeaderToFieldMaps.Add(map2);
-
-            param.ObjectTypeName = "MockImportObject";
-            
-            ObjectSpace.CommitChanges(); // why do I need to commit before ObjectTypeInfo is set?
-
-            var importLogic = param.CreateCsvToXpoLoader(Application, csvStream);
-            importLogic.Insert();
-
-            var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);
-            Assert.AreEqual(3, inserted.Count());
-
-        }
-
-        [Test]
-        public void InsertHeaderCsvBeforeCommit()
-        {
-            var param = GetMockParamObject();
-            var csvStream = GetMockCsvStream();
+            var param = GetHeadMockParamObject();
+            var csvStream = GetMockCsvStream(@"Description,Amount
+Hello 1,10
+Hello 2,20
+Hello 3,30");
             var importLogic = param.CreateCsvToXpoLoader(Application, csvStream);
             importLogic.Insert();
 
@@ -62,8 +40,11 @@ namespace Xafology.UnitTests
         // Insert csv using controller
         public void InsertHeaderCsvViaConcurrentController()
         {
-            var param = GetMockParamObject();
-            var csvStream = GetMockCsvStream();
+            var param = GetHeadMockParamObject();
+            var csvStream = GetMockCsvStream(@"Description,Amount
+Hello 1,10
+Hello 2,20
+Hello 3,30");
             var controller = new ImportParamDetailViewControllerBase();
             SetupViewController(controller, param);
             param.File.LoadFromStream("data.csv", csvStream);
@@ -73,22 +54,10 @@ namespace Xafology.UnitTests
         [Test]
         public void ImportNoFileToUpload()
         {
-            var param = GetMockParamObject();
+            var param = GetHeadMockParamObject();
             var controller = new ImportParamDetailViewControllerBase();
             SetupViewController(controller, param);
             Assert.Throws(typeof(UserFriendlyException), () => controller.AysncImport());
-        }
-
-        [Test]
-        public void AutoCreateFieldMaps()
-        {
-
-        }
-
-        [Test]
-        public void ImportOptionsEquals()
-        {
-
         }
 
         [Test]
@@ -100,64 +69,6 @@ namespace Xafology.UnitTests
             ObjectSpace.CommitChanges();
             Assert.NotNull(param.ObjectTypeInfo);
         }
-
-
-        #region Setup
-        
-        protected override void SetupObjects()
-        {
-            base.SetupObjects();
-
-        }
-
-        protected override void AddExportedTypes(DevExpress.ExpressApp.ModuleBase module)
-        {
-            module.AdditionalExportedTypes.Add(typeof(ImportHeadersParam));
-            module.AdditionalExportedTypes.Add(typeof(MockImportObject));
-        }
-
-        #endregion
-
-        #region Utilities
-
-        private void SetupViewController(ViewController controller, IXPObject currentObject)
-        {
-            controller.Application = Application;
-            var view = Application.CreateDetailView(ObjectSpace, currentObject);
-            controller.SetView(view);
-        }
-
-        private Stream GetMockCsvStream()
-        {
-            string csvText = @"Description,Amount
-Hello 1,10
-Hello 2,20
-Hello 3,30";
-            byte[] csvBytes = Encoding.UTF8.GetBytes(csvText);
-            return new MemoryStream(csvBytes);
-        }
-
-        private ImportHeadersParam GetMockParamObject()
-        {
-            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map1.SourceName = "Description";
-            map1.TargetName = map1.SourceName;
-
-            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map2.SourceName = "Amount";
-            map2.TargetName = map2.SourceName;
-
-            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
-
-            param.HeaderToFieldMaps.Add(map1);
-            param.HeaderToFieldMaps.Add(map2);
-
-            param.ObjectTypeName = "MockImportObject";
-
-            return param;
-        }
-
-        #endregion
 
     }
 }

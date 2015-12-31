@@ -39,5 +39,13 @@ namespace Xafology.ExpressApp
         {
             return GetCurrentUser(((XPObjectSpace)objSpace).Session);
         }
+
+
+        public static void SetupDetailViewController(XafApplication application, XPObjectSpace objSpace, ViewController controller, IXPObject currentObject)
+        {
+            controller.Application = application;
+            var view = application.CreateDetailView(objSpace, currentObject);
+            controller.SetView(view);
+        }
     }
 }

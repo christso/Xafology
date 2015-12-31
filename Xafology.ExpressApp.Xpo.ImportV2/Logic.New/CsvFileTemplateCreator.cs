@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class CsvToXpoValidator
+    public class CsvFileTemplateCreator
     {
+
     }
 }

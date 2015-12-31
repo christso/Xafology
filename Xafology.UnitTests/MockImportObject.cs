@@ -41,7 +41,35 @@ namespace Xafology.UnitTests
             {
                 SetPropertyValue("Amount", ref amount, value);
             }
-        }		
+        }
 
+        private MockLookupObject mockLookupObject;
+
+        public MockLookupObject MockLookupObject
+        {
+            get
+            {
+                return mockLookupObject;
+            }
+            set
+            {
+                SetPropertyValue("MockLookupObject", ref mockLookupObject, value);
+            }
+        }
+
+
+        private MockLookupObject2 mockLookupObject2;
+
+        public MockLookupObject2 MockLookupObject2
+        {
+            get
+            {
+                return mockLookupObject2;
+            }
+            set
+            {
+                SetPropertyValue("MockLookupObject2", ref mockLookupObject2, value);
+            }
+        }		
     }
 }

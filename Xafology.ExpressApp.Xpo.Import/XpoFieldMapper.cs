@@ -15,28 +15,28 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 namespace Xafology.ExpressApp.Xpo.Import
 {
     // Note: Lookup objects only work with strings as the Default property
-    public class XpoMapper
+    public class XpoFieldMapper : IXpoFieldMapper
     {
         protected XafApplication Application;
 
-        public XpoMapper(XafApplication application)
+        public XpoFieldMapper(XafApplication application)
         {
             Application = application;
             options = new ImportOptions();
-            _XpObjectsNotFound = new Dictionary<Type, List<string>>();
-            _CachedXpObjects = new Dictionary<Type, IList>();
+            xpObjectsNotFound = new Dictionary<Type, List<string>>();
+            cachedXpObjects = new Dictionary<Type, IList>();
         }
         // List<string> contains object default values
-        private Dictionary<Type, List<string>> _XpObjectsNotFound;
+        private readonly Dictionary<Type, List<string>> xpObjectsNotFound;
         public Dictionary<Type, List<string>> XpObjectsNotFound
         {
-            get { return _XpObjectsNotFound; }
+            get { return xpObjectsNotFound; }
         }
 
-        private Dictionary<Type, IList> _CachedXpObjects;
+        private readonly Dictionary<Type, IList> cachedXpObjects;
         public Dictionary<Type, IList> CachedXpObjects
         {
-            get { return _CachedXpObjects; }
+            get { return cachedXpObjects; }
         }
 
         private ImportOptions options;
@@ -133,7 +133,7 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
             else if (typeof(IXPObject).IsAssignableFrom(memberInfo.MemberType))
             {
-                newValue = ConvertToXpObject(targetObj, memberInfo, value, createMember);
+                newValue = ConvertToXpObject(targetObj.Session, memberInfo, value, createMember);
             }
             else
             {
@@ -142,21 +142,7 @@ namespace Xafology.ExpressApp.Xpo.Import
             memberInfo.SetValue(targetObj, newValue);
         }
 
-        private object ConvertToXpObject(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false)
-        {
-            object newValue;
-            if (CachedXpObjects.ContainsKey(memberInfo.MemberType))
-            {
-                newValue = ConvertToXpObjectCached(value, memberInfo, targetObj.Session, createMember);
-            }
-            else
-            {
-                newValue = ConvertToXpObjectNonCached(value, memberInfo, targetObj.Session, createMember);
-            }
-            return newValue;
-        }
-
-        private Enum ConvertToEnum(string value, Type memberType)
+        public Enum ConvertToEnum(string value, Type memberType)
         {
             // use Display Name if attribute is found
             var fields = memberType.GetFields();
@@ -173,6 +159,21 @@ namespace Xafology.ExpressApp.Xpo.Import
                 }
             }
             return (Enum)Enum.Parse(memberType, value.Replace(" ", ""), true);
+        }
+
+
+        public object ConvertToXpObject(Session session, IMemberInfo memberInfo, string value, bool createMember = false)
+        {
+            object newValue;
+            if (CachedXpObjects.ContainsKey(memberInfo.MemberType))
+            {
+                newValue = ConvertToXpObjectCached(value, memberInfo, session, createMember);
+            }
+            else
+            {
+                newValue = ConvertToXpObjectNonCached(value, memberInfo, session, createMember);
+            }
+            return newValue;
         }
 
         /// <summary>
@@ -254,7 +255,13 @@ namespace Xafology.ExpressApp.Xpo.Import
                     cachedObjs.Add(newValue);
             }
 
-            #region Log
+            LogXpObjectsNotFound(memberType, value);
+
+            return (IXPObject)newValue;
+        }
+
+        public void LogXpObjectsNotFound(Type memberType, string value)
+        {
             List<string> memberValues;
             if (!XpObjectsNotFound.TryGetValue(memberType, out memberValues))
             {
@@ -263,9 +270,6 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
             if (!memberValues.Contains(value))
                 memberValues.Add(value);
-            #endregion
-
-            return (IXPObject)newValue;
         }
 
         private bool ConvertToBool(string value)
