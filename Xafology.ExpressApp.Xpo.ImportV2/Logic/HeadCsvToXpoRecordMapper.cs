@@ -30,9 +30,11 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             this.csvReader = csvReader;
         }
 
-        public void SetMemberValues(IXPObject targetObject, ITypeInfo objTypeInfo)
+        public void SetMemberValues(IXPObject targetObject)
         {
-            SetMemberValues(targetObject, GetTargetMembers(objTypeInfo));
+            var typesInfo = XafTypesInfo.Instance.FindTypeInfo(targetObject.GetType());
+            SetMemberValues(targetObject, 
+                FieldMapsUtil.GetTargetMembers(fieldMaps, typesInfo));
         }
 
         public void SetMemberValues(IXPObject targetObject, IEnumerable<IMemberInfo> targetMembers)
@@ -47,29 +49,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                     csvReader[map.SourceName], map.CreateMember);
 
             }
-        }
-
-        public List<IMemberInfo> GetTargetMembers(ITypeInfo objTypeInfo)
-        {
-            var targetMembers = new List<IMemberInfo>();
-            foreach (var member in objTypeInfo.Members)
-            {
-                var targetCount = fieldMaps.Count(x => x.TargetName == (member.Name));
-                if (targetCount > 1)
-                    RaiseDuplicateTargetMemberException(member);
-                else if (targetCount == 0)
-                    continue;
-                else if (member.IsKey)
-                    continue;
-                // the below executes given condition: targetCount == 1 && !member.IsKey
-                targetMembers.Add(member);
-            }
-            return targetMembers;
-        }
-
-        private static void RaiseDuplicateTargetMemberException(IMemberInfo member)
-        {
-            throw new UserFriendlyException("Duplicate maps were found for member '" + member.Name + "'");
         }
     }
 }

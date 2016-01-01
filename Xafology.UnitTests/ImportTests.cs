@@ -19,6 +19,17 @@ namespace Xafology.UnitTests
     [TestFixture]
     public class ImportTests : ImportTestsBase
     {
+        [Test]
+        public void TestMemberValues()
+        {
+            var obj = ObjectSpace.CreateObject<MockImportObject>();
 
+            var typeInfo = XafTypesInfo.Instance.FindTypeInfo(obj.GetType());
+            var members = typeInfo.Members;
+            foreach (var member in members)
+            {
+                Console.WriteLine(member.Name);
+            }
+        }
     }
 }

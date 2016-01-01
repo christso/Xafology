@@ -21,20 +21,19 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         private readonly IXpoFieldMapper xpoFieldMapper;
         private readonly ITypeInfo objTypeInfo;
         private readonly ImportOrdinalsParam param;
-        private readonly Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger;
+        private readonly IImportLogger logger;
         private readonly OrdCsvToXpoRecordMapper recordMapper;
 
-        public OrdCsvToXpoInserter(ImportOrdinalsParam param, Stream stream, 
-            IXpoFieldMapper xpoFieldMapper, Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger)
+        public OrdCsvToXpoInserter(ImportOrdinalsParam param, Stream stream,
+            IXpoFieldMapper xpoFieldMapper, IImportLogger logger)
         {
-            csvReader = new CsvReader(new StreamReader(stream), true);
+            csvReader = new CsvReader(new StreamReader(stream), false);
             objTypeInfo = param.ObjectTypeInfo;
             this.param = param;
             this.xpoFieldMapper = xpoFieldMapper;
             this.logger = logger;
-
             recordMapper = new OrdCsvToXpoRecordMapper(xpoFieldMapper, param.OrdToFieldMaps, csvReader);
-            
+            FieldMapsUtil.ValidateParameters(param);
         }
 
         public void Execute()
@@ -42,7 +41,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             while (csvReader.ReadNextRecord())
             {
                 var targetObject = GetTargetObject();
-                recordMapper.SetMemberValues(targetObject, objTypeInfo);
+                recordMapper.SetMemberValues(targetObject);
             }
             param.Session.CommitTransaction();
         }

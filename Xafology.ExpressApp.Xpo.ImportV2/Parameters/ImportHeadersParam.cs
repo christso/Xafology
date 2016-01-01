@@ -27,9 +27,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public override XPBaseCollection FieldMaps
+        public override FieldMaps FieldMaps
         {
-            get { return HeaderToFieldMaps; }
+            get { return new FieldMaps(HeaderToFieldMaps); }
         }
 
     }

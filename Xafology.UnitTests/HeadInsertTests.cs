@@ -232,7 +232,7 @@ Hello 3,30,HTC";
             var xpoMapper = new XpoFieldMapper(Application);
 
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
-            Assert.Throws<UserFriendlyException>(() => loader.Execute());
+            Assert.Throws<InvalidOperationException>(() => loader.Execute());
         }
     }
 }

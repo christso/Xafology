@@ -1,31 +1,22 @@
 ﻿using DevExpress.ExpressApp.DC;
-using DevExpress.Xpo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
-using DevExpress.Data.Filtering;
-using DevExpress.Xpo.Metadata;
-using DevExpress.Xpo.Helpers;
-namespace Xafology.ExpressApp.Xpo.Import.Parameters
+using Xafology.ExpressApp.Xpo.Import.Parameters;
+
+namespace Xafology.ExpressApp.Xpo.Import
 {
-    public class FieldMaps : IEnumerable<FieldMap>
+    public class FieldMapsUtil
     {
-        private readonly IEnumerable<FieldMap> fieldMaps;
-
-        public FieldMaps(IEnumerable fieldMaps)
-        {
-            this.fieldMaps = fieldMaps.Cast<FieldMap>();
-        }
-
-        public List<IMemberInfo> GetTargetMembers(ITypeInfo objTypeInfo)
+        public static List<IMemberInfo> GetTargetMembers(IEnumerable fieldMaps, ITypeInfo objTypeInfo)
         {
             var targetMembers = new List<IMemberInfo>();
             foreach (var member in objTypeInfo.Members)
             {
-                var targetCount = fieldMaps.Count(x => x.TargetName == (member.Name));
+                var targetCount = fieldMaps.Cast<FieldMap>().Count(x => x.TargetName == (member.Name));
                 if (targetCount > 1)
                     throw new InvalidOperationException("Duplicate maps were found for member '" + member.Name + "'");
                 else if (targetCount == 0)
@@ -38,15 +29,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             return targetMembers;
         }
 
-
-        public IEnumerator<FieldMap> GetEnumerator()
+        public static void ValidateParameters(ImportParam param)
         {
-            return fieldMaps.GetEnumerator();
+            if (param.ObjectTypeInfo == null)
+                throw new ArgumentException(
+                    "ObjectTypeInfo cannot be null. "
+                    + "This may also be because ObjectTypeName was not defined",
+                    "ObjectTypeInfo");
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return fieldMaps.GetEnumerator();
-        }
+
     }
 }

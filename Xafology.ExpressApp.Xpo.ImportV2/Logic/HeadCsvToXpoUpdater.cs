@@ -22,18 +22,19 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         private readonly XpoFieldMapper xpoFieldMapper;
         private readonly ITypeInfo objTypeInfo;
         private readonly ImportHeadersParam param;
-        private readonly Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger;
-        private readonly Xafology.ExpressApp.Xpo.Import.Logic.HeadCsvToXpoRecordMapper recordMapper;
+        private readonly IImportLogger logger;
+        private readonly HeadCsvToXpoRecordMapper recordMapper;
 
-        public HeadCsvToXpoUpdater(ImportHeadersParam param, Stream stream, 
-            XpoFieldMapper xpoFieldMapper, Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger logger)
+        public HeadCsvToXpoUpdater(ImportHeadersParam param, Stream stream,
+            XpoFieldMapper xpoFieldMapper, IImportLogger logger)
         {
             csvReader = GetCsvReaderFromStream(stream, true);
             objTypeInfo = param.ObjectTypeInfo;
             this.param = param;
             this.xpoFieldMapper = xpoFieldMapper;
             this.logger = logger;
-            recordMapper = new Xafology.ExpressApp.Xpo.Import.Logic.HeadCsvToXpoRecordMapper(xpoFieldMapper, param.HeaderToFieldMaps, csvReader);
+            recordMapper = new HeadCsvToXpoRecordMapper(xpoFieldMapper, param.HeaderToFieldMaps, csvReader);
+            FieldMapsUtil.ValidateParameters(param);
         }
 
         public void Execute()
@@ -46,7 +47,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             while (csvReader.ReadNextRecord())
             {
                 var targetObject = GetTargetObject(keyFieldMap.TargetName, csvReader[0]);
-                recordMapper.SetMemberValues(targetObject, objTypeInfo);
+                recordMapper.SetMemberValues(targetObject);
             }
             
             param.Session.CommitTransaction();
@@ -59,7 +60,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         private List<IMemberInfo> GetTargetMembers()
         {
-            var fieldMapper = new Xafology.ExpressApp.Xpo.Import.Logic.XpoTargetMembers(param.HeaderToFieldMaps);
+            var fieldMapper = new XpoTargetMembers(param.HeaderToFieldMaps);
             return fieldMapper.GetList(objTypeInfo);
         }
         

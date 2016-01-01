@@ -149,7 +149,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public abstract XPBaseCollection FieldMaps { get; }
+        public abstract FieldMaps FieldMaps { get; }
 
         public new class Fields
         {

@@ -11,7 +11,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     public interface ImportParam
     {
-        XPBaseCollection FieldMaps { get; }
+        FieldMaps FieldMaps { get; }
         bool CacheLookupObjects { get; set; }
         bool CreateMembers { get; set; }
         ITypeInfo ObjectTypeInfo { get; set; }
