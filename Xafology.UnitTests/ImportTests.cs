@@ -13,6 +13,7 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp;
+using System.Diagnostics;
 
 namespace Xafology.UnitTests
 {
@@ -20,16 +21,30 @@ namespace Xafology.UnitTests
     public class ImportTests : ImportTestsBase
     {
         [Test]
-        public void TestMemberValues()
+        public void InvalidMemberValueConversions()
         {
-            var obj = ObjectSpace.CreateObject<MockImportObject>();
+            var xpoFieldMapper = new XpoFieldMapper(Application);
 
-            var typeInfo = XafTypesInfo.Instance.FindTypeInfo(obj.GetType());
-            var members = typeInfo.Members;
-            foreach (var member in members)
+            var targetObject = ObjectSpace.CreateObject<MockImportObject>();
+
+            var descMember = XafTypesInfo.Instance.FindTypeInfo(typeof(MockImportObject)).FindMember("Description");
+            var amountMember = XafTypesInfo.Instance.FindTypeInfo(typeof(MockImportObject)).FindMember("Amount");
+            var lookupMember = XafTypesInfo.Instance.FindTypeInfo(typeof(MockImportObject)).FindMember("MockLookupObject");
+
+            xpoFieldMapper.SetMemberValue(targetObject, descMember,
+                    "Hello");
+            xpoFieldMapper.SetMemberValue(targetObject, amountMember,
+                    "15");
+            xpoFieldMapper.SetMemberValue(targetObject, lookupMember,
+                    "ABC");
+
+            foreach (var obj in xpoFieldMapper.XpObjectsNotFound)
             {
-                Console.WriteLine(member.Name);
+                foreach (var value in obj.Value)
+                    Debug.WriteLine("{0} {1}", obj.Key, value);
             }
+
+            
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Xafology.UnitTests
         {
             var tests = new ImportTests();
             tests.Setup();
-            tests.TestMemberValues();
+            //tests.TestMemberValues();
             Console.ReadKey();
         }
     }

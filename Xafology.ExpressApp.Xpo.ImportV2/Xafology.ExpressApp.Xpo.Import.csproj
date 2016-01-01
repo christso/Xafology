@@ -162,6 +162,7 @@
     <Compile Include="Parameters\ImportOrdinalsParam.cs" />
     <Compile Include="Parameters\ImportParamBase.cs" />
     <Compile Include="XpoFieldMapper.cs" />
+    <Compile Include="LookupValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
