@@ -14,6 +14,7 @@ using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp;
 using System.Diagnostics;
+using Xafology.Utils;
 
 namespace Xafology.UnitTests.Import
 {
@@ -21,6 +22,47 @@ namespace Xafology.UnitTests.Import
     public class ImportTests : Xafology.UnitTests.Import.ImportTestsBase
     {
         [Test]
+        public void ValidateObjectTypeName()
+        {
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.ObjectTypeName = "InvalidObject";
+            Assert.IsNull(param.ObjectTypeInfo);
+
+            param.ObjectTypeName = "MockLookupObject1";
+            Assert.AreEqual(typeof(MockLookupObject1), param.ObjectTypeInfo.Type);
+        }
+
+        [Test]
+        public void CreateFieldMapsFromStream()
+        {
+            var csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
+Hello 1,10,Parent 1,Parent B1
+Hello 2,11,Parent 2,Parent B2
+Hello 3,12,Parent 3,Parent B3
+Hello 4,13,Parent 4,Parent B4
+";
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.ObjectTypeName = "MockFactObject";
+
+            var csvStream = StringUtils.ConvertToCsvStream(csvText);
+
+            var mapCreator = new FieldMapListCreator(csvStream);
+            var fieldMaps = param.HeaderToFieldMaps;
+
+            mapCreator.AppendFieldMaps(ObjectSpace.Session, fieldMaps);
+
+            Assert.AreEqual(4, fieldMaps.Count);
+        }
+
+        public void CreateCsvTemplateFromObjectTypeInfo()
+        {
+
+        }
+
+        // TODO: Test result of invalid type conversions
+        //[Test]
         public void InvalidMemberValueConversions()
         {
             var xpoFieldMapper = new XpoFieldMapper(Application);
@@ -42,32 +84,6 @@ namespace Xafology.UnitTests.Import
             {
                 foreach (var value in obj.Value)
                     Debug.WriteLine("{0} {1}", obj.Key, value);
-            }
-        }
-
-        [Test]
-        public void CacheTest()
-        {
-            // add objects to cache dictionary
-            var obj1 = new MockFactObject(ObjectSpace.Session) { Description = "A", Amount = 10 };
-            var obj2 = new MockFactObject(ObjectSpace.Session) { Description = "B", Amount = 20 };
-            ObjectSpace.CommitChanges();
-
-            var objs = new XPCollection(ObjectSpace.Session, typeof(MockFactObject));
-
-            var q = new XPQuery<MockFactObject>(ObjectSpace.Session);
-
-            Debug.Print(string.Format("{0}", q.Count()));
-            Debug.Print(string.Format("{0}", q.Count()));
-
-            foreach (var obj in q)
-            {
-                Debug.Print(((MockFactObject)obj).Description);
-            }
-
-            foreach (var obj in objs)
-            {
-                Debug.Print(((MockFactObject)obj).Description);
             }
         }
     }

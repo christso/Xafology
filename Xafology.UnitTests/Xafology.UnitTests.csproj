@@ -110,6 +110,10 @@
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xafology.ImportDemoV2\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
+      <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
+      <Name>Xafology.ImportDemo.Module</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.Tests\Xafology.TestUtils.csproj">
       <Project>{51e0010f-cd1d-47bb-894c-d9347e48ee44}</Project>
       <Name>Xafology.TestUtils</Name>

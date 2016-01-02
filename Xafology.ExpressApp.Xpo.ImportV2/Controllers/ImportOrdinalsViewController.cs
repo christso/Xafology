@@ -16,13 +16,12 @@ using Xafology.Utils;
 
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
-    public class ImportHeadersViewController : ViewController
+    public class ImportOrdinalsViewController : ViewController
     {
-        public ImportHeadersViewController()
+        public ImportOrdinalsViewController()
         {
-            TargetObjectType = typeof(ImportHeadersParam);
+            TargetObjectType = typeof(ImportOrdinalsParam);
         }
-
         protected override void OnActivated()
         {
             base.OnActivated();
@@ -45,7 +44,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         }
         public void DoImport()
         {
-            var param = (ImportHeadersParam)View.CurrentObject; // TODO: refactor for deduplication
+            var param = (ImportOrdinalsParam)View.CurrentObject;
 
             var csvStream = new MemoryStream();
             param.File.SaveToStream(csvStream);
@@ -55,9 +54,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             ICsvToXpoLoader loader = null;
 
             if (param.ImportActionType == ImportActionType.Insert)
-                loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
+                loader = new OrdCsvToXpoInserter(param, csvStream, xpoMapper, null);
             else if (param.ImportActionType == ImportActionType.Update)
-                loader = new HeadCsvToXpoUpdater(param, csvStream, xpoMapper, null);
+                loader = new OrdCsvToXpoUpdater(param, csvStream, xpoMapper, null);
             else
                 throw new ArgumentException("Invalid Import Action Type", "ImportActionType");
 
@@ -66,21 +65,21 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
 
         public void DoRemap()
         {
-            var param = (ImportHeadersParam)View.CurrentObject; // TODO: refactor for deduplication
+            var param = (ImportOrdinalsParam)View.CurrentObject;
 
             var csvStream = new MemoryStream();
             param.File.SaveToStream(csvStream);
             csvStream.Position = 0;
 
             var mapCreator = new FieldMapListCreator(csvStream);
-            var fieldMaps = param.HeaderToFieldMaps;
+            var fieldMaps = param.OrdToFieldMaps;
 
             mapCreator.AppendFieldMaps(((XPObjectSpace)ObjectSpace).Session, fieldMaps);
         }
 
         public void DoTemplate()
         {
-            var param = (ImportHeadersParam)View.CurrentObject;
+            var param = (ImportOrdinalsParam)View.CurrentObject;
             param.CreateTemplate();
         }
 
@@ -98,6 +97,5 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         {
             DoImport();
         }
-
     }
 }

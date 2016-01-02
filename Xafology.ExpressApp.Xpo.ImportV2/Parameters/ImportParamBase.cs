@@ -14,7 +14,6 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
-    [NonPersistent]
     public abstract class ImportParamBase : BaseObject, IImportOptions
     {
         public ImportParamBase(Session session)
@@ -127,9 +126,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
         {
             get
             {
-                var os = (XPObjectSpace)ObjectSpaceInMemory.CreateNew();
-                return os.TypesInfo.PersistentTypes.FirstOrDefault(
-                    x => x.Name == ObjectTypeName);
+                return XpoTypesInfoHelper.GetTypesInfo().PersistentTypes.FirstOrDefault(
+                    x => x.Name == ObjectTypeName);                
             }
             set
             {
@@ -150,6 +148,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
         }
 
         public abstract FieldMaps FieldMaps { get; }
+
+        public void CreateTemplate()
+        {
+            var stream = CsvFileTemplateCreator.CreateStream(this.ObjectTypeInfo);
+            if (TemplateFile == null)
+                TemplateFile = new FileData(Session);
+            TemplateFile.LoadFromStream("Template.csv", stream);
+            Session.CommitTransaction();
+        }
 
         public new class Fields
         {

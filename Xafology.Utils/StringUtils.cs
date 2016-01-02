@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Xafology.Utils
 {
@@ -14,6 +16,12 @@ namespace Xafology.Utils
                 result += " " + quote + value + quote;
             }
             return result;
+        }
+
+        public static Stream ConvertToCsvStream(string csvText)
+        {
+            byte[] csvBytes = Encoding.UTF8.GetBytes(csvText);
+            return new MemoryStream(csvBytes);
         }
     }
 }

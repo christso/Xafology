@@ -15,5 +15,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
         bool CacheLookupObjects { get; set; }
         bool CreateMembers { get; set; }
         ITypeInfo ObjectTypeInfo { get; set; }
+        string ObjectTypeName { get; set; }
     }
 }

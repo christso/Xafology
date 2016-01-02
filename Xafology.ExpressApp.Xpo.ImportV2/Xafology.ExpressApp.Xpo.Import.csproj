@@ -142,6 +142,12 @@
     <Compile Include="Controllers\ImportHeadersViewController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controllers\ImportOrdinalsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ImportViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ICsvToXpoLoader.cs" />
     <Compile Include="ILookupValueConverter.cs" />
     <Compile Include="IXpoFieldMapper.cs" />

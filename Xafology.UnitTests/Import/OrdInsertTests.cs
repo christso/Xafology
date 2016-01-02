@@ -42,7 +42,7 @@ namespace Xafology.UnitTests.Import
             string csvText = @"Hello 1,10
 Hello 2,20
 Hello 3,30";
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
@@ -77,7 +77,7 @@ Hello 3,30";
             string csvText = @"Hello 1,10
 Hello 2,20
 Hello 3,30";
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);

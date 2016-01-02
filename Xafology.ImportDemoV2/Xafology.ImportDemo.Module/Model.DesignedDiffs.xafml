@@ -6,6 +6,8 @@
         <Items>
           <Item Id="ActionRequest_ListView" ViewId="ActionRequest_ListView" IsNewNode="True" />
           <Item Id="ImportHeadersParam_ListView" ViewId="ImportHeadersParam_ListView" IsNewNode="True" />
+          <Item Id="ImportOrdinalsParam_ListView" ViewId="ImportOrdinalsParam_ListView" IsNewNode="True" />
+          <Item Id="ImportParam_ListView" ViewId="ImportParamBase_ListView" Caption="Import Param" IsNewNode="True" />
         </Items>
       </Item>
     </Items>

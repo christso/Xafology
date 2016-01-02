@@ -33,8 +33,9 @@ namespace Xafology.ExpressApp.Xpo.Import
         {
             if (param.ObjectTypeInfo == null)
                 throw new ArgumentException(
-                    "ObjectTypeInfo cannot be null. "
-                    + "This may also be because ObjectTypeName was not defined",
+                    string.Format("ObjectTypeInfo cannot be null. "
+                    + "This may also be because ObjectTypeName '{0}' does not match any business objects",
+                    param.ObjectTypeName),
                     "ObjectTypeInfo");
         }
 

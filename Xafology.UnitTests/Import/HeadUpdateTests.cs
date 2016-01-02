@@ -63,7 +63,7 @@ Hello 1,100
 Hello 2,200
 Hello 3,300";
 
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);

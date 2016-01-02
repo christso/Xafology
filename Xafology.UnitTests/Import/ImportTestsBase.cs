@@ -40,7 +40,7 @@ namespace Xafology.UnitTests.Import
             controller.SetView(view);
         }
 
-        protected Stream GetMockCsvStream(string csvText)
+        protected Stream ConvertToCsvStream(string csvText)
         {
             byte[] csvBytes = Encoding.UTF8.GetBytes(csvText);
             return new MemoryStream(csvBytes);

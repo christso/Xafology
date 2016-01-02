@@ -21,6 +21,51 @@ namespace Xafology.UnitTests.Import
     public class HeadInsertTests : Xafology.UnitTests.Import.ImportTestsBase
     {
         [Test]
+        public void InsertFull()
+        {
+            var csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
+Hello 1,10,Parent 1,Parent B1
+Hello 2,11,Parent 2,Parent B2
+Hello 3,12,Parent 3,Parent B3
+Hello 4,13,Parent 4,Parent B4
+";
+
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map1.SourceName = "Description";
+            map1.TargetName = map1.SourceName;
+
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map2.SourceName = "Amount";
+            map2.TargetName = map2.SourceName;
+
+            var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map3.SourceName = "MockLookupObject1";
+            map3.TargetName = map3.SourceName;
+
+            var map4 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map4.SourceName = "MockLookupObject2";
+            map4.TargetName = map4.SourceName;
+
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map3);
+            param.HeaderToFieldMaps.Add(map4);
+
+            param.ObjectTypeName = "MockFactObject";
+
+            var csvStream = ConvertToCsvStream(csvText);
+            var xpoMapper = new XpoFieldMapper(Application);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
+            loader.Execute();
+
+            var inserted = new XPQuery<MockFactObject>(ObjectSpace.Session);
+            Assert.AreEqual(4, inserted.Count());
+
+        }
+
+        [Test]
         public void InsertSimpleHeaderCsv()
         {
             var xpoMapper = new XpoFieldMapper(Application);
@@ -31,12 +76,9 @@ namespace Xafology.UnitTests.Import
 Hello 1,10
 Hello 2,20
 Hello 3,30";
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
 
-
-            var request = ObjectSpace.CreateObject<ActionRequest>();
-            var logger = new ImportRequestLogger(request);
-            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
             loader.Execute();
 
             var inserted = new XPQuery<MockFactObject>(ObjectSpace.Session);
@@ -45,6 +87,32 @@ Hello 3,30";
             Assert.AreEqual(3, inserted.Count());
             Assert.AreEqual(30, obj.Amount);
             Assert.AreEqual(null, obj.MockLookupObject1);
+        }
+
+        [Test]
+        public void InsertFromStream()
+        {
+            // arrange
+
+            var param = GetHeadMockParamObject();
+            string inpText = @"Description,Amount
+Hello 1,10
+Hello 2,20
+Hello 3,30";
+
+            var inpStream = ConvertToCsvStream(inpText);
+            param.File.LoadFromStream("File", inpStream);
+
+            // act
+            var outStream = new MemoryStream();
+            param.File.SaveToStream(outStream);
+
+            StreamReader reader = new StreamReader(outStream);
+            outStream.Position = 0;
+            var outText = reader.ReadToEnd();
+
+            // assert
+            Assert.AreEqual(inpText, outText);
         }
 
         [Test]
@@ -58,7 +126,7 @@ Hello 2,20
 Hello 3,30";
 
             var param = GetHeadMockParamObject();
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
 
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
@@ -107,7 +175,7 @@ Hello 1,10,Apple
 Hello 2,20,Samsung
 Hello 3,30,HTC";
 
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
@@ -195,7 +263,7 @@ Hello 1,10,Apple,Handset
 Hello 2,20,Samsung,Marketing
 Hello 3,30,HTC,Credit";
 
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
@@ -252,7 +320,7 @@ Hello 1,10,Apple,Handset
 Hello 2,20,Samsung,Marketing
 Hello 3,30,HTC,Credit";
 
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
@@ -301,7 +369,7 @@ Hello 1,10,Apple
 Hello 2,20,Samsung
 Hello 3,30,HTC";
 
-            var csvStream = GetMockCsvStream(csvText);
+            var csvStream = ConvertToCsvStream(csvText);
 
             var request = ObjectSpace.CreateObject<ActionRequest>();
             var logger = new ImportRequestLogger(request);
