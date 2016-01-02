@@ -6,10 +6,12 @@ using System.Linq;
 
 namespace Xafology.ExpressApp.Xpo.Import
 {
+    public delegate void LogUnmatchedLookupsDelegate(Type type, string value);
+
     public interface ILookupValueConverter
     {
         IXPObject ConvertToXpObject(string value, IMemberInfo memberInfo, Session session,
             bool createMember = false);
-        Dictionary<Type, List<string>> LookupsNotFound { get; }
+        LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
     }
 }

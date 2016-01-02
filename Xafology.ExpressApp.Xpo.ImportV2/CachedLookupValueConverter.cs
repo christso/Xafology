@@ -13,25 +13,20 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo.Import
 {
+
     public class CachedLookupValueConverter : ILookupValueConverter
     {
-        private readonly Dictionary<Type, List<string>> lookupsNotFound;
+
         private readonly Dictionary<Type, XPCollection> cacheDictionary;
         private readonly XafApplication application;
 
-        public CachedLookupValueConverter(XafApplication application, Dictionary<Type, XPCollection> cacheDictionary)
+        public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
+
+        public CachedLookupValueConverter(XafApplication application,
+            Dictionary<Type, XPCollection> cacheDictionary)
         {
             this.application = application;
-            lookupsNotFound = new Dictionary<Type, List<string>>();
             this.cacheDictionary = cacheDictionary;
-        }
-
-        public Dictionary<Type, List<string>> LookupsNotFound
-        {
-            get
-            {
-                return lookupsNotFound;
-            }
         }
 
         /// <summary>
@@ -100,17 +95,12 @@ namespace Xafology.ExpressApp.Xpo.Import
             return newObj;
         }
 
-        public void LogXpObjectsNotFound(Type memberType, string value)
+        private void LogXpObjectsNotFound(Type memberType, string value)
         {
-            List<string> memberValues = null;
-            if (!LookupsNotFound.TryGetValue(memberType, out memberValues))
-            {
-                memberValues = new List<string>();
-                LookupsNotFound.Add(memberType, memberValues);
-            }
-            if (!memberValues.Contains(value))
-                memberValues.Add(value);
+            if (UnmatchedLookupLogger != null)
+                UnmatchedLookupLogger(memberType, value);
         }
+
 
     }
 }

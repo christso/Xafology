@@ -11,8 +11,7 @@ namespace Xafology.ExpressApp.Xpo.Import
     public interface IXpoFieldMapper
     {
         void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false);
-        LookupValueConverter LookupValueConverter { get; }
-        CachedLookupValueConverter CachedLookupValueConverter { get; }
+        Dictionary<Type, List<string>> LookupsNotFound { get; }
         Dictionary<Type, XPCollection> LookupCacheDictionary { get; }
     }
 }

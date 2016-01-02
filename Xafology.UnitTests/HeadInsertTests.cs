@@ -154,7 +154,7 @@ Hello 3,30,HTC";
 
             xpoFieldMapper.SetMemberValue(targetObj, memberInfo, "Apple", true, true);
 
-            Assert.AreEqual(1, xpoFieldMapper.CachedLookupValueConverter.LookupsNotFound.Count());
+            Assert.AreEqual(1, xpoFieldMapper.LookupsNotFound.Count());
         }
 
         [Test]

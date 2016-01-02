@@ -20,25 +20,25 @@ namespace Xafology.ExpressApp.Xpo.Import
         protected XafApplication Application;
         private readonly LookupValueConverter lookupValueConverter;
         private readonly CachedLookupValueConverter cachedLookupValueConverter;
-        private readonly Dictionary<Type, List<string>> xpObjectsNotFound;
+        private readonly Dictionary<Type, List<string>> lookupsNotFound;
         private readonly Dictionary<Type, XPCollection> lookupCacheDictionary;
 
 
         public XpoFieldMapper(XafApplication application)
         {
             Application = application;
-            xpObjectsNotFound = new Dictionary<Type, List<string>>();
-            lookupValueConverter = new LookupValueConverter(application);
-            this.lookupCacheDictionary = new Dictionary<Type, XPCollection>();
-            this.cachedLookupValueConverter = new CachedLookupValueConverter(application, lookupCacheDictionary);
-        }
+            lookupsNotFound = new Dictionary<Type, List<string>>();
+            lookupCacheDictionary = new Dictionary<Type, XPCollection>();
 
-        public LookupValueConverter LookupValueConverter
-        {
-            get
+            lookupValueConverter = new LookupValueConverter(application)
             {
-                return lookupValueConverter;
-            }
+                UnmatchedLookupLogger = LogXpObjectsNotFound
+            };
+
+            cachedLookupValueConverter = new CachedLookupValueConverter(application, lookupCacheDictionary)
+            {
+                UnmatchedLookupLogger = LogXpObjectsNotFound
+            };
         }
 
         public CachedLookupValueConverter CachedLookupValueConverter
@@ -52,7 +52,7 @@ namespace Xafology.ExpressApp.Xpo.Import
         // List<string> contains object default values
         public Dictionary<Type, List<string>> LookupsNotFound
         {
-            get { return lookupValueConverter.LookupsNotFound; }
+            get { return lookupsNotFound; }
         }
 
         public Dictionary<Type, XPCollection> LookupCacheDictionary
@@ -62,7 +62,6 @@ namespace Xafology.ExpressApp.Xpo.Import
                 return lookupCacheDictionary;
             }
         }
-
         /// <summary>
         /// Sets the value of the member of targetObj
         /// </summary>
@@ -161,6 +160,18 @@ namespace Xafology.ExpressApp.Xpo.Import
                 default:
                     return Convert.ToBoolean(value);
             }
+        }
+
+        private void LogXpObjectsNotFound(Type memberType, string value)
+        {
+            List<string> memberValues = null;
+            if (!LookupsNotFound.TryGetValue(memberType, out memberValues))
+            {
+                memberValues = new List<string>();
+                LookupsNotFound.Add(memberType, memberValues);
+            }
+            if (!memberValues.Contains(value))
+                memberValues.Add(value);
         }
 
     }

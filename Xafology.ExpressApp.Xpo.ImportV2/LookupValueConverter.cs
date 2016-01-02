@@ -15,18 +15,15 @@ namespace Xafology.ExpressApp.Xpo.Import
 {
     public class LookupValueConverter : ILookupValueConverter
     {
+
         private readonly Dictionary<Type, List<string>> lookupsNotFound;
         private readonly XafApplication application;
+
+        public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
 
         public LookupValueConverter(XafApplication application)
         {
             this.application = application;
-            lookupsNotFound = new Dictionary<Type, List<string>>();
-        }
-
-        public Dictionary<Type, List<string>> LookupsNotFound
-        {
-            get { return lookupsNotFound; }
         }
 
         /// <summary>
@@ -75,16 +72,10 @@ namespace Xafology.ExpressApp.Xpo.Import
             return (IXPObject)newValue;
         }
 
-        public void LogXpObjectsNotFound(Type memberType, string value)
+        private void LogXpObjectsNotFound(Type memberType, string value)
         {
-            List<string> memberValues;
-            if (!LookupsNotFound.TryGetValue(memberType, out memberValues))
-            {
-                memberValues = new List<string>();
-                LookupsNotFound.Add(memberType, memberValues);
-            }
-            if (!memberValues.Contains(value))
-                memberValues.Add(value);
+            if (UnmatchedLookupLogger != null)
+                UnmatchedLookupLogger(memberType, value);
         }
 
     }
