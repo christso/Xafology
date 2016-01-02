@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

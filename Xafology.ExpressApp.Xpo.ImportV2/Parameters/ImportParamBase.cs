@@ -155,6 +155,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             if (TemplateFile == null)
                 TemplateFile = new FileData(Session);
             TemplateFile.LoadFromStream("Template.csv", stream);
+            OnChanged("TemplateFile");
             Session.CommitTransaction();
         }
 
