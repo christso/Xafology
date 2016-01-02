@@ -10,10 +10,10 @@ using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 
-namespace Xafology.UnitTests
+namespace Xafology.UnitTests.Import
 {
     [TestFixture]
-    public class OrdUpdateTests : ImportTestsBase
+    public class OrdUpdateTests : Xafology.UnitTests.Import.ImportTestsBase
     {
         [Test]
         public void UpdateSimpleOrdinalCsv()
@@ -34,19 +34,19 @@ namespace Xafology.UnitTests
             param.OrdToFieldMaps.Add(map1);
             param.OrdToFieldMaps.Add(map2);
 
-            param.ObjectTypeName = "MockImportObject";
+            param.ObjectTypeName = "MockFactObject";
 
             // arrange XPO objects
 
-            var obj1 = ObjectSpace.CreateObject<MockImportObject>();
+            var obj1 = ObjectSpace.CreateObject<MockFactObject>();
             obj1.Description = "Hello 1";
             obj1.Amount = 10;
 
-            var obj2 = ObjectSpace.CreateObject<MockImportObject>();
+            var obj2 = ObjectSpace.CreateObject<MockFactObject>();
             obj2.Description = "Hello 2";
             obj2.Amount = 20;
 
-            var obj3 = ObjectSpace.CreateObject<MockImportObject>();
+            var obj3 = ObjectSpace.CreateObject<MockFactObject>();
             obj3.Description = "Hello 3";
             obj3.Amount = 30;
 
@@ -69,11 +69,11 @@ Hello 3,300";
             loader.Execute();
 
             // assert
-            var updated = new XPQuery<MockImportObject>(ObjectSpace.Session);
+            var updated = new XPQuery<MockFactObject>(ObjectSpace.Session);
 
             Assert.AreEqual(3, updated.Count()); // returns 6 because it inserts instead of updates
 
-            MockImportObject result = updated.Where(x => x.Description == "Hello 1").FirstOrDefault();
+            MockFactObject result = updated.Where(x => x.Description == "Hello 1").FirstOrDefault();
             Assert.AreEqual(100, result.Amount);
 
             result = updated.Where(x => x.Description == "Hello 2").FirstOrDefault();

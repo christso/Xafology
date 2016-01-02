@@ -14,10 +14,10 @@ using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
 
 
-namespace Xafology.UnitTests
+namespace Xafology.UnitTests.Import
 {
     [TestFixture]
-    public class OrdInsertTests : ImportTestsBase
+    public class OrdInsertTests : Xafology.UnitTests.Import.ImportTestsBase
     {
         [Test]
         public void InsertSimpleOrdCsv()
@@ -37,7 +37,7 @@ namespace Xafology.UnitTests
             param.OrdToFieldMaps.Add(map1);
             param.OrdToFieldMaps.Add(map2);
 
-            param.ObjectTypeName = "MockImportObject";
+            param.ObjectTypeName = "MockFactObject";
 
             string csvText = @"Hello 1,10
 Hello 2,20
@@ -50,12 +50,12 @@ Hello 3,30";
             ICsvToXpoLoader loader = new OrdCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
 
-            var inserted = new XPQuery<MockImportObject>(ObjectSpace.Session);
-            MockImportObject obj = inserted.Where(x => x.Description == "Hello 3").FirstOrDefault();
+            var inserted = new XPQuery<MockFactObject>(ObjectSpace.Session);
+            MockFactObject obj = inserted.Where(x => x.Description == "Hello 3").FirstOrDefault();
 
             Assert.AreEqual(3, inserted.Count());
             Assert.AreEqual(30, obj.Amount);
-            Assert.AreEqual(null, obj.MockLookupObject);
+            Assert.AreEqual(null, obj.MockLookupObject1);
         }
 
         [Test]

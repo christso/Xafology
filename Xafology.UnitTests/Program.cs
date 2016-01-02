@@ -10,7 +10,7 @@ namespace Xafology.UnitTests
     {
         static void Main(string[] args)
         {
-            var tests = new ImportTests();
+            var tests = new Xafology.UnitTests.Import.ImportTests();
             tests.Setup();
             //tests.TestMemberValues();
             Console.ReadKey();

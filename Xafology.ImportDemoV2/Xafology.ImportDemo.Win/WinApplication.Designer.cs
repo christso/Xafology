@@ -35,7 +35,6 @@ namespace Xafology.ImportDemo.Win
             this.businessClassLibraryCustomizationModule1 = new DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule();
             this.xpoModule1 = new Xafology.ExpressApp.Xpo.XpoModule();
             this.XafologySystemModule1 = new Xafology.ExpressApp.SystemModule.XafologySystemModule();
-            this.concurrencyModule1 = new Xafology.ExpressApp.Concurrency.ConcurrencyModule();
             this.fileAttachmentsWindowsFormsModule1 = new DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule();
             this.xpoModule2 = new Xafology.ExpressApp.Xpo.XpoModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -47,7 +46,6 @@ namespace Xafology.ImportDemo.Win
             this.Modules.Add(this.module2);
             this.Modules.Add(this.businessClassLibraryCustomizationModule1);
             this.Modules.Add(this.XafologySystemModule1);
-            this.Modules.Add(this.concurrencyModule1);
             this.Modules.Add(this.xpoModule1);
             this.Modules.Add(this.module3);
             this.Modules.Add(this.fileAttachmentsWindowsFormsModule1);
@@ -67,7 +65,6 @@ namespace Xafology.ImportDemo.Win
         private DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule businessClassLibraryCustomizationModule1;
         private ExpressApp.Xpo.XpoModule xpoModule1;
         private ExpressApp.SystemModule.XafologySystemModule XafologySystemModule1;
-        private ExpressApp.Concurrency.ConcurrencyModule concurrencyModule1;
         private DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule fileAttachmentsWindowsFormsModule1;
         private ExpressApp.Xpo.XpoModule xpoModule2;
     }

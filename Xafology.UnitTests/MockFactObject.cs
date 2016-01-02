@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using DevExpress.Xpo;
 namespace Xafology.UnitTests
 {
-    public class MockImportObject : BaseObject
+    public class MockFactObject : BaseObject
     {
         private string description;
         private decimal amount;
  
-        public MockImportObject(DevExpress.Xpo.Session session)
+        public MockFactObject(DevExpress.Xpo.Session session)
             : base(session)
         {
 
@@ -43,17 +43,17 @@ namespace Xafology.UnitTests
             }
         }
 
-        private MockLookupObject mockLookupObject;
+        private MockLookupObject1 mockLookupObject1;
 
-        public MockLookupObject MockLookupObject
+        public MockLookupObject1 MockLookupObject1
         {
             get
             {
-                return mockLookupObject;
+                return mockLookupObject1;
             }
             set
             {
-                SetPropertyValue("MockLookupObject", ref mockLookupObject, value);
+                SetPropertyValue("MockLookupObject1", ref mockLookupObject1, value);
             }
         }
 

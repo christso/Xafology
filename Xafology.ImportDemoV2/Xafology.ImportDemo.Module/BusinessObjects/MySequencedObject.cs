@@ -1,11 +1,12 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
 using Xafology.ExpressApp.Xpo.SequentialBase;
+using Xafology.ExpressApp.Xpo.Import;
 
 namespace Xafology.ImportDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MySequencedObject : SequentialBaseObject, IImportableObject
+    public class MySequencedObject : SequentialBaseObject, IXpoImportable
     {
         public MySequencedObject(Session session)
             : base(session)

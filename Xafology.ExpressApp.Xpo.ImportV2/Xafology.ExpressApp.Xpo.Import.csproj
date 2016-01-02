@@ -77,6 +77,7 @@
     <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
@@ -84,21 +85,27 @@
     </Reference>
     <Reference Include="DevExpress.Printing.v15.2.Core">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Data.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.Base.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.BaseImpl.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="LumenWorks.Framework.IO">
       <HintPath>..\..\..\Packages\LumenWorks.Framework.IO.dll</HintPath>
@@ -131,12 +138,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachedLookupObjects.cs" />
     <Compile Include="CachedLookupValueConverter.cs" />
-    <Compile Include="CachedXpObject.cs" />
+    <Compile Include="Controllers\ImportHeadersViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ICsvToXpoLoader.cs" />
     <Compile Include="ILookupValueConverter.cs" />
     <Compile Include="IXpoFieldMapper.cs" />
+    <Compile Include="IXpoImportable.cs" />
     <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />
     <Compile Include="Logic\HeadCsvToXpoInserter.cs" />
     <Compile Include="Logic\IImportLogger.cs" />
@@ -181,8 +190,9 @@
       <Name>Xafology.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

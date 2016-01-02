@@ -8,7 +8,7 @@ using Xafology.ExpressApp.Concurrency;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class ImportRequestLogger : Xafology.ExpressApp.Xpo.Import.Logic.IImportLogger
+    public class ImportRequestLogger : IImportLogger
     {
         private readonly ActionRequest request;
 

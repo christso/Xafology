@@ -36,30 +36,37 @@
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Data.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.ConditionalAppearance.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.ExpressApp.Xpo.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.Base.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Persistent.Base.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.BaseImpl.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Persistent.BaseImpl.v15.2.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Xpo.v15.2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
@@ -74,15 +81,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HeadUpdateTests.cs" />
-    <Compile Include="ImportTests.cs" />
-    <Compile Include="ImportTestsBase.cs" />
-    <Compile Include="MockImportObject.cs" />
-    <Compile Include="HeadInsertTests.cs" />
+    <Compile Include="Import\HeadUpdateTests.cs" />
+    <Compile Include="Import\ImportTests.cs" />
+    <Compile Include="Import\ImportTestsBase.cs" />
+    <Compile Include="MockFactObject.cs" />
+    <Compile Include="Import\HeadInsertTests.cs" />
     <Compile Include="MockLookupObject2.cs" />
-    <Compile Include="MockLookupObject.cs" />
-    <Compile Include="OrdInsertTests.cs" />
-    <Compile Include="OrdUpdateTests.cs" />
+    <Compile Include="MockLookupObject1.cs" />
+    <Compile Include="Import\OrdInsertTests.cs" />
+    <Compile Include="Import\OrdUpdateTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

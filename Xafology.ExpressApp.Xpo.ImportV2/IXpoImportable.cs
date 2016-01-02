@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.ImportDemo.Module.BusinessObjects
+namespace Xafology.ExpressApp.Xpo.Import
 {
-    public interface IImportableObject
+    public interface IXpoImportable
     {
     }
 }

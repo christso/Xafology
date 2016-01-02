@@ -14,7 +14,7 @@ using Xafology.ExpressApp.Concurrency;
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp;
 
-namespace Xafology.UnitTests
+namespace Xafology.UnitTests.Import
 {
     public abstract class ImportTestsBase : InMemoryDbTestBase
     {
@@ -27,8 +27,8 @@ namespace Xafology.UnitTests
         protected override void AddExportedTypes(DevExpress.ExpressApp.ModuleBase module)
         {
             module.AdditionalExportedTypes.Add(typeof(ImportHeadersParam));
-            module.AdditionalExportedTypes.Add(typeof(MockImportObject));
-            module.AdditionalExportedTypes.Add(typeof(MockLookupObject));
+            module.AdditionalExportedTypes.Add(typeof(MockFactObject));
+            module.AdditionalExportedTypes.Add(typeof(MockLookupObject1));
             module.AdditionalExportedTypes.Add(typeof(MockLookupObject2));
         }
 
@@ -61,7 +61,7 @@ namespace Xafology.UnitTests
             param.HeaderToFieldMaps.Add(map1);
             param.HeaderToFieldMaps.Add(map2);
 
-            param.ObjectTypeName = "MockImportObject";
+            param.ObjectTypeName = "MockFactObject";
 
             return param;
         }
@@ -77,7 +77,7 @@ namespace Xafology.UnitTests
             map2.TargetName = map2.SourceName;
 
             var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map3.SourceName = "MockLookupObject";
+            map3.SourceName = "MockLookupObject1";
             map3.TargetName = map3.SourceName;
 
             var param = ObjectSpace.CreateObject<ImportHeadersParam>();
@@ -86,7 +86,7 @@ namespace Xafology.UnitTests
             param.HeaderToFieldMaps.Add(map2);
             param.HeaderToFieldMaps.Add(map3);
 
-            param.ObjectTypeName = "MockImportObject";
+            param.ObjectTypeName = "MockFactObject";
 
             return param;
         }

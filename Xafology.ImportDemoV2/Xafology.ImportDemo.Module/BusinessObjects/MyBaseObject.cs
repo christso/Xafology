@@ -1,11 +1,12 @@
 ﻿using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
+using Xafology.ExpressApp.Xpo.Import;
 
 namespace Xafology.ImportDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MyBaseObject : BaseObject, IImportableObject
+    public class MyBaseObject : BaseObject, IXpoImportable
     {
         public MyBaseObject(Session session)
             : base(session)

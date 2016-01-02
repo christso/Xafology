@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 using DevExpress.Xpo;
 namespace Xafology.UnitTests
 {
-    public class MockLookupObject : BaseObject
+    public class MockLookupObject1 : BaseObject
     {
         private string name;
-        public MockLookupObject(DevExpress.Xpo.Session session)
+        public MockLookupObject1(DevExpress.Xpo.Session session)
             : base(session)
         {
             
         }
-        public MockLookupObject()
+        public MockLookupObject1()
         {
             
         }
