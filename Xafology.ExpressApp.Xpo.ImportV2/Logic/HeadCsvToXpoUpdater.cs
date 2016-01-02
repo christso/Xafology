@@ -39,7 +39,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public void Execute()
         {
-            List<IMemberInfo> targetMembers = GetTargetMembers();
+            List<IMemberInfo> targetMembers = FieldMapsUtil.GetTargetMembers(param.HeaderToFieldMaps, objTypeInfo);
             if (targetMembers.Count == 0) return;
 
             var keyFieldMap = GetKeyFieldMap();
@@ -58,12 +58,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             return new CsvReader(new StreamReader(stream), hasHeaders);
         }
 
-        private List<IMemberInfo> GetTargetMembers()
-        {
-            var fieldMapper = new XpoTargetMembers(param.HeaderToFieldMaps);
-            return fieldMapper.GetList(objTypeInfo);
-        }
-        
         private HeaderToFieldMap GetKeyFieldMap()
         {
             var keyFields = param.HeaderToFieldMaps.Where(x => x.IsKeyField == true);

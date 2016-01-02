@@ -19,7 +19,7 @@ namespace Xafology.IdentitySequenceDemo.Win
 
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args)
         {
-            args.ObjectSpaceProvider = new D2NObjectSpaceProvider(args.ConnectionString, args.Connection);
+            args.ObjectSpaceProvider = new ExtObjectSpaceProvider(args.ConnectionString, args.Connection);
         }
         private void IdentitySequenceDemoWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e)
         {

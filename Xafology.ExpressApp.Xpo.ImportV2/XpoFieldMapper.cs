@@ -19,80 +19,48 @@ namespace Xafology.ExpressApp.Xpo.Import
     {
         protected XafApplication Application;
         private readonly LookupValueConverter lookupValueConverter;
+        private readonly CachedLookupValueConverter cachedLookupValueConverter;
+        private readonly Dictionary<Type, List<string>> xpObjectsNotFound;
+        private readonly Dictionary<Type, XPCollection> lookupCacheDictionary;
+
 
         public XpoFieldMapper(XafApplication application)
         {
             Application = application;
-            options = new ImportOptions();
             xpObjectsNotFound = new Dictionary<Type, List<string>>();
-            cachedXpObjects = new Dictionary<Type, IList>();
-            lookupValueConverter = new LookupValueConverter(application, cachedXpObjects);
-        }
-        // List<string> contains object default values
-        private readonly Dictionary<Type, List<string>> xpObjectsNotFound;
-        public Dictionary<Type, List<string>> XpObjectsNotFound
-        {
-            get { return lookupValueConverter.XpObjectsNotFound; }
+            lookupValueConverter = new LookupValueConverter(application);
+            this.lookupCacheDictionary = new Dictionary<Type, XPCollection>();
+            this.cachedLookupValueConverter = new CachedLookupValueConverter(application, lookupCacheDictionary);
         }
 
-        private readonly Dictionary<Type, IList> cachedXpObjects;
-        public Dictionary<Type, IList> CachedXpObjects
-        {
-            get { return cachedXpObjects; }
-        }
-
-        private ImportOptions options;
-        public ImportOptions Options
+        public LookupValueConverter LookupValueConverter
         {
             get
             {
-                return options;
+                return lookupValueConverter;
             }
         }
 
-        /// <summary>
-        /// Load lookup objects into memory
-        /// </summary>
-        /// <param name="objTypeInfo">TypeInfo of the domain object containing lookup objects that you want to load into memory</param>
-        /// <param name="memberNames">Names of lookup objects referenced as a member in the domain object</param>
-        /// <param name="objSpace">Object Space where you want to store the objects</param>
-        public void CacheXpObjectTypes(ITypeInfo objTypeInfo, IEnumerable<string> memberNames, XPObjectSpace objSpace)
+        public CachedLookupValueConverter CachedLookupValueConverter
         {
-            CacheXpObjectTypes(objTypeInfo, memberNames, objSpace.Session);
-        }
-
-        public void CacheXpObjectTypes(ITypeInfo objTypeInfo, IEnumerable<string> memberNames, Session session)
-        {
-            foreach (var memberInfo in objTypeInfo.Members)
+            get
             {
-                if (!typeof(IXPObject).IsAssignableFrom(memberInfo.MemberType)
-                    || memberInfo.IsKey || !memberNames.Contains(memberInfo.Name))
-                    continue;
-
-                CacheXpObjectType(memberInfo, session);
+                return cachedLookupValueConverter;
             }
         }
 
-        public void CacheXpObjectType(IMemberInfo memberInfo, Session session)
+        // List<string> contains object default values
+        public Dictionary<Type, List<string>> LookupsNotFound
         {
-            // add objects to cache dictionary
-            IList objs;
-            if (!CachedXpObjects.TryGetValue(memberInfo.MemberType, out objs))
+            get { return lookupValueConverter.LookupsNotFound; }
+        }
+
+        public Dictionary<Type, XPCollection> LookupCacheDictionary
+        {
+            get
             {
-                objs = new XPCollection(session, memberInfo.MemberType);
-                CachedXpObjects.Add(memberInfo.MemberType, objs);
+                return lookupCacheDictionary;
             }
-        }
-
-        public void CacheXpObjectTypes(ITypeInfo objTypeInfo, IList<IMemberInfo> members, Session session)
-        {
-            IEnumerable<string> memberNames = members.Select(x => x.Name);
-            CacheXpObjectTypes(objTypeInfo, memberNames, session);
-        }
-
-        public void CacheXpObjectTypes(ITypeInfo objTypeInfo, IList<IMemberInfo> members, XPObjectSpace objSpace)
-        {
-            CacheXpObjectTypes(objTypeInfo, members, objSpace.Session);
         }
 
         /// <summary>
@@ -101,12 +69,11 @@ namespace Xafology.ExpressApp.Xpo.Import
         /// <param name="targetObj">Main object whose members are to be assigned a value</param>
         /// <param name="memberInfo">Information about the member used to determine how the value is converted to the member type</param>
         /// <param name="value">Value to assigned to the member</param>
-        public void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false)
+        public void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false)
         {
-            object newValue;
+            object newValue = null;
             if (string.IsNullOrWhiteSpace(value))
             {
-                newValue = null;
                 return;
             }
             if (memberInfo.MemberType == typeof(DateTime))
@@ -135,10 +102,30 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
             else if (typeof(IXPObject).IsAssignableFrom(memberInfo.MemberType))
             {
-                newValue = lookupValueConverter.ConvertToXpObject(targetObj.Session, memberInfo, value, createMember);
+                XPCollection objs = null;
+                
+                if (cacheObject)
+                {
+                    
+                    if (!lookupCacheDictionary.TryGetValue(memberInfo.MemberType, out objs))
+                    {
+                        // add key to cache
+                        lookupCacheDictionary.Add(memberInfo.MemberType, 
+                            new XPCollection(targetObj.Session, memberInfo.MemberType));
+                    }
+                    // retrieve value from cache
+                    newValue = cachedLookupValueConverter.ConvertToXpObject(
+                        value, memberInfo, targetObj.Session,
+                        createMember);
+                }
+                else
+                {
+                    newValue = lookupValueConverter.ConvertToXpObject(value, memberInfo, targetObj.Session, createMember);
+                }
             }
             else
             {
+                // TODO: throw exception for unrecognized values
                 newValue = value;
             }
             memberInfo.SetValue(targetObj, newValue);
@@ -175,6 +162,7 @@ namespace Xafology.ExpressApp.Xpo.Import
                     return Convert.ToBoolean(value);
             }
         }
+
     }
 
 }

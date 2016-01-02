@@ -39,7 +39,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public void Execute()
         {
-            List<IMemberInfo> targetMembers = GetTargetMembers();
+            List<IMemberInfo> targetMembers = FieldMapsUtil.GetTargetMembers(param.OrdToFieldMaps, objTypeInfo);
+
             if (targetMembers.Count == 0) return;
 
             var keyFieldMap = GetKeyFieldMap();
@@ -51,12 +52,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             }
 
             param.Session.CommitTransaction();
-        }
-
-        private List<IMemberInfo> GetTargetMembers()
-        {
-            var fieldMapper = new XpoTargetMembers(param.OrdToFieldMaps);
-            return fieldMapper.GetList(objTypeInfo);
         }
 
         private OrdinalToFieldMap GetKeyFieldMap()

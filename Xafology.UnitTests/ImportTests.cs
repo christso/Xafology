@@ -38,13 +38,37 @@ namespace Xafology.UnitTests
             xpoFieldMapper.SetMemberValue(targetObject, lookupMember,
                     "ABC");
 
-            foreach (var obj in xpoFieldMapper.XpObjectsNotFound)
+            foreach (var obj in xpoFieldMapper.LookupsNotFound)
             {
                 foreach (var value in obj.Value)
                     Debug.WriteLine("{0} {1}", obj.Key, value);
             }
+        }
 
-            
+        [Test]
+        public void CacheTest()
+        {
+            // add objects to cache dictionary
+            var obj1 = new MockImportObject(ObjectSpace.Session) { Description = "A", Amount = 10 };
+            var obj2 = new MockImportObject(ObjectSpace.Session) { Description = "B", Amount = 20 };
+            ObjectSpace.CommitChanges();
+
+            var objs = new XPCollection(ObjectSpace.Session, typeof(MockImportObject));
+
+            var q = new XPQuery<MockImportObject>(ObjectSpace.Session);
+
+            Debug.Print(string.Format("{0}", q.Count()));
+            Debug.Print(string.Format("{0}", q.Count()));
+
+            foreach (var obj in q)
+            {
+                Debug.Print(((MockImportObject)obj).Description);
+            }
+
+            foreach (var obj in objs)
+            {
+                Debug.Print(((MockImportObject)obj).Description);
+            }
         }
     }
 }

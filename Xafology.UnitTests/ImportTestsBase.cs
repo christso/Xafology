@@ -28,6 +28,8 @@ namespace Xafology.UnitTests
         {
             module.AdditionalExportedTypes.Add(typeof(ImportHeadersParam));
             module.AdditionalExportedTypes.Add(typeof(MockImportObject));
+            module.AdditionalExportedTypes.Add(typeof(MockLookupObject));
+            module.AdditionalExportedTypes.Add(typeof(MockLookupObject2));
         }
 
 

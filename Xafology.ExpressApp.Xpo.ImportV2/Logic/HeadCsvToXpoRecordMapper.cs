@@ -46,7 +46,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
                     .FirstOrDefault(x => x.TargetName == targetMember.Name);
 
                 xpoFieldMapper.SetMemberValue(targetObject, targetMember,
-                    csvReader[map.SourceName], map.CreateMember);
+                    csvReader[map.SourceName], map.CreateMember, map.CacheObject);
 
             }
         }

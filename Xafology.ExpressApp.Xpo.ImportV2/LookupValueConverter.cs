@@ -13,66 +13,20 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo.Import
 {
-    public class LookupValueConverter
+    public class LookupValueConverter : ILookupValueConverter
     {
-        private readonly Dictionary<Type, List<string>> xpObjectsNotFound;
-        private readonly Dictionary<Type, IList> cachedXpObjects;
+        private readonly Dictionary<Type, List<string>> lookupsNotFound;
         private readonly XafApplication application;
 
-        public LookupValueConverter(XafApplication application, Dictionary<Type, IList> cachedXpObjects)
+        public LookupValueConverter(XafApplication application)
         {
             this.application = application;
-            xpObjectsNotFound = new Dictionary<Type, List<string>>();
-            this.cachedXpObjects = new Dictionary<Type, IList>();
+            lookupsNotFound = new Dictionary<Type, List<string>>();
         }
 
-        public object ConvertToXpObject(Session session, IMemberInfo memberInfo, string value, bool createMember = false)
+        public Dictionary<Type, List<string>> LookupsNotFound
         {
-            object newValue;
-            if (CachedXpObjects.ContainsKey(memberInfo.MemberType))
-            {
-                newValue = ConvertToXpObjectCached(value, memberInfo, session, createMember);
-            }
-            else
-            {
-                newValue = ConvertToXpObjectNonCached(value, memberInfo, session, createMember);
-            }
-            return newValue;
-        }
-
-        /// <summary>
-        /// Get XPO object from memory
-        /// </summary>
-        /// <param name="value">Original value</param>
-        /// <param name="memberInfo">XPO member</param>
-        /// <param name="session"></param>
-        /// <returns></returns>
-        private IXPObject ConvertToXpObjectCached(string value, IMemberInfo memberInfo, Session session,
-            bool createMember = false)
-        {
-            IList lookupObjs = CachedXpObjects[memberInfo.MemberType];
-            IXPObject newValue = null;
-            var memTypeId = ModelNodeIdHelper.GetTypeId(memberInfo.MemberType);
-            var model = application.Model.BOModel[memTypeId];
-            var lookupMemberInfo = model.FindMember(model.DefaultProperty).MemberInfo;
-
-            foreach (IXPObject lookupObj in lookupObjs)
-            {
-                // get lookup member model
-
-
-                // get default property of lookup member
-                object lookupValue = lookupMemberInfo.GetValue(lookupObj);
-
-                if (Convert.ToString(lookupValue) == value)
-                {
-                    newValue = lookupObj;
-                    break;
-                }
-            }
-            if (newValue == null)
-                newValue = OnMissingMember(session, memberInfo.MemberType, model.DefaultProperty, value, createMember);
-            return newValue;
+            get { return lookupsNotFound; }
         }
 
         /// <summary>
@@ -82,7 +36,7 @@ namespace Xafology.ExpressApp.Xpo.Import
         /// <param name="memberInfo">XPO member</param>
         /// <param name="session"></param>
         /// <returns></returns>
-        private IXPObject ConvertToXpObjectNonCached(string value, IMemberInfo memberInfo, Session session,
+        public IXPObject ConvertToXpObject(string value, IMemberInfo memberInfo, Session session,
             bool createMember = false)
         {
             object newValue;
@@ -92,7 +46,10 @@ namespace Xafology.ExpressApp.Xpo.Import
             var cop = CriteriaOperator.Parse(string.Format("[{0}] = ?", model.DefaultProperty), value);
             newValue = session.FindObject(memberType, cop);
             if (newValue == null)
-                newValue = OnMissingMember(session, memberType, model.DefaultProperty, value, createMember);
+            {
+                newValue = CreateMemberIfMissing(session, memberType, model.DefaultProperty, value, createMember);
+                LogXpObjectsNotFound(memberInfo.MemberType, value);
+            }
             return (IXPObject)newValue;
         }
 
@@ -101,48 +58,34 @@ namespace Xafology.ExpressApp.Xpo.Import
         /// </summary>
         /// <param name="session">Session for creating the missing object</param>
         /// <param name="memberType">Type of the lookup object. You can get this using MemberInfo.MemberType</param>
-        /// <param name="defaultProperty">property name of the lookup object</param>
-        /// <param name="value">property value of the lookup object</param>
+        /// <param name="propertyName">property name of the lookup object</param>
+        /// <param name="propertyValue">property value of the lookup object</param>
         /// <returns></returns>
-        private IXPObject OnMissingMember(Session session, Type memberType, string defaultProperty, string value,
+        private IXPObject CreateMemberIfMissing(Session session, Type memberType, string propertyName, string propertyValue,
             bool createMember = false)
         {
             object newValue = null;
             if (createMember) // TODO: apply to individual members
             {
                 var newObj = (IXPObject)Activator.CreateInstance(memberType, session);
-                ReflectionHelper.SetMemberValue(newObj, defaultProperty, value);
+                ReflectionHelper.SetMemberValue(newObj, propertyName, propertyValue);
                 newObj.Session.Save(newObj);
                 newValue = newObj;
-                IList cachedObjs;
-                if (CachedXpObjects.TryGetValue(memberType, out cachedObjs))
-                    cachedObjs.Add(newValue);
             }
-
-            LogXpObjectsNotFound(memberType, value);
-
             return (IXPObject)newValue;
         }
 
         public void LogXpObjectsNotFound(Type memberType, string value)
         {
             List<string> memberValues;
-            if (!XpObjectsNotFound.TryGetValue(memberType, out memberValues))
+            if (!LookupsNotFound.TryGetValue(memberType, out memberValues))
             {
                 memberValues = new List<string>();
-                XpObjectsNotFound.Add(memberType, memberValues);
+                LookupsNotFound.Add(memberType, memberValues);
             }
             if (!memberValues.Contains(value))
                 memberValues.Add(value);
         }
 
-        public Dictionary<Type, IList> CachedXpObjects
-        {
-            get { return cachedXpObjects; }
-        }
-        public Dictionary<Type, List<string>> XpObjectsNotFound
-        {
-            get { return xpObjectsNotFound; }
-        }
     }
 }

@@ -23,7 +23,7 @@ namespace Xafology.IdentitySequenceDemo.Web
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args)
         {
-            args.ObjectSpaceProvider = new D2NObjectSpaceProvider(args.ConnectionString, args.Connection, true);
+            args.ObjectSpaceProvider = new ExtObjectSpaceProvider(args.ConnectionString, args.Connection, true);
         }
 
         private void IdentitySequenceDemoAspNetApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e)

@@ -131,14 +131,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedLookupObjects.cs" />
+    <Compile Include="CachedLookupValueConverter.cs" />
+    <Compile Include="CachedXpObject.cs" />
     <Compile Include="ICsvToXpoLoader.cs" />
+    <Compile Include="ILookupValueConverter.cs" />
     <Compile Include="IXpoFieldMapper.cs" />
     <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />
     <Compile Include="Logic\HeadCsvToXpoInserter.cs" />
     <Compile Include="Logic\IImportLogger.cs" />
     <Compile Include="Logic\ImportRequestLogger.cs" />
     <Compile Include="Logic\OrdCsvToXpoRecordMapper.cs" />
-    <Compile Include="Logic\XpoTargetMembers.cs" />
     <Compile Include="ImportOptions.cs" />
     <Compile Include="ImportModule.cs">
       <SubType>Component</SubType>

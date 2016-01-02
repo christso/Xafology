@@ -46,6 +46,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             param.Session.CommitTransaction();
         }
 
+
+        // TODO: dependency injection?
         private IXPObject GetTargetObject()
         {
             return (IXPObject)Activator.CreateInstance(objTypeInfo.Type, param.Session);
