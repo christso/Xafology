@@ -120,10 +120,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
-      <Project>{a7ff6a7b-37ff-425c-9620-4a528e104d5f}</Project>
-      <Name>Xafology.ExpressApp.Concurrency</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
@@ -152,7 +148,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ICsvToXpoLoader.cs" />
+    <Compile Include="IImportRequest.cs" />
     <Compile Include="ILookupValueConverter.cs" />
+    <Compile Include="ImportRequest.cs" />
     <Compile Include="IXpoFieldMapper.cs" />
     <Compile Include="IXpoImportable.cs" />
     <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />

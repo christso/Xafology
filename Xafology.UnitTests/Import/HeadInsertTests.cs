@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.TestUtils;
 using Xafology.ExpressApp.Xpo.Import.Logic;
-using Xafology.ExpressApp.Concurrency;
+
 using Xafology.ExpressApp.Xpo.Import;
 using System.Collections;
 using System.Diagnostics;
@@ -129,7 +129,7 @@ Hello 3,30";
             var csvStream = ConvertToCsvStream(csvText);
 
 
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             
@@ -176,7 +176,7 @@ Hello 2,20,Samsung
 Hello 3,30,HTC";
 
             var csvStream = ConvertToCsvStream(csvText);
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
             HeadCsvToXpoInserter loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
@@ -264,7 +264,7 @@ Hello 2,20,Samsung,Marketing
 Hello 3,30,HTC,Credit";
 
             var csvStream = ConvertToCsvStream(csvText);
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
@@ -321,7 +321,7 @@ Hello 2,20,Samsung,Marketing
 Hello 3,30,HTC,Credit";
 
             var csvStream = ConvertToCsvStream(csvText);
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
 
@@ -371,7 +371,7 @@ Hello 3,30,HTC";
 
             var csvStream = ConvertToCsvStream(csvText);
 
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
 

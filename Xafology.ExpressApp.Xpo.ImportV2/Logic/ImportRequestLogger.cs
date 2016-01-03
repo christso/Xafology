@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Concurrency;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
     public class ImportRequestLogger : IImportLogger
     {
-        private readonly ActionRequest request;
+        private readonly IImportRequest request;
 
-        public ImportRequestLogger(ActionRequest request)
+        public ImportRequestLogger(IImportRequest request)
         {
             this.request = request;
         }

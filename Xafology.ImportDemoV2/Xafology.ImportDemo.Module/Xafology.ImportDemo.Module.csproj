@@ -137,10 +137,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
-      <Project>{A7FF6A7B-37FF-425C-9620-4A528E104D5F}</Project>
-      <Name>Xafology.ExpressApp.Concurrency</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo.ImportV2\Xafology.ExpressApp.Xpo.Import.csproj">
       <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
       <Name>Xafology.ExpressApp.Xpo.Import</Name>

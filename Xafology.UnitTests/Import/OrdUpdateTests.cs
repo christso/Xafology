@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Concurrency;
+
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
@@ -59,7 +59,7 @@ Hello 2,200
 Hello 3,300";
 
             var csvStream = ConvertToCsvStream(csvText);
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
             ICsvToXpoLoader loader = new OrdCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);

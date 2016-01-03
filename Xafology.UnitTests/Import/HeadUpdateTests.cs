@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.TestUtils;
 using Xafology.ExpressApp.Xpo.Import.Logic;
-using Xafology.ExpressApp.Concurrency;
+
 using Xafology.ExpressApp.Xpo.Import;
 
 namespace Xafology.UnitTests.Import
@@ -64,7 +64,7 @@ Hello 2,200
 Hello 3,300";
 
             var csvStream = ConvertToCsvStream(csvText);
-            var request = ObjectSpace.CreateObject<ActionRequest>();
+            var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportRequestLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
             ICsvToXpoLoader loader = new HeadCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);
