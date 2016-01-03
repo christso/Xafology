@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
+using Xafology.ExpressApp.Xpo.Import;
 
 namespace Xafology.ImportDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MockLookupObject2 : BaseObject
+    public class MockLookupObject2 : BaseObject, IXpoImportable
     {
         private string name;
         public MockLookupObject2(DevExpress.Xpo.Session session)

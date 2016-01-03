@@ -139,6 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachedLookupValueConverter.cs" />
+    <Compile Include="Controllers\ImportableViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\ImportableViewController.Designer.cs">
+      <DependentUpon>ImportableViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ImportHeadersViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -198,6 +204,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\ImportableViewController.resx">
+      <DependentUpon>ImportableViewController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
