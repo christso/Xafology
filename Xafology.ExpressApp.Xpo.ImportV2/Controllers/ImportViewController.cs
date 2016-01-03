@@ -1,5 +1,6 @@
 ﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
@@ -46,6 +47,25 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             importAction.Items.Add(templateAction);
         }
 
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            var newObjectViewController = Frame.GetController<NewObjectViewController>();
+            newObjectViewController.ObjectCreated += NewObjectViewController_ObjectCreated;
+        }
+
+        // set default values in newly created object
+        private void NewObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
+        {
+            if (Application.MainWindow == null) return; // MainWindow is null when TestApplication is used
+
+            var mainWindow = Frame.Application.MainWindow;
+            var objTypeName = mainWindow.View.CurrentObject.GetType().Name;
+
+            var param = (ImportParamBase)e.CreatedObject;
+            param.ObjectTypeName = objTypeName;
+        }
+
         private void ImportAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
             switch (e.SelectedChoiceActionItem.Caption)
@@ -54,7 +74,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
                     DoImport(this, EventArgs.Empty);
                     break;
                 case RemapCaption:
-                    DoRemap(this, EventArgs.Empty);
+                    DoRemap(this, EventArgs.Empty); 
                     break;
                 case TemplateCaption:
                     DoTemplate(this, EventArgs.Empty);
@@ -64,7 +84,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
                         string.Format("Choice '{0}' is not valid.", e.SelectedChoiceActionItem.Caption));
             }
         }
-
         public event EventHandler DoImport;
         public event EventHandler DoRemap;
         public event EventHandler DoTemplate;

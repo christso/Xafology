@@ -22,8 +22,16 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
     {
         public ImportableViewController()
         {
-            InitializeComponent();
-            // Target required Views (via the TargetXXX properties) and create their Actions.
+            this.TargetObjectType = typeof(IXpoImportable);
+
+            var importAction = new SingleChoiceAction(this, "ContextImportAction", PredefinedCategory.Edit);
+            importAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
+            importAction.Caption = "Import";
+            importAction.Execute += importAction_Execute;
+
+            var runActionItem = new ChoiceActionItem();
+            runActionItem.Caption = "Select Profile";
+            importAction.Items.Add(runActionItem);
         }
         protected override void OnActivated()
         {
@@ -41,27 +49,22 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             base.OnDeactivated();
         }
 
-        private void importAction_Execute(object sender, PopupWindowShowActionExecuteEventArgs e)
+        private void importAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
-            IObjectSpace objectSpace = e.PopupWindowView.ObjectSpace;
-            var paramObject = e.PopupWindowViewCurrentObject;
-
-            if (paramObject != null)
-            {
-                var detailView = Application.CreateDetailView(objectSpace, paramObject, false);
-                e.ShowViewParameters.CreatedView = detailView;
-                e.ShowViewParameters.TargetWindow = TargetWindow.NewWindow;
-            }
-
-            
-        }
-
-        private void importAction_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
-        {
+            // create list view and filter by ObjectTypeName
             IObjectSpace objectSpace = Application.CreateObjectSpace();
-            e.View = Application.CreateListView(Application.FindListViewId(typeof(ImportParamBase)),
-                new CollectionSource(objectSpace, typeof(ImportParamBase)), true);
-            
+            var collectionSource = new CollectionSource(objectSpace, typeof(ImportParamBase));
+            collectionSource.Criteria["ObjectTypeFilter"] = CriteriaOperator.Parse("ObjectTypeName == ?", View.ObjectTypeInfo.Name);
+            var listViewId = Application.FindListViewId(typeof(ImportParamBase));
+            var listView = Application.CreateListView(
+                listViewId,
+                collectionSource, 
+                true);
+
+            // show view in new window
+            var svp = e.ShowViewParameters;
+            svp.TargetWindow = TargetWindow.NewWindow;
+            svp.CreatedView = listView;            
         }
     }
 }

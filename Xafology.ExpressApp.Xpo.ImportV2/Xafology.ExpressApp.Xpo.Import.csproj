@@ -142,9 +142,6 @@
     <Compile Include="Controllers\ImportableViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\ImportableViewController.Designer.cs">
-      <DependentUpon>ImportableViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ImportHeadersViewController.cs">
       <SubType>Component</SubType>
     </Compile>
