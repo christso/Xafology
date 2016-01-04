@@ -1,4 +1,4 @@
-﻿using Xafology.ExpressApp.Concurrency;
+﻿
 using Xafology.Utils.Data;
 using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;

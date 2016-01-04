@@ -1,4 +1,4 @@
-﻿using Xafology.ExpressApp.Concurrency;
+﻿
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
