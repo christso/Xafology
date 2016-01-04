@@ -334,6 +334,7 @@ Hello 3,30,HTC,Credit";
             var cachedXpObjects = xpoFieldMapper.LookupCacheDictionary;
 
             Assert.AreEqual(1, cachedXpObjects.Count);
+            
             Assert.AreEqual(3, cachedXpObjects[typeof(MockLookupObject1)].Count);
 
             var cachedList = cachedXpObjects[typeof(MockLookupObject1)].Cast<MockLookupObject1>();

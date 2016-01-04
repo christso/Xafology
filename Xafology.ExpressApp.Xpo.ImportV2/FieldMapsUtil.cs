@@ -14,6 +14,7 @@ namespace Xafology.ExpressApp.Xpo.Import
         public static List<IMemberInfo> GetTargetMembers(IEnumerable fieldMaps, ITypeInfo objTypeInfo)
         {
             var targetMembers = new List<IMemberInfo>();
+
             foreach (var member in objTypeInfo.Members)
             {
                 var targetCount = fieldMaps.Cast<FieldMap>().Count(x => x.TargetName == (member.Name));

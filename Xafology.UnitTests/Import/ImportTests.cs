@@ -56,6 +56,42 @@ Hello 4,13,Parent 4,Parent B4
             Assert.AreEqual(4, fieldMaps.Count);
         }
 
+        public void LogImportRequest()
+        {
+            // arrange
+
+            var xpoMapper = new XpoFieldMapper(Application);
+
+            var param = GetHeadMockParamObject();
+
+            string csvText = @"Description,Amount
+Hello 1,10
+Hello 2,20
+Hello 3,30";
+            var csvStream = ConvertToCsvStream(csvText);
+
+            // act
+
+            var request = ObjectSpace.CreateObject<ImportRequest>();
+            var logger = new ImportRequestLogger(request);
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            loader.Execute();
+
+            // assert
+
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(request.RequestLog));
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(request.RequestStatus));
+        }
+
+        // TODO: LookupCacheCollections
+        //[Test]
+        public void UpdateLookupCacheCollection()
+        {
+
+        }
+
+        // TODO: Test that template created is correct
+        //[Test]
         public void CreateCsvTemplateFromObjectTypeInfo()
         {
 

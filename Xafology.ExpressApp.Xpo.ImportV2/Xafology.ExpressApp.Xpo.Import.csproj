@@ -169,6 +169,7 @@
     <Compile Include="IImportOptions.cs" />
     <Compile Include="Logic\OrdCsvToXpoUpdater.cs" />
     <Compile Include="Logic\OrdCsvToXpoInserter.cs" />
+    <Compile Include="LookupCacheCollections.cs" />
     <Compile Include="Parameters\FieldMaps.cs" />
     <Compile Include="FieldMapsUtil.cs" />
     <Compile Include="Parameters\ImportParam.cs" />
@@ -184,10 +185,6 @@
     <Compile Include="LookupValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.Concurrency\Xafology.ExpressApp.Concurrency.csproj">
-      <Project>{a7ff6a7b-37ff-425c-9620-4a528e104d5f}</Project>
-      <Name>Xafology.ExpressApp.Concurrency</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>

@@ -105,10 +105,6 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="LumenWorks.Framework.IO">
-      <HintPath>..\..\..\Packages\LumenWorks.Framework.IO.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ParserUtils">
       <HintPath>..\..\..\Packages\ParserUtils.dll</HintPath>
       <Private>False</Private>
