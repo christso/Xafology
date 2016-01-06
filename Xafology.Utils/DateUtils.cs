@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xafology.Utils
 {
-    public class DateUtils
+    public static class DateUtils
     {
         public static DateTime DateObject(int Year, int Month, int Day)
         {

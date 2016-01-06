@@ -38,6 +38,7 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
         }
 
+        [Size(SizeAttribute.Unlimited)]
         public string RequestLog
         {
             get

@@ -27,23 +27,47 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
         public HeadCsvToXpoInserter(ImportHeadersParam param, Stream stream,
             IXpoFieldMapper xpoFieldMapper, IImportLogger logger)
         {
+
+            if (logger == null)
+                this.logger = new NullImportLogger();
+            else
+                this.logger = logger;
+
+            if (param == null)
+                throw new UserFriendlyException("Param cannot be null");
+            if (stream == null)
+                throw new UserFriendlyException("Stream cannot be null");
+            if (xpoFieldMapper == null)
+                throw new UserFriendlyException("XpoFieldMapper cannot be null");
+
             csvReader = new CsvReader(new StreamReader(stream), true);
             objTypeInfo = param.ObjectTypeInfo;
             this.param = param;
             this.xpoFieldMapper = xpoFieldMapper;
-            this.logger = logger;
+            
             recordMapper = new HeadCsvToXpoRecordMapper(xpoFieldMapper, param.HeaderToFieldMaps, csvReader);
             FieldMapsUtil.ValidateParameters(param);
         }
 
+        public HeadCsvToXpoInserter(ImportHeadersParam param, Stream stream,
+            IXpoFieldMapper xpoFieldMapper)
+            : this(param, stream, xpoFieldMapper, null)
+        {
+            
+        }
+
         public void Execute()
         {
+            int counter = 0;
             while (csvReader.ReadNextRecord())
             {
                 var targetObject = GetTargetObject();
                 recordMapper.SetMemberValues(targetObject);
+                counter++;
             }
             param.Session.CommitTransaction();
+
+            logger.Log("{0} records inserted.", counter);
         }
 
 

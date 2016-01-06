@@ -17,13 +17,13 @@ namespace Xafology.ExpressApp.Xpo.Import
     public class CachedLookupValueConverter : ILookupValueConverter
     {
 
-        private readonly Dictionary<Type, XPCollection> cacheDictionary;
+        private readonly CachedXPCollections cacheDictionary;
         private readonly XafApplication application;
 
         public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
 
         public CachedLookupValueConverter(XafApplication application,
-            Dictionary<Type, XPCollection> cacheDictionary)
+            CachedXPCollections cacheDictionary)
         {
             this.application = application;
             this.cacheDictionary = cacheDictionary;

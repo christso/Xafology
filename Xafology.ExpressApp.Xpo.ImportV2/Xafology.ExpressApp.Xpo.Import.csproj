@@ -156,7 +156,8 @@
     <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />
     <Compile Include="Logic\HeadCsvToXpoInserter.cs" />
     <Compile Include="Logic\IImportLogger.cs" />
-    <Compile Include="Logic\ImportRequestLogger.cs" />
+    <Compile Include="Logic\ImportLogger.cs" />
+    <Compile Include="Logic\NullImportLogger.cs" />
     <Compile Include="Logic\OrdCsvToXpoRecordMapper.cs" />
     <Compile Include="ImportOptions.cs" />
     <Compile Include="ImportModule.cs">
@@ -169,7 +170,7 @@
     <Compile Include="IImportOptions.cs" />
     <Compile Include="Logic\OrdCsvToXpoUpdater.cs" />
     <Compile Include="Logic\OrdCsvToXpoInserter.cs" />
-    <Compile Include="LookupCacheCollections.cs" />
+    <Compile Include="CachedXPCollections.cs" />
     <Compile Include="Parameters\FieldMaps.cs" />
     <Compile Include="FieldMapsUtil.cs" />
     <Compile Include="Parameters\ImportParam.cs" />

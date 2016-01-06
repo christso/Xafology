@@ -56,6 +56,7 @@ Hello 4,13,Parent 4,Parent B4
             Assert.AreEqual(4, fieldMaps.Count);
         }
 
+        [Test]
         public void LogImportRequest()
         {
             // arrange
@@ -73,28 +74,29 @@ Hello 3,30";
             // act
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
+
+            request.RequestStatus = "Complete";
 
             // assert
 
             Assert.IsTrue(!string.IsNullOrWhiteSpace(request.RequestLog));
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(request.RequestStatus));
         }
 
-        // TODO: LookupCacheCollections
-        //[Test]
-        public void UpdateLookupCacheCollection()
+        [Test]
+        public void LogRequest()
         {
+            var request = ObjectSpace.CreateObject<ImportRequest>();
+            var logger = new ImportLogger(request);
+            logger.Log("Hello {0}", "Chris");
 
-        }
+            ObjectSpace.CommitChanges();
 
-        // TODO: Test that template created is correct
-        //[Test]
-        public void CreateCsvTemplateFromObjectTypeInfo()
-        {
-
+            var requests = new XPQuery<ImportRequest>(ObjectSpace.Session);
+            var requestFound = requests.Where(x => x.RequestLog == "Hello Chris");
+            Assert.NotNull(requestFound);
         }
 
         // TODO: Test result of invalid type conversions

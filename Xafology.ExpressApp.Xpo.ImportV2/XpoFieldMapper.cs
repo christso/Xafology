@@ -21,14 +21,25 @@ namespace Xafology.ExpressApp.Xpo.Import
         private readonly LookupValueConverter lookupValueConverter;
         private readonly CachedLookupValueConverter cachedLookupValueConverter;
         private readonly Dictionary<Type, List<string>> lookupsNotFound;
-        private readonly Dictionary<Type, XPCollection> lookupCacheDictionary;
-
+        private readonly CachedXPCollections lookupCacheDictionary;
+        private readonly IImportLogger logger;
 
         public XpoFieldMapper(XafApplication application)
+            : this(application, null)
         {
+  
+        }
+
+        public XpoFieldMapper(XafApplication application, IImportLogger logger)
+        {
+            if (logger == null)
+                this.logger = new NullImportLogger();
+            else
+                this.logger = logger;
+
             Application = application;
             lookupsNotFound = new Dictionary<Type, List<string>>();
-            lookupCacheDictionary = new Dictionary<Type, XPCollection>();
+            lookupCacheDictionary = new CachedXPCollections();
 
             lookupValueConverter = new LookupValueConverter(application)
             {
@@ -55,13 +66,14 @@ namespace Xafology.ExpressApp.Xpo.Import
             get { return lookupsNotFound; }
         }
 
-        public Dictionary<Type, XPCollection> LookupCacheDictionary
+        public CachedXPCollections LookupCacheDictionary
         {
             get
             {
                 return lookupCacheDictionary;
             }
         }
+
         /// <summary>
         /// Sets the value of the member of targetObj
         /// </summary>
@@ -109,8 +121,7 @@ namespace Xafology.ExpressApp.Xpo.Import
                     if (!lookupCacheDictionary.TryGetValue(memberInfo.MemberType, out objs))
                     {
                         // add key to cache
-                        lookupCacheDictionary.Add(memberInfo.MemberType, 
-                            new XPCollection(targetObj.Session, memberInfo.MemberType));
+                        lookupCacheDictionary.Add(new XPCollection(targetObj.Session, memberInfo.MemberType));
                     }
                     // retrieve value from cache
                     newValue = cachedLookupValueConverter.ConvertToXpObject(
@@ -172,8 +183,9 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
             if (!memberValues.Contains(value))
                 memberValues.Add(value);
-        }
 
+            logger.Log("Lookup type '{0}' with value '{1} not found.", memberType.Name, value);
+        }
     }
 
 }

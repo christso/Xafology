@@ -66,6 +66,68 @@ Hello 4,13,Parent 4,Parent B4
         }
 
         [Test]
+        public void InsertLog()
+        {
+            // arrange
+            var csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
+Hello 1,10,Parent 1,Parent B1
+Hello 2,11,Parent 2,Parent B2
+Hello 3,12,Parent 3,Parent B3
+Hello 4,13,Parent 4,Parent B4
+";
+
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map1.SourceName = "Description";
+            map1.TargetName = map1.SourceName;
+
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map2.SourceName = "Amount";
+            map2.TargetName = map2.SourceName;
+
+            var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map3.SourceName = "MockLookupObject1";
+            map3.TargetName = map3.SourceName;
+
+            var map4 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map4.SourceName = "MockLookupObject2";
+            map4.TargetName = map4.SourceName;
+
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map3);
+            param.HeaderToFieldMaps.Add(map4);
+
+            param.ObjectTypeName = "MockFactObject";
+
+
+            // act
+
+            var request = ObjectSpace.CreateObject<ImportRequest>();
+            var logger = new ImportLogger(request);
+
+            var csvStream = ConvertToCsvStream(csvText);
+            var xpoMapper = new XpoFieldMapper(Application, logger);
+
+            ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
+            loader.Execute();
+
+            // assert
+
+            Assert.AreEqual(@"Lookup type 'MockLookupObject1' with value 'Parent 1 not found.
+Lookup type 'MockLookupObject2' with value 'Parent B1 not found.
+Lookup type 'MockLookupObject1' with value 'Parent 2 not found.
+Lookup type 'MockLookupObject2' with value 'Parent B2 not found.
+Lookup type 'MockLookupObject1' with value 'Parent 3 not found.
+Lookup type 'MockLookupObject2' with value 'Parent B3 not found.
+Lookup type 'MockLookupObject1' with value 'Parent 4 not found.
+Lookup type 'MockLookupObject2' with value 'Parent B4 not found.
+4 records inserted.",
+                request.RequestLog);
+        }
+
+        [Test]
         public void InsertSimpleHeaderCsv()
         {
             var xpoMapper = new XpoFieldMapper(Application);
@@ -130,7 +192,7 @@ Hello 3,30";
 
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             
             var ex = Assert.Throws<ArgumentException>(() => loader.Execute());
@@ -177,7 +239,7 @@ Hello 3,30,HTC";
 
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
             HeadCsvToXpoInserter loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
 
@@ -265,7 +327,7 @@ Hello 3,30,HTC,Credit";
 
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
 
@@ -322,7 +384,7 @@ Hello 3,30,HTC,Credit";
 
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
 
             param.CacheLookupObjects = true;
@@ -373,7 +435,7 @@ Hello 3,30,HTC";
             var csvStream = ConvertToCsvStream(csvText);
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
-            var logger = new ImportRequestLogger(request);
+            var logger = new ImportLogger(request);
             var xpoMapper = new XpoFieldMapper(Application);
 
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);

@@ -12,6 +12,6 @@ namespace Xafology.ExpressApp.Xpo.Import
     {
         void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false);
         Dictionary<Type, List<string>> LookupsNotFound { get; }
-        Dictionary<Type, XPCollection> LookupCacheDictionary { get; }
+        CachedXPCollections LookupCacheDictionary { get; }
     }
 }

@@ -5,18 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using Xafology.Utils;
 
 namespace Xafology.ExpressApp.Xpo.Import
 {
-    public class LookupCacheCollections
-    { 
-
-        private readonly Dictionary<Type, XPCollection> collectionsByName;
-
-        public LookupCacheCollections()
+    public class CachedXPCollections : UniqueIndexedType<Type, XPCollection>
+    {
+        protected override Type GetKey(XPCollection value)
         {
-            collectionsByName = new Dictionary<Type, XPCollection>();
+            return value.ObjectType;
         }
-
     }
 }
