@@ -8,8 +8,6 @@ namespace Xafology.TestUtils
 {
     public class TestApplication : XafApplication
     {
-        private Window mainWindow;
-
         public TestApplication()
         {
 

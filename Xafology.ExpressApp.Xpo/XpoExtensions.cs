@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo
 {
-    public class XpoExtensions
+    public static class XpoExtensions
     {
-        public static System.Collections.Generic.IList<T> GetObjects<T>(Session session, CriteriaOperator criteria, SortingCollection sorting)
+        public static System.Collections.Generic.IList<T> GetObjects<T>(this Session session, CriteriaOperator criteria, SortingCollection sorting)
         {
             return session.GetObjects(session.GetClassInfo(typeof(T)),
                             criteria,
                             sorting, 0, false, true).Cast<T>().ToList();
         }
 
-        public static System.Collections.Generic.IList<T> GetObjects<T>(Session session, CriteriaOperator criteria)
+        public static System.Collections.Generic.IList<T> GetObjects<T>(this Session session, CriteriaOperator criteria)
         {
             return session.GetObjects(session.GetClassInfo(typeof(T)),
                             criteria,

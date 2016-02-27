@@ -26,7 +26,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         protected override void OnActivated()
         {
             base.OnActivated();
-            // Perform various tasks depending on the target View.
+
+            // reuse view controller and adapt to Headers algorithm
             var baseController = Frame.GetController<ImportViewController>();
             baseController.DoImport += DoImport;
             baseController.DoRemap += DoRemap;

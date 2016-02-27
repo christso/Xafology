@@ -18,6 +18,9 @@ using Xafology.Utils;
 
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
+    /// <summary>
+    /// Executes the import process for the selected object type
+    /// </summary>
     public class ImportViewController : ViewController
     {
         public const string ExecuteImportCaption = "Execute";
@@ -27,6 +30,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         public ImportViewController()
         {
             TargetObjectType = typeof(ImportParamBase);
+
+            // action button
 
             var importAction = new SingleChoiceAction(this, "ImportAction", PredefinedCategory.ObjectsCreation);
             importAction.DefaultItemMode = DefaultItemMode.FirstActiveItem;
@@ -50,6 +55,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         protected override void OnActivated()
         {
             base.OnActivated();
+
             var newObjectViewController = Frame.GetController<NewObjectViewController>();
             newObjectViewController.ObjectCreated += NewObjectViewController_ObjectCreated;
         }
@@ -66,17 +72,21 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             param.ObjectTypeName = objTypeName;
         }
 
+        // Types of actions available to the user
         private void ImportAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
             switch (e.SelectedChoiceActionItem.Caption)
             {
                 case ExecuteImportCaption:
+                    // execute the import into datastore
                     DoImport(this, EventArgs.Empty);
                     break;
                 case RemapCaption:
+                    // create mappings based on uploaded file and object type
                     DoRemap(this, EventArgs.Empty); 
                     break;
                 case TemplateCaption:
+                    // create template with accepted column names for upload file
                     DoTemplate(this, EventArgs.Empty);
                     break;
                 default:

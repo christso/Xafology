@@ -24,7 +24,7 @@ namespace Xafology.ExpressApp.Layout.Module.Win.Controllers
                     {
                         ((LayoutControlGroup)item).ExpandButtonVisible = true;
                         ((LayoutControlGroup)item).Expanded = true;
-                        ((LayoutControlGroup)item).ExpandButtonLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+                        ((LayoutControlGroup)item).HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
                         ((LayoutControlGroup)item).ExpandOnDoubleClick = true;
                     }
                 }

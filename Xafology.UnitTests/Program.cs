@@ -10,10 +10,9 @@ namespace Xafology.UnitTests
     {
         static void Main(string[] args)
         {
-            var tests = new Xafology.UnitTests.Import.HeadInsertTests();
+            var tests = new Xafology.UnitTests.Import.ImportForexTests();
             tests.Setup();
-            tests.InsertLog();
-            //tests.TestMemberValues();
+            tests.GetTestStream();
             Console.ReadKey();
         }
     }

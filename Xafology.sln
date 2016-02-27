@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.StringEvaluators", "Xafology.StringEvaluators\Xafology.StringEvaluators.csproj", "{5B146106-01EE-401F-A024-99C1BC2CC237}"
 EndProject
@@ -34,13 +34,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGrid.Win", "Xafology.ExpressApp.PivotGrid.Win\Xafology.ExpressApp.PivotGrid.Win.csproj", "{7F289837-77A8-471C-9A42-F48F39B0A27D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Win", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.Win\Xafology.ExpressApp.PivotGridLayout.Win.csproj", "{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Win", "Xafology.ExpressApp.PivotGridLayout.Win\Xafology.ExpressApp.PivotGridLayout.Win.csproj", "{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj", "{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj", "{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGrid.Web", "Xafology.ExpressApp.PivotGrid.Web\Xafology.ExpressApp.PivotGrid.Web.csproj", "{1CE44561-0989-454F-B5CA-847E2EEFDE7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Web", "Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj", "{856E1953-586D-419D-BEB8-6D5D96ECAC86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.PivotGridLayout.Web", "Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj", "{856E1953-586D-419D-BEB8-6D5D96ECAC86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.PivotGrid", "Xafology.PivotGrid\Xafology.PivotGrid.csproj", "{EEA547E8-5DF9-4BCE-995C-A2789F7E05B9}"
 EndProject
@@ -50,9 +50,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.SpreadsheetImpl", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.TestUtils", "Xafology.Tests\Xafology.TestUtils.csproj", "{51E0010F-CD1D-47BB-894C-D9347E48EE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Xpo.Import", "Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj", "{B0D86256-73E7-46D3-B728-346CA4190ECD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.UnitTests", "Xafology.UnitTests\Xafology.UnitTests.csproj", "{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Xpo.Import", "Xafology.ExpressApp.Xpo.ImportV2\Xafology.ExpressApp.Xpo.Import.csproj", "{B0D86256-73E7-46D3-B728-346CA4190ECD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -271,15 +271,6 @@ Global
 		{51E0010F-CD1D-47BB-894C-D9347E48EE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51E0010F-CD1D-47BB-894C-D9347E48EE44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51E0010F-CD1D-47BB-894C-D9347E48EE44}.Release|x86.ActiveCfg = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|Any CPU.Build.0 = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|x86.ActiveCfg = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|x86.ActiveCfg = Release|Any CPU
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -289,6 +280,18 @@ Global
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Debug|x86.Build.0 = Debug|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|x86.ActiveCfg = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.EasyTest|x86.Build.0 = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0D86256-73E7-46D3-B728-346CA4190ECD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

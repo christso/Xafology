@@ -16,7 +16,6 @@ namespace Xafology.ExpressApp.Xpo.Import
     public class LookupValueConverter : ILookupValueConverter
     {
 
-        private readonly Dictionary<Type, List<string>> lookupsNotFound;
         private readonly XafApplication application;
 
         public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }

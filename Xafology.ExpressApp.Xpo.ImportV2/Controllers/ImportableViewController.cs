@@ -17,8 +17,10 @@ using Xafology.ExpressApp.Xpo.Import.Parameters;
 
 namespace Xafology.ExpressApp.Xpo.Import.Controllers
 {
-    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppViewControllertopic.aspx.
-    public partial class ImportableViewController : ViewController
+    /// <summary>
+    /// Shows a popup window with a list of import profiles applicable to the current object type
+    /// </summary>
+    public class ImportableViewController : ViewController
     {
         public ImportableViewController()
         {

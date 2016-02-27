@@ -1,0 +1,68 @@
+005
+!FF!                                                                            
+                                          3009              24 April 2014       
+                                                                                
+                                25000                                           
+Cash & Trav. Cheque Trans to AUD10000                                           
+TT & Bank Draft Trans up to AUD25000                                            
+                                                                                
+                                                                                
+                                                                                
+USA                  Dollars       USD   0.9612   0.9666   0.9607   0.8900      
+Europe               Euro          EUR   0.7004   0.7069   0.7162   0.6345      
+United Kingdom       Pounds        GBP   0.5746   0.5786   0.5815   0.5255      
+New Zealand          Dollars       NZD   1.1040   1.1151   1.1515   1.0300      
+China                Renminbi Yuan CNY   6.0777            6.3752   On App      
+Austria              Schilling     ATS                                          
+Belgium              Francs        BEF                                          
+Brunei Darussalem    Dollars       BND   1.2256   1.2365   1.2847   1.1064      
+Canada               Dollars       CAD   1.0588   1.0681   1.0763   0.9738      
+Switzerland          Francs        CHF   0.8473   0.8574   0.9031   0.7735      
+Germany              Deutsche MarksDEM                                          
+Denmark              Kroner        DKK   5.2397   5.2881   5.7251   4.7634      
+Spain                Pesetas       ESP                                          
+Finland              Markkaa       FIM                                          
+Fiji                 Dollars       FJD   1.7763   1.7877   1.8919   1.6400      
+France               Francs        FRF                                          
+Greece               Drachmae      GRD                                          
+Hong Kong            Dollars       HKD   7.4141   7.4611   7.8158   6.9789      
+Indonesia            Rupiah        IDR                              On App      
+Irish Republic       Punts         IEP                                          
+India                Rupees        INR   58.470   59.340   66.986   54.880      
+Italy                Lire          ITL                                          
+Japan                Yen           JPY    99.30   100.09   104.04    90.30      
+Kuwait               Dinars        KWD                                          
+Sri Lanka            Rupees        LKR   125.86   126.38   On App   113.58      
+Malta                Lire          MTL                     On App               
+Malaysia             Ringgit       MYR                     3.3991   On App      
+Netherlands          Guilders      NLG                                          
+Norway               Kroner        NOK   5.7726   5.8215   6.1300   5.3212      
+Papua New Guinea     Kina          PGK   2.9370   3.0700   On App   2.2633      
+Philippines          Peso          PHP   43.460   44.330   On App   39.340      
+Pakistan             Rupees        PKR   96.560   97.090   On App   87.940      
+Portugal             Escudos       PTE                                          
+Saudi Arabia         Riyals        SAR   3.5882   3.6109   4.0072   3.2490      
+Solomon Islands      Dollars       SBD   7.5815   7.6142   On App   6.3401      
+Sweden               Kronor        SEK   6.3088   6.3680   6.7244   5.7953      
+Singapore            Dollars       SGD   1.2103   1.2212   1.2732   1.1128      
+Thailand             Baht          THB    31.37    31.63    33.08    28.05      
+Tonga                Pa anga       TOP   1.7765   On App   On App   1.5375      
+Vanuatu              Vatu          VUV    97.84    98.68   On App    80.35      
+Samoa                Tala          WST   2.2575   2.2765   2.3495   1.8918      
+French Pacific       Francs        XPF    83.58    84.43    90.84    73.46      
+South Africa         Rand          ZAR  10.2760  10.3393  10.8288   9.2721      
+EUROPEAN CURRENCY UNITS            XEU                                          
+GOLD(1-15oz)                       XAU   1367.2                     1401.2      
+                                                                                
+                                                                                
+                                                                                
+                            .0032P  .0068P  .0094P  .0119P  .0142P  .0163P      
+                            .0040P  .0075P  .0110P  .0137P  .0161P  .0184P      
+  RBA TWI AS AT CLOSE OF PREVIOUS BUSINESS DAY WAS 77.00 (MAY 1970=100)         
+@
+
+The exchange rates provided are for foreign exchange transactions up to the 
+above mentioned values and are intended only as a guide. The rates are subject 
+to change at the Bank`s discretion. Whilst every effort is made to ensure the 
+information is accurate, you should confirm the latest situation with the Bank 
+prior to making any decisions.
