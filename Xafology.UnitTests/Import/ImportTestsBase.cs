@@ -16,22 +16,17 @@ using Xafology.ExpressApp;
 
 namespace Xafology.UnitTests.Import
 {
-    public abstract class ImportTestsBase : InMemoryDbTestBase
+    public abstract class ImportTestsBase : TestBase
     {
-         protected override void SetupObjects()
-        {
-            base.SetupObjects();
-
-        }
-
-        protected override void AddExportedTypes(DevExpress.ExpressApp.ModuleBase module)
+        public override void OnAddExportedTypes(DevExpress.ExpressApp.ModuleBase module)
         {
             module.AdditionalExportedTypes.Add(typeof(ImportHeadersParam));
             module.AdditionalExportedTypes.Add(typeof(MockFactObject));
             module.AdditionalExportedTypes.Add(typeof(MockLookupObject1));
             module.AdditionalExportedTypes.Add(typeof(MockLookupObject2));
+            module.AdditionalExportedTypes.Add(typeof(ImportRequest));
+            module.AdditionalExportedTypes.Add(typeof(HeaderToFieldMap));
         }
-
 
         protected void SetupViewController(ViewController controller, IXPObject currentObject)
         {

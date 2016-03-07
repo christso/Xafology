@@ -20,9 +20,24 @@ namespace Xafology.UnitTests.Import
     [TestFixture]
     public class HeadInsertTests : Xafology.UnitTests.Import.ImportTestsBase
     {
+        public HeadInsertTests()
+        {
+            SetTesterDbType(TesterDbType.MsSql);
+        }
+
         [Test]
         public void InsertFull()
         {
+            #region Clear Object Space
+
+            var session = ObjectSpace.Session;
+            session.Delete(new XPCollection(session, typeof(MockFactObject)));
+            ObjectSpace.CommitChanges();
+
+            var objs = ObjectSpace.GetObjects<MockFactObject>();
+            Assert.AreEqual(0, objs.Count);
+            #endregion
+
             var csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
 Hello 1,10,Parent 1,Parent B1
 Hello 2,11,Parent 2,Parent B2
@@ -175,6 +190,7 @@ Hello 3,30";
 
             // assert
             Assert.AreEqual(inpText, outText);
+
         }
 
         [Test]
@@ -274,10 +290,9 @@ Hello 3,30,HTC";
         public void AddLookupObject()
         {
 
-
             var xpoFieldMapper = new XpoFieldMapper(Application);
             var targetObj = ObjectSpace.CreateObject<MockFactObject>();
-
+            ObjectSpace.CommitChanges();
 
             var typeInfo = XafTypesInfo.Instance.FindTypeInfo(typeof(MockFactObject));
             var memberInfo = typeInfo.FindMember("MockLookupObject1");
@@ -355,6 +370,8 @@ Hello 3,30,HTC,Credit";
         [Test]
         public void AddToObjectCache()
         {
+            #region Arrange
+
             var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map1.SourceName = "Description";
             map1.TargetName = map1.SourceName;
@@ -375,6 +392,10 @@ Hello 3,30,HTC,Credit";
             param.HeaderToFieldMaps.Add(map2);
             param.HeaderToFieldMaps.Add(map3);
 
+            #endregion
+
+            #region Act
+
             param.ObjectTypeName = "MockFactObject";
 
             string csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
@@ -390,13 +411,18 @@ Hello 3,30,HTC,Credit";
             param.CacheLookupObjects = true;
             param.CreateMembers = true;
 
+
             var loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
             loader.Execute();
+
+            #endregion
+
+            #region Assert Cached Objects
 
             var cachedXpObjects = xpoFieldMapper.LookupCacheDictionary;
 
             Assert.AreEqual(1, cachedXpObjects.Count);
-            
+
             Assert.AreEqual(3, cachedXpObjects[typeof(MockLookupObject1)].Count);
 
             var cachedList = cachedXpObjects[typeof(MockLookupObject1)].Cast<MockLookupObject1>();
@@ -407,6 +433,24 @@ Hello 3,30,HTC,Credit";
                 .Where((obj) => (obj).Name == "Samsung").FirstOrDefault());
             Assert.NotNull(cachedList
                 .Where((obj) => (obj).Name == "HTC").FirstOrDefault());
+
+            #endregion
+
+            #region Assert Imported Data
+
+            var factObjs = ObjectSpace.GetObjects<MockFactObject>();
+            string output = "";
+            foreach (var obj in factObjs)
+                output += string.Format("{0},{1},{2}",
+                    obj.Description,
+                    obj.Amount,
+                    obj.MockLookupObject1 == null ? "NULL" : obj.MockLookupObject1.Name,
+                    obj.MockLookupObject2 == null ? "NULL" : obj.MockLookupObject2.Name)
+                    + "\n";
+            #endregion
+            Debug.Print(output);
+
+            Assert.AreEqual(3, factObjs.Count);
         }
 
         [Test]

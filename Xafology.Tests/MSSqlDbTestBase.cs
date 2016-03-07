@@ -1,27 +1,44 @@
-﻿using DevExpress.ExpressApp;
-using DevExpress.ExpressApp.Utils;
-using DevExpress.ExpressApp.Xpo;
-using DevExpress.Xpo;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using NUnit.Framework;
+
+using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Xpo;
+using DevExpress.ExpressApp.Layout;
+using DevExpress.ExpressApp.Actions;
+using DevExpress.ExpressApp.Editors;
+using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
+using DevExpress.Xpo;
+using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp.Utils;
+using DevExpress.Xpo.DB;
+using Xafology.Utils.Data;
 
 namespace Xafology.TestUtils
 {
-    public class InMemoryDbTestBase : ITest
+    [TestFixture]
+    public class MSSqlDbTestBase : ITest
     {
+        public string DataPath = @"D:\CTSO\Data\MSSQL12\Data";
+        public string ServerName = @"(localdb)\mssqllocaldb";
+        public string DatabaseName = "CTMS_Test";
+        public bool TearDownFixtureEnabled = false;
+
         private XPObjectSpaceProvider ObjectSpaceProvider;
         public XPObjectSpace ObjectSpace { get; set; }
-        public TestApplication Application { get; set;  }
+        public TestApplication Application { get; set; }
+
         private readonly ModuleBase module;
 
         public event EventHandler<EventArgs> SetupEvent;
         public event EventHandler<AddExportedTypesEventArgs> AddExportedTypesEvent;
 
-        public InMemoryDbTestBase()
+        public MSSqlDbTestBase()
         {
             module = new ModuleBase();
         }
@@ -35,7 +52,6 @@ namespace Xafology.TestUtils
 
             Application = new TestApplication();
 
-            // add base module
             AddExportedTypes(module);
             Application.Modules.Add(module);
 
@@ -43,7 +59,6 @@ namespace Xafology.TestUtils
             Application.CheckCompatibility();
             ObjectSpace = (XPObjectSpace)ObjectSpaceProvider.CreateObjectSpace();
         }
-
 
         [SetUp]
         public void Setup()
@@ -63,15 +78,10 @@ namespace Xafology.TestUtils
 
         private XPObjectSpaceProvider CreateObjectSpaceProvider()
         {
-            return new XPObjectSpaceProvider(new MemoryDataStoreProvider());
-        }
-
-        public void AddExportedTypes(ModuleBase module)
-        {
-            if (AddExportedTypesEvent != null)
-            {
-                AddExportedTypesEvent(this, new AddExportedTypesEventArgs(module));
-            }
+            MSSqlClientHelper.DropDatabase(ServerName, DatabaseName);
+            MSSqlClientHelper.CreateDatabase(ServerName, DatabaseName, DataPath);
+            string connectionString = MSSqlConnectionProvider.GetConnectionString(ServerName, DatabaseName);
+            return new XPObjectSpaceProvider(connectionString, null);
         }
 
         [TearDown]
@@ -84,6 +94,14 @@ namespace Xafology.TestUtils
         [TestFixtureTearDown]
         public void TearDownFixture()
         {
+            if (TearDownFixtureEnabled)
+                MSSqlClientHelper.DropDatabase(ServerName, DatabaseName);
+        }
+
+        public virtual void AddExportedTypes(ModuleBase module)
+        {
+            if (AddExportedTypesEvent != null)
+                AddExportedTypesEvent(this, new AddExportedTypesEventArgs(module));
         }
 
         public static void DeleteExportedObjects(ModuleBase module, Session session)
@@ -101,6 +119,5 @@ namespace Xafology.TestUtils
         {
             session.Delete(new XPCollection(session, type));
         }
-
     }
 }

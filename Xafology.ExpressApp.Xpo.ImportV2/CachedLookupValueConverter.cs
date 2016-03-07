@@ -56,7 +56,7 @@ namespace Xafology.ExpressApp.Xpo.Import
             }
             
             LogXpObjectsNotFound(memberInfo.MemberType, value);
-            return (IXPObject)newValue;
+            return newValue as IXPObject;
         }
 
         private bool TryGetCachedLookupObject(XPCollection cachedObjects, IMemberInfo lookupMemberInfo, string value,  out object newValue)
