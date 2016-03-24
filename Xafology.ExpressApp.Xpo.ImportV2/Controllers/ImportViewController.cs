@@ -59,6 +59,24 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
 
             var newObjectViewController = Frame.GetController<NewObjectViewController>();
             newObjectViewController.ObjectCreated += NewObjectViewController_ObjectCreated;
+            ObjectSpace.ObjectChanged += ObjectSpace_ObjectChanged;
+        }
+
+        private void ObjectSpace_ObjectChanged(object sender, ObjectChangedEventArgs e)
+        {
+            var newValue = e.NewValue;
+
+            var obj = e.Object as ImportParamBase;
+
+            if (obj != null
+                && e.PropertyName == ImportParamBase.Fields.CacheLookupObjects.PropertyName
+                && e.NewValue != null)
+            {
+                foreach (var map in obj.FieldMaps)
+                {
+                    map.CacheObject = (bool)e.NewValue;
+                }
+            }
         }
 
         // set default values in newly created object

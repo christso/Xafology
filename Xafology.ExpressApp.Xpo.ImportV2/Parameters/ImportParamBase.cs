@@ -42,19 +42,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
                 SetPropertyValue("ProfileName", ref _ProfileName, value);
             }
         }
-        [ImmediatePostData]
-        public bool DynamicMapping
-        {
-            get
-            {
-                return _DynamicMapping;
-            }
-            set
-            {
-                SetPropertyValue("DynamicMapping", ref _DynamicMapping, value);
-            }
-        }
-        [Appearance("NotDynamic1", Visibility = ViewItemVisibility.Hide, Criteria = "!DynamicMapping", Context = "DetailView")]
+
         public bool CacheLookupObjects
         {
             get
@@ -67,7 +55,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        [Appearance("NotDynamic2", Visibility = ViewItemVisibility.Hide, Criteria = "!DynamicMapping", Context = "DetailView")]
         public bool CreateMembers
         {
             get
@@ -166,6 +153,14 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
                 get
                 {
                     return new OperandProperty("ObjectTypeName");
+                }
+            }
+
+            public static OperandProperty CacheLookupObjects
+            {
+                get
+                {
+                    return new OperandProperty("CacheLookupObjects");
                 }
             }
         }

@@ -431,10 +431,6 @@ Hello 3,30,HTC,Credit";
             var logger = new ImportLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
 
-            param.CacheLookupObjects = true;
-            param.CreateMembers = true;
-
-
             var loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
             loader.Execute();
 

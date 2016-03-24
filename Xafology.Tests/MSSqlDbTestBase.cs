@@ -63,6 +63,10 @@ namespace Xafology.TestUtils
         [SetUp]
         public void Setup()
         {
+            // clear database
+            DeleteExportedObjects(module, ObjectSpace.Session);
+            ObjectSpace.CommitChanges();
+
             if (SetupEvent != null)
                 SetupEvent(this, EventArgs.Empty);
         }
@@ -87,8 +91,7 @@ namespace Xafology.TestUtils
         [TearDown]
         public void TearDown()
         {
-            DeleteExportedObjects(module, ObjectSpace.Session);
-            ObjectSpace.CommitChanges();
+
         }
 
         [TestFixtureTearDown]
