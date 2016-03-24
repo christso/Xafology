@@ -13,8 +13,9 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp;
+using Xafology.ImportDemo.Module.BusinessObjects;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     public abstract class ImportTestsBase : TestBase
     {

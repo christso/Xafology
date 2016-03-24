@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.UnitTests
+namespace Xafology.ImportDemo.UnitTests
 {
     class Program
     {

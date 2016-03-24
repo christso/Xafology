@@ -7,7 +7,7 @@ using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using DevExpress.Xpo;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     public class ImportForexParam : ImportParamBase, ImportParam
     {

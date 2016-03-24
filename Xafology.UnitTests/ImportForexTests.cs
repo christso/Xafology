@@ -17,11 +17,11 @@ using System.Diagnostics;
 using Xafology.Utils;
 using System.Reflection;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
-    public class ImportForexTests : Xafology.UnitTests.Import.ImportTestsBase
+    public class ImportForexTests : ImportTestsBase
     {
-        private const string ForexRateResourcePath = "Xafology.UnitTests.Import.Resources.GLXR140424.txt";
+        private const string ForexRateResourcePath = "Xafology.ImportDemo.UnitTests.Import.Resources.GLXR140424.txt";
 
         public ImportForexTests()
         {
@@ -47,7 +47,7 @@ namespace Xafology.UnitTests.Import
 
 
             stream.Position = 0;
-            var loader = new ForexRateInserter(param, stream, xpoMapper);
+            var loader = new Xafology.ImportDemo.UnitTests.ForexRateInserter(param, stream, xpoMapper);
             
             loader.Execute();
         }

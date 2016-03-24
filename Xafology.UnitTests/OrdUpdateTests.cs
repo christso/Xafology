@@ -1,47 +1,46 @@
-﻿using DevExpress.ExpressApp;
-using DevExpress.Xpo;
+﻿using DevExpress.Xpo;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Xpo.Import.Parameters;
-using Xafology.TestUtils;
-using Xafology.ExpressApp.Xpo.Import.Logic;
 
 using Xafology.ExpressApp.Xpo.Import;
+using Xafology.ExpressApp.Xpo.Import.Logic;
+using Xafology.ExpressApp.Xpo.Import.Parameters;
+using Xafology.ImportDemo.Module.BusinessObjects;
+using Xafology.ImportDemo.UnitTests;
+using Xafology.TestUtils;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     [TestFixture]
-    public class HeadUpdateTests : Xafology.UnitTests.Import.ImportTestsBase
+    public class OrdUpdateTests : ImportTestsBase
     {
-        public HeadUpdateTests()
+        public OrdUpdateTests()
         {
             SetTesterDbType(TesterDbType.MsSql);
         }
 
         [Test]
-        public void UpdateSimpleHeaderCsv()
+        public void UpdateSimpleOrdinalCsv()
         {
-       
             // arrange parameters
 
-            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map1.SourceName = "Description";
-            map1.TargetName = map1.SourceName;
+            var map1 = ObjectSpace.CreateObject<OrdinalToFieldMap>();
+            map1.SourceOrdinal = 0;
+            map1.TargetName = "Description";
             map1.IsKeyField = true;
 
-            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
-            map2.SourceName = "Amount";
-            map2.TargetName = map2.SourceName;
+            var map2 = ObjectSpace.CreateObject<OrdinalToFieldMap>();
+            map2.SourceOrdinal = 1;
+            map2.TargetName = "Amount";
 
-            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+            var param = ObjectSpace.CreateObject<ImportOrdinalsParam>();
 
-            param.HeaderToFieldMaps.Add(map1);
-            param.HeaderToFieldMaps.Add(map2);
+            param.OrdToFieldMaps.Add(map1);
+            param.OrdToFieldMaps.Add(map2);
 
             param.ObjectTypeName = "MockFactObject";
 
@@ -63,8 +62,7 @@ namespace Xafology.UnitTests.Import
 
             // arrange loader
 
-            string csvText = @"Description,Amount
-Hello 1,100
+            string csvText = @"Hello 1,100
 Hello 2,200
 Hello 3,300";
 
@@ -72,7 +70,7 @@ Hello 3,300";
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
             var xpoFieldMapper = new XpoFieldMapper(Application);
-            ICsvToXpoLoader loader = new HeadCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);
+            ICsvToXpoLoader loader = new OrdCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);
 
             // act
 
@@ -93,10 +91,5 @@ Hello 3,300";
             Assert.AreEqual(300, result.Amount);
         }
 
-        [Test]
-        public void ExceptionIfMultipleKeyFields()
-        {
-
-        }
     }
 }

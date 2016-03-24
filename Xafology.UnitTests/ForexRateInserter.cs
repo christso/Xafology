@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     using DevExpress.ExpressApp;
     using SDP.ParserUtils;
-    using Xafology.UnitTests.Import;
+
     public class ForexRateInserter
     {
         public ForexRateInserter(ImportForexParam param, Stream stream, XpoFieldMapper xpoFieldMapper)

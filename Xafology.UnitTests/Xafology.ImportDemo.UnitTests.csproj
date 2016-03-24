@@ -7,8 +7,8 @@
     <ProjectGuid>{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xafology.UnitTests</RootNamespace>
-    <AssemblyName>Xafology.UnitTests</AssemblyName>
+    <RootNamespace>Xafology.ImportDemo.UnitTests</RootNamespace>
+    <AssemblyName>Xafology.ImportDemo.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -89,18 +89,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Import\ForexRateInserter.cs" />
-    <Compile Include="Import\ImportForexParam.cs" />
-    <Compile Include="Import\HeadUpdateTests.cs" />
-    <Compile Include="Import\ImportForexTests.cs" />
-    <Compile Include="Import\ImportTests.cs" />
-    <Compile Include="Import\ImportTestsBase.cs" />
-    <Compile Include="MockFactObject.cs" />
-    <Compile Include="Import\HeadInsertTests.cs" />
-    <Compile Include="MockLookupObject2.cs" />
-    <Compile Include="MockLookupObject1.cs" />
-    <Compile Include="Import\OrdInsertTests.cs" />
-    <Compile Include="Import\OrdUpdateTests.cs" />
+    <Compile Include="ForexRateInserter.cs" />
+    <Compile Include="ImportForexParam.cs" />
+    <Compile Include="HeadUpdateTests.cs" />
+    <Compile Include="ImportForexTests.cs" />
+    <Compile Include="ImportTests.cs" />
+    <Compile Include="ImportTestsBase.cs" />
+    <Compile Include="HeadInsertTests.cs" />
+    <Compile Include="OrdInsertTests.cs" />
+    <Compile Include="OrdUpdateTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

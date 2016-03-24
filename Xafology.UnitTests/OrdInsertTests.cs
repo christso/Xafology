@@ -12,12 +12,13 @@ using Xafology.TestUtils;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 
 using Xafology.ExpressApp.Xpo.Import;
+using Xafology.ImportDemo.Module.BusinessObjects;
+using Xafology.ImportDemo.UnitTests;
 
-
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     [TestFixture]
-    public class OrdInsertTests : Xafology.UnitTests.Import.ImportTestsBase
+    public class OrdInsertTests : ImportTestsBase
     {
         public OrdInsertTests()
         {

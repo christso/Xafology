@@ -15,11 +15,12 @@ using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp;
 using System.Diagnostics;
 using Xafology.Utils;
+using Xafology.ImportDemo.Module.BusinessObjects;
 
-namespace Xafology.UnitTests.Import
+namespace Xafology.ImportDemo.UnitTests
 {
     [TestFixture]
-    public class ImportTests : Xafology.UnitTests.Import.ImportTestsBase
+    public class ImportTests : ImportTestsBase
     {
         public ImportTests()
         {
