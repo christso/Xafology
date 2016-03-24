@@ -409,11 +409,18 @@ Hello 3,30,HTC,Credit";
             map3.CreateMember = true;
             map3.CacheObject = true;
 
+            var map4 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map4.SourceName = "MockLookupObject2";
+            map4.TargetName = map4.SourceName;
+            map4.CreateMember = true;
+            map4.CacheObject = true;
+
             var param = ObjectSpace.CreateObject<ImportHeadersParam>();
 
             param.HeaderToFieldMaps.Add(map1);
             param.HeaderToFieldMaps.Add(map2);
             param.HeaderToFieldMaps.Add(map3);
+            param.HeaderToFieldMaps.Add(map4);
 
             #endregion
 
@@ -440,7 +447,7 @@ Hello 3,30,HTC,Credit";
 
             var cachedXpObjects = xpoFieldMapper.LookupCacheDictionary;
 
-            Assert.AreEqual(1, cachedXpObjects.Count);
+            Assert.AreEqual(2, cachedXpObjects.Count);
 
             Assert.AreEqual(3, cachedXpObjects[typeof(MockLookupObject1)].Count);
 
@@ -471,6 +478,85 @@ Hello 3,30,HTC,Credit";
 
             Assert.AreEqual(3, factObjs.Count);
         }
+
+        [Test]
+        public void AddToObjectCacheTwice()
+        {
+            #region Arrange
+
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map1.SourceName = "Description";
+            map1.TargetName = map1.SourceName;
+
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map2.SourceName = "Amount";
+            map2.TargetName = map2.SourceName;
+
+            var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map3.SourceName = "MockLookupObject1";
+            map3.TargetName = map3.SourceName;
+            map3.CreateMember = true;
+            map3.CacheObject = true;
+
+            var map4 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map4.SourceName = "MockLookupObject2";
+            map4.TargetName = map4.SourceName;
+            map4.CreateMember = true;
+            map4.CacheObject = true;
+
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map3);
+            param.HeaderToFieldMaps.Add(map4);
+
+            #endregion
+
+            #region Act
+
+            param.ObjectTypeName = "MockFactObject";
+
+            string csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
+Hello 1,10,Apple,Handset
+Hello 2,20,Samsung,Marketing
+Hello 3,30,HTC,Credit";
+
+            var csvStream = ConvertToCsvStream(csvText);
+            var request = ObjectSpace.CreateObject<ImportRequest>();
+            var logger = new ImportLogger(request);
+            var xpoFieldMapper = new XpoFieldMapper(Application);
+
+            var loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
+            loader.Execute();
+
+            csvStream.Seek(0, SeekOrigin.Begin);
+            var loader2 = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
+            loader2.Execute();
+
+            #endregion
+
+            #region Assert
+
+            var factObjs = ObjectSpace.GetObjects<MockFactObject>();
+            Assert.AreEqual(6, factObjs.Count);
+
+            var cachedXpObjects = xpoFieldMapper.LookupCacheDictionary;
+
+            Assert.AreEqual(2, cachedXpObjects.Count);
+
+            Assert.AreEqual(3, cachedXpObjects[typeof(MockLookupObject1)].Count);
+
+            var cachedList = cachedXpObjects[typeof(MockLookupObject1)].Cast<MockLookupObject1>();
+
+            Assert.AreEqual(2, cachedList.Where((obj) => (obj).Name == "Apple").Count());
+            Assert.AreEqual(2, cachedList.Where((obj) => (obj).Name == "Samsung").Count());
+            Assert.AreEqual(2, cachedList.Where((obj) => (obj).Name == "HTC").Count());
+
+            #endregion
+
+        }
+
 
         [Test]
         public void ExceptionIfInsertDuplicateTargets()
