@@ -10,6 +10,7 @@ using Xafology.ExpressApp.Xpo.Import;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
+    [DefaultListViewOptions(allowEdit: true, newItemRowPosition: NewItemRowPosition.None)]
     public class ImportHeadersParam : ImportParamBase, ImportParam
     {
         public ImportHeadersParam(Session session)

@@ -26,7 +26,7 @@ namespace Xafology.TestUtils
     {
         public string DataPath = @"D:\CTSO\Data\MSSQL12\Data";
         public string ServerName = @"(localdb)\mssqllocaldb";
-        public string DatabaseName = "CTMS_Test";
+        public string DatabaseName = "XafologyUnitTest";
         public bool TearDownFixtureEnabled = false;
 
         private XPObjectSpaceProvider ObjectSpaceProvider;

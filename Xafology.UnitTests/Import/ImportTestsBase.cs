@@ -21,11 +21,14 @@ namespace Xafology.UnitTests.Import
         public override void OnAddExportedTypes(DevExpress.ExpressApp.ModuleBase module)
         {
             module.AdditionalExportedTypes.Add(typeof(ImportHeadersParam));
+            module.AdditionalExportedTypes.Add(typeof(ImportOrdinalsParam));
+            module.AdditionalExportedTypes.Add(typeof(ImportForexParam));
             module.AdditionalExportedTypes.Add(typeof(MockFactObject));
             module.AdditionalExportedTypes.Add(typeof(MockLookupObject1));
             module.AdditionalExportedTypes.Add(typeof(MockLookupObject2));
             module.AdditionalExportedTypes.Add(typeof(ImportRequest));
             module.AdditionalExportedTypes.Add(typeof(HeaderToFieldMap));
+            
         }
 
         protected void SetupViewController(ViewController controller, IXPObject currentObject)

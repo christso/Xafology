@@ -1,7 +1,9 @@
-﻿using DevExpress.Xpo;
+﻿using DevExpress.ExpressApp;
+using DevExpress.Xpo;
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
+    [DefaultListViewOptions(allowEdit: true, newItemRowPosition: NewItemRowPosition.Top)]
     public class HeaderToFieldMap : FieldMap
     {
         public HeaderToFieldMap(DevExpress.Xpo.Session session)

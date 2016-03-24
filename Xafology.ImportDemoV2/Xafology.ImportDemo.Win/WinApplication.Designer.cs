@@ -37,6 +37,8 @@ namespace Xafology.ImportDemo.Win
             this.XafologySystemModule1 = new Xafology.ExpressApp.SystemModule.XafologySystemModule();
             this.fileAttachmentsWindowsFormsModule1 = new DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule();
             this.xpoModule2 = new Xafology.ExpressApp.Xpo.XpoModule();
+            this.conditionalAppearanceModule1 = new DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule();
+            this.importModule1 = new Xafology.ExpressApp.Xpo.Import.ImportModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // ImportDemoWindowsFormsApplication
@@ -47,6 +49,8 @@ namespace Xafology.ImportDemo.Win
             this.Modules.Add(this.businessClassLibraryCustomizationModule1);
             this.Modules.Add(this.XafologySystemModule1);
             this.Modules.Add(this.xpoModule1);
+            this.Modules.Add(this.conditionalAppearanceModule1);
+            this.Modules.Add(this.importModule1);
             this.Modules.Add(this.module3);
             this.Modules.Add(this.fileAttachmentsWindowsFormsModule1);
             this.Modules.Add(this.module4);
@@ -67,5 +71,7 @@ namespace Xafology.ImportDemo.Win
         private ExpressApp.SystemModule.XafologySystemModule XafologySystemModule1;
         private DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule fileAttachmentsWindowsFormsModule1;
         private ExpressApp.Xpo.XpoModule xpoModule2;
+        private DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule conditionalAppearanceModule1;
+        private ExpressApp.Xpo.Import.ImportModule importModule1;
     }
 }

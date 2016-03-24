@@ -23,20 +23,16 @@ namespace Xafology.UnitTests.Import
         public HeadInsertTests()
         {
             SetTesterDbType(TesterDbType.MsSql);
+
+            var tester = Tester as MSSqlDbTestBase;
+            if (tester != null)
+                tester.DatabaseName = "XafologyImportTest";
         }
 
         [Test]
         public void InsertFull()
         {
-            #region Clear Object Space
-
-            var session = ObjectSpace.Session;
-            session.Delete(new XPCollection(session, typeof(MockFactObject)));
-            ObjectSpace.CommitChanges();
-
-            var objs = ObjectSpace.GetObjects<MockFactObject>();
-            Assert.AreEqual(0, objs.Count);
-            #endregion
+            #region Arrange
 
             var csvText = @"Description,Amount,MockLookupObject1,MockLookupObject2
 Hello 1,10,Parent 1,Parent B1
@@ -55,10 +51,12 @@ Hello 4,13,Parent 4,Parent B4
 
             var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map3.SourceName = "MockLookupObject1";
+            map3.CreateMember = true;
             map3.TargetName = map3.SourceName;
 
             var map4 = ObjectSpace.CreateObject<HeaderToFieldMap>();
             map4.SourceName = "MockLookupObject2";
+            map4.CreateMember = true;
             map4.TargetName = map4.SourceName;
 
             var param = ObjectSpace.CreateObject<ImportHeadersParam>();
@@ -70,14 +68,39 @@ Hello 4,13,Parent 4,Parent B4
 
             param.ObjectTypeName = "MockFactObject";
 
+            ObjectSpace.CommitChanges();
+
+            #endregion
+
+            #region Act
+
             var csvStream = ConvertToCsvStream(csvText);
             var xpoMapper = new XpoFieldMapper(Application);
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
             loader.Execute();
+            ObjectSpace.CommitChanges();
+
+            #endregion
+
+            #region Assert
 
             var inserted = new XPQuery<MockFactObject>(ObjectSpace.Session);
             Assert.AreEqual(4, inserted.Count());
+            var obj1 = inserted.Where(x => x.Description == "Hello 1").FirstOrDefault();
+            var obj2 = inserted.Where(x => x.Description == "Hello 2").FirstOrDefault();
+            var obj3 = inserted.Where(x => x.Description == "Hello 3").FirstOrDefault();
+            var obj4 = inserted.Where(x => x.Description == "Hello 4").FirstOrDefault();
 
+            Assert.NotNull(obj1.MockLookupObject1);
+            Assert.NotNull(obj1.MockLookupObject2);
+            Assert.NotNull(obj2.MockLookupObject1);
+            Assert.NotNull(obj2.MockLookupObject2);
+            Assert.NotNull(obj3.MockLookupObject1);
+            Assert.NotNull(obj3.MockLookupObject2);
+            Assert.NotNull(obj4.MockLookupObject1);
+            Assert.NotNull(obj4.MockLookupObject2);
+
+            #endregion
         }
 
         [Test]

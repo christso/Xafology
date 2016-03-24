@@ -19,6 +19,11 @@ namespace Xafology.UnitTests.Import
     [TestFixture]
     public class OrdInsertTests : Xafology.UnitTests.Import.ImportTestsBase
     {
+        public OrdInsertTests()
+        {
+            SetTesterDbType(TesterDbType.MsSql);
+        }
+
         [Test]
         public void InsertSimpleOrdCsv()
         {

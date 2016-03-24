@@ -12,20 +12,25 @@ namespace Xafology.TestUtils
 {
     public class TestBase
     {
-        public ITest tester;
+
         private readonly ITest memTestBase;
         private readonly ITest mssqlTestBase;
+
+        public ITest Tester
+        {
+            get; set;
+        }
 
         public XPObjectSpace ObjectSpace
         {
             get
             {
-                return tester.ObjectSpace;
+                return Tester.ObjectSpace;
             }
 
             set
             {
-                tester.ObjectSpace = value;
+                Tester.ObjectSpace = value;
             }
         }
 
@@ -33,11 +38,11 @@ namespace Xafology.TestUtils
         {
             get
             {
-                return tester.Application;
+                return Tester.Application;
             }
             set
             {
-                tester.Application = value;
+                Tester.Application = value;
             }
         }
 
@@ -51,7 +56,7 @@ namespace Xafology.TestUtils
             mssqlTestBase.SetupEvent += Tester_OnSetup;
             mssqlTestBase.AddExportedTypesEvent += Tester_OnAddExportedTypes;
 
-            this.tester = memTestBase; // default is inmemory
+            this.Tester = memTestBase; // default is inmemory
         }
 
         public void SetTesterDbType(TesterDbType testerDbType)
@@ -59,10 +64,10 @@ namespace Xafology.TestUtils
             switch (testerDbType)
             {
                 case TesterDbType.InMemory:
-                    tester = memTestBase;
+                    Tester = memTestBase;
                     break;
                 case TesterDbType.MsSql:
-                    tester = mssqlTestBase;
+                    Tester = mssqlTestBase;
                     break;
             }
         }
@@ -70,13 +75,13 @@ namespace Xafology.TestUtils
         [SetUp]
         public void Setup()
         {
-            tester.Setup();
+            Tester.Setup();
         }
 
         [TestFixtureSetUp]
         public void SetUpFixture()
         {
-            tester.SetUpFixture();
+            Tester.SetUpFixture();
         }
 
         private void Tester_OnSetup(object sender, EventArgs e)
@@ -102,13 +107,13 @@ namespace Xafology.TestUtils
         [TearDown]
         public void TearDown()
         {
-            tester.TearDown();
+            Tester.TearDown();
         }
 
         [TestFixtureTearDown]
         public void TearDownFixture()
         {
-            tester.TearDownFixture();
+            Tester.TearDownFixture();
         }
     }
 }

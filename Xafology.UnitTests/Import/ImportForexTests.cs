@@ -19,14 +19,13 @@ using System.Reflection;
 
 namespace Xafology.UnitTests.Import
 {
-    public class ImportForexTests : InMemoryDbTestBase
+    public class ImportForexTests : Xafology.UnitTests.Import.ImportTestsBase
     {
-        private readonly InMemoryDbTestBase testBase;
         private const string ForexRateResourcePath = "Xafology.UnitTests.Import.Resources.GLXR140424.txt";
 
         public ImportForexTests()
         {
-            this.testBase = new InMemoryDbTestBase();
+            SetTesterDbType(TesterDbType.MsSql);
         }
 
         [Test]

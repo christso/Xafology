@@ -18,6 +18,11 @@ namespace Xafology.UnitTests.Import
     [TestFixture]
     public class HeadUpdateTests : Xafology.UnitTests.Import.ImportTestsBase
     {
+        public HeadUpdateTests()
+        {
+            SetTesterDbType(TesterDbType.MsSql);
+        }
+
         [Test]
         public void UpdateSimpleHeaderCsv()
         {

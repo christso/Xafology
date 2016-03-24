@@ -21,6 +21,11 @@ namespace Xafology.UnitTests.Import
     [TestFixture]
     public class ImportTests : Xafology.UnitTests.Import.ImportTestsBase
     {
+        public ImportTests()
+        {
+            SetTesterDbType(TesterDbType.MsSql);
+        }
+
         [Test]
         public void ValidateObjectTypeName()
         {

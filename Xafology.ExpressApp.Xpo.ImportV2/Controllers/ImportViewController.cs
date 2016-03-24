@@ -30,6 +30,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         public ImportViewController()
         {
             TargetObjectType = typeof(ImportParamBase);
+            TargetViewType = ViewType.DetailView;
 
             // action button
 
@@ -63,13 +64,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         // set default values in newly created object
         private void NewObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
         {
-            if (Application.MainWindow == null) return; // MainWindow is null when TestApplication is used
-
-            var mainWindow = Frame.Application.MainWindow;
-            var objTypeName = mainWindow.View.CurrentObject.GetType().Name;
 
             var param = (ImportParamBase)e.CreatedObject;
-            param.ObjectTypeName = objTypeName;
+            //param.ObjectTypeName = objTypeName;
         }
 
         // Types of actions available to the user
