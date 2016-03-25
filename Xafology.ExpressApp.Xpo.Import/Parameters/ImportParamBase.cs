@@ -14,7 +14,6 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
-    [NonPersistent]
     public abstract class ImportParamBase : BaseObject, IImportOptions
     {
         public ImportParamBase(Session session)
@@ -43,19 +42,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
                 SetPropertyValue("ProfileName", ref _ProfileName, value);
             }
         }
-        [ImmediatePostData]
-        public bool DynamicMapping
-        {
-            get
-            {
-                return _DynamicMapping;
-            }
-            set
-            {
-                SetPropertyValue("DynamicMapping", ref _DynamicMapping, value);
-            }
-        }
-        [Appearance("NotDynamic1", Visibility = ViewItemVisibility.Hide, Criteria = "!DynamicMapping", Context = "DetailView")]
+
         public bool CacheLookupObjects
         {
             get
@@ -68,7 +55,6 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        [Appearance("NotDynamic2", Visibility = ViewItemVisibility.Hide, Criteria = "!DynamicMapping", Context = "DetailView")]
         public bool CreateMembers
         {
             get
@@ -127,9 +113,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
         {
             get
             {
-                var os = (XPObjectSpace)ObjectSpaceInMemory.CreateNew();
-                return os.TypesInfo.PersistentTypes.FirstOrDefault(
-                    x => x.Name == ObjectTypeName);
+                return XpoTypesInfoHelper.GetTypesInfo().PersistentTypes.FirstOrDefault(
+                    x => x.Name == ObjectTypeName);                
             }
             set
             {
@@ -149,7 +134,17 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public abstract XPBaseCollection FieldMaps { get; }
+        public abstract FieldMaps FieldMaps { get; }
+
+        public void CreateTemplate()
+        {
+            var stream = CsvFileTemplateCreator.CreateStream(this.ObjectTypeInfo);
+            if (TemplateFile == null)
+                TemplateFile = new FileData(Session);
+            TemplateFile.LoadFromStream("Template.csv", stream);
+            OnChanged("TemplateFile");
+            Session.CommitTransaction();
+        }
 
         public new class Fields
         {
@@ -160,8 +155,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
                     return new OperandProperty("ObjectTypeName");
                 }
             }
+
+            public static OperandProperty CacheLookupObjects
+            {
+                get
+                {
+                    return new OperandProperty("CacheLookupObjects");
+                }
+            }
         }
 
-        public abstract CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application, Stream stream);
     }
 }

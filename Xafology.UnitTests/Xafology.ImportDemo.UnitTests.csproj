@@ -103,7 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.ImportV2\Xafology.ExpressApp.Xpo.Import.csproj">
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
       <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
       <Name>Xafology.ExpressApp.Xpo.Import</Name>
     </ProjectReference>
@@ -115,7 +115,7 @@
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ImportDemoV2\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
+    <ProjectReference Include="..\Xafology.ImportDemo\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
       <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
       <Name>Xafology.ImportDemo.Module</Name>
     </ProjectReference>
@@ -129,7 +129,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Import\Resources\GLXR140424.txt" />
+    <EmbeddedResource Include="Resources\GLXR140424.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

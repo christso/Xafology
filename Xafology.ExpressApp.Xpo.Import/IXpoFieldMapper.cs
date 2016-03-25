@@ -10,6 +10,8 @@ namespace Xafology.ExpressApp.Xpo.Import
 {
     public interface IXpoFieldMapper
     {
-        void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false);
+        void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false);
+        Dictionary<Type, List<string>> LookupsNotFound { get; }
+        CachedXPCollections LookupCacheDictionary { get; }
     }
 }

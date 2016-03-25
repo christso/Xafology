@@ -1,4 +1,4 @@
-﻿using Xafology.ExpressApp.Concurrency;
+﻿
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
@@ -7,10 +7,10 @@ using System;
 using System.IO;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
+    [DefaultListViewOptions(allowEdit: true, newItemRowPosition: NewItemRowPosition.None)]
     public class ImportHeadersParam : ImportParamBase, ImportParam
     {
         public ImportHeadersParam(Session session)
@@ -28,17 +28,10 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public override XPBaseCollection FieldMaps
+        public override FieldMaps FieldMaps
         {
-            get { return HeaderToFieldMaps; }
+            get { return new FieldMaps(HeaderToFieldMaps); }
         }
 
-        public override CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application,
-            Stream stream)
-        {
-            var requestMgr = new AsyncRequestManager(application);
-            return new HeadCsvToXpoLoader(this, stream, requestMgr);
-
-        }
     }
 }

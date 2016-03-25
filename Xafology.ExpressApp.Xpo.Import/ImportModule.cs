@@ -16,12 +16,5 @@ namespace Xafology.ExpressApp.Xpo.Import
         {
             base.Setup(application);
         }
-
-        private void InitializeComponent()
-        {
-            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
-            this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
-
-        }
     }
 }

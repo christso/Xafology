@@ -21,7 +21,7 @@ namespace Xafology.ImportDemo.UnitTests
 {
     public class ImportForexTests : ImportTestsBase
     {
-        private const string ForexRateResourcePath = "Xafology.ImportDemo.UnitTests.Import.Resources.GLXR140424.txt";
+        private const string ForexRateResourcePath = "Xafology.ImportDemo.UnitTests.Resources.GLXR140424.txt";
 
         public ImportForexTests()
         {

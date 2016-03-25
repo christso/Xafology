@@ -4,9 +4,8 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System;
 using System.IO;
-using Xafology.ExpressApp.Concurrency;
+
 using Xafology.ExpressApp.Xpo.Import.Logic;
-using Xafology.ExpressApp.Xpo.Import.Logic.New;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
@@ -41,15 +40,10 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
             }
         }
 
-        public override XPBaseCollection FieldMaps
+        public override FieldMaps FieldMaps
         {
-            get { return OrdToFieldMaps; }
+            get { return new FieldMaps(OrdToFieldMaps); }
         }
 
-        public override CsvToXpoLoader CreateCsvToXpoLoader(XafApplication application, Stream stream)
-        {
-            var requestMgr = new AsyncRequestManager(application);
-            return new OrdCsvToXpoLoader(this, stream, requestMgr);
-        }
     }
 }
