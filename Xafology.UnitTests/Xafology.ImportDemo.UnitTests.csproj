@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ForexRateInserter.cs" />
+    <Compile Include="HeadInsertCacheLookupTests.cs" />
     <Compile Include="ImportForexParam.cs" />
     <Compile Include="HeadUpdateTests.cs" />
     <Compile Include="ImportForexTests.cs" />

@@ -66,6 +66,7 @@ namespace Xafology.ExpressApp.Xpo.Import
             get { return lookupsNotFound; }
         }
 
+        // not used for anything other than debugging
         public CachedXPCollections LookupCacheDictionary
         {
             get
@@ -117,7 +118,7 @@ namespace Xafology.ExpressApp.Xpo.Import
                 
                 if (cacheObject)
                 {
-                    
+                    // if object does not exist in cache list
                     if (!lookupCacheDictionary.TryGetValue(memberInfo.MemberType, out objs))
                     {
                         // add key to cache

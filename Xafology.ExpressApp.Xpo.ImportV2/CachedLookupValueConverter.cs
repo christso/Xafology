@@ -59,7 +59,9 @@ namespace Xafology.ExpressApp.Xpo.Import
             return newValue as IXPObject;
         }
 
-        private bool TryGetCachedLookupObject(XPCollection cachedObjects, IMemberInfo lookupMemberInfo, string value,  out object newValue)
+        private bool TryGetCachedLookupObject(XPCollection cachedObjects, 
+            IMemberInfo lookupMemberInfo, 
+            string value,  out object newValue)
         {
             newValue = null;
 
@@ -69,7 +71,7 @@ namespace Xafology.ExpressApp.Xpo.Import
                 object tmpValue = lookupMemberInfo.GetValue(obj);
                 if (Convert.ToString(tmpValue) == value)
                 {
-                    newValue = tmpValue;
+                    newValue = obj;
                     break;
                 }
             }
