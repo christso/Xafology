@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</ProjectGuid>
+    <ProjectGuid>{C71D9617-478D-4F1F-8434-286C67B8679B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PasteDemo.Module.Win</RootNamespace>
@@ -150,7 +150,7 @@
       <Name>Xafology.ExpressApp.Paste.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\PasteDemo.Module\PasteDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{dc2f3aa2-abdb-469e-b260-5fd5e9501529}</Project>
       <Name>PasteDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>

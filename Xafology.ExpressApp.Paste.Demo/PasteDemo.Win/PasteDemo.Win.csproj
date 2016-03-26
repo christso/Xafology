@@ -199,16 +199,6 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PasteDemo.Module.Win\PasteDemo.Module.Win.csproj">
-      <Project>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</Project>
-      <Name>PasteDemo.Module.Win</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PasteDemo.Module\PasteDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
-      <Name>PasteDemo.Module</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -224,6 +214,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PasteDemo.Module.Win\PasteDemo.Module.Win.csproj">
+      <Project>{c71d9617-478d-4f1f-8434-286c67b8679b}</Project>
+      <Name>PasteDemo.Module.Win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PasteDemo.Module\PasteDemo.Module.csproj">
+      <Project>{dc2f3aa2-abdb-469e-b260-5fd5e9501529}</Project>
+      <Name>PasteDemo.Module</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
