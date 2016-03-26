@@ -74,7 +74,7 @@ Hello 4,30,HTC,Credit";
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
 
             HeadCsvToXpoInserter loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
             loader.Execute();
@@ -126,7 +126,7 @@ Hello 4,30,HTC,Credit";
         {
             #region Arrange
 
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
 
             var typeInfo = XafTypesInfo.Instance.FindTypeInfo(typeof(MockFactObject));
             var memberInfo = typeInfo.FindMember("MockLookupObject1");
@@ -168,12 +168,12 @@ Hello 4,30,HTC,Credit";
         {
             #region Arrange
 
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
 
             var factTypeInfo = XafTypesInfo.Instance.FindTypeInfo(typeof(MockFactObject));
             var lookupMemberInfo = factTypeInfo.FindMember("MockLookupObject1");
 
-            var cachedLookupValueConverter = new CachedLookupValueConverter(Application, xpoFieldMapper.LookupCacheDictionary);
+            var cachedLookupValueConverter = new CachedLookupValueConverter(xpoFieldMapper.LookupCacheDictionary);
 
 
             #endregion

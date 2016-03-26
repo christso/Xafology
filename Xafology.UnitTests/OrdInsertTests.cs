@@ -53,7 +53,7 @@ Hello 3,30";
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
             ICsvToXpoLoader loader = new OrdCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
 
@@ -88,7 +88,7 @@ Hello 3,30";
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
 
             var ex = Assert.Throws<ArgumentException>(() =>
                 new OrdCsvToXpoInserter(param, csvStream, xpoMapper, logger));

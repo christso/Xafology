@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.Base;
 using DevExpress.Xpo;
@@ -15,15 +16,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public class LookupValueConverter : Xafology.ExpressApp.Xpo.ValueMap.ILookupValueConverter
     {
-
-        private readonly XafApplication application;
-
         public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
-
-        public LookupValueConverter(XafApplication application)
-        {
-            this.application = application;
-        }
 
         /// <summary>
         /// Get XPO object from datastore
@@ -37,13 +30,13 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
         {
             object newValue;
             var memberType = memberInfo.MemberType;
-            var memTypeId = ModelNodeIdHelper.GetTypeId(memberType);
-            var model = application.Model.BOModel[memTypeId];
-            var cop = CriteriaOperator.Parse(string.Format("[{0}] = ?", model.DefaultProperty), value);
+            var defaultProperty = memberInfo.MemberTypeInfo.DefaultMember.Name;
+
+            var cop = CriteriaOperator.Parse(string.Format("[{0}] = ?", defaultProperty), value);
             newValue = session.FindObject(memberType, cop);
             if (newValue == null)
             {
-                newValue = CreateMemberIfMissing(session, memberType, model.DefaultProperty, value, createMember);
+                newValue = CreateMemberIfMissing(session, memberType, defaultProperty, value, createMember);
                 LogXpObjectsNotFound(memberInfo.MemberType, value);
             }
             return (IXPObject)newValue;

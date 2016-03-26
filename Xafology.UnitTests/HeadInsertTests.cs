@@ -77,7 +77,7 @@ Hello 4,13,Parent 4,Parent B4
             #region Act
 
             var csvStream = ConvertToCsvStream(csvText);
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
             loader.Execute();
             ObjectSpace.CommitChanges();
@@ -148,7 +148,7 @@ Hello 4,13,Parent 4,Parent B4
             var logger = new ImportLogger(request);
 
             var csvStream = ConvertToCsvStream(csvText);
-            var xpoMapper = new XpoFieldMapper(Application, logger);
+            var xpoMapper = new XpoFieldMapper(logger);
 
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             loader.Execute();
@@ -170,7 +170,7 @@ Lookup type 'MockLookupObject2' with value 'Parent B4 not found.
         [Test]
         public void InsertSimpleHeaderCsv()
         {
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
 
             var param = GetHeadMockParamObject();
 
@@ -221,7 +221,7 @@ Hello 3,30";
         [Test]
         public void ExceptionIfInsertInvalidHeader()
         {
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
 
             string csvText = @"Description,WrongAmount
 Hello 1,10
@@ -281,7 +281,7 @@ Hello 3,30,HTC";
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
             HeadCsvToXpoInserter loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
 
             #endregion
@@ -315,7 +315,7 @@ Hello 3,30,HTC";
         public void AddLookupObject()
         {
 
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
             var targetObj = ObjectSpace.CreateObject<MockFactObject>();
             ObjectSpace.CommitChanges();
 
@@ -368,7 +368,7 @@ Hello 3,30,HTC,Credit";
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
 
             #endregion
@@ -438,7 +438,7 @@ Hello 3,30,HTC,Credit";
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
 
             var loader = new HeadCsvToXpoInserter(param, csvStream, xpoFieldMapper, logger);
             loader.Execute();
@@ -509,7 +509,7 @@ Hello 3,30,HTC";
 
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
 
             ICsvToXpoLoader loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             Assert.Throws<InvalidOperationException>(() => loader.Execute());

@@ -10,8 +10,8 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public interface IXpoFieldMapper
     {
+        CachedXPCollections LookupCacheDictionary { get; }
         void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false);
         Dictionary<Type, List<string>> LookupsNotFound { get; }
-        Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections LookupCacheDictionary { get; }
     }
 }

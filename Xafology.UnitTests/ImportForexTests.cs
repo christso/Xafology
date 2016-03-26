@@ -40,7 +40,7 @@ namespace Xafology.ImportDemo.UnitTests
         [Test]
         public void ImportForexRateTextFile()
         {
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
             var param = ObjectSpace.CreateObject<ImportForexParam>();
 
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(

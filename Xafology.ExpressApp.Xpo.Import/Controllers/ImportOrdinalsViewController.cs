@@ -50,7 +50,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             param.File.SaveToStream(csvStream);
             csvStream.Position = 0;
 
-            var xpoMapper = new Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper(Application);
+            var xpoMapper = new Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper();
             ICsvToXpoLoader loader = null;
 
             if (param.ImportActionType == ImportActionType.Insert)

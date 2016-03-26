@@ -125,10 +125,6 @@
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
-      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
-      <Name>Xafology.ExpressApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xafology.Utils\Xafology.Utils.csproj">
       <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
       <Name>Xafology.Utils</Name>

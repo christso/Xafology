@@ -68,7 +68,7 @@ Hello 4,13,Parent 4,Parent B4
         {
             // arrange
 
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new XpoFieldMapper();
 
             var param = GetHeadMockParamObject();
 
@@ -110,7 +110,7 @@ Hello 3,30";
         //[Test]
         public void InvalidMemberValueConversions()
         {
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
 
             var targetObject = ObjectSpace.CreateObject<MockFactObject>();
 

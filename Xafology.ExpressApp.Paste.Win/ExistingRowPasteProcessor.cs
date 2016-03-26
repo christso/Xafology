@@ -13,11 +13,13 @@ namespace Xafology.ExpressApp.Paste.Win
     {
         private readonly ICopyParser copyParser;
         private readonly View view;
+        private readonly PasteUtils pasteUtils;
 
         public ExistingRowPasteProcessor(ICopyParser copyParser, View view)
         {
             this.copyParser = copyParser;
             this.view = view;
+            this.pasteUtils = new PasteUtils();
         }
 
         // note that the new row must be focused for this to work
@@ -38,7 +40,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 gridView.FocusedRowHandle = selectedRowHandles[r];
 
                 // paste cells
-                PasteUtils.PasteColumnsToRow(copiedValues[r], gridView.FocusedRowHandle,
+                pasteUtils.PasteColumnsToRow(copiedValues[r], gridView.FocusedRowHandle,
                     listEditor, view.ObjectSpace);
 
                 gridView.UpdateCurrentRow();

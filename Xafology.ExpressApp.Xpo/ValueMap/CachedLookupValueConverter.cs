@@ -18,14 +18,13 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
     {
 
         private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections cacheDictionary;
-        private readonly XafApplication application;
 
         public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
 
-        public CachedLookupValueConverter(XafApplication application,
-            Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections cacheDictionary)
+        public CachedLookupValueConverter(CachedXPCollections cacheDictionary)
         {
-            this.application = application;
+            if (cacheDictionary == null)
+                throw new ArgumentNullException("cacheDictionary");
             this.cacheDictionary = cacheDictionary;
         }
 
@@ -39,9 +38,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
         public IXPObject ConvertToXpObject(string value, IMemberInfo memberInfo, Session session,
             bool createMember = false)
         {
-            var lookupTypeId = ModelNodeIdHelper.GetTypeId(memberInfo.MemberType);
-            var lookupModel = application.Model.BOModel[lookupTypeId];
-            var lookupDefaultMember = lookupModel.FindMember(lookupModel.DefaultProperty).MemberInfo;
+            var lookupDefaultMember = memberInfo.MemberTypeInfo.DefaultMember;
 
             var cachedObjects = cacheDictionary[memberInfo.MemberType];
             object newValue = null;
@@ -50,7 +47,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             {
                 if (createMember)
                 {
-                    newValue = CreateMember(session, memberInfo.MemberType, lookupModel.DefaultProperty, value);
+                    newValue = CreateMember(session, memberInfo.MemberType, lookupDefaultMember.Name, value);
                     cachedObjects.Add(newValue);
                 }
             }

@@ -14,64 +14,44 @@ using System.Linq;
 namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     // Note: Lookup objects only work with strings as the Default property
-    public class XpoFieldMapper : Xafology.ExpressApp.Xpo.ValueMap.IXpoFieldMapper
+    public class XpoFieldMapper : IXpoFieldMapper
     {
-        protected XafApplication Application;
-        private readonly LookupValueConverter lookupValueConverter;
-        private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter cachedLookupValueConverter;
-        private readonly Dictionary<Type, List<string>> lookupsNotFound;
-        private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections lookupCacheDictionary;
-        private readonly Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger;
+        private readonly IImportLogger logger;
+        private readonly XpoFieldValueReader xpoFieldValueReader;
 
-        public XpoFieldMapper(XafApplication application)
-            : this(application, null)
+        public XpoFieldMapper()
+            : this(null)
         {
   
         }
 
-        public XpoFieldMapper(XafApplication application, Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger)
+        public XpoFieldMapper(IImportLogger logger)
         {
             if (logger == null)
-                this.logger = new Xafology.ExpressApp.Xpo.ValueMap.NullImportLogger();
+                this.logger = new NullImportLogger();
             else
                 this.logger = logger;
-
-            Application = application;
-            lookupsNotFound = new Dictionary<Type, List<string>>();
-            lookupCacheDictionary = new Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections();
-
-            lookupValueConverter = new LookupValueConverter(application)
-            {
-                UnmatchedLookupLogger = LogXpObjectsNotFound
-            };
-
-            cachedLookupValueConverter = new Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter(application, lookupCacheDictionary)
-            {
-                UnmatchedLookupLogger = LogXpObjectsNotFound
-            };
+            
+            xpoFieldValueReader = new XpoFieldValueReader(this.logger);
         }
 
-        public Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter CachedLookupValueConverter
+        public CachedLookupValueConverter CachedLookupValueConverter
         {
             get
             {
-                return cachedLookupValueConverter;
+                return xpoFieldValueReader.CachedLookupValueConverter;
             }
         }
 
         // List<string> contains object default values
         public Dictionary<Type, List<string>> LookupsNotFound
         {
-            get { return lookupsNotFound; }
+            get { return xpoFieldValueReader.LookupsNotFound; }
         }
 
-        // not used for anything other than debugging
-        public Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections LookupCacheDictionary
+        public CachedXPCollections LookupCacheDictionary
         {
-            get
-            {
-                return lookupCacheDictionary;
-            }
+            get { return xpoFieldValueReader.LookupCacheDictionary; }
         }
 
         /// <summary>
@@ -82,110 +62,18 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
         /// <param name="value">Value to assigned to the member</param>
         public void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false)
         {
-            object newValue = null;
             if (string.IsNullOrWhiteSpace(value))
             {
                 return;
             }
-            if (memberInfo.MemberType == typeof(DateTime))
-            {
-                newValue = Convert.ToDateTime(value);
-            }
-            else if (memberInfo.MemberType == typeof(bool))
-            {
-                newValue = ConvertToBool(value);
-            }
-            else if (memberInfo.MemberType == typeof(decimal))
-            {
-                newValue = Convert.ToDecimal(value);
-            }
-            else if (memberInfo.MemberType == typeof(int))
-            {
-                newValue = Convert.ToInt32(value);
-            }
-            else if (typeof(Enum).IsAssignableFrom(memberInfo.MemberType))
-            {
-                newValue = ConvertToEnum(value, memberInfo.MemberType);
-            }
-            else if (memberInfo.MemberType.IsNumericType())
-            {
-                newValue = Convert.ToDouble(value);
-            }
-            else if (typeof(IXPObject).IsAssignableFrom(memberInfo.MemberType))
-            {
-                XPCollection objs = null;
-                
-                if (cacheObject)
-                {
-                    // if object does not exist in cache list
-                    if (!lookupCacheDictionary.TryGetValue(memberInfo.MemberType, out objs))
-                    {
-                        // add key to cache
-                        lookupCacheDictionary.Add(new XPCollection(targetObj.Session, memberInfo.MemberType));
-                    }
-                    // retrieve value from cache
-                    newValue = cachedLookupValueConverter.ConvertToXpObject(
-                        value, memberInfo, targetObj.Session,
-                        createMember);
-                }
-                else
-                {
-                    newValue = lookupValueConverter.ConvertToXpObject(value, memberInfo, targetObj.Session, createMember);
-                }
-            }
-            else
-            {
-                // TODO: throw exception for unrecognized values
-                newValue = value;
-            }
+
+            object newValue = GetMemberValue(targetObj, memberInfo, value, createMember, cacheObject);
             memberInfo.SetValue(targetObj, newValue);
         }
 
-        public Enum ConvertToEnum(string value, Type memberType)
+        public object GetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember, bool cacheObject)
         {
-            // use Display Name if attribute is found
-            var fields = memberType.GetFields();
-            foreach (var field in fields)
-            {
-                object[] attrs = field.GetCustomAttributes(typeof(XafDisplayNameAttribute), true);
-                foreach (XafDisplayNameAttribute attr in attrs)
-                {
-                    if (attr.DisplayName == value)
-                    {
-                        value = field.Name;
-                        break;
-                    }
-                }
-            }
-            return (Enum)Enum.Parse(memberType, value.Replace(" ", ""), true);
-        }
-
-        private bool ConvertToBool(string value)
-        {
-            switch (value.ToLower())
-            {
-                case "unchecked":
-                    return false;
-                case "checked":
-                    return true;
-                default:
-                    return Convert.ToBoolean(value);
-            }
-        }
-
-        private void LogXpObjectsNotFound(Type memberType, string value)
-        {
-            List<string> memberValues = null;
-            if (!LookupsNotFound.TryGetValue(memberType, out memberValues))
-            {
-                memberValues = new List<string>();
-                LookupsNotFound.Add(memberType, memberValues);
-            }
-            if (!memberValues.Contains(value))
-                memberValues.Add(value);
-
-            logger.Log("Lookup type '{0}' with value '{1} not found.", memberType.Name, value);
+            return xpoFieldValueReader.GetMemberValue(targetObj, memberInfo, value, createMember, cacheObject);
         }
     }
-
 }

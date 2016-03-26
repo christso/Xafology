@@ -73,7 +73,7 @@ Hello 3,300";
             var csvStream = ConvertToCsvStream(csvText);
             var request = ObjectSpace.CreateObject<ImportRequest>();
             var logger = new ImportLogger(request);
-            var xpoFieldMapper = new XpoFieldMapper(Application);
+            var xpoFieldMapper = new XpoFieldMapper();
             ICsvToXpoLoader loader = new HeadCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);
 
             // act

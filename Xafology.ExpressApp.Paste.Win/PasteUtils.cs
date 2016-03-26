@@ -6,13 +6,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xafology.ExpressApp.Xpo;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
     public class PasteUtils
     {
-        public static void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, GridListEditor listEditor, IObjectSpace objSpace)
+        private readonly IXpoFieldMapper xpoFieldMapper;
+
+        public PasteUtils(IXpoFieldMapper xpoFieldMapper)
         {
+            this.xpoFieldMapper = xpoFieldMapper;
+        }
+
+        public PasteUtils()
+        {
+            xpoFieldMapper = new XpoFieldMapper();
+        }
+    
+        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, GridListEditor listEditor, IObjectSpace objSpace)
+        {
+
             var gridView = listEditor.GridView;
 
             // iterate through columns in listview
@@ -41,9 +56,9 @@ namespace Xafology.ExpressApp.Paste.Win
                 {
                     pasteValue = copiedValue;
                 }
-
                 gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
             }
         }
+
     }
 }
