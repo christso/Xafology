@@ -22,6 +22,9 @@ namespace Xafology.ExpressApp.Paste.Win
         private NewRowPasteProcessor newRowPasteProcessor;
         private ExistingRowPasteProcessor existingRowPasteProcessor;
 
+        const string executeCaption = "Execute";
+        const string optionsCaption = "Options";
+
         public PasteViewController()
         {
 
@@ -33,13 +36,13 @@ namespace Xafology.ExpressApp.Paste.Win
             pasteAction.Caption = "Paste";
             pasteAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
             pasteAction.Execute += PasteRowAction_Execute;
-            var defaultAction = new ChoiceActionItem();
-            defaultAction.Caption = "Default";
-            pasteAction.Items.Add(defaultAction);
+            var executeChoice = new ChoiceActionItem();
+            executeChoice.Caption = executeCaption;
+            pasteAction.Items.Add(executeChoice);
 
-            var testAction = new ChoiceActionItem();
-            testAction.Caption = "Test";
-            pasteAction.Items.Add(testAction);
+            var optionsChoice = new ChoiceActionItem();
+            optionsChoice.Caption = optionsCaption;
+            pasteAction.Items.Add(optionsChoice);
         }
 
         protected override void OnViewControlsCreated()
@@ -56,7 +59,6 @@ namespace Xafology.ExpressApp.Paste.Win
                 clipboardParser = new CopyParser(clipboard);
                 newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
                 existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
-
             }
         }
 
@@ -64,16 +66,14 @@ namespace Xafology.ExpressApp.Paste.Win
         {
             switch (e.SelectedChoiceActionItem.Caption)
             {
-                case "Default":
-
-                    Debug.Print(clipboard.Data);
+                case executeCaption:
                     string[][] copiedValues = clipboardParser.ToArray();
                     if (copiedValues == null) return;
                     PasteRowValues(copiedValues);
-
                     break;
-                case "Test":
 
+                case optionsCaption:
+                    // to be implemented
                     break;
             }
 

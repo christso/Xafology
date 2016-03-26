@@ -26,7 +26,7 @@ namespace PasteDemo.Module.Win {
         public override void Setup(XafApplication application) {
             base.Setup(application);
             // Manage various aspects of the application UI and behavior at the module level.
-            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Paste.Win.PasteModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Paste.Win.PasteWinModule));
         }
     }
 }

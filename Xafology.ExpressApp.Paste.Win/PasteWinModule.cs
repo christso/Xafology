@@ -16,7 +16,7 @@ using DevExpress.ExpressApp.Model.NodeGenerators;
 namespace Xafology.ExpressApp.Paste.Win
 {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppModuleBasetopic.aspx.
-    public class PasteModule : ModuleBase
+    public class PasteWinModule : ModuleBase
     {
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB)
         {
