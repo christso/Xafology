@@ -13,6 +13,7 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ImportDemo.Module.BusinessObjects;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ImportDemo.UnitTests
 {

@@ -11,8 +11,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Xpo.Import;
-using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.Utils;
 

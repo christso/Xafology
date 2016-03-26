@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using Xafology.Utils;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public class CachedXPCollections : UniqueIndexedType<Type, XPCollection>
     {

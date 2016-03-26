@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
 using Xafology.Utils;
@@ -52,7 +51,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             param.File.SaveToStream(csvStream);
             csvStream.Position = 0;
 
-            var xpoMapper = new XpoFieldMapper(Application);
+            var xpoMapper = new Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper(Application);
             ICsvToXpoLoader loader = null;
 
             if (param.ImportActionType == ImportActionType.Insert)

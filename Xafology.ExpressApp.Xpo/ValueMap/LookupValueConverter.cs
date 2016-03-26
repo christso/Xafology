@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
-    public class LookupValueConverter : ILookupValueConverter
+    public class LookupValueConverter : Xafology.ExpressApp.Xpo.ValueMap.ILookupValueConverter
     {
 
         private readonly XafApplication application;

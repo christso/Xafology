@@ -9,6 +9,7 @@ using Xafology.ExpressApp.Xpo.Import;
 namespace Xafology.ImportDemo.UnitTests
 {
     using DevExpress.ExpressApp;
+    using ExpressApp.Xpo.ValueMap;
     using SDP.ParserUtils;
 
     public class ForexRateInserter

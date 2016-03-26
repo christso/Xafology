@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Xafology.ExpressApp.Paste.Win
 {
     public class CellPasteProcessor
-    {
+    { 
     }
 }

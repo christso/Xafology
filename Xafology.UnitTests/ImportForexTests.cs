@@ -16,6 +16,7 @@ using Xafology.ExpressApp;
 using System.Diagnostics;
 using Xafology.Utils;
 using System.Reflection;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ImportDemo.UnitTests
 {

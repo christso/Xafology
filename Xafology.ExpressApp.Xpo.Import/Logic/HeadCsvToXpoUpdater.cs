@@ -10,23 +10,24 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using Xafology.ExpressApp.Xpo.Import.Parameters;
+
 using Xafology.Utils;
 using System.Diagnostics.Contracts;
+using Xafology.ExpressApp.Xpo.Import.Parameters;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
     public class HeadCsvToXpoUpdater : ICsvToXpoLoader, IDisposable
     {
       private readonly CsvReader csvReader;
-        private readonly XpoFieldMapper xpoFieldMapper;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper xpoFieldMapper;
         private readonly ITypeInfo objTypeInfo;
         private readonly ImportHeadersParam param;
-        private readonly IImportLogger logger;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger;
         private readonly HeadCsvToXpoRecordMapper recordMapper;
 
         public HeadCsvToXpoUpdater(ImportHeadersParam param, Stream stream,
-            XpoFieldMapper xpoFieldMapper, IImportLogger logger)
+            Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper xpoFieldMapper, Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger)
         {
             csvReader = GetCsvReaderFromStream(stream, true);
             objTypeInfo = param.ObjectTypeInfo;

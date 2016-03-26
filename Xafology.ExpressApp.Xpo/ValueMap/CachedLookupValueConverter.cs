@@ -11,19 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
 
-    public class CachedLookupValueConverter : ILookupValueConverter
+    public class CachedLookupValueConverter : Xafology.ExpressApp.Xpo.ValueMap.ILookupValueConverter
     {
 
-        private readonly CachedXPCollections cacheDictionary;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections cacheDictionary;
         private readonly XafApplication application;
 
         public LogUnmatchedLookupsDelegate UnmatchedLookupLogger { get; set; }
 
         public CachedLookupValueConverter(XafApplication application,
-            CachedXPCollections cacheDictionary)
+            Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections cacheDictionary)
         {
             this.application = application;
             this.cacheDictionary = cacheDictionary;

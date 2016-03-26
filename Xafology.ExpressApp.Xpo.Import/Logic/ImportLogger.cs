@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
-    public class ImportLogger : IImportLogger
+    public class ImportLogger : Xafology.ExpressApp.Xpo.ValueMap.IImportLogger
     {
         private readonly IImportRequest request;
 

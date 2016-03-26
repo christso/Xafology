@@ -10,20 +10,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using Xafology.ExpressApp.Xpo.Import.Parameters;
+
 using Xafology.Utils;
 using System.Collections;
-using Xafology.ExpressApp.Xpo.Import.Logic;
+using Xafology.ExpressApp.Xpo.Import.Parameters;
 
 namespace Xafology.ExpressApp.Xpo.Import.Logic
 {
     public class OrdCsvToXpoRecordMapper
     {
-        private readonly IXpoFieldMapper xpoFieldMapper;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.IXpoFieldMapper xpoFieldMapper;
         private readonly IEnumerable<OrdinalToFieldMap> fieldMaps;
         private readonly CsvReader csvReader;
 
-        public OrdCsvToXpoRecordMapper(IXpoFieldMapper xpoFieldMapper, IEnumerable<OrdinalToFieldMap> fieldMaps,
+        public OrdCsvToXpoRecordMapper(Xafology.ExpressApp.Xpo.ValueMap.IXpoFieldMapper xpoFieldMapper, IEnumerable<OrdinalToFieldMap> fieldMaps,
             CsvReader csvReader)
         {
             this.xpoFieldMapper = xpoFieldMapper;

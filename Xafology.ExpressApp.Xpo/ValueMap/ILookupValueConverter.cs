@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public delegate void LogUnmatchedLookupsDelegate(Type type, string value);
 

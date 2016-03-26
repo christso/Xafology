@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public interface IXpoFieldMapper
     {
         void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false);
         Dictionary<Type, List<string>> LookupsNotFound { get; }
-        CachedXPCollections LookupCacheDictionary { get; }
+        Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections LookupCacheDictionary { get; }
     }
 }

@@ -135,7 +135,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachedLookupValueConverter.cs" />
     <Compile Include="Controllers\ImportableViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -150,15 +149,11 @@
     </Compile>
     <Compile Include="ICsvToXpoLoader.cs" />
     <Compile Include="IImportRequest.cs" />
-    <Compile Include="ILookupValueConverter.cs" />
     <Compile Include="ImportRequest.cs" />
-    <Compile Include="IXpoFieldMapper.cs" />
     <Compile Include="IXpoImportable.cs" />
     <Compile Include="Logic\HeadCsvToXpoRecordMapper.cs" />
     <Compile Include="Logic\HeadCsvToXpoInserter.cs" />
-    <Compile Include="Logic\IImportLogger.cs" />
     <Compile Include="Logic\ImportLogger.cs" />
-    <Compile Include="Logic\NullImportLogger.cs" />
     <Compile Include="Logic\OrdCsvToXpoRecordMapper.cs" />
     <Compile Include="ImportOptions.cs" />
     <Compile Include="ImportModule.cs">
@@ -171,7 +166,6 @@
     <Compile Include="IImportOptions.cs" />
     <Compile Include="Logic\OrdCsvToXpoUpdater.cs" />
     <Compile Include="Logic\OrdCsvToXpoInserter.cs" />
-    <Compile Include="CachedXPCollections.cs" />
     <Compile Include="Parameters\FieldMaps.cs" />
     <Compile Include="FieldMapsUtil.cs" />
     <Compile Include="Parameters\ImportParam.cs" />
@@ -183,8 +177,6 @@
     <Compile Include="Parameters\ImportHeadersParam.cs" />
     <Compile Include="Parameters\ImportOrdinalsParam.cs" />
     <Compile Include="Parameters\ImportParamBase.cs" />
-    <Compile Include="XpoFieldMapper.cs" />
-    <Compile Include="LookupValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">

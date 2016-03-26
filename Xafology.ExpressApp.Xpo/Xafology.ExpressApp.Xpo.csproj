@@ -73,6 +73,14 @@
   <ItemGroup>
     <Compile Include="CloneIXPSimpleObjectHelper.cs" />
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <Compile Include="ValueMap\CachedLookupValueConverter.cs" />
+    <Compile Include="ValueMap\CachedXPCollections.cs" />
+    <Compile Include="ValueMap\IImportLogger.cs" />
+    <Compile Include="ValueMap\ILookupValueConverter.cs" />
+    <Compile Include="ValueMap\IXpoFieldMapper.cs" />
+    <Compile Include="ValueMap\LookupValueConverter.cs" />
+    <Compile Include="ValueMap\NullImportLogger.cs" />
+    <Compile Include="ValueMap\XpoFieldMapper.cs" />
     <Compile Include="ExtObjectSpaceProvider.cs" />
     <Compile Include="ExtUnitOfWork.cs">
       <SubType>Component</SubType>

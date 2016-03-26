@@ -10,19 +10,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Xafology.ExpressApp.Xpo.Import.Logic;
 
-namespace Xafology.ExpressApp.Xpo.Import
+namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     // Note: Lookup objects only work with strings as the Default property
-    public class XpoFieldMapper : IXpoFieldMapper
+    public class XpoFieldMapper : Xafology.ExpressApp.Xpo.ValueMap.IXpoFieldMapper
     {
         protected XafApplication Application;
         private readonly LookupValueConverter lookupValueConverter;
-        private readonly CachedLookupValueConverter cachedLookupValueConverter;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter cachedLookupValueConverter;
         private readonly Dictionary<Type, List<string>> lookupsNotFound;
-        private readonly CachedXPCollections lookupCacheDictionary;
-        private readonly IImportLogger logger;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections lookupCacheDictionary;
+        private readonly Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger;
 
         public XpoFieldMapper(XafApplication application)
             : this(application, null)
@@ -30,29 +29,29 @@ namespace Xafology.ExpressApp.Xpo.Import
   
         }
 
-        public XpoFieldMapper(XafApplication application, IImportLogger logger)
+        public XpoFieldMapper(XafApplication application, Xafology.ExpressApp.Xpo.ValueMap.IImportLogger logger)
         {
             if (logger == null)
-                this.logger = new NullImportLogger();
+                this.logger = new Xafology.ExpressApp.Xpo.ValueMap.NullImportLogger();
             else
                 this.logger = logger;
 
             Application = application;
             lookupsNotFound = new Dictionary<Type, List<string>>();
-            lookupCacheDictionary = new CachedXPCollections();
+            lookupCacheDictionary = new Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections();
 
             lookupValueConverter = new LookupValueConverter(application)
             {
                 UnmatchedLookupLogger = LogXpObjectsNotFound
             };
 
-            cachedLookupValueConverter = new CachedLookupValueConverter(application, lookupCacheDictionary)
+            cachedLookupValueConverter = new Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter(application, lookupCacheDictionary)
             {
                 UnmatchedLookupLogger = LogXpObjectsNotFound
             };
         }
 
-        public CachedLookupValueConverter CachedLookupValueConverter
+        public Xafology.ExpressApp.Xpo.ValueMap.CachedLookupValueConverter CachedLookupValueConverter
         {
             get
             {
@@ -67,7 +66,7 @@ namespace Xafology.ExpressApp.Xpo.Import
         }
 
         // not used for anything other than debugging
-        public CachedXPCollections LookupCacheDictionary
+        public Xafology.ExpressApp.Xpo.ValueMap.CachedXPCollections LookupCacheDictionary
         {
             get
             {

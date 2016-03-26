@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xafology.ExpressApp.Xpo.Import;
 using Xafology.ExpressApp.Xpo.Import.Logic;
 using Xafology.ExpressApp.Xpo.Import.Parameters;
+using Xafology.ExpressApp.Xpo.ValueMap;
 using Xafology.ImportDemo.Module.BusinessObjects;
 using Xafology.ImportDemo.UnitTests;
 using Xafology.TestUtils;

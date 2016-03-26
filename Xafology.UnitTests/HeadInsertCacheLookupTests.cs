@@ -15,6 +15,7 @@ using Xafology.ExpressApp.Xpo.Import;
 using System.Collections;
 using System.Diagnostics;
 using Xafology.ImportDemo.Module.BusinessObjects;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ImportDemo.UnitTests
 {

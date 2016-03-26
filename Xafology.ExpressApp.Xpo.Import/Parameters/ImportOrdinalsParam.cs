@@ -5,7 +5,7 @@ using DevExpress.Xpo;
 using System;
 using System.IO;
 
-using Xafology.ExpressApp.Xpo.Import.Logic;
+
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
