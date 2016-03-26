@@ -21,9 +21,11 @@ namespace Xafology.ExpressApp.Paste.Win
         private Clipboard clipboard;
         private NewRowPasteProcessor newRowPasteProcessor;
         private ExistingRowPasteProcessor existingRowPasteProcessor;
+        private CellPasteProcessor cellPasteProcessor;
 
-        const string executeCaption = "Execute";
+        const string pasteRowsCaption = "Paste Rows";
         const string optionsCaption = "Options";
+        const string pasteCellsCaption = "Paste Cells";
 
         public PasteViewController()
         {
@@ -36,9 +38,14 @@ namespace Xafology.ExpressApp.Paste.Win
             pasteAction.Caption = "Paste";
             pasteAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
             pasteAction.Execute += PasteRowAction_Execute;
-            var executeChoice = new ChoiceActionItem();
-            executeChoice.Caption = executeCaption;
-            pasteAction.Items.Add(executeChoice);
+
+            var pasteRowChoice = new ChoiceActionItem();
+            pasteRowChoice.Caption = pasteRowsCaption;
+            pasteAction.Items.Add(pasteRowChoice);
+
+            var pasteCellsChoice = new ChoiceActionItem();
+            pasteCellsChoice.Caption = pasteCellsCaption;
+            pasteAction.Items.Add(pasteCellsChoice);
 
             var optionsChoice = new ChoiceActionItem();
             optionsChoice.Caption = optionsCaption;
@@ -59,6 +66,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 clipboardParser = new CopyParser(clipboard);
                 newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
                 existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
+                cellPasteProcessor = new CellPasteProcessor(clipboardParser, this.View);
             }
         }
 
@@ -66,12 +74,12 @@ namespace Xafology.ExpressApp.Paste.Win
         {
             switch (e.SelectedChoiceActionItem.Caption)
             {
-                case executeCaption:
-                    string[][] copiedValues = clipboardParser.ToArray();
-                    if (copiedValues == null) return;
-                    PasteRowValues(copiedValues);
+                case pasteRowsCaption:
+                    PasteRowValues();
                     break;
-
+                case pasteCellsCaption:
+                    PasteCellValues();
+                    break;
                 case optionsCaption:
                     // to be implemented
                     break;
@@ -79,8 +87,11 @@ namespace Xafology.ExpressApp.Paste.Win
 
         }
 
-        private void PasteRowValues(string[][] copiedValues)
+        private void PasteRowValues()
         {
+            string[][] copiedValues = clipboardParser.ToArray();
+            if (copiedValues == null) return;
+
             GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
 
             if (listEditor != null)
@@ -101,5 +112,14 @@ namespace Xafology.ExpressApp.Paste.Win
                 }
             }
         }
+
+
+        private void PasteCellValues()
+        {
+            string[] copiedValues = clipboardParser.ToArray(0);
+            if (copiedValues == null) return;
+            cellPasteProcessor.Process(copiedValues);
+        }
+
     }
 }

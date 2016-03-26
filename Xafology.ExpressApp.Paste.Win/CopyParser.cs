@@ -28,6 +28,18 @@ namespace Xafology.ExpressApp.Paste.Win
             return parsed;
         }
 
+        public string[] ToArray(int column)
+        {
+            string[][] data = ToArray();
+            if (data == null) return null;
+            string[] result = new string[data.Length];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = data[i][column];
+            }
+            return result;
+        }
+
         // split tab-delimited string into array
         private string[] GetRowData(string data)
         {
