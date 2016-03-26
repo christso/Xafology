@@ -229,11 +229,11 @@
       <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module.Web\Xafology.ImportDemo.Module.Web.csproj">
-      <Project>{0C729AAD-7626-4668-A7F1-35F7D240489D}</Project>
+      <Project>{a74d706d-9899-45e9-a305-98a6849739e0}</Project>
       <Name>Xafology.ImportDemo.Module.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{47334835-47a0-4256-91f9-529943f91c85}</Project>
       <Name>Xafology.ImportDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>

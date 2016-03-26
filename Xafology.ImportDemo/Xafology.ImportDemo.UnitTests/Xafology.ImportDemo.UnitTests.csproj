@@ -103,29 +103,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
       <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
       <Name>Xafology.ExpressApp.Xpo.Import</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ImportDemo\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
-      <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
-      <Name>Xafology.ImportDemo.Module</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xafology.Tests\Xafology.TestUtils.csproj">
+    <ProjectReference Include="..\..\Xafology.Tests\Xafology.TestUtils.csproj">
       <Project>{51e0010f-cd1d-47bb-894c-d9347e48ee44}</Project>
       <Name>Xafology.TestUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.Utils\Xafology.Utils.csproj">
+    <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
       <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
       <Name>Xafology.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
+      <Project>{47334835-47a0-4256-91f9-529943f91c85}</Project>
+      <Name>Xafology.ImportDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

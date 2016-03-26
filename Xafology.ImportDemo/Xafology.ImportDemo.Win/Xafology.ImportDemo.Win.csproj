@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D05D93DF-312D-4D4E-B980-726871EC7833}</ProjectGuid>
+    <ProjectGuid>{5596BE8A-E00C-4DDA-B0BD-5BD6B47B0894}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xafology.ImportDemo.Win</RootNamespace>
@@ -270,11 +270,11 @@
       <Name>Xafology.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module.Win\Xafology.ImportDemo.Module.Win.csproj">
-      <Project>{7964f87d-bc5d-4c4e-8b2f-71e89739aa97}</Project>
+      <Project>{ee735356-cd44-43a7-bf7c-c9afc2fb866a}</Project>
       <Name>Xafology.ImportDemo.Module.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
-      <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
+      <Project>{47334835-47a0-4256-91f9-529943f91c85}</Project>
       <Name>Xafology.ImportDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>
