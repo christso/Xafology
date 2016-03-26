@@ -22,6 +22,12 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
         private readonly CachedXPCollections lookupCacheDictionary;
         private readonly IImportLogger logger;
 
+        public XpoFieldValueReader()
+            : this(null)
+        {
+
+        }
+
         public XpoFieldValueReader(IImportLogger logger)
         {
             if (logger == null)
@@ -56,7 +62,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             get { return lookupCacheDictionary;  }
         }
 
-        public object GetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember, bool cacheObject)
+        public object GetMemberValue(Session session, IMemberInfo memberInfo, string value, bool createMember, bool cacheObject)
         {
             object newValue = null;
             if (memberInfo.MemberType == typeof(DateTime))
@@ -93,16 +99,16 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
                     if (!lookupCacheDictionary.TryGetValue(memberInfo.MemberType, out objs))
                     {
                         // add key to cache
-                        lookupCacheDictionary.Add(new XPCollection(targetObj.Session, memberInfo.MemberType));
+                        lookupCacheDictionary.Add(new XPCollection(session, memberInfo.MemberType));
                     }
                     // retrieve value from cache
                     newValue = cachedLookupValueConverter.ConvertToXpObject(
-                        value, memberInfo, targetObj.Session,
+                        value, memberInfo, session,
                         createMember);
                 }
                 else
                 {
-                    newValue = lookupValueConverter.ConvertToXpObject(value, memberInfo, targetObj.Session, createMember);
+                    newValue = lookupValueConverter.ConvertToXpObject(value, memberInfo, session, createMember);
                 }
             }
             else

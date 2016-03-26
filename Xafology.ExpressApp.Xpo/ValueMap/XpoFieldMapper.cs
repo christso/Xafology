@@ -67,13 +67,13 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
                 return;
             }
 
-            object newValue = GetMemberValue(targetObj, memberInfo, value, createMember, cacheObject);
+            object newValue = GetMemberValue(targetObj.Session, memberInfo, value, createMember, cacheObject);
             memberInfo.SetValue(targetObj, newValue);
         }
 
-        public object GetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember, bool cacheObject)
+        public object GetMemberValue(Session session, IMemberInfo memberInfo, string value, bool createMember, bool cacheObject)
         {
-            return xpoFieldValueReader.GetMemberValue(targetObj, memberInfo, value, createMember, cacheObject);
+            return xpoFieldValueReader.GetMemberValue(session, memberInfo, value, createMember, cacheObject);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Win.Editors;
+using DevExpress.ExpressApp.Xpo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,16 @@ namespace Xafology.ExpressApp.Paste.Win
 {
     public class PasteUtils
     {
-        private readonly IXpoFieldMapper xpoFieldMapper;
+        private readonly IXpoFieldValueReader xpoFieldValueReader;
 
-        public PasteUtils(IXpoFieldMapper xpoFieldMapper)
+        public PasteUtils(IXpoFieldValueReader xpoFieldReader)
         {
-            this.xpoFieldMapper = xpoFieldMapper;
+            this.xpoFieldValueReader = xpoFieldReader;
         }
 
         public PasteUtils()
         {
-            xpoFieldMapper = new XpoFieldMapper();
+            xpoFieldValueReader = new XpoFieldValueReader();
         }
     
         public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, GridListEditor listEditor, IObjectSpace objSpace)
@@ -37,7 +38,6 @@ namespace Xafology.ExpressApp.Paste.Win
                 var isLookup = !string.IsNullOrEmpty(member.LookupProperty);
                 var gridColumnKey = member.Name + (isLookup ? "!" : "");
                 var gridColumn = gridView.Columns[gridColumnKey];
-                var objType = member.Type;
                 var copiedValue = copiedRowValues[columnIndex];
                 
                 // skip non-editable, key or invisible column
@@ -45,17 +45,9 @@ namespace Xafology.ExpressApp.Paste.Win
                     || !gridColumn.Visible)
                     continue;
 
-                object pasteValue = null;
-                if (isLookup)
-                {
-                    var criteria = CriteriaOperator.Parse(string.Format(
-                        "{0} LIKE ?", member.LookupProperty), copiedValue);
-                    pasteValue = objSpace.FindObject(objType, criteria);
-                }
-                else
-                {
-                    pasteValue = copiedValue;
-                }
+                var pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session, 
+                    member.MemberInfo, copiedValue, true, true);
+
                 gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
             }
         }
