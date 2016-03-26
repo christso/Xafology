@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Model;
+using DevExpress.Persistent.Validation;
 
 namespace PasteDemo.Module.BusinessObjects
 {
@@ -16,11 +18,36 @@ namespace PasteDemo.Module.BusinessObjects
     {
         private string description;
         private decimal amount;
- 
+        private DateTime tranDate;
+        private string memo;
+
         public MockFactObject(DevExpress.Xpo.Session session)
             : base(session)
         {
 
+        }
+
+        [NonPersistent]
+        public string ShortUID
+        {
+            get
+            {
+                return Convert.ToString(Oid).Substring(0, 8);
+            }
+        }
+
+        [ModelDefault("DisplayFormat", "dd-MMM-yy")]
+        [RuleRequiredField("MockFactObject.TranDate_RuleRequiredField", DefaultContexts.Save)]
+        public DateTime TranDate
+        {
+            get
+            {
+                return tranDate;
+            }
+            set
+            {
+                SetPropertyValue("TranDate", ref tranDate, value.Date);
+            }
         }
 
         public string Description
@@ -33,8 +60,20 @@ namespace PasteDemo.Module.BusinessObjects
             {
                 SetPropertyValue("Description", ref description, value);
             }
-        }		
+        }
 
+        [Size(SizeAttribute.Unlimited)]
+        public string Memo
+        {
+            get
+            {
+                return memo;
+            }
+            set
+            {
+                SetPropertyValue("Memo", ref memo, value);
+            }
+        }
 
         public decimal Amount
         {
@@ -49,7 +88,6 @@ namespace PasteDemo.Module.BusinessObjects
         }
 
         private MockLookupObject1 mockLookupObject1;
-
         public MockLookupObject1 MockLookupObject1
         {
             get
@@ -64,7 +102,6 @@ namespace PasteDemo.Module.BusinessObjects
 
 
         private MockLookupObject2 mockLookupObject2;
-
         public MockLookupObject2 MockLookupObject2
         {
             get
@@ -75,6 +112,26 @@ namespace PasteDemo.Module.BusinessObjects
             {
                 SetPropertyValue("MockLookupObject2", ref mockLookupObject2, value);
             }
-        }		
+        }
+
+        private Status status;
+        public Status Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                SetPropertyValue("Status", ref status, value);
+            }
+        }
+
+    }
+
+    public enum Status
+    {
+        Status0 = 0,
+        Status1 = 1
     }
 }

@@ -10,7 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Globalization;
 
 namespace Xafology.ExpressApp.Xpo.ValueMap
 {
@@ -75,7 +75,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             }
             else if (memberInfo.MemberType == typeof(decimal))
             {
-                newValue = Convert.ToDecimal(value);
+                newValue = ToDecimal(value);
             }
             else if (memberInfo.MemberType == typeof(int))
             {
@@ -149,6 +149,19 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
                 default:
                     return Convert.ToBoolean(value);
             }
+        }
+
+        private decimal ToDecimal(string Value)
+        {
+            if (Value.Length == 0)
+                return 0;
+            else
+                return Decimal.Parse(Value.Replace(" ", ""),
+                    NumberStyles.AllowThousands
+                    | NumberStyles.AllowDecimalPoint
+                    | NumberStyles.AllowCurrencySymbol
+                    | NumberStyles.AllowLeadingSign
+                    | NumberStyles.AllowParentheses);
         }
 
 

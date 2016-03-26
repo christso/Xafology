@@ -6,6 +6,7 @@ using DevExpress.Xpo;
 using DevExpress.XtraGrid.Columns;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,23 +34,34 @@ namespace Xafology.ExpressApp.Paste.Win
             var gridView = listEditor.GridView;
 
             // iterate through columns in listview
-            for (int columnIndex = 0; columnIndex < listEditor.Model.ModelClass.OwnMembers.Count; columnIndex++)
+            int columnIndex = 0;
+            foreach (var member in listEditor.Model.ModelClass.OwnMembers)
             {
-                var member = listEditor.Model.ModelClass.OwnMembers[columnIndex];
+                if (columnIndex >= copiedRowValues.Length)
+                    break;
+
                 var isLookup = !string.IsNullOrEmpty(member.LookupProperty);
                 var gridColumnKey = member.Name + (isLookup ? "!" : "");
                 var gridColumn = gridView.Columns[gridColumnKey];
                 var copiedValue = copiedRowValues[columnIndex];
-                
-                // skip non-editable, key or invisible column
-                if (!member.AllowEdit|| member.Name == listEditor.Model.ModelClass.KeyProperty 
-                    || !gridColumn.Visible)
-                    continue;
 
-                var pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session, 
-                    member.MemberInfo, copiedValue, true, true);
+                // if column is visible in grid, then increment the copiedValue column counter
+                if (gridColumn.Visible)
+                    columnIndex++;
 
-                gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
+                // skip non-editable, key column, invisible column or blank values
+                // otherwise paste values
+                if (member.AllowEdit 
+                    && member.Name != listEditor.Model.ModelClass.KeyProperty
+                    && gridColumn.Visible
+                    && !string.IsNullOrEmpty(copiedValue)
+                    && !string.IsNullOrWhiteSpace(copiedValue)
+                    )
+                {
+                    var pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
+                        member.MemberInfo, copiedValue, true, true);
+                    gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
+                }
             }
         }
 
