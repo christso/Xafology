@@ -37,6 +37,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 var isLookup = !string.IsNullOrEmpty(member.LookupProperty);
                 var gridColumnKey = member.Name + (isLookup ? "!" : "");
                 var gridColumn = gridView.Columns[gridColumnKey];
+                var objType = member.Type;
                 var copiedValue = copiedRowValues[columnIndex];
                 
                 // skip non-editable, key or invisible column
@@ -47,7 +48,6 @@ namespace Xafology.ExpressApp.Paste.Win
                 object pasteValue = null;
                 if (isLookup)
                 {
-                    var objType = gridColumn.ColumnType;
                     var criteria = CriteriaOperator.Parse(string.Format(
                         "{0} LIKE ?", member.LookupProperty), copiedValue);
                     pasteValue = objSpace.FindObject(objType, criteria);

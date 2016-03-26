@@ -78,6 +78,7 @@
     <Compile Include="ValueMap\IImportLogger.cs" />
     <Compile Include="ValueMap\ILookupValueConverter.cs" />
     <Compile Include="ValueMap\IXpoFieldMapper.cs" />
+    <Compile Include="ValueMap\IXpoFieldValueReader.cs" />
     <Compile Include="ValueMap\LookupValueConverter.cs" />
     <Compile Include="ValueMap\NullImportLogger.cs" />
     <Compile Include="ValueMap\XpoFieldMapper.cs" />

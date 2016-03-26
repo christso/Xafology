@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Xafology.ExpressApp.Xpo.ValueMap
 {
-    public class XpoFieldValueReader
+    public class XpoFieldValueReader : IXpoFieldValueReader
     {
         private readonly LookupValueConverter lookupValueConverter;
         private readonly CachedLookupValueConverter cachedLookupValueConverter;
