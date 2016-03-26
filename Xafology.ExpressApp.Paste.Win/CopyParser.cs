@@ -16,6 +16,7 @@ namespace Xafology.ExpressApp.Paste.Win
             this.copiedText = copiedText;
         }
 
+        // returns jagged array
         public string[][] ToArray()
         {
             string[] data = copiedText.Data.Split('\n');

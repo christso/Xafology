@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Xafology.TestUtils
 {
+    public class TestController : ViewController<ListView>
+    {
+        public string TestString = "Some string";
+    }
 
     public class TestListEditor : ListEditor
     {

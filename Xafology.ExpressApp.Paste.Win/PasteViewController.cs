@@ -24,12 +24,10 @@ namespace Xafology.ExpressApp.Paste.Win
         private CellPasteProcessor cellPasteProcessor;
 
         const string pasteRowsCaption = "Paste Rows";
-        const string optionsCaption = "Options";
         const string pasteCellsCaption = "Paste Cells";
 
         public PasteViewController()
         {
-
             // if set to true, then you need to remove the column headers before pasting it to another row
             this.copyColumnHeaders = DevExpress.Utils.DefaultBoolean.True;
             TargetViewType = ViewType.ListView;
@@ -46,10 +44,6 @@ namespace Xafology.ExpressApp.Paste.Win
             var pasteCellsChoice = new ChoiceActionItem();
             pasteCellsChoice.Caption = pasteCellsCaption;
             pasteAction.Items.Add(pasteCellsChoice);
-
-            var optionsChoice = new ChoiceActionItem();
-            optionsChoice.Caption = optionsCaption;
-            pasteAction.Items.Add(optionsChoice);
         }
 
         protected override void OnViewControlsCreated()
@@ -80,11 +74,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 case pasteCellsCaption:
                     PasteCellValues();
                     break;
-                case optionsCaption:
-                    // to be implemented
-                    break;
             }
-
         }
 
         private void PasteRowValues()
@@ -97,7 +87,6 @@ namespace Xafology.ExpressApp.Paste.Win
             if (listEditor != null)
             {
                 var gridView = listEditor.GridView;
-                Session session = ((XPObjectSpace)ObjectSpace).Session;
 
                 if ((gridView.IsNewItemRow(gridView.FocusedRowHandle)))
                 {
@@ -112,7 +101,6 @@ namespace Xafology.ExpressApp.Paste.Win
                 }
             }
         }
-
 
         private void PasteCellValues()
         {
