@@ -71,6 +71,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>

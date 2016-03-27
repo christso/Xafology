@@ -143,6 +143,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.SpreadsheetImpl\Xafology.SpreadsheetImpl.csproj">
       <Project>{06563356-2687-4bd0-827d-d48e673fe0ca}</Project>
       <Name>Xafology.SpreadsheetImpl</Name>

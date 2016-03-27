@@ -113,6 +113,12 @@
     <None Include="Images\ReadMe.txt" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(Configuration)==Release ( NuGet.exe pack "$(ProjectPath)" -OutputDirectory "$(NugetPackageSourceLocalPath)" -Prop Configuration=Release )</PostBuildEvent>

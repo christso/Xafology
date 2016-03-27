@@ -60,8 +60,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -157,10 +157,6 @@
       <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Xafology.ExpressApp, Version=1.2.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xafology.ExpressApp.1.2.0.3\lib\net45\Xafology.ExpressApp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -192,7 +188,6 @@
     <Content Include="Model.xafml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -212,6 +207,10 @@
     <ProjectReference Include="..\..\Xafology.ExpressApp.MsoExcel\Xafology.ExpressApp.MsoExcel.csproj">
       <Project>{996f0f42-b494-44c4-837f-db831fd5d860}</Project>
       <Name>Xafology.ExpressApp.MsoExcel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ExcelReportDemo.Module.Win\Xafology.ExcelReportDemo.Module.Win.csproj">
       <Project>{c6f77575-7754-41ea-bc2e-a0bb3d838119}</Project>

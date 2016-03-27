@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.Printing.v15.2.Core.dll</HintPath>
+      
     </Reference>
     <Reference Include="DevExpress.Utils.v15.2">
       <SpecificVersion>False</SpecificVersion>
@@ -110,6 +110,10 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>

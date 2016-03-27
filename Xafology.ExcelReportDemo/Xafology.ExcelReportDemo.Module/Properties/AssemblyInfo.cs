@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Xafology.ExcelReportDemo.Module")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("-")]
+[assembly: AssemblyCompany("DG2NTT Pty Ltd")]
 [assembly: AssemblyProduct("Xafology.ExcelReportDemo.Module")]
 [assembly: AssemblyCopyright("Copyright © - 2007")]
 [assembly: AssemblyTrademark("")]

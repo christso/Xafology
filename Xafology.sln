@@ -113,6 +113,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Win", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.BatchDelete.Win", "Xafology.ExpressApp.BatchDelete.Win\Xafology.ExpressApp.BatchDelete.Win.csproj", "{4DF180EB-2B27-41C9-B439-6000C9F2936C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.Data", "Xafology.Data\Xafology.Data.csproj", "{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -606,6 +608,18 @@ Global
 		{4DF180EB-2B27-41C9-B439-6000C9F2936C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DF180EB-2B27-41C9-B439-6000C9F2936C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4DF180EB-2B27-41C9-B439-6000C9F2936C}.Release|x86.Build.0 = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.EasyTest|x86.ActiveCfg = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.EasyTest|x86.Build.0 = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -655,5 +669,6 @@ Global
 		{5D1EB263-186E-4997-A799-1D7661F33140} = {8DD9E439-67A0-4332-A5FE-EE0E8F071875}
 		{05D167D7-A687-42D3-A3BC-10568CA39E0C} = {8DD9E439-67A0-4332-A5FE-EE0E8F071875}
 		{4DF180EB-2B27-41C9-B439-6000C9F2936C} = {37BF83B1-84DE-4093-8F06-F4FC8EAE1E4F}
+		{AD7BA40A-EFB1-43BA-AC0A-1CA39087EA1F} = {8F59E7E4-9606-4BAE-874D-01A3FF05034D}
 	EndGlobalSection
 EndGlobal

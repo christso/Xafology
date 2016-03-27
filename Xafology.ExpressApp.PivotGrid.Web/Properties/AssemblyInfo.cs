@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Xafology.ExpressApp.PivotGrid.Web")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("-")]
+[assembly: AssemblyCompany("DG2NTT Pty Ltd")]
 [assembly: AssemblyProduct("Xafology.ExpressApp.PivotGrid.Web")]
 [assembly: AssemblyCopyright("Copyright © - 2007")]
 [assembly: AssemblyTrademark("")]
@@ -28,4 +28,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.3.0.3")]
+[assembly: AssemblyVersion(Xafology.Data.AssemblyInfo.Version)]

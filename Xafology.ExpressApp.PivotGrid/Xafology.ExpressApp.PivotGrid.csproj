@@ -163,6 +163,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Layout\Xafology.ExpressApp.Layout.csproj">
       <Project>{5f15837d-d1e5-44dc-92f0-4f2ebe9c3f8d}</Project>
       <Name>Xafology.ExpressApp.Layout</Name>

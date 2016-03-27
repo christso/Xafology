@@ -66,9 +66,11 @@
     <Reference Include="DevExpress.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DevExpress 15.2\Components\Bin\Framework\DevExpress.XtraGrid.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -90,7 +92,6 @@
     <Compile Include="BatchDeleteListViewControllerWin.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="BatchDeleteWinModule.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -101,13 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
-    <EmbeddedResource Include="BatchDeleteWinModule.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>BatchDeleteWinModule.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DatabaseUpdate\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BusinessObjects\ReadMe.txt" />
@@ -117,6 +111,10 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
+      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
+      <Name>Xafology.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.BatchDelete\Xafology.ExpressApp.BatchDelete.csproj">
       <Project>{5c705d59-b790-4c51-ad63-a93a9c161b78}</Project>
       <Name>Xafology.ExpressApp.BatchDelete</Name>

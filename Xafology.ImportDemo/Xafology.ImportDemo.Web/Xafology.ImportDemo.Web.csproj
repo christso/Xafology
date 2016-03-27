@@ -52,19 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Xafology.ExpressApp, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Xafology.ExpressApp\bin\Debug\Xafology.ExpressApp.dll</HintPath>
-    </Reference>
-    <Reference Include="Xafology.ExpressApp.Concurrency, Version=1.0.5259.39850, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Xafology.ExpressApp.Concurrency\bin\Debug\Xafology.ExpressApp.Concurrency.dll</HintPath>
-    </Reference>
-    <Reference Include="Xafology.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Packages\Xafology\Xafology.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.ExpressApp.Objects.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
@@ -235,6 +223,14 @@
     <ProjectReference Include="..\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj">
       <Project>{47334835-47a0-4256-91f9-529943f91c85}</Project>
       <Name>Xafology.ImportDemo.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

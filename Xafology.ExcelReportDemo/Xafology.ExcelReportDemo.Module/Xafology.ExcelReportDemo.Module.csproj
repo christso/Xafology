@@ -81,10 +81,6 @@
       <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Xafology.ExpressApp, Version=1.2.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xafology.ExpressApp.1.2.0.3\lib\net45\Xafology.ExpressApp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\CashFlow.cs" />
@@ -126,7 +122,6 @@
   <ItemGroup>
     <None Include="FunctionalTests\Sample.ets" />
     <None Include="Images\ReadMe.txt" />
-    <None Include="packages.config" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +131,10 @@
     <ProjectReference Include="..\..\Xafology.ExpressApp.MsoExcel\Xafology.ExpressApp.MsoExcel.csproj">
       <Project>{996f0f42-b494-44c4-837f-db831fd5d860}</Project>
       <Name>Xafology.ExpressApp.MsoExcel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Xafology.Spreadsheet\Xafology.Spreadsheet.csproj">
       <Project>{e8a8591e-fd7b-4e26-8db2-872074f125eb}</Project>
