@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Updater.cs" />
     <Compile Include="ValueMap\XpoFieldValueReader.cs" />
+    <Compile Include="XpoCriteriaFixer.cs" />
     <Compile Include="XpoExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{82A6DBC9-B1B4-44E4-9718-55DF930CD349}</ProjectGuid>
+    <ProjectGuid>{07F57354-223D-4AC0-AD8F-58743C33DEA2}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -24,6 +24,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -195,16 +196,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExcelReportDemo.Module.Web\Xafology.ExcelReportDemo.Module.Web.csproj">
-      <Project>{0C729AAD-7626-4668-A7F1-35F7D240489D}</Project>
-      <Name>Xafology.ExcelReportDemo.Module.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
-      <Name>Xafology.ExcelReportDemo.Module</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ReadMe.txt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -215,6 +206,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xafology.ExcelReportDemo.Module.Web\Xafology.ExcelReportDemo.Module.Web.csproj">
+      <Project>{13b1168a-9129-4523-8565-4a3b6968af2c}</Project>
+      <Name>Xafology.ExcelReportDemo.Module.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj">
+      <Project>{c554f5d2-7295-4c65-bc70-afbd251c51c8}</Project>
+      <Name>Xafology.ExcelReportDemo.Module</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D05D93DF-312D-4D4E-B980-726871EC7833}</ProjectGuid>
+    <ProjectGuid>{A67A7ABA-88DA-4386-825E-0378EB462C6C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xafology.ExcelReportDemo.Win</RootNamespace>
@@ -214,11 +214,11 @@
       <Name>Xafology.ExpressApp.MsoExcel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ExcelReportDemo.Module.Win\Xafology.ExcelReportDemo.Module.Win.csproj">
-      <Project>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</Project>
+      <Project>{c6f77575-7754-41ea-bc2e-a0bb3d838119}</Project>
       <Name>Xafology.ExcelReportDemo.Module.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{c554f5d2-7295-4c65-bc70-afbd251c51c8}</Project>
       <Name>Xafology.ExcelReportDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>
