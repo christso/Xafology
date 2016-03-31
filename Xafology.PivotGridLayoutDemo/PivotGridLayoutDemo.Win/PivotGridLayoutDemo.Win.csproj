@@ -5,11 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PivotGridLayoutDemo.Module.Win</RootNamespace>
-    <AssemblyName>PivotGridLayoutDemo.Module.Win</AssemblyName>
+    <RootNamespace>PivotGridLayoutDemo.Win</RootNamespace>
+    <AssemblyName>PivotGridLayoutDemo.Win</AssemblyName>
+    <ApplicationIcon>ExpressApp.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -59,19 +60,25 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.PivotGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.PivotGrid.Win.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Validation.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.ExpressApp.Validation.Win.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Office.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v15.2.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Utils.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.Printing.v15.2.Core">
@@ -80,10 +87,10 @@
     <Reference Include="DevExpress.Data.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
+    <Reference Include="DevExpress.ExpressApp.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v15.2">
+    <Reference Include="DevExpress.ExpressApp.Images.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.ExpressApp.Win.v15.2">
@@ -105,6 +112,9 @@
     <Reference Include="DevExpress.XtraGrid.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -114,12 +124,22 @@
     <Reference Include="DevExpress.XtraNavBar.v15.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v15.2">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="DevExpress.XtraPivotGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2">
       <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -146,53 +166,69 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DomainObject1PivotGridLayoutControllerWin.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinModule.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinModule.Designer.cs">
-      <DependentUpon>WinModule.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="WinModule.resx">
-      <DependentUpon>WinModule.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinApplication.resx">
+      <DependentUpon>WinApplication.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WinApplication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinApplication.Designer.cs">
+      <DependentUpon>WinApplication.cs</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <Content Include="Model.xafml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExpressApp.ico" />
+    <None Include="Images\ReadMe.txt" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout.Win\Xafology.ExpressApp.PivotGridLayout.Win.csproj">
+      <Project>{afaf1c47-1d22-477c-ae2b-5054ba8f70f6}</Project>
+      <Name>Xafology.ExpressApp.PivotGridLayout.Win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+      <Project>{ceab89b1-8d0d-4e61-8c36-2d8efd2f202a}</Project>
+      <Name>Xafology.ExpressApp.PivotGridLayout</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Xafology.PivotGrid\Xafology.PivotGrid.csproj">
       <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
       <Name>Xafology.PivotGrid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout.Win\Xafology.ExpressApp.PivotGridLayout.Win.csproj">
-      <Project>{AFAF1C47-1D22-477C-AE2B-5054BA8F70F6}</Project>
-      <Name>Xafology.ExpressApp.PivotGridLayout.Win</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
-      <Project>{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}</Project>
-      <Name>Xafology.ExpressApp.PivotGridLayout</Name>
+    <ProjectReference Include="..\PivotGridLayoutDemo.Module.Win\PivotGridLayoutDemo.Module.Win.csproj">
+      <Project>{4a793ad7-2777-404e-b4f7-1f993fb104fe}</Project>
+      <Name>PivotGridLayoutDemo.Module.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{54388ea2-1711-4c58-9ae9-e86ea935e1c5}</Project>
       <Name>PivotGridLayoutDemo.Module</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Controllers\ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Editors\ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\ReadMe.txt" />
-    <None Include="packages.config" />
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -212,7 +248,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.PivotGridLayout.Controllers;
 using DevExpress.XtraPivotGrid;
-using PivotGridLayoutDemo.Module.BusinessUtils;
 using Xafology.PivotGrid;
 using DevExpress.ExpressApp;
+using PivotGridLayoutDemo.Module.BusinessUtils;
 
 namespace PivotGridLayoutDemo.Module.Win.Controllers
 {

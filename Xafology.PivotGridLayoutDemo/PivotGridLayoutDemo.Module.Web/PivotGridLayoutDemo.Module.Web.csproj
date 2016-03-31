@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0C729AAD-7626-4668-A7F1-35F7D240489D}</ProjectGuid>
+    <ProjectGuid>{5201A18B-D9DB-4DA1-9C7E-08CB950A7421}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PivotGridLayoutDemo.Module.Web</RootNamespace>
@@ -146,16 +146,16 @@
       <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
       <Name>Xafology.PivotGrid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj">
       <Project>{856E1953-586D-419D-BEB8-6D5D96ECAC86}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
       <Project>{ceab89b1-8d0d-4e61-8c36-2d8efd2f202a}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout</Name>
     </ProjectReference>
     <ProjectReference Include="..\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{54388ea2-1711-4c58-9ae9-e86ea935e1c5}</Project>
       <Name>PivotGridLayoutDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>

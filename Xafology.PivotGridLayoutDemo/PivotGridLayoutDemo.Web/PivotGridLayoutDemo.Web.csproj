@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{82A6DBC9-B1B4-44E4-9718-55DF930CD349}</ProjectGuid>
+    <ProjectGuid>{FB0AB9C9-24A7-4118-9A3F-8D3E0566725E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -24,6 +24,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,20 +211,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj">
-      <Project>{856E1953-586D-419D-BEB8-6D5D96ECAC86}</Project>
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout.Web\Xafology.ExpressApp.PivotGridLayout.Web.csproj">
+      <Project>{856e1953-586d-419d-beb8-6d5d96ecac86}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+    <ProjectReference Include="..\..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
       <Project>{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout</Name>
     </ProjectReference>
     <ProjectReference Include="..\PivotGridLayoutDemo.Module.Web\PivotGridLayoutDemo.Module.Web.csproj">
-      <Project>{0C729AAD-7626-4668-A7F1-35F7D240489D}</Project>
+      <Project>{5201a18b-d9db-4da1-9c7e-08cb950a7421}</Project>
       <Name>PivotGridLayoutDemo.Module.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{54388ea2-1711-4c58-9ae9-e86ea935e1c5}</Project>
       <Name>PivotGridLayoutDemo.Module</Name>
     </ProjectReference>
   </ItemGroup>

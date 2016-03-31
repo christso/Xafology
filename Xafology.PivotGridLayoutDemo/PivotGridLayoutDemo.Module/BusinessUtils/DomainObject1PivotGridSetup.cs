@@ -47,7 +47,7 @@ namespace PivotGridLayoutDemo.Module.BusinessUtils
 
             Category1Field = new PivotGridFieldBase("Category1", PivotArea.ColumnArea);
             Category1Field.Name = "fieldCategory1";
-            Category1Field.Caption = "My Category1 2014-05-14 9:30 AM";
+            Category1Field.Caption = "My Category1";
             Fields.Add(Category1Field);
 
             Category2Field = new PivotGridFieldBase("Category2", PivotArea.ColumnArea);
