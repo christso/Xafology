@@ -25,7 +25,6 @@ namespace Xafology.ImportDemo.UnitTests
 
 
             // reader must be instantiated on main thread or you get null exception
-            // TODO: move into demo project?
             var reader = new FlatFileReader(stream, Encoding.GetEncoding("iso-8859-1"));
         }
 
