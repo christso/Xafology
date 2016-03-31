@@ -85,38 +85,43 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
             {
                 CacheLayoutStream();
 
+                IObjectSpace objectSpace = Application.CreateObjectSpace();
+
                 Type objType = typeof(PivotGridSavedLayout);
                 string viewId = "PivotGridSavedLayoutUISave_ListView";
-                CollectionSourceBase collectionSource = Application.CreateCollectionSource(Application.CreateObjectSpace(), objType, viewId);
+                var collectionSource = Application.CreateCollectionSource(Application.CreateObjectSpace(), objType, viewId);
                 collectionSource.Criteria["UIFilter"] = SavedLayoutUICriteria;
                 ListView listView = Application.CreateListView(viewId, collectionSource, false);
-                ShowViewParameters svp = new ShowViewParameters(listView);
+                ShowViewParameters svp = e.ShowViewParameters;
                 svp.TargetWindow = TargetWindow.NewModalWindow;
-
-                var dc = new DialogController();
-                dc.Accepting += saveDialog_Accepting;
-                svp.Controllers.Add(dc);
 
                 var pc = new SavedLayoutPopupListViewController();
                 svp.Controllers.Add(pc);
                 pc.SendingViewController = this;
 
-                Application.ShowViewStrategy.ShowView(svp, new ShowViewSource(Frame, null));
+                var dc = new DialogController();
+                dc.Accepting += saveDialog_Accepting;
+                svp.Controllers.Add(dc);
+
+                svp.CreatedView = listView;
+               
             }
             else if (e.SelectedChoiceActionItem.Caption == "Load")
             {
+                IObjectSpace objectSpace = Application.CreateObjectSpace();
+
                 Type objType = typeof(PivotGridSavedLayout);
                 string viewId = "PivotGridSavedLayoutUILoad_ListView";
-                CollectionSourceBase collectionSource = Application.CreateCollectionSource(Application.CreateObjectSpace(), objType, viewId);
+                var collectionSource = Application.CreateCollectionSource(Application.CreateObjectSpace(), objType, viewId);
                 collectionSource.Criteria["UIFilter"] = SavedLayoutUICriteria;
-                ListView listView = Application.CreateListView(viewId, collectionSource, false);
-                ShowViewParameters svp = new ShowViewParameters(listView);
+                ListView listView = Application.CreateListView(viewId, collectionSource, true);
+                var svp = e.ShowViewParameters;
                 svp.TargetWindow = TargetWindow.NewModalWindow;
 
                 var dc = new DialogController();
                 dc.Accepting += loadDialog_Accepting;
                 svp.Controllers.Add(dc);
-                Application.ShowViewStrategy.ShowView(svp, new ShowViewSource(Frame, null));
+                svp.CreatedView = listView;
             }
         }
 
