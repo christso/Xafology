@@ -13,8 +13,6 @@ namespace PivotGridLayoutDemo.Module.Win.Controllers
 {
     public class DomainObject1PivotGridLayoutControllerWin : PivotGridLayoutControllerWin
     {
-
-
         public DomainObject1PivotGridLayoutControllerWin()
         {
             TargetViewId = "DomainObject1_PivotGridView";

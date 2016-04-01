@@ -92,9 +92,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PivotGridLayoutDashboardController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\SavedLayoutPopupListViewController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data.cs" />
     <Compile Include="Helpers\StaticHelpers.cs" />
     <Compile Include="PivotGridLayoutEventArgs.cs" />
     <Compile Include="PivotGridSavedLayoutRule.cs" />
@@ -139,6 +143,12 @@
       <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
       <Name>Xafology.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
