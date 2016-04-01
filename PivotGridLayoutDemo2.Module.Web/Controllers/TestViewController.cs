@@ -31,7 +31,7 @@ namespace PivotGridLayoutDemo2.Module.Web.Controllers
         {
             IObjectSpace objectSpace = Application.CreateObjectSpace();
 
-            var dview = Application.CreateDashboardView(objectSpace, "PivotGridLayoutDemoDashboardView", true);
+            var dview = Application.CreateDashboardView(objectSpace, "PivotGridLayoutDashboardView", true);
             ShowViewParameters svp = e.ShowViewParameters;
             svp.TargetWindow = TargetWindow.NewModalWindow;
             svp.CreatedView = dview;
