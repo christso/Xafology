@@ -14,18 +14,6 @@
     <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
-    <DashboardView Id="PivotGridLayoutDashboardView" IsNewNode="True">
-      <Items IsNewNode="True">
-        <DashboardViewItem Id="PivotGridLayoutListViewViewItem" ViewId="PivotGridSavedLayoutUISave_ListView" Index="1" IsNewNode="True" />
-        <ActionContainerViewItem Id="PivotGridLayoutPopupActionsViewItem" ActionContainer="PopupActions" Caption="PivotGridLayoutPopupActionsViewItem(2)" Index="2" IsNewNode="True" />
-      </Items>
-      <Layout IsNewNode="True">
-        <LayoutGroup Id="Main" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True">
-          <LayoutItem Id="PivotGridLayoutListViewLayoutItem" ViewItem="PivotGridLayoutListViewViewItem" Index="1" SizeConstraintsType="Custom" RelativeSize="100" IsNewNode="True" />
-          <LayoutItem Id="PivotGridLayoutPopupActionsLayoutItem" ViewItem="PivotGridLayoutPopupActionsViewItem" Index="2" IsNewNode="True" />
-        </LayoutGroup>
-      </Layout>
-    </DashboardView>
     <ListView Id="PivotGridSavedLayoutUILoad_ListView" ClassName="Xafology.ExpressApp.PivotGridLayout.PivotGridSavedLayout" AllowNew="False" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="LayoutName" PropertyName="LayoutName" Width="400" SortIndex="0" SortOrder="Ascending" Index="0" IsNewNode="True" />

@@ -92,9 +92,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\PivotGridLayoutDashboardController.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controllers\SavedLayoutPopupListViewController.cs">
       <SubType>Component</SubType>
     </Compile>

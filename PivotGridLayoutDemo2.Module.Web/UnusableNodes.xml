@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <SchemaModules>
-    <SchemaModule Name="SystemAspNetModule" Version="13.2.9.0" IsNewNode="True" />
-    <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
-  </SchemaModules>
-  <Views>
+  <Views Id="Views">
     <ListView Id="DomainObject1_PivotGridView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Web.ASPxPivotGridListEditor" />
   </Views>
 </Application>

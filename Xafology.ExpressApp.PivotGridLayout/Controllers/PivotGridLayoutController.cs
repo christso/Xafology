@@ -21,7 +21,8 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
         public PivotGridSetup PivotGridSetupObject;
         public readonly string DefaultLayoutActionCaption = "Layout";
         private readonly SingleChoiceAction _LayoutAction = null;
-        private const string profileChoiceCaption = "Profiles";
+        private const string saveChoiceCaption = "Save";
+        private const string loadChoiceCaption = "Load";
         private const string resetLayoutChoiceCaption = "Reset";
 
         public PivotGridLayoutController()
@@ -44,9 +45,13 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
             resetLayoutChoice.Caption = resetLayoutChoiceCaption;
             _LayoutAction.Items.Add(resetLayoutChoice);
 
-            var profileChoice = new ChoiceActionItem();
-            profileChoice.Caption = profileChoiceCaption;
-            _LayoutAction.Items.Add(profileChoice);
+            var saveChoice = new ChoiceActionItem();
+            saveChoice.Caption = saveChoiceCaption;
+            _LayoutAction.Items.Add(saveChoice);
+
+            var loadChoice = new ChoiceActionItem();
+            loadChoice.Caption = loadChoiceCaption;
+            _LayoutAction.Items.Add(loadChoice);
 
         }
 
@@ -78,26 +83,39 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
             {
                 ResetPivotGridLayout();
             }
-            else if (e.SelectedChoiceActionItem.Caption == profileChoiceCaption)
+            else if (e.SelectedChoiceActionItem.Caption == saveChoiceCaption)
             {
                 CacheLayoutStream();
-
-                IObjectSpace objectSpace = Application.CreateObjectSpace();
-
-                var dview = Application.CreateDashboardView(
-                    objectSpace, 
-                    Data.PivotGridLayoutDashboardViewId, 
-                    true);
-
-                ShowViewParameters svp = e.ShowViewParameters;
-                svp.TargetWindow = TargetWindow.NewModalWindow;
-
-                var dc = new PivotGridLayoutDashboardController();
-                dc.PivotGridLayoutController = this;
-                svp.Controllers.Add(dc);
-
-                svp.CreatedView = dview;
+                CreateSavedLayoutListView(e);
             }
+            else if (e.SelectedChoiceActionItem.Caption == loadChoiceCaption)
+            {
+                CacheLayoutStream();
+                CreateSavedLayoutListView(e);
+            }
+        }
+
+        private void CreateSavedLayoutListView(SimpleActionExecuteEventArgs e)
+        {
+            IObjectSpace objectSpace = Application.CreateObjectSpace();
+
+            var listViewId = Data.PivotGridSavedLayoutUISaveListViewId;
+            var collectionSource = new CollectionSource(objectSpace, typeof(PivotGridSavedLayout));
+            collectionSource.Criteria["UIFilter"] = SavedLayoutUICriteria;
+
+            var listView = Application.CreateListView(
+                listViewId,
+                collectionSource,
+                true);
+
+            ShowViewParameters svp = e.ShowViewParameters;
+            svp.TargetWindow = TargetWindow.NewModalWindow;
+
+            var controller = new SavedLayoutPopupListViewController();
+            controller.PivotGridLayoutController = this;
+            svp.Controllers.Add(controller);
+
+            svp.CreatedView = listView;
         }
 
         protected virtual void ResetPivotGridLayouts(PivotGridSetup pivotSetup)

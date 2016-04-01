@@ -9,21 +9,22 @@ using Xafology.ExpressApp.PivotGridLayout.Controllers;
 
 namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
 {
-    public class SavedLayoutPopupListViewControllerWeb : SavedLayoutPopupListViewController
+    public class SavedLayoutPopupListViewControllerWeb : ViewController<ListView>
     {
         public SavedLayoutPopupListViewControllerWeb()
         {
-            TargetObjectType = typeof(PivotGridSavedLayout);
+            TargetViewId = Data.PivotGridSavedLayoutUISaveListViewId;
         }
 
         protected override void OnActivated()
         {
             base.OnActivated();
 
-            //var newObjectViewController = Frame.GetController<NewObjectViewController>();
-            //newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
+            var newObjectViewController = Frame.GetController<NewObjectViewController>();
+            newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
         }
 
+        // default values for new object
         void newObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
         {
             var obj = (PivotGridSavedLayout)e.CreatedObject;
