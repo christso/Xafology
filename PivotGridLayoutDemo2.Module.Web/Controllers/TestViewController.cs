@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xafology.ExpressApp.PivotGridLayout;
 using Xafology.ExpressApp.PivotGridLayout.Controllers;
 
 namespace PivotGridLayoutDemo2.Module.Web.Controllers
@@ -32,13 +33,14 @@ namespace PivotGridLayoutDemo2.Module.Web.Controllers
         {
             IObjectSpace objectSpace = Application.CreateObjectSpace();
 
-            var dview = Application.CreateDashboardView(objectSpace, "PivotGridLayoutDashboardView", true);
+            var listViewId = "PivotGridSavedLayoutUISave_ListView";
+            var collectionSource = new CollectionSource(objectSpace, typeof(PivotGridSavedLayout));
+            var dview = Application.CreateListView(
+                listViewId,
+                collectionSource,
+                true);
             ShowViewParameters svp = e.ShowViewParameters;
             svp.TargetWindow = TargetWindow.NewModalWindow;
-
-            var dc = new PivotGridLayoutDashboardController();
-            svp.Controllers.Add(dc);
-
             svp.CreatedView = dview;
 
         }

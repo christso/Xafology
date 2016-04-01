@@ -10,13 +10,18 @@ namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
     /// <summary>
     /// Enable NewAction in Popup Window in ASP.NET since it is disabled by default.
     /// </summary>
-    //public class PivotGridSavedLayoutWebNewObjectViewController : WebNewObjectViewController
-    //{
-    //    protected override void UpdateActionActivity(ActionBase action)
-    //    {
-    //        base.UpdateActionActivity(action);
-    //        action.Active.RemoveItem("PopupWindowContext");
-    //        action.Active.Clear();
-    //    }
-    //}
+    public class PivotGridSavedLayoutWebNewObjectViewController : WebNewObjectViewController
+    {
+        public PivotGridSavedLayoutWebNewObjectViewController()
+        {
+            TargetObjectType = typeof(PivotGridSavedLayout);
+        }
+
+        protected override void UpdateActionActivity(ActionBase action)
+        {
+            base.UpdateActionActivity(action);
+            action.Active.RemoveItem("PopupWindowContext");
+            action.Active.Clear();
+        }
+    }
 }

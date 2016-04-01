@@ -7,5 +7,17 @@
   </SchemaModules>
   <Views>
     <ListView Id="DomainObject1_PivotGridView" EditorTypeName="DevExpress.ExpressApp.PivotGrid.Web.ASPxPivotGridListEditor" />
+    <DashboardView Id="PivotGridLayoutDemoDashboardView" IsNewNode="True">
+      <Items IsNewNode="True">
+        <DashboardViewItem Id="PivotGridLayoutListViewViewItem" ViewId="PivotGridSavedLayoutUISave_ListView" ActionsToolbarVisibility="Default" IsNewNode="True" />
+        <ActionContainerViewItem Id="PivotGridLayoutPopupActionsViewItem" ActionContainer="PopupActions" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="PivotGridLayoutPopupActions" ViewItem="PivotGridLayoutListViewViewItem" Index="1" IsNewNode="True" />
+          <LayoutItem Id="PivotGridLayoutListView" ViewItem="PivotGridLayoutPopupActionsViewItem" Index="2" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DashboardView>
   </Views>
 </Application>

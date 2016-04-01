@@ -32,6 +32,8 @@
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.FileAttachments.Web.FileAttachmentsAspNetModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.PivotGrid.Web.PivotGridAspNetModule));
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.PivotGridLayout.Web.PivotGridLayoutAspNetModule));
+            //this.AdditionalExportedTypes.Add(typeof(PivotGridLayoutDemo.Module.BusinessObjects.DomainObject1));
+            this.RequiredModuleTypes.Add(typeof(PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule));
         }
 
         #endregion
