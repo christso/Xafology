@@ -4,7 +4,7 @@ Xafology is a set of libraries which extend the capabilities of the DevExpress e
 
 ### Version
 
-Xafology: 1.3.0.3 | DevExpress: 15.2.4
+Xafology: 15.2.7.0 | DevExpress: 15.2.7
 
 ### Visual Studio Build instructions
 
