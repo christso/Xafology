@@ -31,6 +31,8 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
             // unique view ID so that it will not match any existing views
             // unless the developer assigns it another View ID in a derived constructor
             TargetViewId = "{44F8DE78-5DBB-4316-AFDC-8F8A58D4E2FC}";
+            
+            // TODO: use this.Active instead
 
             _LayoutAction = new SingleChoiceAction(this, "LayoutAction", DevExpress.Persistent.Base.PredefinedCategory.View);
             _LayoutAction.Caption = DefaultLayoutActionCaption;
@@ -116,8 +118,12 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
 
         protected virtual void ResetPivotGridLayout()
         {
+            if (PivotGridSetupObject == null)
+                throw new ArgumentNullException("pivotSetup");
+
             LayoutAction.Caption = DefaultLayoutActionCaption;
             ResetPivotGridLayouts(PivotGridSetupObject);
+
             if (PivotGridLayoutReset != null)
                 PivotGridLayoutReset(this);
         }

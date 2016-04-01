@@ -1,13 +1,15 @@
-﻿using DevExpress.ExpressApp;
+﻿using DevExpress.Data.Filtering;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.SystemModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xafology.ExpressApp.PivotGridLayout.Controllers;
 
 namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
 {
-    public class SavedLayoutPopupListViewControllerWeb : ViewController<ListView>
+    public class SavedLayoutPopupListViewControllerWeb : SavedLayoutPopupListViewController
     {
         public SavedLayoutPopupListViewControllerWeb()
         {
@@ -17,8 +19,9 @@ namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
         protected override void OnActivated()
         {
             base.OnActivated();
-            var newObjectViewController = Frame.GetController<NewObjectViewController>();
-            newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
+
+            //var newObjectViewController = Frame.GetController<NewObjectViewController>();
+            //newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
         }
 
         void newObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)

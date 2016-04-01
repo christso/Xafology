@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.PivotGridLayout.Web.Controllers;
 using DevExpress.Web.ASPxPivotGrid;
-using DevExpress.XtraPivotGrid;
+using PivotGridLayoutDemo.Module.BusinessUtils;
 
 namespace PivotGridLayoutDemo2.Module.Web.Controllers
 {
@@ -15,7 +15,7 @@ namespace PivotGridLayoutDemo2.Module.Web.Controllers
         public DomainObject1PivotGridLayoutControllerWeb()
         {
             TargetViewId = "DomainObject1_PivotGridView";
-            //PivotGridSetupObject = new DomainObject1PivotGridSetup();
+            PivotGridSetupObject = new DomainObject1PivotGridSetup();
         }
         protected override void OnActivated()
         {

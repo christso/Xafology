@@ -151,7 +151,7 @@ namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
         }
 
         protected override void ResetPivotGridLayouts(PivotGridSetup pivotSetup)
-        {
+        { 
             foreach (var layout in pivotSetup.Layouts)
             {
                 PivotGridControl.Fields.Clear();

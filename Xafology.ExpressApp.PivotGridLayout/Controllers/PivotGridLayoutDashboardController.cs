@@ -18,6 +18,10 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
         private SimpleAction loadAction;
         private PivotGridLayoutController pivotGridLayoutController;
 
+        // Lock is required otherwise listViewItem_ControlCreated will be 
+        // called everytime whenever you select an item in the list view.
+        private bool innerViewCollectionSourceLock;
+
         public PivotGridLayoutDashboardController()
         {
             TargetViewId = Data.PivotGridLayoutDashboardViewId;
@@ -49,34 +53,50 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
 
             var listViewItem = (DashboardViewItem)View.FindItem(PivotGridLayoutListViewViewItemId);
             listViewItem.ControlCreated += listViewItem_ControlCreated;
+
+            this.innerViewCollectionSourceLock = false;
+        }
+
+
+        protected override void OnDeactivated()
+        {
+            var listViewItem = (DashboardViewItem)View.FindItem(PivotGridLayoutListViewViewItemId);
+            if (listViewItem != null)
+            {
+                listViewItem.ControlCreated -= listViewItem_ControlCreated;
+
+            }
+            base.OnDeactivated();
         }
 
         private void newObjectViewController_ObjectCreated(object sender, ObjectCreatedEventArgs e)
         {
             var obj = (PivotGridSavedLayout)e.CreatedObject;
-            if (PivotGridLayoutController != null)
-                obj.TypeName = PivotGridLayoutController.View.ObjectTypeInfo.Name;
+            //if (PivotGridLayoutController != null)
+            //    obj.TypeName = PivotGridLayoutController.View.ObjectTypeInfo.Name;
         }
 
         private void listViewItem_ControlCreated(object sender, EventArgs e)
         {
-            // get list view "PivotGridSavedLayoutUISave_ListView"
-            var listView = (ListView)((DashboardViewItem)sender).InnerView;
-            var listViewItem = (DashboardViewItem)View.FindItem(PivotGridLayoutListViewViewItemId);
+            if (!innerViewCollectionSourceLock)
+            {
+                // get list view "PivotGridSavedLayoutUISave_ListView"
+                var dashboardItem = (DashboardViewItem)View.FindItem(PivotGridLayoutListViewViewItemId);
 
-            // set filter
+                // set filter
+                var listViewController = dashboardItem.Frame.GetController<SavedLayoutPopupListViewController>();
 
-            var listViewController = listViewItem.Frame.GetController<SavedLayoutPopupListViewController>();
+                if (PivotGridLayoutController != null && dashboardItem.Frame.View != null)
+                    ((ListView)dashboardItem.InnerView).CollectionSource.Criteria["UIFilter"] = PivotGridLayoutController.SavedLayoutUICriteria;
 
-            if (PivotGridLayoutController != null)
-                listView.CollectionSource.Criteria["UIFilter"] = PivotGridLayoutController.SavedLayoutUICriteria;
+                // new object event handler
+                //var newObjectViewController = listViewController.Frame.GetController<NewObjectViewController>();
+                //newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
 
-            // new object event handler
-
-            var newObjectViewController = listViewController.Frame.GetController<NewObjectViewController>();
-            newObjectViewController.ObjectCreated += newObjectViewController_ObjectCreated;
-
+                innerViewCollectionSourceLock = true;
+            }
         }
+
 
         private void loadAction_Execute(object sender, SimpleActionExecuteEventArgs e)
         {

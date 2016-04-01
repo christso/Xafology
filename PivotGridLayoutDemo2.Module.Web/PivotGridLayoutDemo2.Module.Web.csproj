@@ -177,6 +177,10 @@
       <Project>{ceab89b1-8d0d-4e61-8c36-2d8efd2f202a}</Project>
       <Name>Xafology.ExpressApp.PivotGridLayout</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xafology.PivotGridLayoutDemo\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj">
+      <Project>{54388ea2-1711-4c58-9ae9-e86ea935e1c5}</Project>
+      <Name>PivotGridLayoutDemo.Module</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessObjects\" />
