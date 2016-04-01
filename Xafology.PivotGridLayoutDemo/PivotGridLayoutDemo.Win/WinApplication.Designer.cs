@@ -28,12 +28,11 @@ namespace PivotGridLayoutDemo.Win
         /// </summary>
         private void InitializeComponent()
         {
-            this.module1 = new DevExpress.ExpressApp.SystemModule.SystemModule();
-            this.module2 = new DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule();
-            this.module3 = new PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule();
-            this.module4 = new PivotGridLayoutDemo.Module.Win.PivotGridLayoutDemoWindowsFormsModule();
+            this.systemModule1 = new DevExpress.ExpressApp.SystemModule.SystemModule();
+            this.systemWinFormsModule1 = new DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule();
+            this.pivotGridLayoutDemoModule = new PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule();
             this.pivotGridModule1 = new DevExpress.ExpressApp.PivotGrid.PivotGridModule();
-            this.pivotGridLayoutModule1 = new Xafology.ExpressApp.PivotGridLayout.PivotGridLayoutModule();
+            this.pivotGridLayoutModule = new Xafology.ExpressApp.PivotGridLayout.PivotGridLayoutModule();
             this.pivotGridWindowsFormsModule1 = new DevExpress.ExpressApp.PivotGrid.Win.PivotGridWindowsFormsModule();
             this.pivotGridLayoutWindowsFormsModule1 = new Xafology.ExpressApp.PivotGridLayout.Win.PivotGridLayoutWindowsFormsModule();
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
@@ -58,15 +57,14 @@ namespace PivotGridLayoutDemo.Win
             // PivotGridLayoutDemoWindowsFormsApplication
             // 
             this.ApplicationName = "PivotGridLayoutDemo";
-            this.Modules.Add(this.module1);
-            this.Modules.Add(this.module2);
+            this.Modules.Add(this.systemModule1);
+            this.Modules.Add(this.systemWinFormsModule1);
             this.Modules.Add(this.pivotGridModule1);
             this.Modules.Add(this.securityModule1);
-            this.Modules.Add(this.pivotGridLayoutModule1);
-            this.Modules.Add(this.module3);
+            this.Modules.Add(this.pivotGridLayoutModule);
+            this.Modules.Add(this.pivotGridLayoutDemoModule);
             this.Modules.Add(this.pivotGridWindowsFormsModule1);
             this.Modules.Add(this.pivotGridLayoutWindowsFormsModule1);
-            this.Modules.Add(this.module4);
             this.Security = this.securityStrategyComplex1;
             this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.PivotGridLayoutDemoWindowsFormsApplication_DatabaseVersionMismatch);
             this.CustomizeLanguagesList += new System.EventHandler<DevExpress.ExpressApp.CustomizeLanguagesListEventArgs>(this.PivotGridLayoutDemoWindowsFormsApplication_CustomizeLanguagesList);
@@ -76,12 +74,11 @@ namespace PivotGridLayoutDemo.Win
 
         #endregion
 
-        private DevExpress.ExpressApp.SystemModule.SystemModule module1;
-        private DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule module2;
-        private PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule module3;
-        private PivotGridLayoutDemo.Module.Win.PivotGridLayoutDemoWindowsFormsModule module4;
+        private DevExpress.ExpressApp.SystemModule.SystemModule systemModule1;
+        private DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule systemWinFormsModule1;
+        private PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule pivotGridLayoutDemoModule;
         private DevExpress.ExpressApp.PivotGrid.PivotGridModule pivotGridModule1;
-        private Xafology.ExpressApp.PivotGridLayout.PivotGridLayoutModule pivotGridLayoutModule1;
+        private Xafology.ExpressApp.PivotGridLayout.PivotGridLayoutModule pivotGridLayoutModule;
         private DevExpress.ExpressApp.PivotGrid.Win.PivotGridWindowsFormsModule pivotGridWindowsFormsModule1;
         private Xafology.ExpressApp.PivotGridLayout.Win.PivotGridLayoutWindowsFormsModule pivotGridLayoutWindowsFormsModule1;
         private DevExpress.ExpressApp.Security.SecurityModule securityModule1;

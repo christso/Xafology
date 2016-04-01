@@ -13,8 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xafology.PivotGrid;
+using Xafology.ExpressApp.PivotGridLayout.Controllers;
 
-namespace Xafology.ExpressApp.PivotGridLayout.Controllers
+namespace Xafology.ExpressApp.PivotGridLayout.Win.Controllers
 {
     public class PivotGridLayoutControllerWin : PivotGridLayoutController
     {

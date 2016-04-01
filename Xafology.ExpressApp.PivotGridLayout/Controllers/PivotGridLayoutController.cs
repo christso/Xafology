@@ -14,7 +14,7 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
     public delegate void PivotGridLayoutEventHandler(object sender);
     public delegate void PivotGridLayoutFieldsMappedEventHandler(object sender, PivotGridLayoutEventArgs e);
 
-    public abstract class PivotGridLayoutController : ViewController
+    public class PivotGridLayoutController : ViewController
     {
         public event PivotGridLayoutEventHandler PivotGridLayoutReset;
 

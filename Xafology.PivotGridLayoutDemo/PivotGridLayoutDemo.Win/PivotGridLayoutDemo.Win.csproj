@@ -166,6 +166,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DomainObject1PivotGridLayoutControllerWin.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -221,10 +224,6 @@
       <Project>{eea547e8-5df9-4bce-995c-a2789f7e05b9}</Project>
       <Name>Xafology.PivotGrid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PivotGridLayoutDemo.Module.Win\PivotGridLayoutDemo.Module.Win.csproj">
-      <Project>{4a793ad7-2777-404e-b4f7-1f993fb104fe}</Project>
-      <Name>PivotGridLayoutDemo.Module.Win</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj">
       <Project>{54388ea2-1711-4c58-9ae9-e86ea935e1c5}</Project>
       <Name>PivotGridLayoutDemo.Module</Name>
@@ -247,6 +246,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

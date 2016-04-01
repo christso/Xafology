@@ -6,7 +6,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Web.ASPxPivotGrid;
 using DevExpress.XtraPivotGrid;
 using Xafology.ExpressApp.PivotGridLayout;
-using Xafology.ExpressApp.PivotGridLayout.Controllers;
+
 using Xafology.ExpressApp.PivotGridLayout.Helpers;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xafology.PivotGrid;
 using DevExpress.Xpo;
+using Xafology.ExpressApp.PivotGridLayout.Controllers;
 
 namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
 {
