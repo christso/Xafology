@@ -38,6 +38,7 @@ namespace PivotGridLayoutDemo.Win
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
             this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
+            this.pivotGridLayoutDemoWinModule = new WinModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // securityModule1
@@ -65,6 +66,7 @@ namespace PivotGridLayoutDemo.Win
             this.Modules.Add(this.pivotGridLayoutDemoModule);
             this.Modules.Add(this.pivotGridWindowsFormsModule1);
             this.Modules.Add(this.pivotGridLayoutWindowsFormsModule1);
+            this.Modules.Add(this.pivotGridLayoutDemoWinModule);
             this.Security = this.securityStrategyComplex1;
             this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.PivotGridLayoutDemoWindowsFormsApplication_DatabaseVersionMismatch);
             this.CustomizeLanguagesList += new System.EventHandler<DevExpress.ExpressApp.CustomizeLanguagesListEventArgs>(this.PivotGridLayoutDemoWindowsFormsApplication_CustomizeLanguagesList);
@@ -78,6 +80,7 @@ namespace PivotGridLayoutDemo.Win
         private DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule systemWinFormsModule1;
         private PivotGridLayoutDemo.Module.PivotGridLayoutDemoModule pivotGridLayoutDemoModule;
         private DevExpress.ExpressApp.PivotGrid.PivotGridModule pivotGridModule1;
+        private WinModule pivotGridLayoutDemoWinModule;
         private Xafology.ExpressApp.PivotGridLayout.PivotGridLayoutModule pivotGridLayoutModule;
         private DevExpress.ExpressApp.PivotGrid.Win.PivotGridWindowsFormsModule pivotGridWindowsFormsModule1;
         private Xafology.ExpressApp.PivotGridLayout.Win.PivotGridLayoutWindowsFormsModule pivotGridLayoutWindowsFormsModule1;
