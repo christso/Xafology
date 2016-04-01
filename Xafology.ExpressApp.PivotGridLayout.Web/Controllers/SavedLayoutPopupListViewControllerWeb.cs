@@ -26,5 +26,13 @@ namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
             var obj = (PivotGridSavedLayout)e.CreatedObject;
             obj.UIPlatform = UIPlatform.Web;
         }
+
+        protected override void OnDeactivated()
+        {
+            var newObjectViewController = Frame.GetController<NewObjectViewController>();
+            newObjectViewController.ObjectCreated -= newObjectViewController_ObjectCreated;
+
+            base.OnDeactivated();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace PivotGridLayoutDemo.Web
         }
         protected void Session_Start(Object sender, EventArgs e)
         {
-            WebApplication.SetInstance(Session, new PivotGridLayoutDemoAspNetApplication());
+            WebApplication.SetInstance(Session, new PivotGridLayoutDemo.Web.PivotGridLayoutDemoAspNetApplication());
             if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null)
             {
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -37,18 +37,15 @@ namespace PivotGridLayoutDemo.Web
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
             }
 #endif
-            WebApplication.Instance.Settings.DialogTemplateContentPath = "DialogTemplateContent1.ascx";
-
+            if (System.Diagnostics.Debugger.IsAttached && WebApplication.Instance.CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema)
+            {
+                WebApplication.Instance.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
+            }
             WebApplication.Instance.Setup();
             WebApplication.Instance.Start();
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            string filePath = HttpContext.Current.Request.PhysicalPath;
-            if (!string.IsNullOrEmpty(filePath) && (filePath.IndexOf("Images") >= 0) && !System.IO.File.Exists(filePath))
-            {
-                HttpContext.Current.Response.End();
-            }
         }
         protected void Application_EndRequest(Object sender, EventArgs e)
         {

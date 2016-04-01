@@ -48,11 +48,12 @@ namespace Xafology.ExpressApp.PivotGridLayout.Web.Controllers
         protected override void OnViewControlsCreated()
         {
             base.OnViewControlsCreated();
-            var pgEditor = (ASPxPivotGridListEditor)((ListView)View).Editor;
+            var pgEditor = ((ListView)View).Editor as ASPxPivotGridListEditor;
             if (pgEditor != null)
+            {
                 _PivotGridControl = (ASPxPivotGrid)pgEditor.PivotGridControl;
-            
-            _PivotGridControl.BeginRefresh += _PivotGridControl_BeginRefresh;
+                _PivotGridControl.BeginRefresh += _PivotGridControl_BeginRefresh;
+            }
         }
 
         void _PivotGridControl_BeginRefresh(object sender, EventArgs e)

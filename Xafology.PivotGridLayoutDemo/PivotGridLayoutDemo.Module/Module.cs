@@ -13,9 +13,10 @@ using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Model.Core;
 using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
-using PivotGridLayoutDemo.Module.BusinessObjects;
+
 using Xafology.ExpressApp.PivotGridLayout;
 using PivotGridLayoutDemo.Module.BusinessUtils;
+using PivotGridLayoutDemo.Module.BusinessObjects;
 
 namespace PivotGridLayoutDemo.Module
 {
@@ -35,7 +36,8 @@ namespace PivotGridLayoutDemo.Module
         public override void Setup(XafApplication application)
         {
             base.Setup(application);
-            // Manage various aspects of the application UI and behavior at the module level.
+            
+            // names reserved by the system
             PivotGridSavedLayout.ReservedLayoutNames.Add(DomainObject1PivotGridSetup.Default1LayoutName, typeof(DomainObject1).Name);
             PivotGridSavedLayout.ReservedLayoutNames.Add(DomainObject1PivotGridSetup.Default2LayoutName, typeof(DomainObject1).Name);
         }
