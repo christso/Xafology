@@ -48,7 +48,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.Spreadsheet", "Xaf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.SpreadsheetImpl", "Xafology.SpreadsheetImpl\Xafology.SpreadsheetImpl.csproj", "{06563356-2687-4BD0-827D-D48E673FE0CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.TestUtils", "Xafology.Tests\Xafology.TestUtils.csproj", "{51E0010F-CD1D-47BB-894C-D9347E48EE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.TestUtils", "Xafology.TestUtils\Xafology.TestUtils.csproj", "{51E0010F-CD1D-47BB-894C-D9347E48EE44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.Xpo.Import", "Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj", "{B0D86256-73E7-46D3-B728-346CA4190ECD}"
 EndProject
@@ -67,25 +67,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{8F59E7E4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Paste", "Paste", "{C3AC81AE-C988-41D0-ADB8-D91B663A7219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Module", "Xafology.ExpressApp.Paste.Demo\PasteDemo.Module\PasteDemo.Module.csproj", "{DC2F3AA2-ABDB-469E-B260-5FD5E9501529}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Module", "Demo\Xafology.ExpressApp.Paste.Demo\PasteDemo.Module\PasteDemo.Module.csproj", "{DC2F3AA2-ABDB-469E-B260-5FD5E9501529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Module.Win", "Xafology.ExpressApp.Paste.Demo\PasteDemo.Module.Win\PasteDemo.Module.Win.csproj", "{C71D9617-478D-4F1F-8434-286C67B8679B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Module.Win", "Demo\Xafology.ExpressApp.Paste.Demo\PasteDemo.Module.Win\PasteDemo.Module.Win.csproj", "{C71D9617-478D-4F1F-8434-286C67B8679B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.UnitTests", "Xafology.ExpressApp.Paste.Demo\PasteDemo.UnitTests\PasteDemo.UnitTests.csproj", "{D384BDBB-8B10-4DC2-97E9-044A2B3E2ED4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.UnitTests", "Demo\Xafology.ExpressApp.Paste.Demo\PasteDemo.UnitTests\PasteDemo.UnitTests.csproj", "{D384BDBB-8B10-4DC2-97E9-044A2B3E2ED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Win", "Xafology.ExpressApp.Paste.Demo\PasteDemo.Win\PasteDemo.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasteDemo.Win", "Demo\Xafology.ExpressApp.Paste.Demo\PasteDemo.Win\PasteDemo.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module", "Xafology.ImportDemo\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj", "{47334835-47A0-4256-91F9-529943F91C85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.Module\Xafology.ImportDemo.Module.csproj", "{47334835-47A0-4256-91F9-529943F91C85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module.Win", "Xafology.ImportDemo\Xafology.ImportDemo.Module.Win\Xafology.ImportDemo.Module.Win.csproj", "{EE735356-CD44-43A7-BF7C-C9AFC2FB866A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module.Win", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.Module.Win\Xafology.ImportDemo.Module.Win.csproj", "{EE735356-CD44-43A7-BF7C-C9AFC2FB866A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module.Web", "Xafology.ImportDemo\Xafology.ImportDemo.Module.Web\Xafology.ImportDemo.Module.Web.csproj", "{A74D706D-9899-45E9-A305-98A6849739E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Module.Web", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.Module.Web\Xafology.ImportDemo.Module.Web.csproj", "{A74D706D-9899-45E9-A305-98A6849739E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Web", "Xafology.ImportDemo\Xafology.ImportDemo.Web\Xafology.ImportDemo.Web.csproj", "{82A6DBC9-B1B4-44E4-9718-55DF930CD349}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Web", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.Web\Xafology.ImportDemo.Web.csproj", "{82A6DBC9-B1B4-44E4-9718-55DF930CD349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Win", "Xafology.ImportDemo\Xafology.ImportDemo.Win\Xafology.ImportDemo.Win.csproj", "{5596BE8A-E00C-4DDA-B0BD-5BD6B47B0894}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.Win", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.Win\Xafology.ImportDemo.Win.csproj", "{5596BE8A-E00C-4DDA-B0BD-5BD6B47B0894}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.UnitTests", "Xafology.ImportDemo\Xafology.ImportDemo.UnitTests\Xafology.ImportDemo.UnitTests.csproj", "{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ImportDemo.UnitTests", "Demo\Xafology.ImportDemo\Xafology.ImportDemo.UnitTests\Xafology.ImportDemo.UnitTests.csproj", "{76ECC1EF-1F7F-4EDA-B688-EB1462385B0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch", "Batch", "{8DD9E439-67A0-4332-A5FE-EE0E8F071875}"
 EndProject
@@ -95,21 +95,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.BatchDe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExcelReport", "ExcelReport", "{EE046C45-E078-4DC9-9461-7E905CE67BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj", "{C554F5D2-7295-4C65-BC70-AFBD251C51C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module", "Demo\Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module\Xafology.ExcelReportDemo.Module.csproj", "{C554F5D2-7295-4C65-BC70-AFBD251C51C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module.Web", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module.Web\Xafology.ExcelReportDemo.Module.Web.csproj", "{13B1168A-9129-4523-8565-4A3B6968AF2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module.Web", "Demo\Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module.Web\Xafology.ExcelReportDemo.Module.Web.csproj", "{13B1168A-9129-4523-8565-4A3B6968AF2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module.Win", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module.Win\Xafology.ExcelReportDemo.Module.Win.csproj", "{C6F77575-7754-41EA-BC2E-A0BB3D838119}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Module.Win", "Demo\Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Module.Win\Xafology.ExcelReportDemo.Module.Win.csproj", "{C6F77575-7754-41EA-BC2E-A0BB3D838119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Web", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Web\Xafology.ExcelReportDemo.Web.csproj", "{07F57354-223D-4AC0-AD8F-58743C33DEA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Web", "Demo\Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Web\Xafology.ExcelReportDemo.Web.csproj", "{07F57354-223D-4AC0-AD8F-58743C33DEA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Win", "Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Win\Xafology.ExcelReportDemo.Win.csproj", "{A67A7ABA-88DA-4386-825E-0378EB462C6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExcelReportDemo.Win", "Demo\Xafology.ExcelReportDemo\Xafology.ExcelReportDemo.Win\Xafology.ExcelReportDemo.Win.csproj", "{A67A7ABA-88DA-4386-825E-0378EB462C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Module", "Xafology.BatchDemo.Module\Xafology.BatchDemo.Module.csproj", "{D405E707-AE60-4FC1-9F47-DD199479B063}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Module", "Demo\Xafology.BatchDemo.Module\Xafology.BatchDemo.Module.csproj", "{D405E707-AE60-4FC1-9F47-DD199479B063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Web", "Xafology.BatchDemo.Web\Xafology.BatchDemo.Web.csproj", "{5D1EB263-186E-4997-A799-1D7661F33140}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Web", "Demo\Xafology.BatchDemo.Web\Xafology.BatchDemo.Web.csproj", "{5D1EB263-186E-4997-A799-1D7661F33140}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Win", "Xafology.BatchDemo.Win\Xafology.BatchDemo.Win.csproj", "{05D167D7-A687-42D3-A3BC-10568CA39E0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.BatchDemo.Win", "Demo\Xafology.BatchDemo.Win\Xafology.BatchDemo.Win.csproj", "{05D167D7-A687-42D3-A3BC-10568CA39E0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.ExpressApp.BatchDelete.Win", "Xafology.ExpressApp.BatchDelete.Win\Xafology.ExpressApp.BatchDelete.Win.csproj", "{4DF180EB-2B27-41C9-B439-6000C9F2936C}"
 EndProject
@@ -119,11 +119,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{5AD7BC31-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PivotGridLayout", "PivotGridLayout", "{17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Module", "Xafology.PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj", "{54388EA2-1711-4C58-9AE9-E86EA935E1C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Module", "Demo\Xafology.PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj", "{54388EA2-1711-4C58-9AE9-E86EA935E1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Win", "Xafology.PivotGridLayoutDemo.Win\PivotGridLayoutDemo.Win.csproj", "{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Win", "Demo\Xafology.PivotGridLayoutDemo.Win\PivotGridLayoutDemo.Win.csproj", "{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Web", "Xafology.PivotGridLayoutDemo.Web\PivotGridLayoutDemo.Web.csproj", "{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Web", "Demo\Xafology.PivotGridLayoutDemo.Web\PivotGridLayoutDemo.Web.csproj", "{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
