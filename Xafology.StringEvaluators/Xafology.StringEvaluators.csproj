@@ -84,4 +84,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Xafology.Key\Xafology.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>  
 </Project>
