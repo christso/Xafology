@@ -181,7 +181,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(Configuration)==Release ( NuGet.exe pack "$(ProjectPath)" -OutputDirectory "$(NugetPackageSourceLocalPath)" -Prop Configuration=Release )</PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)postbuild.bat" $(Configuration) "$(TargetPath)" "$(SolutionDir)Bin" "$(ProjectPath)" </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -85,7 +85,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(Configuration)==Release ( NuGet.exe pack "$(ProjectPath)" -OutputDirectory "$(NugetPackageSourceLocalPath)" -Prop Configuration=Release )</PostBuildEvent>
+    <PostBuildEvent>if $(Configuration)==Release (
+	echo Copying file from $(TargetPath) to $(SolutionDir)Bin
+	xcopy "$(TargetPath)" "$(SolutionDir)Bin" /i /d /y
+)
+if $(Configuration)==Publish (
+	echo Generating package from $(ProjectPath) to $(NugetPackageSourceLocalPath)
+	NuGet.exe pack "$(ProjectPath)" -OutputDirectory "$(NugetPackageSourceLocalPath)" -Prop Configuration=Release
+)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
