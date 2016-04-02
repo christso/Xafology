@@ -104,7 +104,8 @@
     <Compile Include="Data.cs" />
     <Compile Include="Helpers\StaticHelpers.cs" />
     <Compile Include="PivotGridLayoutEventArgs.cs" />
-    <Compile Include="PivotGridSavedLayoutRule.cs" />
+    <Compile Include="Rules\PivotGridSavedLayoutDeleteRule.cs" />
+    <Compile Include="Rules\PivotGridSavedLayoutSaveRule.cs" />
     <Compile Include="PivotGridLayout.cs" />
     <Compile Include="PivotGridSavedLayout.cs" />
     <Compile Include="PivotGridLoadedLayout.cs" />

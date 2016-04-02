@@ -15,6 +15,7 @@ using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.ExpressApp.Validation;
 using DevExpress.Persistent.Validation;
+using Xafology.ExpressApp.PivotGridLayout.Rules;
 
 namespace Xafology.ExpressApp.PivotGridLayout
 {
@@ -38,7 +39,8 @@ namespace Xafology.ExpressApp.PivotGridLayout
         public override void Setup(ApplicationModulesManager moduleManager)
         {
             base.Setup(moduleManager);
-            ValidationRulesRegistrator.RegisterRule(moduleManager, typeof(PivotGridSavedLayoutRule), typeof(IRuleBaseProperties));
+            ValidationRulesRegistrator.RegisterRule(moduleManager, typeof(Rules.PivotGridSavedLayoutSaveRule), typeof(IRuleBaseProperties));
+            ValidationRulesRegistrator.RegisterRule(moduleManager, typeof(PivotGridSavedLayoutDeleteRule), typeof(IRuleBaseProperties));
         }
     }
 }

@@ -3,27 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xafology.ExpressApp.PivotGridLayout;
 
-namespace Xafology.ExpressApp.PivotGridLayout
+namespace Xafology.ExpressApp.PivotGridLayout.Rules
 {
     [CodeRule]
-    public class PivotGridSavedLayoutRule : RuleBase<PivotGridSavedLayout>
+    public class PivotGridSavedLayoutSaveRule : RuleBase<PivotGridSavedLayout>
     {
-        protected PivotGridSavedLayoutRule(string id, ContextIdentifiers targetContextIDs)
+        protected PivotGridSavedLayoutSaveRule(string id, ContextIdentifiers targetContextIDs)
             : base(id, targetContextIDs)
         {
             
         }
-        protected PivotGridSavedLayoutRule(string id, ContextIdentifiers targetContextIDs, Type targetType)
+        protected PivotGridSavedLayoutSaveRule(string id, ContextIdentifiers targetContextIDs, Type targetType)
             : base(id, targetContextIDs, targetType)
         {
             
         }
-        public PivotGridSavedLayoutRule() : base("", DefaultContexts.Save)
+        public PivotGridSavedLayoutSaveRule() : base("", DefaultContexts.Save)
         {
             
         }
-        public PivotGridSavedLayoutRule(IRuleBaseProperties properties)
+        public PivotGridSavedLayoutSaveRule(IRuleBaseProperties properties)
             : base(properties)
         {
             
