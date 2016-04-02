@@ -63,6 +63,11 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
             }
         }
 
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+        }
+
         protected void UpdateLayoutActionCaption(PivotGridSavedLayout savedLayoutObj)
         {
             //LayoutAction.Caption = String.Format("{0}: {1}", DefaultLayoutActionCaption, savedLayoutObj.LayoutName);

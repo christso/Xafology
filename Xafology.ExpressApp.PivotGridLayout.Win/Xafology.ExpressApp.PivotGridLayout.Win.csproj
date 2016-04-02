@@ -148,7 +148,7 @@
     <Compile Include="Controllers\PivotGridLayoutControllerWin.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\SavedLayoutPopupListViewControllerWin.cs">
+    <Compile Include="Controllers\SaveLayoutPopupListViewControllerWin.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controllers\ToolbarViewController.cs">

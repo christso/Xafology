@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.Persistent.Base;
 
 namespace Xafology.ExpressApp.PivotGridLayout.Controllers
 {
@@ -18,7 +19,7 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
         {
             TargetViewId = Data.PivotGridSavedLayoutUILoadListViewId;
 
-            this.loadAction = new SimpleAction(this, "LayoutHeaderLoadAction", "PopupActions");
+            this.loadAction = new SimpleAction(this, "LayoutHeaderLoadAction", PredefinedCategory.ObjectsCreation);
             this.loadAction.Caption = "Load";
             this.loadAction.Execute += loadAction_Execute;
         }

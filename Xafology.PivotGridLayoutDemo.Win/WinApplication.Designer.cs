@@ -38,12 +38,9 @@ namespace PivotGridLayoutDemo.Win
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
             this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
-            this.pivotGridLayoutDemoWinModule = new WinModule();
+            this.pivotGridLayoutDemoWinModule = new PivotGridLayoutDemo.Win.WinModule();
+            this.validationModule1 = new DevExpress.ExpressApp.Validation.ValidationModule();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // securityModule1
-            // 
-            this.securityModule1.UserType = typeof(DevExpress.ExpressApp.Security.Strategy.SecuritySystemUser);
             // 
             // securityStrategyComplex1
             // 
@@ -55,6 +52,11 @@ namespace PivotGridLayoutDemo.Win
             // 
             this.authenticationStandard1.LogonParametersType = typeof(DevExpress.ExpressApp.Security.AuthenticationStandardLogonParameters);
             // 
+            // validationModule1
+            // 
+            this.validationModule1.AllowValidationDetailsAccess = true;
+            this.validationModule1.IgnoreWarningAndInformationRules = false;
+            // 
             // PivotGridLayoutDemoWindowsFormsApplication
             // 
             this.ApplicationName = "PivotGridLayoutDemo";
@@ -62,6 +64,7 @@ namespace PivotGridLayoutDemo.Win
             this.Modules.Add(this.systemWinFormsModule1);
             this.Modules.Add(this.pivotGridModule1);
             this.Modules.Add(this.securityModule1);
+            this.Modules.Add(this.validationModule1);
             this.Modules.Add(this.pivotGridLayoutModule);
             this.Modules.Add(this.pivotGridLayoutDemoModule);
             this.Modules.Add(this.pivotGridWindowsFormsModule1);
@@ -87,5 +90,6 @@ namespace PivotGridLayoutDemo.Win
         private DevExpress.ExpressApp.Security.SecurityModule securityModule1;
         private DevExpress.ExpressApp.Security.SecurityStrategyComplex securityStrategyComplex1;
         private DevExpress.ExpressApp.Security.AuthenticationStandard authenticationStandard1;
+        private DevExpress.ExpressApp.Validation.ValidationModule validationModule1;
     }
 }

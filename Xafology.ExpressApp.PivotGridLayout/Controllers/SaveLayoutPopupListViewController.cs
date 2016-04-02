@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.SystemModule;
+using DevExpress.Persistent.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
         {
             TargetViewId = Data.PivotGridSavedLayoutUISaveListViewId;
 
-            this.saveAction = new SimpleAction(this, "LayoutHeaderSaveAction", "PopupActions");
+            this.saveAction = new SimpleAction(this, "LayoutHeaderSaveAction", PredefinedCategory.ObjectsCreation);
             this.saveAction.Caption = "Save";
             this.saveAction.Execute += saveAction_Execute;
         }

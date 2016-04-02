@@ -8,10 +8,11 @@ using DevExpress.XtraPivotGrid;
 using Xafology.PivotGrid;
 using DevExpress.ExpressApp;
 using PivotGridLayoutDemo.Module.BusinessUtils;
+using Xafology.ExpressApp.PivotGridLayout.Win.Controllers;
 
 namespace PivotGridLayoutDemo.Win.Controllers
 {
-    public class DomainObject1PivotGridLayoutControllerWin : Xafology.ExpressApp.PivotGridLayout.Win.Controllers.PivotGridLayoutControllerWin
+    public class DomainObject1PivotGridLayoutControllerWin : PivotGridLayoutControllerWin
     {
         public DomainObject1PivotGridLayoutControllerWin()
         {

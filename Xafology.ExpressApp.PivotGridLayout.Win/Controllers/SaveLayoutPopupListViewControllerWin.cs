@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Xafology.ExpressApp.PivotGridLayout.Win.Controllers
 {
-    public class SavedLayoutPopupListViewControllerWin : ViewController<ListView>
+    public class SaveLayoutPopupListViewControllerWin : ViewController<ListView>
     {
-        public SavedLayoutPopupListViewControllerWin()
+        public SaveLayoutPopupListViewControllerWin()
         {
             TargetObjectType = typeof(PivotGridSavedLayout);
         }
