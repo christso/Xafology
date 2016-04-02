@@ -128,7 +128,7 @@
     <Compile Include="Controllers\PivotGridSavedLayoutWebNewObjectViewController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\SavedLayoutPopupListViewControllerWeb.cs">
+    <Compile Include="Controllers\SaveLayoutPopupListViewControllerWeb.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebModule.cs">

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="PivotGridLayoutDemo" Logo="ExpressAppLogo">
+  <NavigationItems StartupNavigationItem="DemoWelcome_ListView">
+    <Items>
+      <Item Id="Default" Index="1">
+        <Items>
+          <Item Id="DemoWelcome_ListView" Index="0" />
+          <Item Id="DomainObject1_ListView" Index="1" />
+          <Item Id="DomainObject1_PivotGridView" ViewId="DomainObject1_PivotGridView" Caption="Domain Object 1 Pivot" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="System" Index="2" IsNewNode="True">
+        <Items Index="-1" IsNewNode="True">
+          <Item Id="Pivot Grid Loaded Layout" Index="0" ViewId="PivotGridLoadedLayout_ListView" IsNewNode="True" />
+          <Item Id="Pivot Grid Saved Layout" ViewId="PivotGridSavedLayout_ListView" Index="1" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Custom" Removed="True">
+        <Items>
+          <Item Id="XafologyPivotGridLayoutDashboard" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="DemoWelcome_DetailView" AllowEdit="False" AllowNew="False" AllowDelete="False" Caption="Welcome">
+      <Items>
+        <ActionContainerViewItem Id="WelcomeActions" ActionContainer="WelcomeActionContainer" IsNewNode="True" />
+        <PropertyEditor Id="WelcomeMessage" Caption="Welcome Message" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="DemoWelcome">
+              <LayoutItem Id="WelcomeMessage" ShowCaption="False" />
+              <LayoutItem Id="WelcomeActions" ViewItem="WelcomeActions" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="DomainObject1_PivotGridView" ClassName="PivotGridLayoutDemo.Module.BusinessObjects.DomainObject1" IsNewNode="True" />
+  </Views>
+</Application>

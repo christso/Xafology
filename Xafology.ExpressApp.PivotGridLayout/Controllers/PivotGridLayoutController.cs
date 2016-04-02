@@ -79,27 +79,32 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
 
         private void myLayoutAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
-            if (e.SelectedChoiceActionItem.Caption == resetLayoutChoiceCaption)
+            switch (e.SelectedChoiceActionItem.Caption)
             {
-                ResetPivotGridLayout();
-            }
-            else if (e.SelectedChoiceActionItem.Caption == saveChoiceCaption)
-            {
-                CacheLayoutStream();
-                CreateSavedLayoutListView(e);
-            }
-            else if (e.SelectedChoiceActionItem.Caption == loadChoiceCaption)
-            {
-                CacheLayoutStream();
-                CreateSavedLayoutListView(e);
+                case resetLayoutChoiceCaption:
+                    ResetPivotGridLayout();
+                    break;
+                case saveChoiceCaption:
+                    {
+                        CacheLayoutStream();
+                        var controller = new SaveLayoutPopupListViewController();
+                        CreateLayoutListView(e.ShowViewParameters, Data.PivotGridSavedLayoutUISaveListViewId, controller);
+                    }
+                    break;
+                case loadChoiceCaption:
+                    { 
+                        CacheLayoutStream();
+                        var controller = new LoadLayoutPopupListViewController();
+                        CreateLayoutListView(e.ShowViewParameters, Data.PivotGridSavedLayoutUILoadListViewId, controller);
+                    }
+                    break;
             }
         }
 
-        private void CreateSavedLayoutListView(SimpleActionExecuteEventArgs e)
+        private void CreateLayoutListView(ShowViewParameters svp, string listViewId, LayoutPopupListViewController controller)
         {
             IObjectSpace objectSpace = Application.CreateObjectSpace();
 
-            var listViewId = Data.PivotGridSavedLayoutUISaveListViewId;
             var collectionSource = new CollectionSource(objectSpace, typeof(PivotGridSavedLayout));
             collectionSource.Criteria["UIFilter"] = SavedLayoutUICriteria;
 
@@ -108,16 +113,15 @@ namespace Xafology.ExpressApp.PivotGridLayout.Controllers
                 collectionSource,
                 true);
 
-            ShowViewParameters svp = e.ShowViewParameters;
             svp.TargetWindow = TargetWindow.NewModalWindow;
 
-            var controller = new SavedLayoutPopupListViewController();
+            
             controller.PivotGridLayoutController = this;
             svp.Controllers.Add(controller);
 
             svp.CreatedView = listView;
         }
-
+        
         protected virtual void ResetPivotGridLayouts(PivotGridSetup pivotSetup)
         {
         }

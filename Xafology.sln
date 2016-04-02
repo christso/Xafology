@@ -119,13 +119,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{5AD7BC31-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PivotGridLayout", "PivotGridLayout", "{17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Module", "Xafology.PivotGridLayoutDemo\PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj", "{54388EA2-1711-4C58-9AE9-E86EA935E1C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Module", "Xafology.PivotGridLayoutDemo.Module\PivotGridLayoutDemo.Module.csproj", "{54388EA2-1711-4C58-9AE9-E86EA935E1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Win", "Xafology.PivotGridLayoutDemo\PivotGridLayoutDemo.Win\PivotGridLayoutDemo.Win.csproj", "{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Win", "Xafology.PivotGridLayoutDemo.Win\PivotGridLayoutDemo.Win.csproj", "{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo2.Module.Web", "PivotGridLayoutDemo2.Module.Web\PivotGridLayoutDemo2.Module.Web.csproj", "{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo2.Web", "PivotGridLayoutDemo2.Web\PivotGridLayoutDemo2.Web.csproj", "{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Web", "Xafology.PivotGridLayoutDemo.Web\PivotGridLayoutDemo.Web.csproj", "{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -656,18 +654,6 @@ Global
 		{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}.Release|x86.Build.0 = Release|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Debug|x86.Build.0 = Debug|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.EasyTest|x86.ActiveCfg = EasyTest|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.EasyTest|x86.Build.0 = EasyTest|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Release|x86.ActiveCfg = Release|Any CPU
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81}.Release|x86.Build.0 = Release|Any CPU
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -737,7 +723,6 @@ Global
 		{17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8} = {5AD7BC31-EB8D-4C00-990E-4EC42EBAC634}
 		{54388EA2-1711-4C58-9AE9-E86EA935E1C5} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
 		{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
-		{C1EF993C-AB75-4F0F-ADC1-4F1EE5207D81} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
 	EndGlobalSection
 EndGlobal

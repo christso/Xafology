@@ -1,5 +1,5 @@
-﻿;#DropDB PivotGridLayoutDemo2EasyTest
+﻿;#DropDB PivotGridLayoutDemoEasyTest
 
-#Application PivotGridLayoutDemo2.Web
+#Application PivotGridLayoutDemo.Web
 
 !Action Navigation(My Details)

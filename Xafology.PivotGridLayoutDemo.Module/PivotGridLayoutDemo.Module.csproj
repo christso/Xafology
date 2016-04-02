@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}</ProjectGuid>
+    <ProjectGuid>{54388EA2-1711-4C58-9AE9-E86EA935E1C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xafology.ExpressApp.PivotGridLayout</RootNamespace>
-    <AssemblyName>Xafology.ExpressApp.PivotGridLayout</AssemblyName>
+    <RootNamespace>PivotGridLayoutDemo.Module</RootNamespace>
+    <AssemblyName>PivotGridLayoutDemo.Module</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -26,7 +26,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +34,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,19 +42,15 @@
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.ExpressApp.PivotGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Security.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.ExpressApp.Xpo.v15.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -86,34 +80,21 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\LayoutPopupListViewController.cs">
+    <Compile Include="BusinessObjects\DemoWelcome.cs" />
+    <Compile Include="BusinessObjects\DomainObject1.cs" />
+    <Compile Include="BusinessUtils\DomainObject1PivotGridSetup.cs" />
+    <Compile Include="Controllers\DemoWelcomeController.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controllers\LoadLayoutPopupListViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controllers\SaveLayoutPopupListViewController.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data.cs" />
-    <Compile Include="Helpers\StaticHelpers.cs" />
-    <Compile Include="PivotGridLayoutEventArgs.cs" />
-    <Compile Include="PivotGridSavedLayoutRule.cs" />
-    <Compile Include="PivotGridLayout.cs" />
-    <Compile Include="PivotGridSavedLayout.cs" />
-    <Compile Include="PivotGridLoadedLayout.cs" />
-    <Compile Include="PivotGridSetup.cs" />
-    <Compile Include="ReservedLayoutNames.cs" />
-    <Compile Include="UIPlatform.cs" />
-    <Compile Include="Controllers\PivotGridLayoutController.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="DatabaseUpdate\DataInitializer.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -124,7 +105,9 @@
     <Compile Include="DatabaseUpdate\Updater.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Module.cs</DependentUpon>
@@ -135,28 +118,29 @@
     <None Include="DatabaseUpdate\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BusinessObjects\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Controllers\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FunctionalTests\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FunctionalTests\Sample.ets" />
     <None Include="Images\ReadMe.txt" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xafology.Data\Xafology.Data.csproj">
-      <Project>{ad7ba40a-efb1-43ba-ac0a-1ca39087ea1f}</Project>
-      <Name>Xafology.Data</Name>
-    </ProjectReference>
+    <Content Include="FunctionalTests\Config.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="UnusableNodes.xml">
-      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
+    <ProjectReference Include="..\Xafology.ExpressApp.PivotGridLayout\Xafology.ExpressApp.PivotGridLayout.csproj">
+      <Project>{CEAB89B1-8D0D-4E61-8C36-2D8EFD2F202A}</Project>
+      <Name>Xafology.ExpressApp.PivotGridLayout</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if $(Configuration)==Release ( NuGet.exe pack "$(ProjectPath)" -OutputDirectory "$(NugetPackageSourceLocalPath)" -Prop Configuration=Release )</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
