@@ -25,7 +25,8 @@ namespace Xafology.ExpressApp.Paste.Win
         // note that the new row must be focused for this to work
         public void Process(int[] selectedRowHandles)
         {
-            GridListEditor listEditor = ((ListView)view).Editor as GridListEditor;
+            var listview = (ListView)view;
+            GridListEditor listEditor = listview.Editor as GridListEditor;
             var gridView = listEditor.GridView;
             var copiedValues = copyParser.ToArray();
 
@@ -41,7 +42,7 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 // paste cells
                 pasteUtils.PasteColumnsToRow(copiedValues[r], gridView.FocusedRowHandle,
-                    listEditor, view.ObjectSpace);
+                    listview);
 
                 gridView.UpdateCurrentRow();
             }

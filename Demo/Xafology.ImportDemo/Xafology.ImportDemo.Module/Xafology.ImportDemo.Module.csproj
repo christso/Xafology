@@ -84,6 +84,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.9.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\LumenWorksCsvReader.3.9\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SDP.ParserUtils, Version=1.1.2.0, Culture=neutral, PublicKeyToken=4ee1200acbd59010, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\SDP.ParserUtils.1.1.2.0\lib\net45\SDP.ParserUtils.dll</HintPath>
       <Private>True</Private>

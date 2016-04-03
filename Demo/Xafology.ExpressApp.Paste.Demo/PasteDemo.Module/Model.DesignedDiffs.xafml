@@ -1,5 +1,13 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="PasteDemo" Logo="ExpressAppLogo">
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
+  </SchemaModules>
   <Views>
+    <ListView Id="MockFactObject_ListView">
+      <Columns>
+        <ColumnInfo Id="Memo" SortIndex="7" Index="7" />
+      </Columns>
+    </ListView>
   </Views>
 </Application>

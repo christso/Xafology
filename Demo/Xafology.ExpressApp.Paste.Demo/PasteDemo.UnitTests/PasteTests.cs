@@ -50,6 +50,5 @@ namespace PasteDemo.UnitTests
             Assert.AreEqual("Apple", parsedArray[0][2]);
             Assert.AreEqual("Handset Pchse", parsedArray[0][3]);
         }
-        
     }
 }

@@ -28,22 +28,26 @@ namespace Xafology.ExpressApp.Paste.Win
         {
             xpoFieldValueReader = new XpoFieldValueReader();
         }
-    
-        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, GridListEditor listEditor, IObjectSpace objSpace)
+
+
+        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view)
         {
+            var listEditor = ((ListView)view).Editor as GridListEditor;
+            var objSpace = ((ListView)view).ObjectSpace;
             var gridView = listEditor.GridView;
 
             // iterate through columns in listview
             int columnIndex = 0;
-            foreach (var member in listEditor.Model.ModelClass.OwnMembers)
+            foreach (var member in listEditor.Model.Columns)
             {
                 if (columnIndex >= copiedRowValues.Length)
                     break;
 
                 var isLookup = !string.IsNullOrEmpty(member.LookupProperty);
-                var gridColumnKey = member.Name + (isLookup ? "!" : "");
+                var gridColumnKey = member.PropertyName + (isLookup ? "!" : "");
                 var gridColumn = gridView.Columns[gridColumnKey];
                 var copiedValue = copiedRowValues[columnIndex];
+                var memberInfo = member.ModelMember.MemberInfo;
 
                 // if column is visible in grid, then increment the copiedValue column counter
                 if (gridColumn.Visible)
@@ -51,15 +55,15 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 // skip non-editable, key column, invisible column or blank values
                 // otherwise paste values
-                if (member.AllowEdit 
-                    && member.Name != listEditor.Model.ModelClass.KeyProperty
+                if (member.AllowEdit
+                    && member.PropertyName != listEditor.Model.ModelClass.KeyProperty
                     && gridColumn.Visible
                     && !string.IsNullOrEmpty(copiedValue)
                     && !string.IsNullOrWhiteSpace(copiedValue)
                     )
                 {
                     var pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
-                        member.MemberInfo, copiedValue, true, true);
+                        memberInfo, copiedValue, true, true);
                     gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
                 }
             }
