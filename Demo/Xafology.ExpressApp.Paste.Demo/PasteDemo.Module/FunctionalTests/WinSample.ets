@@ -1,6 +1,6 @@
-﻿;#DropDB PivotGridLayoutDemoEasyTest
+﻿;#DropDB MainDemoEasyTest
 
-#Application PivotGridLayoutDemo.Win
+#Application MainDemo.Win
 
 *Action About...
  
