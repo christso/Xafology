@@ -24,7 +24,7 @@ namespace Xafology.TestUtils
     [TestFixture]
     public class MSSqlDbTestBase : ITest
     {
-        public string DataPath = @"D:\CTSO\Data\MSSQL12\Data";
+        public string DataPath;
         public string ServerName = @"(localdb)\mssqllocaldb";
         public string DatabaseName = "XafologyUnitTest";
         public bool TearDownFixtureEnabled = false;
@@ -41,6 +41,7 @@ namespace Xafology.TestUtils
         public MSSqlDbTestBase()
         {
             module = new ModuleBase();
+            DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
         [OneTimeTearDown]
