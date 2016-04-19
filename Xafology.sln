@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.StringEvaluators", "Xafology.StringEvaluators\Xafology.StringEvaluators.csproj", "{5B146106-01EE-401F-A024-99C1BC2CC237}"
 EndProject
@@ -124,6 +124,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Win", "Demo\Xafology.PivotGridLayoutDemo.Win\PivotGridLayoutDemo.Win.csproj", "{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotGridLayoutDemo.Web", "Demo\Xafology.PivotGridLayoutDemo.Web\PivotGridLayoutDemo.Web.csproj", "{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RowMover", "RowMover", "{DB3F7C8F-D13A-4154-8161-D9F99E3ADBA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xafology.RowMoverDemo", "Demo\Xafology.RowMoverDemo\Xafology.RowMoverDemo.csproj", "{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -860,6 +864,22 @@ Global
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Release|x86.ActiveCfg = Release|Any CPU
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E}.Release|x86.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Debug|x86.Build.0 = Debug|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.EasyTest|x86.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.EasyTest|x86.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Publish|Any CPU.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Publish|x86.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Publish|x86.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Release|x86.ActiveCfg = Release|Any CPU
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -918,5 +938,7 @@ Global
 		{54388EA2-1711-4C58-9AE9-E86EA935E1C5} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
 		{57DAF918-7D5B-4EAA-A70C-5E580F36C4ED} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
 		{6BA4BB80-846F-43F5-8E63-8E250B5DF34E} = {17E6A5ED-68C0-4A24-9F2A-48C4052CF6E8}
+		{DB3F7C8F-D13A-4154-8161-D9F99E3ADBA9} = {5AD7BC31-EB8D-4C00-990E-4EC42EBAC634}
+		{E54E4AE5-B4B1-45A3-8FB0-B258763F726E} = {DB3F7C8F-D13A-4154-8161-D9F99E3ADBA9}
 	EndGlobalSection
 EndGlobal

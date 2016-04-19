@@ -176,5 +176,5 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Xafology.Key\Xafology.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>  
+  </PropertyGroup>
 </Project>

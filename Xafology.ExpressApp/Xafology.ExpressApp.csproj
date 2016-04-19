@@ -155,7 +155,13 @@
     <Compile Include="Controllers\DefaultValuesViewController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RowMover\MoveToRowIndexParam.cs" />
+    <Compile Include="RowMover\RowMover.cs" />
+    <Compile Include="RowMover\RowMoverViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ILogger.cs" />
+    <Compile Include="RowMover\IRowMoverObject.cs" />
     <Compile Include="XafologyModuleBase.cs">
       <SubType>Component</SubType>
     </Compile>
