@@ -60,6 +60,19 @@ namespace MainDemo.Win.BusinessObjects
             return -1;
         }
 
+        private DateTime _TranDate;
+        public DateTime TranDate
+        {
+            get
+            {
+                return _TranDate;
+            }
+            set
+            {
+                SetPropertyValue("TranDate", ref _TranDate, value.Date);
+            }
+        }
+
         private decimal _AccountCcyAmt;
 
         public decimal AccountCcyAmt

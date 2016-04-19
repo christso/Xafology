@@ -132,6 +132,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
       <Private>False</Private>
@@ -158,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\SeqDemoObject.cs" />
+    <Compile Include="CustomFunctions\DaysFunction.cs" />
+    <Compile Include="CustomFunctions\EoMonthFunction.cs" />
+    <Compile Include="MainDemoTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinApplication.cs">
@@ -195,6 +202,7 @@
     <None Include="Model.xafml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -235,6 +243,14 @@
     <ProjectReference Include="..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
       <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
       <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.TestUtils\Xafology.TestUtils.csproj">
+      <Project>{51e0010f-cd1d-47bb-894c-d9347e48ee44}</Project>
+      <Name>Xafology.TestUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xafology.Utils\Xafology.Utils.csproj">
+      <Project>{27104bf1-1ef2-47f5-b3dc-5cdce2a41b08}</Project>
+      <Name>Xafology.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

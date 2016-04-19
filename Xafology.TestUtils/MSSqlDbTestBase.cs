@@ -44,7 +44,7 @@ namespace Xafology.TestUtils
             DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
-        [OneTimeTearDown]
+        [OneTimeSetUp]
         public void SetUpFixture()
         {
             InitializeImageLoader();

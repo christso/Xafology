@@ -26,7 +26,7 @@ namespace Xafology.TestUtils
             module = new ModuleBase();
         }
 
-        [OneTimeTearDown]
+        [OneTimeSetUp]
         public void SetUpFixture()
         {
             InitializeImageLoader();
