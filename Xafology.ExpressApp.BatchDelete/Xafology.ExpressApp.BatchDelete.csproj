@@ -71,9 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BatchDeleteListViewControllerBase.cs">
+    <Compile Include="BatchDeleteListViewController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BatchDeleteAttribute.cs" />
+    <Compile Include="BatchDeleter.cs" />
+    <Compile Include="IBatchDeletable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
-
+using Xafology.ExpressApp.BatchDelete;
 
 namespace Xafology.BatchDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MockFactObject : BaseObject
+    [BatchDelete(isVisible: true, isOptimized: true)]
+    public class MockFactObject : BaseObject, IBatchDeletable
     {
         private string description;
         private decimal amount;
@@ -49,7 +50,8 @@ namespace Xafology.BatchDemo.Module.BusinessObjects
 
         private MockLookupObject1 mockLookupObject1;
 
-        public MockLookupObject1 MockLookupObject1
+        [Association("MockLookupObject1-MockFactObjects")]
+        public MockLookupObject1 LookupObject1
         {
             get
             {
@@ -57,14 +59,13 @@ namespace Xafology.BatchDemo.Module.BusinessObjects
             }
             set
             {
-                SetPropertyValue("MockLookupObject1", ref mockLookupObject1, value);
+                SetPropertyValue("LookupObject1", ref mockLookupObject1, value);
             }
         }
 
-
         private MockLookupObject2 mockLookupObject2;
 
-        public MockLookupObject2 MockLookupObject2
+        public MockLookupObject2 LookupObject2
         {
             get
             {
@@ -72,7 +73,7 @@ namespace Xafology.BatchDemo.Module.BusinessObjects
             }
             set
             {
-                SetPropertyValue("MockLookupObject2", ref mockLookupObject2, value);
+                SetPropertyValue("LookupObject2", ref mockLookupObject2, value);
             }
         }		
     }

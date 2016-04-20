@@ -1,10 +1,12 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.Xpo;
 using MainDemo.Win.BusinessObjects;
 using MainDemo.Win.CustomFunctions;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +42,14 @@ namespace MainDemo.Win
             
             var parsedResult = obj.Evaluate(CriteriaOperator.Parse("Days(EOMONTH(TranDate) - TranDate)"));
             Assert.NotNull(parsedResult);
+        }
+
+        [Test]
+        public void GetDatabaseType()
+        {
+            var session = ((XPObjectSpace)ObjectSpace).Session;
+            var connection = session.Connection as SqlConnection;
+            //Application.ObjectSpaceProvider.ConnectionString
         }
     }
 }

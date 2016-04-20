@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Xpo;
 using DevExpress.Persistent.Base;
+using Xafology.ExpressApp.BatchDelete;
 
 namespace Xafology.BatchDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    public class MockLookupObject1 : BaseObject
+    [BatchDelete(isVisible: true, isOptimized: true)]
+    public class MockLookupObject1 : BaseObject, IBatchDeletable
     {
         private string name;
         public MockLookupObject1(DevExpress.Xpo.Session session)
@@ -33,7 +35,14 @@ namespace Xafology.BatchDemo.Module.BusinessObjects
             {
                 SetPropertyValue("Name", ref name, value);
             }
-        }		
+        }
+
+        [Association("MockLookupObject1-MockFactObjects"), DevExpress.Xpo.Aggregated]
+        public XPCollection<MockFactObject> MockFactObjects
+        {
+            get { return GetCollection<MockFactObject>("MockFactObjects"); }
+        }
+
 
     }
 }

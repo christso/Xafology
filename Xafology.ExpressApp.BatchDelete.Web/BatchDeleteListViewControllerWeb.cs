@@ -11,7 +11,7 @@ using DevExpress.Data.Filtering;
 
 namespace Xafology.ExpressApp.BatchDelete.Web
 {
-    public class BatchDeleteListViewControllerWeb : BatchDeleteListViewControllerBase
+    public class BatchDeleteListViewControllerWeb : BatchDeleteListViewController
     {
         protected override CriteriaOperator ActiveFilterCriteria
         {
