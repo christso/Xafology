@@ -127,7 +127,7 @@ namespace Xafology.ExpressApp.BatchDelete
                 classInfo.TableName,
                 randomNumber,
                 string.Join(",", oidStrings),
-                nullParentSqls.Count > 0 ? string.Join(",", nullParentSqls) : "");
+                nullParentSqls.Count > 0 ? "," + string.Join(",", nullParentSqls) : "");
             session.ExecuteNonQuery(sqlNonQuery);
         }
 

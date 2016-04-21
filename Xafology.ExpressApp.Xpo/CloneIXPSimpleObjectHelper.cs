@@ -136,5 +136,15 @@ namespace Xafology.ExpressApp.Xpo
             }
             return clone;
         }
+
+        public static IXPSimpleObject CloneLocal(IXPSimpleObject source, IXPSimpleObject clone)
+        {
+            foreach (var m in source.ClassInfo.Members)
+            {
+                if (m is DevExpress.Xpo.Metadata.Helpers.ServiceField || m.IsKey || !m.IsPublic || m.IsReadOnly) continue;
+                clone.ClassInfo.GetMember(m.Name).SetValue(clone, m.GetValue(source));
+            }
+            return clone;
+        }
     }
 }

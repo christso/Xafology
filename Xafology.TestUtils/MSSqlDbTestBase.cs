@@ -58,12 +58,12 @@ namespace Xafology.TestUtils
 
             Application.Setup("", ObjectSpaceProvider);
             Application.CheckCompatibility();
-            ObjectSpace = (XPObjectSpace)ObjectSpaceProvider.CreateObjectSpace();
         }
 
         [SetUp]
         public void Setup()
         {
+            ObjectSpace = (XPObjectSpace)ObjectSpaceProvider.CreateObjectSpace();
             // clear database
             DeleteExportedObjects(module, ObjectSpace.Session);
             ObjectSpace.CommitChanges();
