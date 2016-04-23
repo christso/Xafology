@@ -1,5 +1,11 @@
-﻿<Application>
-	<Options Skin="Visual Studio 2013 Blue" UIType="TabbedMDI" FormStyle="Ribbon">
-	  <RibbonOptions RibbonControlStyle="Office2013" />
-	</Options>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems NavigationStyle="NavBar" DefaultChildItemsDisplayStyle="List" />
+  <Options Skin="Visual Studio 2013 Blue" UIType="TabbedMDI" FormStyle="Ribbon">
+    <RibbonOptions RibbonControlStyle="Office2013" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="15.2.7.0" IsNewNode="True" />
+  </SchemaModules>
 </Application>

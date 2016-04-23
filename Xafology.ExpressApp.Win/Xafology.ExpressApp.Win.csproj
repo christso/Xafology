@@ -130,9 +130,10 @@
     <Compile Include="Module.Designer.cs">
       <DependentUpon>Module.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModuleEx.cs">
+    <Compile Include="NavBar\NavBarViewChangingController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NavBar\SearchHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
   </ItemGroup>
@@ -147,8 +148,6 @@
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BusinessObjects\ReadMe.txt" />
-    <None Include="Controllers\ReadMe.txt" />
     <None Include="DatabaseUpdate\ReadMe.txt" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
@@ -195,5 +194,5 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Xafology.Key\Xafology.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>  
+  </PropertyGroup>
 </Project>

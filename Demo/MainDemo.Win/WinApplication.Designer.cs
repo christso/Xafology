@@ -36,6 +36,7 @@
             this.Modules.Add(this.module1);
             this.Modules.Add(this.module2);
             this.Modules.Add(this.module4);
+            this.Modules.Add(new Xafology.ExpressApp.Win.SystemModule.XafologySystemWindowsFormsModule());
             this.Modules.Add(sequentialBaseModule = new Xafology.ExpressApp.Xpo.SequentialBase.XafologySequentialBaseModule());
             this.UseOldTemplates = false;
             this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.MainDemoWindowsFormsApplication_DatabaseVersionMismatch);

@@ -1,2 +1,8 @@
-﻿<?xml version="1.0" ?>
-<Application />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems NavigationStyle="TreeList" DefaultChildItemsDisplayStyle="List" DefaultLeafImageName="BO_List" />
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="15.2.7.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

@@ -132,8 +132,8 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System">
@@ -161,6 +161,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\SeqDemoObject3.cs" />
+    <Compile Include="BusinessObjects\SeqDemoObject2.cs" />
     <Compile Include="BusinessObjects\SeqDemoObject.cs" />
     <Compile Include="CustomFunctions\DaysFunction.cs" />
     <Compile Include="CustomFunctions\EoMonthFunction.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="WinModule.Designer.cs">
       <DependentUpon>WinModule.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -198,7 +201,11 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <None Include="Model.DesignedDiffs.xafml">
+      <DependentUpon>Model.xafml</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Model.xafml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -236,6 +243,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Xafology.ExpressApp.Win\Xafology.ExpressApp.Win.csproj">
+      <Project>{a0cbf966-805d-4532-8f04-2106e5c963f9}</Project>
+      <Name>Xafology.ExpressApp.Win</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
