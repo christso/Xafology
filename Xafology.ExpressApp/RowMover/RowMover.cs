@@ -27,6 +27,20 @@ namespace Xafology.ExpressApp.RowMover
             return objSpace.GetObjects(objType);
         }
 
+        public void ReIndex(Type objType)
+        {
+            var objs = GetObjects(objType).Cast<IRowMoverObject>();
+            objs = objs.OrderBy(x =>
+                x.RowIndex);
+            int i = 1;
+            foreach (IRowMoverObject obj in objs)
+            {
+                obj.RowIndex = i;
+                ((BaseObject)obj).Save();
+                i++;
+            }
+        }
+
         public void MoveUp(Xafology.ExpressApp.RowMover.IRowMoverObject selectedObj)
         {
             if (selectedObj.RowIndex > 1)

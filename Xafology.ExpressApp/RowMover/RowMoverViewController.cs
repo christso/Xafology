@@ -42,6 +42,9 @@ namespace Xafology.ExpressApp.RowMover
             moveCustomActionItem.Caption = "Custom";
             moveAction.Items.Add(moveCustomActionItem);
 
+            var resetActionItem = new ChoiceActionItem();
+            resetActionItem.Caption = "Reset";
+            moveAction.Items.Add(resetActionItem);
         }
 
         protected override void OnActivated()
@@ -74,7 +77,9 @@ namespace Xafology.ExpressApp.RowMover
                     popupView.Accepting += DialogController_Accepting;
                     popupView.ShowNonPersistentView(typeof(MoveToRowIndexParam));
                     break;
-
+                case "Reset":
+                    mover.ReIndex(obj.GetType());
+                    break;
             }
         }
 
