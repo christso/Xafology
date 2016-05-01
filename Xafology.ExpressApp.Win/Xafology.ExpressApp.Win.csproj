@@ -133,7 +133,9 @@
     <Compile Include="NavBar\NavBarViewChangingController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NavBar\SearchCriteria.cs" />
     <Compile Include="NavBar\SearchHelper.cs" />
+    <Compile Include="NavBar\SearchPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
   </ItemGroup>

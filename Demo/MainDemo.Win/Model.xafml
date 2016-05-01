@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <NavigationItems NavigationStyle="NavBar" DefaultChildItemsDisplayStyle="List" />
+  <NavigationItems NavigationStyle="NavBar" DefaultChildItemsDisplayStyle="List" DefaultLeafImageName="BO_List" />
   <Options Skin="Visual Studio 2013 Blue" UIType="TabbedMDI" FormStyle="Ribbon">
     <RibbonOptions RibbonControlStyle="Office2013" />
   </Options>

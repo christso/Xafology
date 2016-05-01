@@ -1,26 +1,32 @@
-﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors;
 using DevExpress.XtraNavBar;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Win.NavBar
 {
-
-    public static class SearchHelper
+    public class SearchPanel : IDisposable
     {
-        static NavBarControl navBarControl1;
-        static TextEdit textEdit;
-        static SearchCriteria criteria1;
+        private NavBarControl navBarControl;
+        private TextEdit textEdit;
+        private SearchCriteria criteria1;
 
-        public static void CreateSearchPanel(NavBarControl navBarControl, SearchCriteria criteria)
+        public void Dispose()
         {
             if (navBarControl != null)
             {
-                navBarControl1 = navBarControl;
+                navBarControl.Dispose();
+                navBarControl = null;
+            }
+        }
+
+        public void CreateSearchPanel(NavBarControl navBarControl, SearchCriteria criteria)
+        {
+            if (navBarControl != null)
+            {
+                this.navBarControl = navBarControl;
                 criteria1 = criteria;
                 textEdit = new TextEdit();
                 NavBarGroup navBarGroup = new NavBarGroup();
@@ -40,7 +46,7 @@ namespace Xafology.ExpressApp.Win.NavBar
             }
         }
 
-        static void navBarControl_CustomDrawGroupCaption(object sender, DevExpress.XtraNavBar.ViewInfo.CustomDrawNavBarElementEventArgs e)
+        private void navBarControl_CustomDrawGroupCaption(object sender, DevExpress.XtraNavBar.ViewInfo.CustomDrawNavBarElementEventArgs e)
         {
             if (e.Caption == "Search")
             {
@@ -52,9 +58,9 @@ namespace Xafology.ExpressApp.Win.NavBar
             }
         }
 
-        static void textEdit_EditValueChanged(object sender, EventArgs e)
+        private void textEdit_EditValueChanged(object sender, EventArgs e)
         {
-            foreach (NavBarGroup group in navBarControl1.Groups)
+            foreach (NavBarGroup group in navBarControl.Groups)
             {
                 foreach (NavBarItemLink link in group.ItemLinks)
                 {

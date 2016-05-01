@@ -12,18 +12,30 @@ namespace Xafology.ExpressApp.Win.NavBar
     // This only supports ExplorerBar, and 2 levels in the hiearchy
     public class NavBarViewChangingController : WindowController
     {
+        public NavBarViewChangingController()
+        {
+            this.searchPanel = new SearchPanel();
+        }
+
         private NavigationActionContainer navActionContainer;
+        private SearchPanel searchPanel;
+
         protected override void OnActivated()
         {
             base.OnActivated();
 
             Window.ProcessActionContainer += Window_ProcessActionContainer;
+            searchPanel = new SearchPanel();
         }
         protected override void OnDeactivated()
         {
             Window.ProcessActionContainer -= Window_ProcessActionContainer;
             UnsubscribeFromContainerEvents();
             navActionContainer = null;
+
+            if (this.searchPanel != null)
+                searchPanel.Dispose();
+
             base.OnDeactivated();
         }
         void Window_ProcessActionContainer(object sender, ProcessActionContainerEventArgs e)
@@ -68,7 +80,7 @@ namespace Xafology.ExpressApp.Win.NavBar
                 navBarNavigationControl.PaintStyleKind = NavBarViewKind.ExplorerBar;
 
                 // create the search panel
-                SearchHelper.CreateSearchPanel(navBarNavigationControl, SearchCriteria.Contains);
+                searchPanel.CreateSearchPanel(navBarNavigationControl, SearchCriteria.Contains);
 
             }
         }
