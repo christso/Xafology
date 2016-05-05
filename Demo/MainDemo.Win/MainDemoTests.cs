@@ -44,5 +44,12 @@ namespace MainDemo.Win
             var parsedResult = obj.Evaluate(CriteriaOperator.Parse("Days(EOMONTH(TranDate) - TranDate)"));
             Assert.NotNull(parsedResult);
         }
+
+        [Test]
+        public void GenerateSeqGuidTest()
+        {
+            var obj = ObjectSpace.CreateObject<SeqGuidDemoObject>();
+            obj.Save();
+        }
     }
 }
