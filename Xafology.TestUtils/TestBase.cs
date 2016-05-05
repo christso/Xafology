@@ -73,7 +73,7 @@ namespace Xafology.TestUtils
         }
 
         [SetUp]
-        public void Setup()
+        public virtual void Setup()
         {
             Tester.Setup();
         }
@@ -105,7 +105,7 @@ namespace Xafology.TestUtils
         }
 
         [TearDown]
-        public void TearDown()
+        public virtual void TearDown()
         {
             Tester.TearDown();
         }

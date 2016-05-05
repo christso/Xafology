@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="CloneIXPSimpleObjectHelper.cs" />
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <Compile Include="SequentialGuidBase\SequentialGuidBaseObject.cs" />
     <Compile Include="ValueMap\CachedLookupValueConverter.cs" />
     <Compile Include="ValueMap\CachedXPCollections.cs" />
     <Compile Include="ValueMap\IImportLogger.cs" />
@@ -142,5 +143,5 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Xafology.Key\Xafology.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>  
+  </PropertyGroup>
 </Project>

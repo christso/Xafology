@@ -164,6 +164,7 @@
     <Compile Include="BusinessObjects\SeqDemoObject3.cs" />
     <Compile Include="BusinessObjects\SeqDemoObject2.cs" />
     <Compile Include="BusinessObjects\SeqDemoObject.cs" />
+    <Compile Include="BusinessObjects\SeqGuidDemoObject.cs" />
     <Compile Include="CustomFunctions\DaysFunction.cs" />
     <Compile Include="CustomFunctions\EoMonthFunction.cs" />
     <Compile Include="MainDemoTests.cs" />

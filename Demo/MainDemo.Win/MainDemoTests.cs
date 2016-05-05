@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xafology.TestUtils;
+using Xafology.Utils.SequentialGuid;
 
 namespace MainDemo.Win
 {
@@ -42,14 +43,6 @@ namespace MainDemo.Win
             
             var parsedResult = obj.Evaluate(CriteriaOperator.Parse("Days(EOMONTH(TranDate) - TranDate)"));
             Assert.NotNull(parsedResult);
-        }
-
-        [Test]
-        public void GetDatabaseType()
-        {
-            var session = ((XPObjectSpace)ObjectSpace).Session;
-            var connection = session.Connection as SqlConnection;
-            //Application.ObjectSpaceProvider.ConnectionString
         }
     }
 }

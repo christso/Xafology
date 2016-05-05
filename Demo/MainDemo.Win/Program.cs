@@ -7,6 +7,7 @@ using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Win;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
+using Xafology.ExpressApp.Xpo.SequentialGuidBase;
 
 namespace MainDemo.Win {
     static class Program {
@@ -36,6 +37,8 @@ namespace MainDemo.Win {
                 winApplication.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
             try {
+                SequentialGuidBaseObject.IsSequential = true;
+
                 winApplication.Setup();
                 winApplication.Start();
             }
