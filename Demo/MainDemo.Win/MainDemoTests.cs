@@ -50,6 +50,8 @@ namespace MainDemo.Win
         {
             var obj = ObjectSpace.CreateObject<SeqGuidDemoObject>();
             obj.Save();
+            //ObjectSpace.CommitChanges();
+            Assert.AreNotEqual(Guid.Empty, obj.Oid);
         }
     }
 }

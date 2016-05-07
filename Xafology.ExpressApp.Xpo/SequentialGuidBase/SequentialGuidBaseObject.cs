@@ -72,6 +72,11 @@ namespace Xafology.ExpressApp.Xpo.SequentialGuidBase
             }
         }
 
+        public void GenerateOid()
+        {
+            this.oid = this.NewGuid();
+        }
+
         /// <summary>
         ///     <para>Invoked when the current object is about to be initialized after its creation. 
         ///
