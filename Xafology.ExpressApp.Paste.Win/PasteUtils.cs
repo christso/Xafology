@@ -43,8 +43,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 if (columnIndex >= copiedRowValues.Length)
                     break;
 
-                var isLookup = !string.IsNullOrEmpty(member.LookupProperty);
-                var gridColumnKey = member.PropertyName + (isLookup ? "!" : "");
+                var gridColumnKey = member.ModelMember.MemberInfo.BindingName;
                 var gridColumn = gridView.Columns[gridColumnKey];
                 var copiedValue = copiedRowValues[columnIndex];
                 var memberInfo = member.ModelMember.MemberInfo;
