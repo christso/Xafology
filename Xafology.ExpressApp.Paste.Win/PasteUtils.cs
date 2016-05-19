@@ -38,15 +38,25 @@ namespace Xafology.ExpressApp.Paste.Win
 
             // iterate through columns in listview
             int columnIndex = 0;
-            foreach (var member in listEditor.Model.Columns)
+
+            var hasGroups = gridView.Columns.Where(x => x.GroupIndex != -1).Count() > 0;
+            if (hasGroups)
+                throw new UserFriendlyException("Please ungroup columns before pasting rows");
+
+            var gridColumns = gridView.Columns
+                .Where(x => x.Visible && x.GroupIndex == -1)
+                .OrderBy(x => x.VisibleIndex)
+                .Select(x => x);
+
+            foreach (var gridColumn in gridColumns)
             {
                 if (columnIndex >= copiedRowValues.Length)
                     break;
 
-                var gridColumnKey = member.ModelMember.MemberInfo.BindingName;
-                var gridColumn = gridView.Columns[gridColumnKey];
+                var member = listEditor.Model.Columns[gridColumn.Name];
+                var isLookup = typeof(IXPObject).IsAssignableFrom(member.ModelMember.MemberInfo.MemberType);
+
                 var copiedValue = copiedRowValues[columnIndex];
-                var memberInfo = member.ModelMember.MemberInfo;
 
                 // if column is visible in grid, then increment the copiedValue column counter
                 if (gridColumn.Visible)
@@ -54,9 +64,10 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 // skip non-editable, key column, invisible column or blank values
                 // otherwise paste values
+                
+                var memberInfo = member.ModelMember.MemberInfo;
                 if (member.AllowEdit
                     && member.PropertyName != listEditor.Model.ModelClass.KeyProperty
-                    && gridColumn.Visible
                     && !string.IsNullOrEmpty(copiedValue)
                     && !string.IsNullOrWhiteSpace(copiedValue)
                     )
