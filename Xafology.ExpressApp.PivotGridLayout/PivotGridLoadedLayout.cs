@@ -17,6 +17,7 @@ using Xafology.ExpressApp.PivotGridLayout.Helpers;
 
 namespace Xafology.ExpressApp.PivotGridLayout
 {
+    [ImageName("BO_List")]
     public class PivotGridLoadedLayout : BaseObject
     {
 

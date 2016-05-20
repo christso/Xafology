@@ -5,6 +5,7 @@ using DevExpress.Xpo;
 namespace Xafology.ExpressApp.MsoExcel.Reports
 {
     [FileAttachment("TemplateFile")]
+    [ImageName("BO_List")]
     public class ExcelReport : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (http://documentation.devexpress.com/#Xaf/CustomDocument3146).
         public ExcelReport(Session session)

@@ -11,6 +11,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
     [DefaultListViewOptions(allowEdit: true, newItemRowPosition: NewItemRowPosition.None)]
+    [ImageName("BO_List")]
     public class ImportHeadersParam : ImportParamBase, ImportParam
     {
         public ImportHeadersParam(Session session)

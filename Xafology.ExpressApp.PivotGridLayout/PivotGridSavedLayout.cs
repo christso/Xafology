@@ -18,6 +18,7 @@ namespace Xafology.ExpressApp.PivotGridLayout
     [FileAttachmentAttribute("LayoutFile")]
     [RuleCombinationOfPropertiesIsUnique("PivotGridSavedLayout_UniqueRule", DefaultContexts.Save, 
         "LayoutName, TypeName, UIPlatform")]
+    [ImageName("BO_List")]
     public class PivotGridSavedLayout : BaseObject
     {
         private static ReservedLayoutNames _ReservedLayoutNames;

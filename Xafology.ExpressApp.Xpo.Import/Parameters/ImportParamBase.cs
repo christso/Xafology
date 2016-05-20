@@ -14,6 +14,7 @@ using Xafology.ExpressApp.Xpo.Import.Logic;
 
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
+    [ImageName("BO_List")]
     public abstract class ImportParamBase : BaseObject, IImportOptions
     {
         public ImportParamBase(Session session)

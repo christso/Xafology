@@ -9,6 +9,7 @@ using System.IO;
 namespace Xafology.ExpressApp.Xpo.Import.Parameters
 {
     [FileAttachment("File")]
+    [ImageName("BO_List")]
     public class ImportOrdinalsParam : ImportParamBase, ImportParam
     {
         private bool _HasHeaders;
