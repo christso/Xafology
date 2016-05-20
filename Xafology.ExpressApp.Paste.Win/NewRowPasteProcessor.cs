@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xafology.ExpressApp.Paste.Parameters;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
@@ -28,7 +29,7 @@ namespace Xafology.ExpressApp.Paste.Win
         }
 
         // note that the new row must be focused for this to work
-        public void Process()
+        public void Process(PasteParam pasteParam)
         {
             var listview = (ListView)view;
             GridListEditor listEditor = listview.Editor as GridListEditor;
@@ -52,7 +53,7 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 // paste cells
                 pasteUtils.PasteColumnsToRow(copiedValues[r], gridView.FocusedRowHandle,
-                    listview);
+                    listview, pasteParam);
 
                 gridView.UpdateCurrentRow();
             }

@@ -137,6 +137,12 @@
   <ItemGroup>
     <Content Include="Welcome.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.Paste\Xafology.ExpressApp.Paste.csproj">
+      <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
+      <Name>Xafology.ExpressApp.Paste</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -161,6 +161,10 @@
       <Project>{9bc86782-a468-49c5-86b6-fe63de695d7a}</Project>
       <Name>Xafology.ExpressApp.Paste.Win</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.Paste\Xafology.ExpressApp.Paste.csproj">
+      <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
+      <Name>Xafology.ExpressApp.Paste</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PasteDemo.Module\PasteDemo.Module.csproj">
       <Project>{dc2f3aa2-abdb-469e-b260-5fd5e9501529}</Project>
       <Name>PasteDemo.Module</Name>
