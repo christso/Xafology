@@ -10,6 +10,7 @@ using System.Diagnostics;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.Persistent.Base;
+using Xafology.ExpressApp.Paste.Parameters;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
@@ -55,21 +56,25 @@ namespace Xafology.ExpressApp.Paste.Win
             {
                 listEditor.GridView.OptionsClipboard.CopyColumnHeaders = copyColumnHeaders;
 
-                // create NewRowPasteProcessor
+                // create Paste Processor
                 clipboard = new Clipboard();
                 clipboardParser = new CopyParser(clipboard);
                 newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
                 existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
                 cellPasteProcessor = new CellPasteProcessor(clipboardParser, this.View);
+
             }
         }
 
         private void PasteRowAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
+            // find param
+            var pasteParam = ObjectSpace.FindObject<PasteParam>(CriteriaOperator.Parse("IsDefault=true"));
+
             switch (e.SelectedChoiceActionItem.Caption)
             {
                 case pasteRowsCaption:
-                    PasteRowValues();
+                    PasteRowValues(pasteParam);
                     break;
                 case pasteCellsCaption:
                     PasteCellValues();
@@ -77,7 +82,7 @@ namespace Xafology.ExpressApp.Paste.Win
             }
         }
 
-        private void PasteRowValues()
+        private void PasteRowValues(PasteParam pasteParam)
         {
             string[][] copiedValues = clipboardParser.ToArray();
             if (copiedValues == null) return;
@@ -91,13 +96,13 @@ namespace Xafology.ExpressApp.Paste.Win
                 if ((gridView.IsNewItemRow(gridView.FocusedRowHandle)))
                 {
                     // paste to new rows
-                    newRowPasteProcessor.Process();
+                    newRowPasteProcessor.Process(pasteParam);
                 }
                 else
                 {
                     // paste to selected rows
                     int[] selectedRowHandles = gridView.GetSelectedRows();
-                    existingRowPasteProcessor.Process(selectedRowHandles);
+                    existingRowPasteProcessor.Process(selectedRowHandles, pasteParam);
                 }
             }
         }

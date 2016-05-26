@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xafology.ExpressApp.Paste.Parameters;
 using Xafology.ExpressApp.Xpo;
 using Xafology.ExpressApp.Xpo.ValueMap;
 
@@ -31,6 +32,11 @@ namespace Xafology.ExpressApp.Paste.Win
 
 
         public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view)
+        {
+            PasteColumnsToRow(copiedRowValues, focusedRowHandle, view, null);
+        }
+
+        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view, PasteParam pasteParam)
         {
             var listEditor = ((ListView)view).Editor as GridListEditor;
             var objSpace = ((ListView)view).ObjectSpace;
@@ -64,7 +70,7 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 // skip non-editable, key column, invisible column or blank values
                 // otherwise paste values
-                
+
                 var memberInfo = member.ModelMember.MemberInfo;
                 if (member.AllowEdit
                     && member.PropertyName != listEditor.Model.ModelClass.KeyProperty
@@ -72,8 +78,18 @@ namespace Xafology.ExpressApp.Paste.Win
                     && !string.IsNullOrWhiteSpace(copiedValue)
                     )
                 {
-                    var pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
-                        memberInfo, copiedValue, true, true);
+                    object pasteValue = null;
+                    PasteFieldMap fieldMap = null;
+                    if (pasteParam != null)
+                        fieldMap = pasteParam.FieldMaps.Where(m => m.TargetName.ToLower() == gridColumn.Name.ToLower()).FirstOrDefault();
+
+                    if (fieldMap == null)
+                        pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
+                            memberInfo, copiedValue, true, true);
+                    else
+                        pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
+                            memberInfo, copiedValue, fieldMap.CreateMember, fieldMap.CacheObject);
+                
                     gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
                 }
             }
@@ -109,5 +125,6 @@ namespace Xafology.ExpressApp.Paste.Win
                     copyIndex++;
             }
         }
+
     }
 }

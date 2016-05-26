@@ -78,6 +78,9 @@
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Parameters\IPasteParam.cs" />
+    <Compile Include="Parameters\PasteFieldMap.cs" />
+    <Compile Include="Parameters\PasteParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

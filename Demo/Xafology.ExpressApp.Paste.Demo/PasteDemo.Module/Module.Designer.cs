@@ -27,6 +27,7 @@
 			// PasteDemoModule
 			// 
 			this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Paste.PasteModule));
 		}
 
 		#endregion
