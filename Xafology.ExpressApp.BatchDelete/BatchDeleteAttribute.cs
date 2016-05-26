@@ -19,7 +19,7 @@ namespace Xafology.ExpressApp.BatchDelete
         public BatchDeleteAttribute(bool isVisible, bool isOptimized)
         {
             this.isVisible = isVisible;
-            this.isOptimized = true;
+            this.isOptimized = isOptimized;
         }
         public bool IsVisible
         {
