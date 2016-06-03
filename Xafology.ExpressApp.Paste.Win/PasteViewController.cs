@@ -18,12 +18,6 @@ namespace Xafology.ExpressApp.Paste.Win
     {
         private readonly DevExpress.Utils.DefaultBoolean copyColumnHeaders;
 
-        private CopyParser clipboardParser;
-        private Clipboard clipboard;
-        private NewRowPasteProcessor newRowPasteProcessor;
-        private ExistingRowPasteProcessor existingRowPasteProcessor;
-        private CellPasteProcessor cellPasteProcessor;
-
         const string pasteRowsCaption = "Paste Rows";
         const string pasteCellsCaption = "Paste Cells";
 
@@ -56,13 +50,6 @@ namespace Xafology.ExpressApp.Paste.Win
             {
                 listEditor.GridView.OptionsClipboard.CopyColumnHeaders = copyColumnHeaders;
 
-                // create Paste Processor
-                clipboard = new Clipboard();
-                clipboardParser = new CopyParser(clipboard);
-                newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
-                existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
-                cellPasteProcessor = new CellPasteProcessor(clipboardParser, this.View);
-
             }
         }
 
@@ -84,6 +71,13 @@ namespace Xafology.ExpressApp.Paste.Win
 
         private void PasteRowValues(PasteParam pasteParam)
         {
+            // create Paste Processor
+            var clipboard = new Clipboard();
+            var clipboardParser = new CopyParser(clipboard);
+            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
+            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
+        
+
             string[][] copiedValues = clipboardParser.ToArray();
             if (copiedValues == null) return;
 
@@ -109,6 +103,10 @@ namespace Xafology.ExpressApp.Paste.Win
 
         private void PasteCellValues()
         {
+            var clipboard = new Clipboard();
+            var clipboardParser = new CopyParser(clipboard);
+            var cellPasteProcessor = new CellPasteProcessor(clipboardParser, this.View);
+
             string[] copiedValues = clipboardParser.ToArray(0);
             if (copiedValues == null) return;
             cellPasteProcessor.Process(copiedValues);
