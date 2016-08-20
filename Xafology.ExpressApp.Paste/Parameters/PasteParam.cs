@@ -1,4 +1,5 @@
 ﻿using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Xafology.ExpressApp.Paste.Parameters
 {
+    [ModelDefault("ImageName", "BO_List")]
     public class PasteParam : BaseObject
     {
         public PasteParam(Session session)
