@@ -24,9 +24,9 @@ namespace Xafology.ExpressApp.BatchDelete
             TargetViewType = ViewType.ListView;
             TargetObjectType = typeof(IBatchDeletable);
 
-            batchDeleteAction = new SingleChoiceAction(this, "BatchDeleteAction", DevExpress.Persistent.Base.PredefinedCategory.Edit);
-            batchDeleteAction.Caption = "Batch Delete";
-            batchDeleteAction.ConfirmationMessage = "Do you want to delete all visible objects in this view?";
+            batchDeleteAction = new SingleChoiceAction(this, "BatchUpdateAction", DevExpress.Persistent.Base.PredefinedCategory.Edit);
+            batchDeleteAction.Caption = "Batch";
+            batchDeleteAction.ConfirmationMessage = "Do you want to proceed?";
             batchDeleteAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
             batchDeleteAction.Execute += batchDeleteAction_Execute;
 
