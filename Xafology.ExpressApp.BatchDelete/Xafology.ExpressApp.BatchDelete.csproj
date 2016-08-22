@@ -76,6 +76,9 @@
     </Compile>
     <Compile Include="BatchDeleteAttribute.cs" />
     <Compile Include="BatchDeleter.cs" />
+    <Compile Include="BatchDeleteModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IBatchDeletable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +90,10 @@
     <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
       <Name>Xafology.ExpressApp.Xpo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{D1D7AF11-8247-484C-8CB1-D15F1A8DEDC8}</Project>
+      <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

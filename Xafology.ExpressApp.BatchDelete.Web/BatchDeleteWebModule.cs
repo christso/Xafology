@@ -29,7 +29,7 @@ namespace Xafology.ExpressApp.BatchDelete.Web
         private void InitializeComponent()
         {
             // add required modules
-            
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xafology.ExpressApp.SystemModule;
 using Xafology.ExpressApp.Xpo;
 
 namespace Xafology.ExpressApp.BatchDelete
@@ -50,7 +51,10 @@ namespace Xafology.ExpressApp.BatchDelete
             switch (e.SelectedChoiceActionItem.Caption)
             {
                 case deleteCaption:
-                    DeleteObjects(objSpace, criteria, classInfo);
+                    var message = new GenericMessageBox("This will delete all objects filtered in the current view. Do you wish to continue?",
+                        "Confirm",
+                        (sender1, svp1) => DeleteObjects(objSpace, criteria, classInfo),
+                        (sender1, svp1) => { return; });
                     break;
                 case purgeCaption:
                     objSpace.Session.PurgeDeletedObjects();

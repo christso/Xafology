@@ -119,6 +119,10 @@
       <Project>{5c705d59-b790-4c51-ad63-a93a9c161b78}</Project>
       <Name>Xafology.ExpressApp.BatchDelete</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -129,7 +133,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Xafology.Key\Xafology.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>  
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

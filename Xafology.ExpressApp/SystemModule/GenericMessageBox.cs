@@ -48,6 +48,16 @@ namespace Xafology.ExpressApp.SystemModule
             AttachDialogController(svp, app, Accept, Cancel);
             app.ShowViewStrategy.ShowView(svp, new ShowViewSource(null, null));
         }
+
+        public GenericMessageBox(string Message, string caption, MessageBoxEventHandler Accept, EventHandler Cancel)
+        {
+            var app = GetAppInstance();
+            var svp = new ShowViewParameters();
+            CreateDetailView(svp, app, Message, caption);
+            AttachDialogController(svp, app, Accept, Cancel);
+            app.ShowViewStrategy.ShowView(svp, new ShowViewSource(null, null));
+        }
+
         public GenericMessageBox(string Message, MessageBoxEventHandler Accept)
         {
             var app = GetAppInstance();
