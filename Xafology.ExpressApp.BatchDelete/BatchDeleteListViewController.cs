@@ -26,9 +26,9 @@ namespace Xafology.ExpressApp.BatchDelete
 
             batchDeleteAction = new SingleChoiceAction(this, "BatchUpdateAction", DevExpress.Persistent.Base.PredefinedCategory.Edit);
             batchDeleteAction.Caption = "Batch";
-            batchDeleteAction.ConfirmationMessage = "Do you want to proceed?";
             batchDeleteAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
             batchDeleteAction.Execute += batchDeleteAction_Execute;
+            batchDeleteAction.ShowItemsOnClick = true;
 
             var deleteChoice = new ChoiceActionItem();
             deleteChoice.Caption = deleteCaption;
@@ -64,7 +64,7 @@ namespace Xafology.ExpressApp.BatchDelete
             deleter.Delete(classInfo, criteria);
         }
 
-        protected virtual CriteriaOperator ActiveFilterCriteria { get { return null; } }
-        protected virtual bool ActiveFilterEnabled { get { return false; } }
+        public virtual CriteriaOperator ActiveFilterCriteria { get { return null; } }
+        public virtual bool ActiveFilterEnabled { get { return false; } }
     }
 }

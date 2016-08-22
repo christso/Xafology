@@ -16,7 +16,7 @@ namespace Xafology.ExpressApp.BatchDelete.Win
 {
     public class BatchDeleteListViewControllerWin : BatchDeleteListViewController
     {
-        protected override CriteriaOperator ActiveFilterCriteria
+        public override CriteriaOperator ActiveFilterCriteria
         {
             get
             {
@@ -25,7 +25,7 @@ namespace Xafology.ExpressApp.BatchDelete.Win
                 return filterCriteria;
             }
         }
-        protected override bool ActiveFilterEnabled
+        public override bool ActiveFilterEnabled
         {
             get
             {
