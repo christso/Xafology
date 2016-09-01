@@ -30,8 +30,9 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
         {
             this.TargetObjectType = typeof(IXpoImportable);
 
-            var importAction = new SingleChoiceAction(this, "ContextImportAction", PredefinedCategory.Edit);
+            var importAction = new SingleChoiceAction(this, "ContextImportAction", PredefinedCategory.ObjectsCreation);
             importAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
+            importAction.ShowItemsOnClick = true;
             importAction.Caption = "Import";
             importAction.Execute += importAction_Execute;
 

@@ -30,6 +30,7 @@ namespace Xafology.ExpressApp.Paste.Win
             var pasteAction = new SingleChoiceAction(this, "PasteAction", PredefinedCategory.ObjectsCreation);
             pasteAction.Caption = "Paste";
             pasteAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
+            pasteAction.ShowItemsOnClick = true;
             pasteAction.Execute += PasteRowAction_Execute;
 
             var pasteRowChoice = new ChoiceActionItem();
@@ -39,6 +40,16 @@ namespace Xafology.ExpressApp.Paste.Win
             var pasteCellsChoice = new ChoiceActionItem();
             pasteCellsChoice.Caption = pasteCellsCaption;
             pasteAction.Items.Add(pasteCellsChoice);
+        }
+
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            var listView = (ListView)View;
+            if (listView.AllowEdit)
+                this.Active["AllowEdit"] = true;
+            else
+                this.Active.SetItemValue("AllowEdit", false);
         }
 
         protected override void OnViewControlsCreated()
