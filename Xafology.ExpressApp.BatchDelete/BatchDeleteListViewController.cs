@@ -2,8 +2,10 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Xpo;
+using DevExpress.Xpo;
 using DevExpress.Xpo.Metadata;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,8 @@ namespace Xafology.ExpressApp.BatchDelete
 {
     public class BatchDeleteListViewController : ViewController
     {
-        private const string deleteCaption = "Delete";
+        private const string deleteFilteredCaption = "Delete Filtered";
+        private const string deleteSelectedCaption = "Delete Selected";
         private const string purgeCaption = "Purge";
 
         private SingleChoiceAction batchDeleteAction;
@@ -31,9 +34,13 @@ namespace Xafology.ExpressApp.BatchDelete
             batchDeleteAction.Execute += batchDeleteAction_Execute;
             batchDeleteAction.ShowItemsOnClick = true;
 
-            var deleteChoice = new ChoiceActionItem();
-            deleteChoice.Caption = deleteCaption;
-            batchDeleteAction.Items.Add(deleteChoice);
+            var delSelected = new ChoiceActionItem();
+            delSelected.Caption = deleteSelectedCaption;
+            batchDeleteAction.Items.Add(delSelected);
+
+            var delFiltered = new ChoiceActionItem();
+            delFiltered.Caption = deleteFilteredCaption;
+            batchDeleteAction.Items.Add(delFiltered);
 
             var purgeChoice = new ChoiceActionItem();
             purgeChoice.Caption = purgeCaption;
@@ -50,16 +57,37 @@ namespace Xafology.ExpressApp.BatchDelete
 
             switch (e.SelectedChoiceActionItem.Caption)
             {
-                case deleteCaption:
-                    var message = new GenericMessageBox("This will delete all objects filtered in the current view. Do you wish to continue?",
+                case deleteFilteredCaption:
+                    new GenericMessageBox("This will delete all objects filtered in the current view. Do you wish to continue?",
                         "Confirm",
                         (sender1, svp1) => DeleteObjects(objSpace, criteria, classInfo),
                         (sender1, svp1) => { return; });
+                    break;
+                case deleteSelectedCaption:
+                    new GenericMessageBox("This will delete all objects selected in the current view. Do you wish to continue?",
+                                     "Confirm",
+                                     (sender1, svp1) =>
+                                     {
+                                         var objs = View.SelectedObjects;
+                                         DeleteObjects(objSpace, objs, classInfo);
+                                         return;
+                                     },
+                                     (sender1, svp1) => { return; });
                     break;
                 case purgeCaption:
                     objSpace.Session.PurgeDeletedObjects();
                     break;
             }
+        }
+
+        private void DeleteObjects(XPObjectSpace objSpace, IList objs, XPClassInfo classInfo)
+        {
+            var inOp = new InOperator(
+                objSpace.GetKeyPropertyName(classInfo.ClassType),
+                objs);
+
+            var deleter = new BatchDeleter(objSpace);
+            deleter.Delete(classInfo, inOp);
         }
 
         private void DeleteObjects(XPObjectSpace objSpace, CriteriaOperator criteria, XPClassInfo classInfo)
