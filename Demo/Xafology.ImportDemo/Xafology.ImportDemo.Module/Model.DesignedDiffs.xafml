@@ -13,6 +13,17 @@
     </Items>
   </NavigationItems>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="15.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="16.1.4.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <ListView Id="MockFactObject_ListView">
+      <Columns>
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Description" Index="1" />
+        <ColumnInfo Id="Amount" Index="2" />
+        <ColumnInfo Id="MockLookupObject1" Index="3" />
+        <ColumnInfo Id="MockLookupObject2" Index="4" />
+      </Columns>
+    </ListView>
+  </Views>
 </Application>

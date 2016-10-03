@@ -47,6 +47,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             
             while (csvReader.ReadNextRecord())
             {
+                // The key field must be the first column (i.e. index 0)
                 var targetObject = GetTargetObject(keyFieldMap.TargetName, csvReader[0]);
                 recordMapper.SetMemberValues(targetObject);
             }

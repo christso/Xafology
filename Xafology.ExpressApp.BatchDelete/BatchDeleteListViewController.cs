@@ -22,6 +22,7 @@ namespace Xafology.ExpressApp.BatchDelete
         private const string purgeCaption = "Purge";
 
         private SingleChoiceAction batchDeleteAction;
+        private ChoiceActionItem delFiltered;
 
         public BatchDeleteListViewController()
         {
@@ -38,13 +39,19 @@ namespace Xafology.ExpressApp.BatchDelete
             delSelected.Caption = deleteSelectedCaption;
             batchDeleteAction.Items.Add(delSelected);
 
-            var delFiltered = new ChoiceActionItem();
+            delFiltered = new ChoiceActionItem();
             delFiltered.Caption = deleteFilteredCaption;
             batchDeleteAction.Items.Add(delFiltered);
 
             var purgeChoice = new ChoiceActionItem();
             purgeChoice.Caption = purgeCaption;
             batchDeleteAction.Items.Add(purgeChoice);
+        }
+
+        public bool DeleteFilteredChoiceEnabled
+        {
+            get { return delFiltered.Active["Enabled"];  }
+            set { delFiltered.Active.SetItemValue("Enabled", value); }
         }
 
         private void batchDeleteAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
