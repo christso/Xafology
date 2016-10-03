@@ -74,6 +74,20 @@ namespace Xafology.ImportDemo.Module.BusinessObjects
             {
                 SetPropertyValue("MockLookupObject2", ref mockLookupObject2, value);
             }
-        }		
+        }
+
+        private MockLookupObject3 mockLookupObject3;
+
+        public MockLookupObject3 MockLookupObject3
+        {
+            get
+            {
+                return mockLookupObject3;
+            }
+            set
+            {
+                SetPropertyValue("MockLookupObject3", ref mockLookupObject3, value);
+            }
+        }
     }
 }

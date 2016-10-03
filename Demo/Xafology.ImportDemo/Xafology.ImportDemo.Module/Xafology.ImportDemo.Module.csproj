@@ -112,6 +112,7 @@
     <Compile Include="BusinessObjects\MockFactObject.cs" />
     <Compile Include="BusinessObjects\MockLookupObject1.cs" />
     <Compile Include="BusinessObjects\MockLookupObject2.cs" />
+    <Compile Include="BusinessObjects\MockLookupObject3.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
     </Compile>
