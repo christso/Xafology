@@ -47,11 +47,11 @@ END";
                     command.CommandText = "CREATE DATABASE " + database + " ON PRIMARY " +
         "(NAME = " + database + "_Data, " +
         "FILENAME = '" + Path.Combine(dbDir, database + ".mdf'") + ", " +
-        "SIZE = 5MB, MAXSIZE = 10MB, FILEGROWTH = 10%) " +
+        "SIZE = 5MB, MAXSIZE = 9999MB, FILEGROWTH = 10%) " +
         "LOG ON (NAME = " + database + "_Log, " +
         "FILENAME = '" + Path.Combine(dbDir, database) + ".ldf', " +
         "SIZE = 1MB, " +
-        "MAXSIZE = 5MB, " +
+        "MAXSIZE = 9999MB, " +
         "FILEGROWTH = 10%)";
                     
                     command.ExecuteNonQuery();
