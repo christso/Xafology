@@ -33,6 +33,8 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         public void SetMemberValues(IXPObject targetObject)
         {
+            if (targetObject == null)
+                return;
             var typesInfo = XafTypesInfo.Instance.FindTypeInfo(targetObject.GetType());
             SetMemberValues(targetObject, 
                 FieldMapsUtil.GetTargetMembers(fieldMaps, typesInfo));

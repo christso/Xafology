@@ -10,9 +10,13 @@ namespace Xafology.ImportDemo.UnitTests
     {
         static void Main(string[] args)
         {
-            //var tests = new Xafology.UnitTests.Import.TempTests();
-            //tests.Setup();
-            //tests.AddToObjectCache();
+            var tests = new Xafology.ImportDemo.UnitTests.HeadUpdateTests();
+            tests.SetUpFixture();
+            tests.Setup();
+            tests.UpdateSimpleHeaderCsvWithBlanks();
+            tests.TearDown();
+            tests.TearDownFixture();
+            Console.WriteLine("Test passed");
             Console.ReadKey();
         }
     }
