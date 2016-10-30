@@ -168,11 +168,80 @@ Hello 3,300
             Assert.AreEqual(300, result.Amount);
         }
 
-
-        [Test]
-        public void ExceptionIfMultipleKeyFields()
+       [Test]
+       public void UploadBlankKeys()
         {
+            // arrange parameters
 
+            var map1 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map1.SourceName = "Description";
+            map1.TargetName = map1.SourceName;
+
+            var map2 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map2.SourceName = "Amount";
+            map2.TargetName = map2.SourceName;
+
+            var map3 = ObjectSpace.CreateObject<HeaderToFieldMap>();
+            map3.SourceName = "Oid";
+            map3.TargetName = map3.SourceName;
+            map3.IsKeyField = true;
+
+            var param = ObjectSpace.CreateObject<ImportHeadersParam>();
+
+            param.HeaderToFieldMaps.Add(map1);
+            param.HeaderToFieldMaps.Add(map2);
+            param.HeaderToFieldMaps.Add(map3);
+
+            param.ObjectTypeName = "MockFactObject";
+
+            // arrange XPO objects
+
+            var obj1 = ObjectSpace.CreateObject<MockFactObject>();
+            obj1.Description = "Hello 1";
+            obj1.Amount = 10;
+
+            var obj2 = ObjectSpace.CreateObject<MockFactObject>();
+            obj2.Description = "Hello 2";
+            obj2.Amount = 20;
+
+            var obj3 = ObjectSpace.CreateObject<MockFactObject>();
+            obj3.Description = "Hello 3";
+            obj3.Amount = 30;
+
+            ObjectSpace.CommitChanges();
+
+            // arrange loader
+
+            string csvText = string.Format(@"Oid,Description,Amount
+{0},Hello 1,100
+{1},Hello 2,200
+{2},Hello 3,300
+,,
+,,", null, obj2.Oid, obj3.Oid);
+
+            var csvStream = ConvertToCsvStream(csvText);
+            var request = ObjectSpace.CreateObject<ImportRequest>();
+            var logger = new ImportLogger(request);
+            var xpoFieldMapper = new XpoFieldMapper();
+            ICsvToXpoLoader loader = new HeadCsvToXpoUpdater(param, csvStream, xpoFieldMapper, logger);
+
+            // act
+
+            loader.Execute();
+
+            // assert
+            var updated = new XPQuery<MockFactObject>(ObjectSpace.Session);
+
+            Assert.AreEqual(3, updated.Count()); // returns 6 because it inserts instead of updates
+
+            MockFactObject result = updated.Where(x => x.Description == "Hello 1").FirstOrDefault();
+            Assert.AreEqual(10M, result.Amount);
+
+            result = updated.Where(x => x.Description == "Hello 2").FirstOrDefault();
+            Assert.AreEqual(200M, result.Amount);
+
+            result = updated.Where(x => x.Description == "Hello 3").FirstOrDefault();
+            Assert.AreEqual(300M, result.Amount);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Xafology.ImportDemo.UnitTests
             var tests = new Xafology.ImportDemo.UnitTests.HeadUpdateTests();
             tests.SetUpFixture();
             tests.Setup();
-            tests.UpdateSimpleHeaderCsvWithBlanks();
+            tests.UploadBlankKeys();
             tests.TearDown();
             tests.TearDownFixture();
             Console.WriteLine("Test passed");

@@ -74,8 +74,15 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
 
         private IXPObject GetTargetObject(string keyName, object keyValue)
         {
-            return (IXPObject)param.Session.FindObject(objTypeInfo.Type, 
-                CriteriaOperator.Parse(keyName + " = ?", keyValue));
+            CriteriaOperator criteria = new BinaryOperator(keyName, keyValue);
+            if (string.IsNullOrEmpty(Convert.ToString(keyValue)))
+            {
+                var keyType = objTypeInfo.Members.Where(m => m.Name == keyName).FirstOrDefault().MemberType;
+                if (keyType == typeof(Guid))
+                    criteria = new NullOperator(keyName);
+            }
+  
+            return (IXPObject)param.Session.FindObject(objTypeInfo.Type, criteria);
         }
 
         public void Dispose()
