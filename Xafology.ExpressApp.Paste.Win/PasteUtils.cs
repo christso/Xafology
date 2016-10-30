@@ -36,38 +36,42 @@ namespace Xafology.ExpressApp.Paste.Win
             PasteColumnsToRow(copiedRowValues, focusedRowHandle, view, null);
         }
 
-        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view, PasteParam pasteParam)
+        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view, PasteParam pasteParam, int startColumnIndex)
         {
             var listEditor = ((ListView)view).Editor as GridListEditor;
             var objSpace = ((ListView)view).ObjectSpace;
             var gridView = listEditor.GridView;
 
             // iterate through columns in listview
-            int columnIndex = 0;
+            int gridColumnIndex = startColumnIndex;
+            int copiedColumnIndex = 0;
 
             var hasGroups = gridView.Columns.Where(x => x.GroupIndex != -1).Count() > 0;
             if (hasGroups)
                 throw new UserFriendlyException("Please ungroup columns before pasting rows");
 
             var gridColumns = gridView.Columns
-                .Where(x => x.Visible && x.GroupIndex == -1)
+                .Where(x => x.Visible && x.GroupIndex == -1
+                    && x.VisibleIndex >= startColumnIndex)
                 .OrderBy(x => x.VisibleIndex)
                 .Select(x => x);
 
             foreach (var gridColumn in gridColumns)
             {
-                if (columnIndex >= copiedRowValues.Length)
+                if (copiedColumnIndex >= copiedRowValues.Length)
                     break;
 
                 var member = listEditor.Model.Columns[gridColumn.Name];
                 var isLookup = typeof(IXPObject).IsAssignableFrom(member.ModelMember.MemberInfo.MemberType);
 
-                var copiedValue = copiedRowValues[columnIndex];
+                var copiedValue = copiedRowValues[copiedColumnIndex];
 
                 // if column is visible in grid, then increment the copiedValue column counter
                 if (gridColumn.Visible)
-                    columnIndex++;
-
+                {
+                    gridColumnIndex++;
+                    copiedColumnIndex++;
+                }
                 // skip non-editable, key column, invisible column or blank values
                 // otherwise paste values
 
@@ -89,10 +93,15 @@ namespace Xafology.ExpressApp.Paste.Win
                     else
                         pasteValue = xpoFieldValueReader.GetMemberValue(((XPObjectSpace)objSpace).Session,
                             memberInfo, copiedValue, fieldMap.CreateMember, fieldMap.CacheObject);
-                
+
                     gridView.SetRowCellValue(focusedRowHandle, gridColumn, pasteValue);
                 }
             }
+        }
+
+        public void PasteColumnsToRow(string[] copiedRowValues, int focusedRowHandle, ListView view, PasteParam pasteParam)
+        {
+            PasteColumnsToRow(copiedRowValues, focusedRowHandle, view, pasteParam, 0);
         }
 
         public void PasteColumn(string[] copiedValues, GridListEditor listEditor, IObjectSpace objSpace)

@@ -19,7 +19,7 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly DevExpress.Utils.DefaultBoolean copyColumnHeaders;
 
         const string pasteRowsCaption = "Paste Rows";
-        const string pasteCellsCaption = "Paste Cells";
+        const string pasteCellsCaption = "Paste Column";
 
         public PasteViewController()
         {
@@ -87,7 +87,6 @@ namespace Xafology.ExpressApp.Paste.Win
             var clipboardParser = new CopyParser(clipboard);
             var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
             var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
-        
 
             string[][] copiedValues = clipboardParser.ToArray();
             if (copiedValues == null) return;
@@ -106,8 +105,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 else
                 {
                     // paste to selected rows
-                    int[] selectedRowHandles = gridView.GetSelectedRows();
-                    existingRowPasteProcessor.Process(selectedRowHandles, pasteParam);
+                    existingRowPasteProcessor.Process(pasteParam);
                 }
             }
         }
