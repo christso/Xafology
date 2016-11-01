@@ -20,6 +20,7 @@ namespace Xafology.ExpressApp.Paste.Win
 
         const string pasteRowsCaption = "Paste Rows";
         const string pasteCellsCaption = "Paste Column";
+        const string clearCellsCaption = "Clear Column";
 
         public PasteViewController()
         {
@@ -40,6 +41,10 @@ namespace Xafology.ExpressApp.Paste.Win
             var pasteCellsChoice = new ChoiceActionItem();
             pasteCellsChoice.Caption = pasteCellsCaption;
             pasteAction.Items.Add(pasteCellsChoice);
+
+            var clearCellsChoice = new ChoiceActionItem();
+            clearCellsChoice.Caption = clearCellsCaption;
+            pasteAction.Items.Add(clearCellsChoice);
         }
 
         protected override void OnActivated()
@@ -76,6 +81,9 @@ namespace Xafology.ExpressApp.Paste.Win
                     break;
                 case pasteCellsCaption:
                     PasteCellValues();
+                    break;
+                case clearCellsCaption:
+                    ClearCellValues();
                     break;
             }
         }
@@ -121,5 +129,24 @@ namespace Xafology.ExpressApp.Paste.Win
             cellPasteProcessor.Process(copiedValues);
         }
 
+        private void ClearCellValues()
+        {
+            GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
+            if (listEditor == null) return;
+            var gridView = listEditor.GridView;
+            var gridColumn = gridView.FocusedColumn;
+            var columnKey = gridColumn.FieldName.Replace("!", string.Empty);
+            var member = listEditor.Model.ModelClass.OwnMembers[columnKey]; // TODO: remove ! suffice when column is a lookup
+
+            if (!member.AllowEdit)
+                throw new InvalidOperationException("Column '" + gridView.FocusedColumn.Caption + "' is not editable.");
+
+            int[] selectedRows = gridView.GetSelectedRows();
+            foreach (int rowHandle in selectedRows)
+            {
+                // paste object to focused cell
+                gridView.SetRowCellValue(rowHandle, gridView.FocusedColumn, null);
+            }
+        }
     }
 }
