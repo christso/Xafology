@@ -37,6 +37,7 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             importAction.Caption = "Import";
             importAction.ItemType = SingleChoiceActionItemType.ItemIsOperation;
             importAction.Execute += ImportAction_Execute;
+            importAction.ShowItemsOnClick = true;
 
             var executeAction = new ChoiceActionItem();
             executeAction.Caption = ExecuteImportCaption;

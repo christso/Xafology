@@ -54,14 +54,18 @@ namespace Xafology.ExpressApp.Xpo.Import.Controllers
             var xpoMapper = new Xafology.ExpressApp.Xpo.ValueMap.XpoFieldMapper();
             ICsvToXpoLoader loader = null;
 
+            var logger = new SimpleImportLogger();
+
             if (param.ImportActionType == ImportActionType.Insert)
-                loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, null);
+                loader = new HeadCsvToXpoInserter(param, csvStream, xpoMapper, logger);
             else if (param.ImportActionType == ImportActionType.Update)
-                loader = new HeadCsvToXpoUpdater(param, csvStream, xpoMapper, null);
+                loader = new HeadCsvToXpoUpdater(param, csvStream, xpoMapper, logger);
             else
                 throw new ArgumentException("Invalid Import Action Type", "ImportActionType");
 
             loader.Execute();
+
+            new Xafology.ExpressApp.SystemModule.GenericMessageBox(logger.LogMessage, "Import SUCCESSFUL");
         }
 
         public void DoRemap()

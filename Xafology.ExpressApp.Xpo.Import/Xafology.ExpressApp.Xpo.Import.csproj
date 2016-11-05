@@ -165,6 +165,7 @@
     <Compile Include="IImportOptions.cs" />
     <Compile Include="Logic\OrdCsvToXpoUpdater.cs" />
     <Compile Include="Logic\OrdCsvToXpoInserter.cs" />
+    <Compile Include="Logic\SimpleImportLogger.cs" />
     <Compile Include="Parameters\FieldMaps.cs" />
     <Compile Include="FieldMapsUtil.cs" />
     <Compile Include="Parameters\ImportParam.cs" />
