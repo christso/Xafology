@@ -165,6 +165,9 @@
     <Compile Include="BusinessObjects\SeqDemoObject2.cs" />
     <Compile Include="BusinessObjects\SeqDemoObject.cs" />
     <Compile Include="BusinessObjects\SeqGuidDemoObject.cs" />
+    <Compile Include="Controllers\WelcomeViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomFunctions\DaysFunction.cs" />
     <Compile Include="CustomFunctions\EoMonthFunction.cs" />
     <Compile Include="MainDemoTests.cs" />

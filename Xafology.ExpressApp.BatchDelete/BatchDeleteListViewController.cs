@@ -19,6 +19,8 @@ namespace Xafology.ExpressApp.BatchDelete
     {
         private const string deleteFilteredCaption = "Delete Filtered";
         private const string deleteSelectedCaption = "Delete Selected";
+        private const string showFilterXpoCaption = "Show Filter XPO";
+        private const string showFilterSqlCaption = "Show Filter SQL";
         private const string purgeCaption = "Purge";
 
         private SingleChoiceAction batchDeleteAction;
@@ -42,6 +44,14 @@ namespace Xafology.ExpressApp.BatchDelete
             delFiltered = new ChoiceActionItem();
             delFiltered.Caption = deleteFilteredCaption;
             batchDeleteAction.Items.Add(delFiltered);
+
+            var showFilterXpoChoice = new ChoiceActionItem();
+            showFilterXpoChoice.Caption = showFilterXpoCaption;
+            batchDeleteAction.Items.Add(showFilterXpoChoice);
+
+            var showFilterSqlChoice = new ChoiceActionItem();
+            showFilterSqlChoice.Caption = showFilterSqlCaption;
+            batchDeleteAction.Items.Add(showFilterSqlChoice);
 
             var purgeChoice = new ChoiceActionItem();
             purgeChoice.Caption = purgeCaption;
@@ -81,10 +91,31 @@ namespace Xafology.ExpressApp.BatchDelete
                                      },
                                      (sender1, svp1) => { return; });
                     break;
+                case showFilterXpoCaption:
+                    ShowFilterXpo();
+                    break;
+                case showFilterSqlCaption:
+                    ShowFilterSql();
+                    break;
                 case purgeCaption:
                     objSpace.Session.PurgeDeletedObjects();
                     break;
             }
+        }
+
+        private void ShowFilterXpo()
+        {
+            CriteriaOperator criteria = ActiveFilterCriteria;
+            new GenericMessageBox(criteria.ToString(),
+                        "Filter Criteria XPO Text");
+        }
+
+        private void ShowFilterSql()
+        {
+            CriteriaOperator criteria = ActiveFilterCriteria;
+            var sqlCriteria = CriteriaToWhereClauseHelper.GetMsSqlWhere(XpoCriteriaFixer.Fix(criteria));
+            new GenericMessageBox(sqlCriteria,
+                        "Filter Criteria SQL Text");
         }
 
         private void DeleteObjects(XPObjectSpace objSpace, IList objs, XPClassInfo classInfo)

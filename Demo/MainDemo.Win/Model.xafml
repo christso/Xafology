@@ -1,11 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application>
-  <NavigationItems NavigationStyle="NavBar" DefaultChildItemsDisplayStyle="List" DefaultLeafImageName="BO_List" />
-  <Options Skin="Visual Studio 2013 Blue" UIType="TabbedMDI" FormStyle="Ribbon">
+  <NavigationItems NavigationStyle="NavBar" DefaultChildItemsDisplayStyle="List" DefaultLeafImageName="BO_List">
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="@c1efc837-5c38-48c9-98e8-7709ea2c7fde" Caption="Welcome" ViewId="Welcome_Dashboard" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Options Skin="Visual Studio 2013 Blue" UIType="TabbedMDI" FormStyle="Ribbon" EnableHtmlFormatting="True">
     <RibbonOptions RibbonControlStyle="Office2013" />
   </Options>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
-    <SchemaModule Name="SystemWindowsFormsModule" Version="15.2.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="16.1.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="16.1.7.0" IsNewNode="True" />
   </SchemaModules>
+  <Views>
+    <DashboardView Id="Welcome_Dashboard" Caption="Welcome" IsNewNode="True">
+      <Items IsNewNode="True">
+        <StaticText Id="Welcome" Text="&lt;b&gt;hello&lt;/b&gt;&#xD;&#xA;" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="Welcome" ViewItem="Welcome" Index="0" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DashboardView>
+  </Views>
 </Application>
