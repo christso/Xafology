@@ -79,6 +79,7 @@ namespace Xafology.ExpressApp.Paste.Win
             if (!gridView.IsNewItemRow(gridView.FocusedRowHandle))
                 return;
 
+            int pasteCount = 0;
             // paste rows
             for (int r = 0; r < copiedValues.Length; r++)
             {
@@ -88,8 +89,10 @@ namespace Xafology.ExpressApp.Paste.Win
                 var obj = (IXPObject)os.CreateObject(view.ObjectTypeInfo.Type);
                 offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
                     listview, pasteParam);
+
+                pasteCount++;
             }
-            offlinePasteUtils.Logger.Log("{0} rows inserted", copiedValues.Length);
+            offlinePasteUtils.Logger.Log("{0} rows inserted", pasteCount++);
         }
     }
 }

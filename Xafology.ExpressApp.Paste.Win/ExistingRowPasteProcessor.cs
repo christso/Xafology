@@ -95,6 +95,7 @@ namespace Xafology.ExpressApp.Paste.Win
             var copiedValues = copyParser.ToArray();
             var objs = view.SelectedObjects;
 
+            int pasteCount = 0;
             // paste rows
             for (int r = 0; r < copiedValues.Length; r++)
             {
@@ -108,8 +109,10 @@ namespace Xafology.ExpressApp.Paste.Win
                 // paste cells
                 offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
                     listview, pasteParam, gridColumn.VisibleIndex);
+
+                pasteCount++;
             }
-            offlinePasteUtils.Logger.Log("{0} rows updated", copiedValues.Length);
+            offlinePasteUtils.Logger.Log("{0} rows updated", pasteCount++);
         }
     }
 }
