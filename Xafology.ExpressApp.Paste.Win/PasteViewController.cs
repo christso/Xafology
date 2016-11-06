@@ -118,6 +118,7 @@ namespace Xafology.ExpressApp.Paste.Win
                     // paste to new rows
                     newRowPasteProcessor.ProcessOffline(pasteParam);
                     var message = newRowPasteProcessor.Logger.LogMessage;
+                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(message, "Import SUCCESSFUL");
                 }
             }
             

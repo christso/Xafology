@@ -89,6 +89,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
                     listview, pasteParam);
             }
+            offlinePasteUtils.Logger.Log("{0} rows inserted", copiedValues.Length);
         }
     }
 }

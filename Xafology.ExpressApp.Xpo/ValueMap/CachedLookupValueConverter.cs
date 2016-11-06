@@ -50,9 +50,10 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
                     newValue = CreateMember(session, memberInfo.MemberType, lookupDefaultMember.Name, value);
                     cachedObjects.Add(newValue);
                 }
+
+                LogXpObjectsNotFound(memberInfo.MemberType, value);
             }
-            
-            LogXpObjectsNotFound(memberInfo.MemberType, value);
+
             return newValue as IXPObject;
         }
 
