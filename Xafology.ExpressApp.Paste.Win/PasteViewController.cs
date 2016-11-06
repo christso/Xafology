@@ -19,7 +19,7 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly DevExpress.Utils.DefaultBoolean copyColumnHeaders;
 
         const string pasteRowsCaption = "Paste Rows";
-        const string pasteNewRowsCaption = "Paste New Rows";
+        const string pasteNewRowsCaption = "Paste Rows Offline";
         const string pasteColumnCaption = "Paste Column";
         const string clearColumnCaption = "Clear Column";
 
@@ -39,9 +39,9 @@ namespace Xafology.ExpressApp.Paste.Win
             pasteRowChoice.Caption = pasteRowsCaption;
             pasteAction.Items.Add(pasteRowChoice);
 
-            var pasteNewRowChoice = new ChoiceActionItem();
-            pasteNewRowChoice.Caption = pasteNewRowsCaption;
-            pasteAction.Items.Add(pasteNewRowChoice);
+            var pasteRowsOfflineChoice = new ChoiceActionItem();
+            pasteRowsOfflineChoice.Caption = pasteNewRowsCaption;
+            pasteAction.Items.Add(pasteRowsOfflineChoice);
 
             var pasteColumnChoice = new ChoiceActionItem();
             pasteColumnChoice.Caption = pasteColumnCaption;
@@ -85,7 +85,7 @@ namespace Xafology.ExpressApp.Paste.Win
                     PasteRowValues(pasteParam);
                     break;
                 case pasteNewRowsCaption:
-                    PasteNewRowValues(pasteParam);
+                    PasteOfflineRowValues(pasteParam);
                     break;
                 case pasteColumnCaption:
                     PasteColumnValues();
@@ -96,7 +96,7 @@ namespace Xafology.ExpressApp.Paste.Win
             }
         }
 
-        private void PasteNewRowValues(PasteParam pasteParam)
+        private void PasteOfflineRowValues(PasteParam pasteParam)
         {
             // create Paste Processor
             var clipboard = new Clipboard();
@@ -120,6 +120,13 @@ namespace Xafology.ExpressApp.Paste.Win
                     var message = newRowPasteProcessor.Logger.LogMessage;
                     new Xafology.ExpressApp.SystemModule.GenericMessageBox(message, "Import SUCCESSFUL");
                 }
+                else
+                {
+                    existingRowPasteProcessor.ProcessOffline(pasteParam);
+                    var message = existingRowPasteProcessor.Logger.LogMessage;
+                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(message, "Import SUCCESSFUL");
+                }
+                
             }
             
         }

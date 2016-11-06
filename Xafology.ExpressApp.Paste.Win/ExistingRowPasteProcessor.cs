@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Win.Editors;
+using DevExpress.Xpo;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
@@ -17,12 +18,18 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly ICopyParser copyParser;
         private readonly View view;
         private readonly PasteUtils pasteUtils;
+        private readonly OfflinePasteUtils offlinePasteUtils;
 
         public ExistingRowPasteProcessor(ICopyParser copyParser, View view)
         {
             this.copyParser = copyParser;
             this.view = view;
             this.pasteUtils = new PasteUtils();
+            this.offlinePasteUtils = new OfflinePasteUtils();
+        }
+        public Xpo.ValueMap.IImportLogger Logger
+        {
+            get { return offlinePasteUtils.Logger; }
         }
 
         // note that the new row must be focused for this to work
@@ -67,7 +74,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 if (copiedValues[r].Length == 1 && string.IsNullOrWhiteSpace(copiedValues[r][0]))
                     continue;
 
-                // add new row in gridview
+                // select next row in gridview
                 gridView.FocusedRowHandle = selectedRowHandles[r];
 
                 // paste cells
@@ -76,6 +83,33 @@ namespace Xafology.ExpressApp.Paste.Win
 
                 gridView.UpdateCurrentRow();
             }
+        }
+
+        public void ProcessOffline(PasteParam pasteParam)
+        {
+            var listview = (ListView)view;
+            GridListEditor listEditor = listview.Editor as GridListEditor;
+            var gridView = listEditor.GridView;
+            int[] selectedRowHandles = gridView.GetSelectedRows();
+            var gridColumn = gridView.FocusedColumn;
+            var copiedValues = copyParser.ToArray();
+            var objs = view.SelectedObjects;
+
+            // paste rows
+            for (int r = 0; r < copiedValues.Length; r++)
+            {
+                // ignore row with empty string
+                if (copiedValues[r].Length == 1 && string.IsNullOrWhiteSpace(copiedValues[r][0]))
+                    continue;
+
+                // select next row in gridview
+                var obj = (IXPObject)objs[r];
+
+                // paste cells
+                offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
+                    listview, pasteParam, gridColumn.VisibleIndex);
+            }
+            offlinePasteUtils.Logger.Log("{0} rows updated", copiedValues.Length);
         }
     }
 }
