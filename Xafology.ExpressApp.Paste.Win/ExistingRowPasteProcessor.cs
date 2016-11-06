@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Paste.Parameters;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
@@ -21,12 +22,20 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly OfflinePasteUtils offlinePasteUtils;
 
         public ExistingRowPasteProcessor(ICopyParser copyParser, View view)
+            : this(copyParser, view, new NullImportLogger())
+        {
+         
+        }
+
+        public ExistingRowPasteProcessor(ICopyParser copyParser, View view, IImportLogger logger)
+
         {
             this.copyParser = copyParser;
             this.view = view;
             this.pasteUtils = new PasteUtils();
-            this.offlinePasteUtils = new OfflinePasteUtils();
+            this.offlinePasteUtils = new OfflinePasteUtils(logger);
         }
+
         public Xpo.ValueMap.IImportLogger Logger
         {
             get { return offlinePasteUtils.Logger; }

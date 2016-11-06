@@ -11,6 +11,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.Persistent.Base;
 using Xafology.ExpressApp.Paste.Parameters;
+using Xafology.ExpressApp.Xpo.Import.Logic;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
@@ -22,6 +23,8 @@ namespace Xafology.ExpressApp.Paste.Win
         const string pasteNewRowsCaption = "Paste Rows Offline";
         const string pasteColumnCaption = "Paste Column";
         const string clearColumnCaption = "Clear Column";
+
+        private readonly SimpleImportLogger logger;
 
         public PasteViewController()
         {
@@ -50,6 +53,8 @@ namespace Xafology.ExpressApp.Paste.Win
             var clearColumnChoice = new ChoiceActionItem();
             clearColumnChoice.Caption = clearColumnCaption;
             pasteAction.Items.Add(clearColumnChoice);
+
+            logger = new SimpleImportLogger();
         }
 
         protected override void OnActivated()
@@ -85,7 +90,7 @@ namespace Xafology.ExpressApp.Paste.Win
                     PasteRowValues(pasteParam);
                     break;
                 case pasteNewRowsCaption:
-                    PasteOfflineRowValues(pasteParam);
+                    PasteOfflineRowValues(pasteParam, true);
                     break;
                 case pasteColumnCaption:
                     PasteColumnValues();
@@ -96,13 +101,13 @@ namespace Xafology.ExpressApp.Paste.Win
             }
         }
 
-        private void PasteOfflineRowValues(PasteParam pasteParam)
+        private void PasteOfflineRowValues(PasteParam pasteParam, bool isRoot = false)
         {
             // create Paste Processor
             var clipboard = new Clipboard();
             var clipboardParser = new CopyParser(clipboard);
-            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
-            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
+            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View, logger);
+            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View, logger);
 
             string[][] copiedValues = clipboardParser.ToArray();
             if (copiedValues == null) return;
@@ -117,30 +122,43 @@ namespace Xafology.ExpressApp.Paste.Win
                 {
                     // paste to new rows
                     newRowPasteProcessor.ProcessOffline(pasteParam);
-                    var message = newRowPasteProcessor.Logger.LogMessage;
-                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(message, "Import SUCCESSFUL");
                 }
                 else
                 {
                     existingRowPasteProcessor.ProcessOffline(pasteParam);
-                    var message = existingRowPasteProcessor.Logger.LogMessage;
-                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(message, "Import SUCCESSFUL");
                 }
-                
+                logger.Log("Please SAVE or CANCEL your changes.");
+                if (isRoot)
+                {
+                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(
+                        logger.LogMessage, "Import SUCCESSFUL");
+                }
             }
             
         }
 
         private void PasteRowValues(PasteParam pasteParam)
         {
-            // create Paste Processor
+            // create clipboard parser
             var clipboard = new Clipboard();
             var clipboardParser = new CopyParser(clipboard);
-            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
-            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
+
+            // validate
 
             string[][] copiedValues = clipboardParser.ToArray();
             if (copiedValues == null) return;
+
+            if (copiedValues.GetLength(0) > PasteSettings.MaximumOnlineRows)
+            {
+                logger.Log("Rows exceeded the maximum of {0}. OFFLINE mode used.",
+                    PasteSettings.MaximumOnlineRows);
+                PasteOfflineRowValues(pasteParam, false);
+                new Xafology.ExpressApp.SystemModule.GenericMessageBox(
+                    logger.LogMessage, "Import SUCCESSFUL");
+            }
+            // create Paste Processor
+            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
+            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
 
             GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
 

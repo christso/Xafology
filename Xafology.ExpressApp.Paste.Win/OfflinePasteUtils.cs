@@ -20,14 +20,31 @@ namespace Xafology.ExpressApp.Paste.Win
     {
         private readonly IXpoFieldValueReader xpoFieldValueReader;
         private readonly XpoFieldMapper xpoFieldMapper;
-        private SimpleImportLogger logger;
+        private IImportLogger logger;
 
-        public OfflinePasteUtils(IXpoFieldValueReader xpoFieldReader)
+        public OfflinePasteUtils(IXpoFieldValueReader xpoFieldReader, IImportLogger logger)
         {
             this.xpoFieldValueReader = xpoFieldReader;
-            this.logger = new SimpleImportLogger();
+            if (logger == null)
+                this.logger = new SimpleImportLogger();
+            else
+                this.logger = logger;
+
             this.xpoFieldMapper = new XpoFieldMapper(logger);
         }
+
+        public OfflinePasteUtils(IImportLogger logger)
+        {
+            xpoFieldValueReader = new XpoFieldValueReader();
+
+            if (logger == null)
+                this.logger = new SimpleImportLogger();
+            else
+                this.logger = logger;
+
+            this.xpoFieldMapper = new XpoFieldMapper(logger);
+        }
+
 
         public OfflinePasteUtils()
         {
@@ -41,7 +58,7 @@ namespace Xafology.ExpressApp.Paste.Win
             PasteColumnsToRow(copiedRowValues, obj, view, null);
         }
 
-        public SimpleImportLogger Logger
+        public IImportLogger Logger
         {
             get { return logger; }
         }

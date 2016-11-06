@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xafology.ExpressApp.Paste.Parameters;
+using Xafology.ExpressApp.Xpo.ValueMap;
 
 namespace Xafology.ExpressApp.Paste.Win
 {
@@ -19,6 +20,13 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly OfflinePasteUtils offlinePasteUtils;
 
         public NewRowPasteProcessor(ICopyParser copyParser, View view)
+            : this(copyParser, view, new NullImportLogger())
+        {
+          
+        }
+
+        public NewRowPasteProcessor(ICopyParser copyParser, View view,
+            IImportLogger logger)
         {
             if (view == null)
                 throw new ArgumentException("Parameter 'view' cannot be null", "view");
@@ -28,7 +36,7 @@ namespace Xafology.ExpressApp.Paste.Win
             this.copyParser = copyParser;
             this.view = view;
             this.pasteUtils = new PasteUtils();
-            this.offlinePasteUtils = new OfflinePasteUtils();
+            this.offlinePasteUtils = new OfflinePasteUtils(logger);
         }
 
         public Xpo.ValueMap.IImportLogger Logger
