@@ -24,7 +24,7 @@ namespace Xafology.ExpressApp.Paste.Win
         const string pasteColumnCaption = "Paste Column";
         const string clearColumnCaption = "Clear Column";
 
-        private readonly SimpleImportLogger logger;
+        private SimpleImportLogger logger;
 
         public PasteViewController()
         {
@@ -54,7 +54,6 @@ namespace Xafology.ExpressApp.Paste.Win
             clearColumnChoice.Caption = clearColumnCaption;
             pasteAction.Items.Add(clearColumnChoice);
 
-            logger = new SimpleImportLogger();
         }
 
         protected override void OnActivated()
@@ -81,6 +80,8 @@ namespace Xafology.ExpressApp.Paste.Win
 
         private void PasteRowAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
+            logger = new SimpleImportLogger();
+
             // find param
             var pasteParam = ObjectSpace.FindObject<PasteParam>(CriteriaOperator.Parse("IsDefault=true"));
 
@@ -155,6 +156,7 @@ namespace Xafology.ExpressApp.Paste.Win
                 PasteOfflineRowValues(pasteParam, false);
                 new Xafology.ExpressApp.SystemModule.GenericMessageBox(
                     logger.LogMessage, "Import SUCCESSFUL");
+                return;
             }
             // create Paste Processor
             var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
