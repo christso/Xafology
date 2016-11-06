@@ -142,6 +142,14 @@
       <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
       <Name>Xafology.ExpressApp.Paste</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+      <Project>{b0d86256-73e7-46d3-b728-346ca4190ecd}</Project>
+      <Name>Xafology.ExpressApp.Xpo.Import</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
+      <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>
+      <Name>Xafology.ExpressApp.Xpo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

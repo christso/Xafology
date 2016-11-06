@@ -16,6 +16,14 @@ namespace Xafology.ExpressApp.Xpo.Import.Logic
             this.request = request;
         }
 
+        public string LogMessage
+        {
+            get
+            {
+                return request.RequestLog;
+            }
+        }
+
         public void Log(string message, params object[] args)
         {
             //if (request == null) return;

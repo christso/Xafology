@@ -28,6 +28,8 @@
 			// 
 			this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Paste.PasteModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Xpo.XpoModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.Xpo.Import.ImportModule));
 		}
 
 		#endregion

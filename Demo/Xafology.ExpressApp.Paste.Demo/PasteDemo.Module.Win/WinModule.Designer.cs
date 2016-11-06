@@ -27,7 +27,10 @@
             // PasteDemoWindowsFormsModule
             // 
             this.RequiredModuleTypes.Add(typeof(PasteDemo.Module.PasteDemoModule));
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule));
+            this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule));
+
         }
 
         #endregion

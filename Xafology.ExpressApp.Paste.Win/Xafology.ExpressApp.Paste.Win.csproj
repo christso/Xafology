@@ -97,6 +97,7 @@
     <Compile Include="ICopiedText.cs" />
     <Compile Include="ICopyParser.cs" />
     <Compile Include="NewRowPasteProcessor.cs" />
+    <Compile Include="OfflinePasteUtils.cs" />
     <Compile Include="PasteViewController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,6 +120,10 @@
     <ProjectReference Include="..\Xafology.ExpressApp.Paste\Xafology.ExpressApp.Paste.csproj">
       <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
       <Name>Xafology.ExpressApp.Paste</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xafology.ExpressApp.Xpo.Import\Xafology.ExpressApp.Xpo.Import.csproj">
+      <Project>{B0D86256-73E7-46D3-B728-346CA4190ECD}</Project>
+      <Name>Xafology.ExpressApp.Xpo.Import</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xafology.ExpressApp.Xpo\Xafology.ExpressApp.Xpo.csproj">
       <Project>{47eaa7da-b85c-45a8-8e21-24fc12d56f65}</Project>

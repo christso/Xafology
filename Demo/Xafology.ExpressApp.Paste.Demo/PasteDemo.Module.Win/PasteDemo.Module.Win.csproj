@@ -68,6 +68,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.FileAttachment.Win.v16.1, Version=16.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v16.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="WinModule.resx">
       <DependentUpon>WinModule.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -164,6 +166,10 @@
     <ProjectReference Include="..\..\..\Xafology.ExpressApp.Paste\Xafology.ExpressApp.Paste.csproj">
       <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
       <Name>Xafology.ExpressApp.Paste</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp\Xafology.ExpressApp.csproj">
+      <Project>{d1d7af11-8247-484c-8cb1-d15f1a8dedc8}</Project>
+      <Name>Xafology.ExpressApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\PasteDemo.Module\PasteDemo.Module.csproj">
       <Project>{dc2f3aa2-abdb-469e-b260-5fd5e9501529}</Project>

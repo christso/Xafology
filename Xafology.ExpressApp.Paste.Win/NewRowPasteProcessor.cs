@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Win.Editors;
+using DevExpress.Xpo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly ICopyParser copyParser;
         private readonly View view;
         private readonly PasteUtils pasteUtils;
+        private readonly OfflinePasteUtils offlinePasteUtils;
 
         public NewRowPasteProcessor(ICopyParser copyParser, View view)
         {
@@ -26,6 +28,12 @@ namespace Xafology.ExpressApp.Paste.Win
             this.copyParser = copyParser;
             this.view = view;
             this.pasteUtils = new PasteUtils();
+            this.offlinePasteUtils = new OfflinePasteUtils();
+        }
+
+        public Xpo.ValueMap.IImportLogger Logger
+        {
+            get { return offlinePasteUtils.Logger; }
         }
 
         // note that the new row must be focused for this to work
@@ -59,5 +67,28 @@ namespace Xafology.ExpressApp.Paste.Win
             }
         }
 
+        public void ProcessOffline(PasteParam pasteParam)
+        {
+            var listview = (ListView)view;
+            GridListEditor listEditor = listview.Editor as GridListEditor;
+            var gridView = listEditor.GridView;
+            var copiedValues = copyParser.ToArray();
+            var newRowHandle = gridView.FocusedRowHandle;
+            var os = listview.ObjectSpace;
+
+            if (!gridView.IsNewItemRow(gridView.FocusedRowHandle))
+                return;
+
+            // paste rows
+            for (int r = 0; r < copiedValues.Length; r++)
+            {
+                // ignore row with empty string
+                if (copiedValues[r].Length == 1 && string.IsNullOrWhiteSpace(copiedValues[r][0]))
+                    continue;
+                var obj = (IXPObject)os.CreateObject(view.ObjectTypeInfo.Type);
+                offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
+                    listview, pasteParam);
+            }
+        }
     }
 }

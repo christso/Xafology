@@ -9,12 +9,13 @@ using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Validation;
+using Xafology.ExpressApp.Xpo.Import;
 
 namespace PasteDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
     [DefaultListViewOptions(allowEdit: true, newItemRowPosition: DevExpress.ExpressApp.NewItemRowPosition.Top)]
-    public class MockFactObject : BaseObject
+    public class MockFactObject : BaseObject, IXpoImportable
     {
         private string description;
         private decimal amount;

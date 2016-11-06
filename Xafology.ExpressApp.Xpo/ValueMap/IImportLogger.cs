@@ -8,6 +8,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
 {
     public interface IImportLogger
     {
+        string LogMessage { get; }
         void Log(string message, params object[] args);
     }
 }

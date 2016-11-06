@@ -19,8 +19,9 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly DevExpress.Utils.DefaultBoolean copyColumnHeaders;
 
         const string pasteRowsCaption = "Paste Rows";
-        const string pasteCellsCaption = "Paste Column";
-        const string clearCellsCaption = "Clear Column";
+        const string pasteNewRowsCaption = "Paste New Rows";
+        const string pasteColumnCaption = "Paste Column";
+        const string clearColumnCaption = "Clear Column";
 
         public PasteViewController()
         {
@@ -38,13 +39,17 @@ namespace Xafology.ExpressApp.Paste.Win
             pasteRowChoice.Caption = pasteRowsCaption;
             pasteAction.Items.Add(pasteRowChoice);
 
-            var pasteCellsChoice = new ChoiceActionItem();
-            pasteCellsChoice.Caption = pasteCellsCaption;
-            pasteAction.Items.Add(pasteCellsChoice);
+            var pasteNewRowChoice = new ChoiceActionItem();
+            pasteNewRowChoice.Caption = pasteNewRowsCaption;
+            pasteAction.Items.Add(pasteNewRowChoice);
 
-            var clearCellsChoice = new ChoiceActionItem();
-            clearCellsChoice.Caption = clearCellsCaption;
-            pasteAction.Items.Add(clearCellsChoice);
+            var pasteColumnChoice = new ChoiceActionItem();
+            pasteColumnChoice.Caption = pasteColumnCaption;
+            pasteAction.Items.Add(pasteColumnChoice);
+
+            var clearColumnChoice = new ChoiceActionItem();
+            clearColumnChoice.Caption = clearColumnCaption;
+            pasteAction.Items.Add(clearColumnChoice);
         }
 
         protected override void OnActivated()
@@ -79,13 +84,43 @@ namespace Xafology.ExpressApp.Paste.Win
                 case pasteRowsCaption:
                     PasteRowValues(pasteParam);
                     break;
-                case pasteCellsCaption:
-                    PasteCellValues();
+                case pasteNewRowsCaption:
+                    PasteNewRowValues(pasteParam);
                     break;
-                case clearCellsCaption:
-                    ClearCellValues();
+                case pasteColumnCaption:
+                    PasteColumnValues();
+                    break;
+                case clearColumnCaption:
+                    ClearColumnValues();
                     break;
             }
+        }
+
+        private void PasteNewRowValues(PasteParam pasteParam)
+        {
+            // create Paste Processor
+            var clipboard = new Clipboard();
+            var clipboardParser = new CopyParser(clipboard);
+            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View);
+            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View);
+
+            string[][] copiedValues = clipboardParser.ToArray();
+            if (copiedValues == null) return;
+
+            GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
+
+            if (listEditor != null)
+            {
+                var gridView = listEditor.GridView;
+
+                if ((gridView.IsNewItemRow(gridView.FocusedRowHandle)))
+                {
+                    // paste to new rows
+                    newRowPasteProcessor.ProcessOffline(pasteParam);
+                    var message = newRowPasteProcessor.Logger.LogMessage;
+                }
+            }
+            
         }
 
         private void PasteRowValues(PasteParam pasteParam)
@@ -118,7 +153,7 @@ namespace Xafology.ExpressApp.Paste.Win
             }
         }
 
-        private void PasteCellValues()
+        private void PasteColumnValues()
         {
             var clipboard = new Clipboard();
             var clipboardParser = new CopyParser(clipboard);
@@ -129,7 +164,7 @@ namespace Xafology.ExpressApp.Paste.Win
             cellPasteProcessor.Process(copiedValues);
         }
 
-        private void ClearCellValues()
+        private void ClearColumnValues()
         {
             GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
             if (listEditor == null) return;
