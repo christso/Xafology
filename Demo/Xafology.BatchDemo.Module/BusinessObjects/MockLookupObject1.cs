@@ -11,8 +11,8 @@ using Xafology.ExpressApp.BatchDelete;
 namespace Xafology.BatchDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    [BatchDelete(isVisible: true, isOptimized: true)]
-    public class MockLookupObject1 : BaseObject, IBatchDeletable
+    [BatchDelete(isVisible: true)]
+    public class MockLookupObject1 : BaseObject
     {
         private string name;
         public MockLookupObject1(DevExpress.Xpo.Session session)

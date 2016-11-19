@@ -10,10 +10,12 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Validation;
 using Xafology.ExpressApp.Xpo.Import;
+using Xafology.ExpressApp.BatchDelete;
 
 namespace PasteDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
+    [BatchDelete(isVisible: true)]
     [DefaultListViewOptions(allowEdit: true, newItemRowPosition: DevExpress.ExpressApp.NewItemRowPosition.Top)]
     public class MockFactObject : BaseObject, IXpoImportable
     {

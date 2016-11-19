@@ -138,6 +138,10 @@
     <Content Include="Welcome.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.BatchDelete\Xafology.ExpressApp.BatchDelete.csproj">
+      <Project>{5c705d59-b790-4c51-ad63-a93a9c161b78}</Project>
+      <Name>Xafology.ExpressApp.BatchDelete</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Xafology.ExpressApp.Paste\Xafology.ExpressApp.Paste.csproj">
       <Project>{f3b6e1fa-5335-4805-954c-e7de8597df06}</Project>
       <Name>Xafology.ExpressApp.Paste</Name>

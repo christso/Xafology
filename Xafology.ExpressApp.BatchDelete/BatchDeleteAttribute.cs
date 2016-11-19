@@ -11,24 +11,17 @@ namespace Xafology.ExpressApp.BatchDelete
     public class BatchDeleteAttribute : System.Attribute
     {
         private bool isVisible = true;
-        private bool isOptimized = true;
 
         public BatchDeleteAttribute()
         {
         }
-        public BatchDeleteAttribute(bool isVisible, bool isOptimized)
+        public BatchDeleteAttribute(bool isVisible)
         {
             this.isVisible = isVisible;
-            this.isOptimized = isOptimized;
         }
         public bool IsVisible
         {
             get { return isVisible; }
-        }
-
-        public bool IsOptimized
-        {
-            get { return isOptimized; }
         }
     }
 }

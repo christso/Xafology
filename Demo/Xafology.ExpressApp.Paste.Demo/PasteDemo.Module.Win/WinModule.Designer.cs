@@ -30,7 +30,7 @@
             this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.SystemModule.XafologySystemModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Win.SystemModule.SystemWindowsFormsModule));
             this.RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule));
-
+            this.RequiredModuleTypes.Add(typeof(Xafology.ExpressApp.BatchDelete.Win.BatchDeleteWinModule));
         }
 
         #endregion

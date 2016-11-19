@@ -159,6 +159,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Xafology.ExpressApp.BatchDelete.Win\Xafology.ExpressApp.BatchDelete.Win.csproj">
+      <Project>{4df180eb-2b27-41c9-b439-6000c9f2936c}</Project>
+      <Name>Xafology.ExpressApp.BatchDelete.Win</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Xafology.ExpressApp.Paste.Win\Xafology.ExpressApp.Paste.Win.csproj">
       <Project>{9bc86782-a468-49c5-86b6-fe63de695d7a}</Project>
       <Name>Xafology.ExpressApp.Paste.Win</Name>

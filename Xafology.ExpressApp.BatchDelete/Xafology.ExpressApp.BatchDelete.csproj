@@ -79,7 +79,6 @@
     <Compile Include="BatchDeleteModule.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IBatchDeletable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,8 +11,8 @@ using Xafology.ExpressApp.BatchDelete;
 namespace Xafology.BatchDemo.Module.BusinessObjects
 {
     [DefaultClassOptions]
-    [BatchDelete(isVisible: true, isOptimized: true)]
-    public class MockFactObject : BaseObject, IBatchDeletable
+    [BatchDelete(isVisible: true)]
+    public class MockFactObject : BaseObject
     {
         private string description;
         private decimal amount;

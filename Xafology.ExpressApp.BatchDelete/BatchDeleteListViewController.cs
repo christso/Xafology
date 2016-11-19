@@ -29,7 +29,7 @@ namespace Xafology.ExpressApp.BatchDelete
         public BatchDeleteListViewController()
         {
             TargetViewType = ViewType.ListView;
-            TargetObjectType = typeof(IBatchDeletable);
+            //TargetObjectType = typeof(IBatchDeletable);
 
             batchDeleteAction = new SingleChoiceAction(this, "BatchUpdateAction", DevExpress.Persistent.Base.PredefinedCategory.Edit);
             batchDeleteAction.Caption = "Batch";
@@ -56,6 +56,35 @@ namespace Xafology.ExpressApp.BatchDelete
             var purgeChoice = new ChoiceActionItem();
             purgeChoice.Caption = purgeCaption;
             batchDeleteAction.Items.Add(purgeChoice);
+        }
+
+        private bool IsTargetObject
+        {
+            get
+            {
+
+                var attr = View.ObjectTypeInfo.FindAttribute<BatchDeleteAttribute>();
+
+                if (attr == null || attr.IsVisible == false)
+                    return false;
+                return true;
+            }
+        }
+
+        protected override void OnActivated()
+        {
+            base.OnActivated();
+            if (IsTargetObject)
+                this.Active.SetItemValue("Active", true);
+            else
+                this.Active.SetItemValue("Active", false);
+            //View.ControlsCreated += View_ControlsCreated;
+        }
+
+        protected override void OnDeactivated()
+        {
+            base.OnDeactivated();
+            //View.ControlsCreated -= View_ControlsCreated;
         }
 
         public bool DeleteFilteredChoiceEnabled
@@ -133,7 +162,7 @@ namespace Xafology.ExpressApp.BatchDelete
             var deleter = new BatchDeleter(objSpace);
             deleter.Delete(classInfo, criteria);
         }
-
+        
         public virtual CriteriaOperator ActiveFilterCriteria { get { return null; } }
         public virtual bool ActiveFilterEnabled { get { return false; } }
     }
