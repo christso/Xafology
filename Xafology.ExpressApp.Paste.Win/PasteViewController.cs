@@ -20,7 +20,8 @@ namespace Xafology.ExpressApp.Paste.Win
         private readonly DevExpress.Utils.DefaultBoolean copyColumnHeaders;
 
         const string pasteRowsCaption = "Paste Rows";
-        const string pasteNewRowsCaption = "Paste Rows Offline";
+        const string pasteRowsOfflineCaption = "Paste Rows Offline";
+        const string pasteRowsCommitCaption = "Paste Rows Commit";
         const string pasteColumnCaption = "Paste Column";
         const string clearColumnCaption = "Clear Column";
 
@@ -42,10 +43,6 @@ namespace Xafology.ExpressApp.Paste.Win
             pasteRowChoice.Caption = pasteRowsCaption;
             pasteAction.Items.Add(pasteRowChoice);
 
-            var pasteRowsOfflineChoice = new ChoiceActionItem();
-            pasteRowsOfflineChoice.Caption = pasteNewRowsCaption;
-            pasteAction.Items.Add(pasteRowsOfflineChoice);
-
             var pasteColumnChoice = new ChoiceActionItem();
             pasteColumnChoice.Caption = pasteColumnCaption;
             pasteAction.Items.Add(pasteColumnChoice);
@@ -53,6 +50,19 @@ namespace Xafology.ExpressApp.Paste.Win
             var clearColumnChoice = new ChoiceActionItem();
             clearColumnChoice.Caption = clearColumnCaption;
             pasteAction.Items.Add(clearColumnChoice);
+
+            //var pasteDivider = new ChoiceActionItem();
+            //pasteDivider.Caption = "------";
+            //pasteAction.Items.Add(pasteDivider);
+         
+            var pasteRowsOfflineChoice = new ChoiceActionItem();
+            pasteRowsOfflineChoice.BeginGroup = true;
+            pasteRowsOfflineChoice.Caption = pasteRowsOfflineCaption;
+            pasteAction.Items.Add(pasteRowsOfflineChoice);
+
+            var pasteRowsCommitChoice = new ChoiceActionItem();
+            pasteRowsCommitChoice.Caption = pasteRowsCommitCaption;
+            pasteAction.Items.Add(pasteRowsCommitChoice);
 
         }
 
@@ -90,8 +100,11 @@ namespace Xafology.ExpressApp.Paste.Win
                 case pasteRowsCaption:
                     PasteRowValues(pasteParam);
                     break;
-                case pasteNewRowsCaption:
+                case pasteRowsOfflineCaption:
                     PasteOfflineRowValues(pasteParam, true);
+                    break;
+                case pasteRowsCommitCaption:
+                    PasteCommitRowValues(pasteParam, true);
                     break;
                 case pasteColumnCaption:
                     PasteColumnValues();
@@ -99,6 +112,48 @@ namespace Xafology.ExpressApp.Paste.Win
                 case clearColumnCaption:
                     ClearColumnValues();
                     break;
+            }
+        }
+
+        private void PasteCommitRowValues(PasteParam pasteParam, bool isRoot = false)
+        {
+            int commitInterval = 100;
+            // create Paste Processor
+            var clipboard = new Clipboard();
+            var clipboardParser = new CopyParser(clipboard);
+            var newRowPasteProcessor = new NewRowPasteProcessor(clipboardParser, this.View, logger);
+            var existingRowPasteProcessor = new ExistingRowPasteProcessor(clipboardParser, this.View, logger);
+
+            string[][] copiedValues = clipboardParser.ToArray();
+            if (copiedValues == null) return;
+
+            GridListEditor listEditor = ((ListView)View).Editor as GridListEditor;
+
+            if (listEditor != null)
+            {
+                var sw = new Stopwatch();
+                sw.Start();
+
+                var gridView = listEditor.GridView;
+
+                if ((gridView.IsNewItemRow(gridView.FocusedRowHandle)))
+                {
+                    // paste to new rows
+                    newRowPasteProcessor.ProcessOffline(pasteParam, commitInterval);
+                }
+                else
+                {
+                    existingRowPasteProcessor.ProcessOffline(pasteParam, commitInterval);
+                }
+
+                sw.Stop();
+                logger.Log("Import completed in {0:0.00} seconds.", sw.Elapsed.TotalSeconds);
+                logger.Log("Changes saved to database.");
+                if (isRoot)
+                {
+                    new Xafology.ExpressApp.SystemModule.GenericMessageBox(
+                        logger.LogMessage, "Import SUCCESSFUL");
+                }
             }
         }
 
@@ -117,6 +172,9 @@ namespace Xafology.ExpressApp.Paste.Win
 
             if (listEditor != null)
             {
+                var sw = new Stopwatch();
+                sw.Start();
+
                 var gridView = listEditor.GridView;
 
                 if ((gridView.IsNewItemRow(gridView.FocusedRowHandle)))
@@ -128,7 +186,10 @@ namespace Xafology.ExpressApp.Paste.Win
                 {
                     existingRowPasteProcessor.ProcessOffline(pasteParam);
                 }
+                sw.Stop();
+                logger.Log("Import completed in {0:0.00} seconds.", sw.Elapsed.TotalSeconds);
                 logger.Log("Please SAVE or CANCEL your changes.");
+
                 if (isRoot)
                 {
                     new Xafology.ExpressApp.SystemModule.GenericMessageBox(
@@ -153,7 +214,13 @@ namespace Xafology.ExpressApp.Paste.Win
             {
                 logger.Log("Rows exceeded the maximum of {0}. OFFLINE mode used.",
                     PasteSettings.MaximumOnlineRows);
+
+                var sw = new Stopwatch();
+                sw.Start();
                 PasteOfflineRowValues(pasteParam, false);
+                sw.Stop();
+                logger.Log("Import completed in {0:0.00} seconds.", sw.Elapsed.TotalSeconds);
+
                 new Xafology.ExpressApp.SystemModule.GenericMessageBox(
                     logger.LogMessage, "Import SUCCESSFUL");
                 return;

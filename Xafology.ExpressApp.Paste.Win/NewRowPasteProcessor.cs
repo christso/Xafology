@@ -102,5 +102,39 @@ namespace Xafology.ExpressApp.Paste.Win
             }
             offlinePasteUtils.Logger.Log("{0} rows inserted", pasteCount++);
         }
+
+        public void ProcessOffline(PasteParam pasteParam, int commitInterval)
+        {
+            var listview = (ListView)view;
+            GridListEditor listEditor = listview.Editor as GridListEditor;
+            var gridView = listEditor.GridView;
+            var copiedValues = copyParser.ToArray();
+            var newRowHandle = gridView.FocusedRowHandle;
+            var os = listview.ObjectSpace;
+
+            if (!gridView.IsNewItemRow(gridView.FocusedRowHandle))
+                return;
+
+            int pasteCount = 0;
+            // paste rows
+            for (int r = 0; r < copiedValues.Length; r++)
+            {
+
+                // ignore row with empty string
+                if (copiedValues[r].Length == 1 && string.IsNullOrWhiteSpace(copiedValues[r][0]))
+                    continue;
+                var obj = (IXPObject)os.CreateObject(view.ObjectTypeInfo.Type);
+                offlinePasteUtils.PasteColumnsToRow(copiedValues[r], obj,
+                    listview, pasteParam);
+
+                // commit batch at each interval
+                if (commitInterval > 0 && r > 0 && r % commitInterval == 0)
+                    os.CommitChanges();
+
+                pasteCount++;
+            }
+            os.CommitChanges();
+            offlinePasteUtils.Logger.Log("{0} rows inserted", pasteCount++);
+        }
     }
 }

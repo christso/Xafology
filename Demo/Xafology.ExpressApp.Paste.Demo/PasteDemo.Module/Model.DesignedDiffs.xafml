@@ -10,11 +10,16 @@
     </Items>
   </NavigationItems>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="15.2.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="16.1.7.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
-    <ListView Id="MockFactObject_ListView">
+    <ListView Id="MockFactObject_ListView" IsFooterVisible="True">
       <Columns>
+        <ColumnInfo Id="ShortUID">
+          <Summary>
+            <ColumnSummaryItem Id="@b874e0c4-132b-4efe-9d29-db665f00ef7e" SummaryType="Count" IsNewNode="True" />
+          </Summary>
+        </ColumnInfo>
         <ColumnInfo Id="Memo" SortIndex="7" Index="7" />
       </Columns>
     </ListView>
