@@ -135,6 +135,7 @@ namespace Xafology.ExpressApp.BatchDelete
         private void ShowFilterXpo()
         {
             CriteriaOperator criteria = ActiveFilterCriteria;
+
             new GenericMessageBox(criteria.ToString(),
                         "Filter Criteria XPO Text");
         }
