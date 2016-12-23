@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Xafology.BatchDemo.Web")]
 [assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DG2NTT Pty Ltd")]
+[assembly: AssemblyCompany("OpenDot Systems Pty Ltd")]
 [assembly: AssemblyProduct("Xafology.BatchDemo.Web")]
 [assembly: AssemblyCopyright("Copyright © - 2008")]
 [assembly: AssemblyTrademark("")]

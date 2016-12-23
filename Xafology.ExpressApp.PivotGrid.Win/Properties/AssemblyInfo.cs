@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CTMS.ExpressApp.PivotGrid.Win")]
 [assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DG2NTT Pty Ltd")]
+[assembly: AssemblyCompany("OpenDot Systems Pty Ltd")]
 [assembly: AssemblyProduct("CTMS.ExpressApp.PivotGrid.Win")]
 [assembly: AssemblyCopyright("Copyright © - 2007")]
 [assembly: AssemblyTrademark("")]

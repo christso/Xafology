@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Xafology.PivotGrid")]
 [assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DG2NTT Pty Ltd")]
+[assembly: AssemblyCompany("OpenDot Systems Pty Ltd")]
 [assembly: AssemblyProduct("Xafology.PivotGrid")]
 [assembly: AssemblyCopyright(Xafology.Data.AssemblyInfo.AssemblyCopyright)]
 [assembly: AssemblyTrademark("")]

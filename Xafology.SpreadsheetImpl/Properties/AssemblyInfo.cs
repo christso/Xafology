@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Xafology.SpreadsheetImpl")]
 [assembly: AssemblyDescription("Xafology")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DG2NTT PTY LTD")]
+[assembly: AssemblyCompany("OpenDot Systems PTY LTD")]
 [assembly: AssemblyProduct("Xafology.SpreadsheetImpl")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
