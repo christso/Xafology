@@ -67,7 +67,11 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             object newValue = null;
             if (memberInfo.MemberType == typeof(DateTime))
             {
-                newValue = Convert.ToDateTime(value);
+                var tmpDateTime = default(DateTime);
+                if (DateTime.TryParse(value, out tmpDateTime))
+                    newValue = tmpDateTime;
+                else
+                    throw new InvalidOperationException(string.Format("Invalid DateTime '{0}'", value));
             }
             else if (memberInfo.MemberType == typeof(bool))
             {
