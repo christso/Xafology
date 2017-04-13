@@ -53,9 +53,9 @@ namespace Xafology.ExpressApp.BatchDelete
             showFilterSqlChoice.Caption = showFilterSqlCaption;
             batchDeleteAction.Items.Add(showFilterSqlChoice);
 
-            var purgeChoice = new ChoiceActionItem();
-            purgeChoice.Caption = purgeCaption;
-            batchDeleteAction.Items.Add(purgeChoice);
+            //var purgeChoice = new ChoiceActionItem();
+            //purgeChoice.Caption = purgeCaption;
+            //batchDeleteAction.Items.Add(purgeChoice);
         }
 
         private bool IsTargetObject
