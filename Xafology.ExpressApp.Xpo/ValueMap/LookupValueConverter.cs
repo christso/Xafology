@@ -31,8 +31,8 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             object newValue;
             var memberType = memberInfo.MemberType;
             var defaultProperty = memberInfo.MemberTypeInfo.DefaultMember.Name;
-
-            var cop = CriteriaOperator.Parse(string.Format("[{0}] = ?", defaultProperty), value);
+            // use Like here to do case-insensitive matching
+            var cop = CriteriaOperator.Parse(string.Format("[{0}] Like ?", defaultProperty), value);
             newValue = session.FindObject(memberType, cop);
             if (newValue == null)
             {

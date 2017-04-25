@@ -67,7 +67,7 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             foreach (var obj in cachedObjects)
             {
                 object tmpValue = lookupMemberInfo.GetValue(obj);
-                if (Convert.ToString(tmpValue) == value)
+                if (Convert.ToString(tmpValue).ToLower() == value.ToLower()) // case-insensitive
                 {
                     newValue = obj;
                     break;

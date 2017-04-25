@@ -60,7 +60,8 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
         /// <param name="targetObj">Main object whose members are to be assigned a value</param>
         /// <param name="memberInfo">Information about the member used to determine how the value is converted to the member type</param>
         /// <param name="value">Value to assigned to the member</param>
-        public void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, bool createMember = false, bool cacheObject = false)
+        public void SetMemberValue(IXPObject targetObj, IMemberInfo memberInfo, string value, 
+            bool createMember = false, bool cacheObject = false)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
