@@ -32,8 +32,8 @@ namespace Xafology.ExpressApp.Xpo.ValueMap
             var memberType = memberInfo.MemberType;
             var defaultProperty = memberInfo.MemberTypeInfo.DefaultMember.Name;
             // use Like here to do case-insensitive matching
-            var cop = CriteriaOperator.Parse(string.Format("[{0}] Like ?", defaultProperty), value);
-            newValue = session.FindObject(memberType, cop);
+            var cop = CriteriaOperator.Parse(string.Format("Trim([{0}]) Like Trim(?)", defaultProperty), value);
+            newValue = session.FindObject(PersistentCriteriaEvaluationBehavior.InTransaction, memberType, cop);
             if (newValue == null)
             {
                 newValue = CreateMemberIfMissing(session, memberType, defaultProperty, value, createMember);
