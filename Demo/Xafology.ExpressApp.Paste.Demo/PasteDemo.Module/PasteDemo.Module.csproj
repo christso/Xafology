@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\MockFactObject.cs" />
+    <Compile Include="BusinessObjects\MockFactObject2.cs" />
     <Compile Include="BusinessObjects\MockLookupObject1.cs" />
     <Compile Include="BusinessObjects\MockLookupObject2.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />

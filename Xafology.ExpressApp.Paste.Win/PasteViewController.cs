@@ -91,9 +91,13 @@ namespace Xafology.ExpressApp.Paste.Win
         private void PasteRowAction_Execute(object sender, SingleChoiceActionExecuteEventArgs e)
         {
             logger = new SimpleImportLogger();
+            var objName = View.ObjectTypeInfo.Name;
 
             // find param
-            var pasteParam = ObjectSpace.FindObject<PasteParam>(CriteriaOperator.Parse("IsDefault=true"));
+            var pasteParam = ObjectSpace.FindObject<PasteParam>(CriteriaOperator.Parse(
+                "IsDefault=? And ObjectTypeName=?", 
+                true, 
+                objName));
 
             switch (e.SelectedChoiceActionItem.Caption)
             {
